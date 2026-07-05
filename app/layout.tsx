@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Libre_Baskerville, Montserrat } from "next/font/google";
+import { PersistentPanel } from "@/components/persistent-panel";
 import "./globals.css";
 
 // "Voice" — editorial serif for titles, questions, and long-form reading.
@@ -32,7 +33,10 @@ export default function RootLayout({
       lang="en"
       className={`${libreBaskerville.variable} ${montserrat.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <PersistentPanel />
+        <div className="flex flex-1 flex-col lg:mr-72">{children}</div>
+      </body>
     </html>
   );
 }

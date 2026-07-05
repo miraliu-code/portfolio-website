@@ -32,6 +32,10 @@
   --font-sans: var(--font-montserrat), Montserrat, system-ui, sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--atmosphere);
   color: var(--information);

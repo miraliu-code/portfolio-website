@@ -21,9 +21,8 @@ function Hero() {
           Everything is connected.
         </h1>
         <p className="mt-8 max-w-md font-serif text-lg leading-relaxed text-information/80">
-          Strategy, communication, psychology, design, reading, and
-          observation — complementary ways of understanding how organizations
-          earn trust, create meaning, and make better decisions.
+          Everything on this site is an attempt to answer one question: How do
+          organizations earn trust, create meaning, and make better decisions?
         </p>
         <Link
           href="/atlas"

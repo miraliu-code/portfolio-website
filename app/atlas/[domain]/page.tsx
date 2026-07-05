@@ -72,18 +72,32 @@ export default async function DomainPage({
               <li key={folder.slug} className="border-t border-structure/15 last:border-b">
                 <Link
                   href={`/atlas/${slug}/${folder.slug}`}
-                  className="group block py-6"
+                  className="group flex gap-5 py-6"
                 >
-                  <span className="flex items-baseline justify-between gap-6">
-                    <span className="font-serif text-xl text-information transition-colors group-hover:text-interaction">
-                      {folder.name}
+                  {/* Folder glyph: an archival drawer, not a list bullet. */}
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.1"
+                    className="mt-1 h-7 w-7 shrink-0 text-structure transition-colors group-hover:text-interaction"
+                  >
+                    <path d="M3 7a2 2 0 0 1 2-2h4.2a2 2 0 0 1 1.6.8L12.4 7H19a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z" />
+                    <path d="M3 10.5h18" strokeOpacity="0.5" />
+                  </svg>
+                  <span className="min-w-0 flex-1">
+                    <span className="flex items-baseline justify-between gap-6">
+                      <span className="font-serif text-xl text-information transition-colors group-hover:text-interaction">
+                        {folder.name}
+                      </span>
+                      <span className="shrink-0 font-sans text-xs uppercase tracking-[0.2em] text-information/50">
+                        {count} investigation{count === 1 ? "" : "s"}
+                      </span>
                     </span>
-                    <span className="shrink-0 font-sans text-xs uppercase tracking-[0.2em] text-information/50">
-                      {count} investigation{count === 1 ? "" : "s"}
+                    <span className="mt-2 block font-serif text-sm italic text-information/60">
+                      {folder.description}
                     </span>
-                  </span>
-                  <span className="mt-2 block font-serif text-sm italic text-information/60">
-                    {folder.description}
                   </span>
                 </Link>
               </li>

@@ -1,130 +1,146 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import Link from "next/link";
-import {
-  ReactFlow,
-  Handle,
-  Position,
-  type Edge,
-  type Node,
-  type NodeProps,
-} from "@xyflow/react";
-import "@xyflow/react/dist/style.css";
+import { useState } from "react";
 import { domains } from "@/lib/content/domains";
 
 /*
- * The Atlas as a conceptual map (Standard 09). Fixed radial layout —
- * Organizations at the center, six domains around it. Quiet at rest;
- * on hover a node lifts slightly and its edge to the center darkens.
- * All library interactivity (pan/zoom/drag/select) is disabled.
+ * The Atlas as a conceptual map. Slot-based layout: one large center slot
+ * and six organically placed satellite slots of varied sizes. At rest,
+ * Organizations holds the center (large, burgundy). Hovering a domain
+ * swaps it smoothly into the center slot — trading places with whatever
+ * was centered — and mouse-off restores the resting arrangement.
+ *
+ * The hairlines and dots connect SLOTS, not nodes, so they never move;
+ * only the occupants glide between slots. Reduced motion = instant swap.
  */
 
-type MapNodeData = { label: string; href?: string; center?: boolean };
-type MapNode = Node<MapNodeData>;
-
-const hiddenHandle = { opacity: 0, pointerEvents: "none" as const };
-
-function CircleNode({ data }: NodeProps<MapNode>) {
-  const base =
-    "flex items-center justify-center rounded-full text-center transition-[transform,box-shadow,border-color,color] duration-200 motion-reduce:transition-none";
-  return (
-    <>
-      <Handle type="target" position={Position.Top} style={hiddenHandle} />
-      {data.center ? (
-        <div
-          className={`${base} h-40 w-40 bg-interaction`}
-          aria-hidden="true"
-        >
-          <span className="font-serif text-base italic text-atmosphere">
-            {data.label}
-          </span>
-        </div>
-      ) : (
-        <Link
-          href={data.href ?? "/atlas"}
-          className={`${base} h-28 w-28 border border-structure/40 bg-atmosphere p-3 text-information hover:-translate-y-1 hover:scale-105 hover:border-interaction hover:text-interaction hover:shadow-lg hover:shadow-structure/20 motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100`}
-        >
-          <span className="font-sans text-xs uppercase tracking-[0.15em] text-inherit">
-            {data.label}
-          </span>
-        </Link>
-      )}
-      <Handle type="source" position={Position.Bottom} style={hiddenHandle} />
-    </>
-  );
+interface Slot {
+  x: number; // % of container
+  y: number;
+  d: number; // diameter, % of container width
 }
 
-const nodeTypes = { circle: CircleNode };
-
-const RADIUS = 195;
-const ANGLES = [-90, -30, 30, 90, 150, 210]; // Strategy at top, clockwise
-
-const nodes: MapNode[] = [
-  {
-    id: "organizations",
-    type: "circle",
-    position: { x: 0, y: 0 },
-    data: { label: "Organizations", center: true },
-    draggable: false,
-    selectable: false,
-    focusable: false,
-  },
-  ...domains.map((d, i) => {
-    const a = (ANGLES[i] * Math.PI) / 180;
-    return {
-      id: d.slug,
-      type: "circle",
-      position: { x: RADIUS * Math.cos(a), y: RADIUS * Math.sin(a) },
-      data: { label: d.name, href: `/atlas/${d.slug}` },
-      draggable: false,
-      selectable: false,
-      focusable: false,
-    } satisfies MapNode;
-  }),
+const CENTER: Slot = { x: 50, y: 48, d: 33 };
+const SATELLITES: Slot[] = [
+  { x: 26, y: 17, d: 21 },
+  { x: 71, y: 14, d: 17 },
+  { x: 87, y: 45, d: 23 },
+  { x: 70, y: 79, d: 18 },
+  { x: 35, y: 85, d: 20 },
+  { x: 11, y: 52, d: 16 },
 ];
+
+/* Decorative satellite dots, some tethered to a slot by a short line. */
+const DOTS: { x: number; y: number; r: number; from?: Slot }[] = [
+  { x: 58, y: 6, r: 0.9, from: SATELLITES[1] },
+  { x: 95, y: 26, r: 1.1, from: SATELLITES[2] },
+  { x: 84, y: 91, r: 0.8, from: SATELLITES[3] },
+  { x: 4, y: 37, r: 0.9, from: SATELLITES[5] },
+  { x: 21, y: 95, r: 0.7, from: SATELLITES[4] },
+  { x: 8, y: 8, r: 0.6, from: SATELLITES[0] },
+  { x: 66, y: 96, r: 0.6 },
+  { x: 97, y: 62, r: 0.6 },
+  { x: 44, y: 3, r: 0.5 },
+];
+
+const transition =
+  "transition-[left,top,width,background-color,color,box-shadow] duration-500 ease-[cubic-bezier(0.33,0,0.2,1)] motion-reduce:transition-none";
+
+function circleStyle(slot: Slot): React.CSSProperties {
+  return { left: `${slot.x}%`, top: `${slot.y}%`, width: `${slot.d}%` };
+}
 
 export function AtlasMap({ className = "" }: { className?: string }) {
   const [hovered, setHovered] = useState<string | null>(null);
+  const hoveredIndex = domains.findIndex((d) => d.slug === hovered);
 
-  const edges: Edge[] = useMemo(
-    () =>
-      domains.map((d) => ({
-        id: `e-${d.slug}`,
-        source: "organizations",
-        target: d.slug,
-        type: "straight",
-        focusable: false,
-        style:
-          hovered === d.slug
-            ? { stroke: "var(--interaction)", strokeOpacity: 0.8, strokeWidth: 1.5 }
-            : { stroke: "var(--structure)", strokeOpacity: 0.3, strokeWidth: 1 },
-      })),
-    [hovered],
-  );
+  /* Organizations sits in the center unless a domain has taken it. */
+  const organizationsSlot =
+    hoveredIndex === -1 ? CENTER : SATELLITES[hoveredIndex];
 
   return (
-    <div className={`atlas-map aspect-square w-full ${className}`}>
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        nodeTypes={nodeTypes}
-        nodeOrigin={[0.5, 0.5]}
-        fitView
-        fitViewOptions={{ padding: 0.05 }}
-        nodesDraggable={false}
-        nodesConnectable={false}
-        elementsSelectable={false}
-        panOnDrag={false}
-        panOnScroll={false}
-        zoomOnScroll={false}
-        zoomOnPinch={false}
-        zoomOnDoubleClick={false}
-        preventScrolling={false}
-        onNodeMouseEnter={(_, node) => setHovered(node.id)}
-        onNodeMouseLeave={() => setHovered(null)}
-        style={{ background: "transparent" }}
-      />
+    <div
+      className={`relative aspect-square w-full select-none ${className}`}
+      onMouseLeave={() => setHovered(null)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget)) setHovered(null);
+      }}
+    >
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 100 100"
+        className="absolute inset-0 h-full w-full"
+      >
+        <g stroke="var(--structure)" strokeOpacity="0.25" strokeWidth="0.25">
+          {SATELLITES.map((s, i) => (
+            <line key={i} x1={CENTER.x} y1={CENTER.y} x2={s.x} y2={s.y} />
+          ))}
+          {DOTS.filter((dot) => dot.from).map((dot, i) => (
+            <line
+              key={`t${i}`}
+              x1={dot.from!.x}
+              y1={dot.from!.y}
+              x2={dot.x}
+              y2={dot.y}
+            />
+          ))}
+        </g>
+        <g fill="var(--structure)" fillOpacity="0.3">
+          {DOTS.map((dot, i) => (
+            <circle key={i} cx={dot.x} cy={dot.y} r={dot.r} />
+          ))}
+        </g>
+      </svg>
+
+      {/* Organizations — the conceptual center, never a link. */}
+      <div
+        style={circleStyle(organizationsSlot)}
+        className={`absolute z-10 flex aspect-square -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full p-3 text-center ${transition} ${
+          hoveredIndex === -1
+            ? "bg-interaction"
+            : "bg-structure/10"
+        }`}
+      >
+        <span
+          className={`${transition} ${
+            hoveredIndex === -1
+              ? "font-serif text-sm italic text-atmosphere md:text-lg"
+              : "font-sans text-[0.55rem] uppercase tracking-[0.15em] text-information md:text-[0.65rem]"
+          }`}
+        >
+          Organizations
+        </span>
+      </div>
+
+      {domains.map((domain, i) => {
+        const isCentered = hovered === domain.slug;
+        const slot = isCentered ? CENTER : SATELLITES[i];
+        return (
+          <Link
+            key={domain.slug}
+            href={`/atlas/${domain.slug}`}
+            style={circleStyle(slot)}
+            onMouseEnter={() => setHovered(domain.slug)}
+            onFocus={() => setHovered(domain.slug)}
+            className={`absolute flex aspect-square -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full p-3 text-center ${transition} ${
+              isCentered
+                ? "z-20 bg-interaction shadow-xl shadow-structure/20"
+                : "z-10 bg-structure/10 hover:bg-structure/15"
+            }`}
+          >
+            <span
+              className={`${transition} ${
+                isCentered
+                  ? "font-serif text-sm italic text-atmosphere md:text-lg"
+                  : "font-sans text-[0.55rem] uppercase tracking-[0.15em] text-information md:text-[0.65rem]"
+              }`}
+            >
+              {domain.name}
+            </span>
+          </Link>
+        );
+      })}
     </div>
   );
 }

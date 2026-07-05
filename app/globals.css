@@ -50,14 +50,6 @@ html {
 }
 
 /*
- * React Flow disables node pointer events when drag/select/connect are all
- * off; the Atlas map nodes are plain links, so restore them.
- */
-.atlas-map .react-flow__node {
-  pointer-events: auto !important;
-}
-
-/*
  * The persistent panel is always Blue Ink, so its foreground stays Floral
  * White regardless of theme — pin the variable within the panel's scope.
  */

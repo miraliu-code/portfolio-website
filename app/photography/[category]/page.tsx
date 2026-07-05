@@ -62,9 +62,6 @@ export default async function PhotoCategoryPage({
             <h2 className="mt-5 font-serif text-xl text-information transition-colors group-hover:text-interaction">
               {gallery.name}
             </h2>
-            <p className="mt-2 font-sans text-xs uppercase tracking-[0.2em] text-information/50">
-              {gallery.location} · {gallery.date}
-            </p>
           </Link>
         ))}
       </div>

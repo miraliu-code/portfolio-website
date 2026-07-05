@@ -39,9 +39,11 @@ export const galleries: Gallery[] = [
     camera: "Canon R6, 50mm f/1.8",
     images: [
       { src: ph(1), caption: "Placeholder frame 01" },
-      { src: ph(2), caption: "Placeholder frame 02" },
-      { src: ph(3), caption: "Placeholder frame 03" },
-      { src: ph(4), caption: "Placeholder frame 04" },
+      { src: ph(3), caption: "Placeholder frame 02" },
+      { src: ph(5), caption: "Placeholder frame 03" },
+      { src: ph(7), caption: "Placeholder frame 04" },
+      { src: ph(9), caption: "Placeholder frame 05" },
+      { src: ph(1), caption: "Placeholder frame 06" },
     ],
   },
   {
@@ -54,9 +56,11 @@ export const galleries: Gallery[] = [
     date: "2025–2026",
     camera: "Canon R6, 35mm f/2",
     images: [
-      { src: ph(5), caption: "Placeholder frame 01" },
+      { src: ph(4), caption: "Placeholder frame 01" },
       { src: ph(6), caption: "Placeholder frame 02" },
-      { src: ph(1), caption: "Placeholder frame 03" },
+      { src: ph(8), caption: "Placeholder frame 03" },
+      { src: ph(10), caption: "Placeholder frame 04" },
+      { src: ph(2), caption: "Placeholder frame 05" },
     ],
   },
   {
@@ -69,10 +73,12 @@ export const galleries: Gallery[] = [
     date: "Winter 2025–26",
     camera: "Canon R6, 70–200mm f/2.8",
     images: [
-      { src: ph(2), caption: "Placeholder frame 01" },
-      { src: ph(3), caption: "Placeholder frame 02" },
-      { src: ph(4), caption: "Placeholder frame 03" },
-      { src: ph(5), caption: "Placeholder frame 04" },
+      { src: ph(7), caption: "Placeholder frame 01" },
+      { src: ph(9), caption: "Placeholder frame 02" },
+      { src: ph(1), caption: "Placeholder frame 03" },
+      { src: ph(3), caption: "Placeholder frame 04" },
+      { src: ph(5), caption: "Placeholder frame 05" },
+      { src: ph(7), caption: "Placeholder frame 06" },
     ],
   },
   {
@@ -85,9 +91,11 @@ export const galleries: Gallery[] = [
     date: "Winter 2025–26",
     camera: "Canon R6, 70–200mm f/2.8",
     images: [
-      { src: ph(6), caption: "Placeholder frame 01" },
-      { src: ph(1), caption: "Placeholder frame 02" },
-      { src: ph(2), caption: "Placeholder frame 03" },
+      { src: ph(10), caption: "Placeholder frame 01" },
+      { src: ph(2), caption: "Placeholder frame 02" },
+      { src: ph(4), caption: "Placeholder frame 03" },
+      { src: ph(6), caption: "Placeholder frame 04" },
+      { src: ph(8), caption: "Placeholder frame 05" },
     ],
   },
   {
@@ -101,7 +109,9 @@ export const galleries: Gallery[] = [
     camera: "Canon R6, 70–200mm f/2.8",
     images: [
       { src: ph(3), caption: "Placeholder frame 01" },
-      { src: ph(4), caption: "Placeholder frame 02" },
+      { src: ph(5), caption: "Placeholder frame 02" },
+      { src: ph(7), caption: "Placeholder frame 03" },
+      { src: ph(9), caption: "Placeholder frame 04" },
     ],
   },
   {
@@ -114,9 +124,11 @@ export const galleries: Gallery[] = [
     date: "Spring 2026",
     camera: "Canon R6, 70–200mm f/2.8",
     images: [
-      { src: ph(5), caption: "Placeholder frame 01" },
-      { src: ph(6), caption: "Placeholder frame 02" },
-      { src: ph(1), caption: "Placeholder frame 03" },
+      { src: ph(6), caption: "Placeholder frame 01" },
+      { src: ph(8), caption: "Placeholder frame 02" },
+      { src: ph(10), caption: "Placeholder frame 03" },
+      { src: ph(2), caption: "Placeholder frame 04" },
+      { src: ph(4), caption: "Placeholder frame 05" },
     ],
   },
   {
@@ -129,8 +141,10 @@ export const galleries: Gallery[] = [
     date: "2025–2026",
     camera: "Canon R6, 24–70mm f/2.8",
     images: [
-      { src: ph(2), caption: "Placeholder frame 01" },
-      { src: ph(5), caption: "Placeholder frame 02" },
+      { src: ph(9), caption: "Placeholder frame 01" },
+      { src: ph(1), caption: "Placeholder frame 02" },
+      { src: ph(3), caption: "Placeholder frame 03" },
+      { src: ph(5), caption: "Placeholder frame 04" },
     ],
   },
   {
@@ -143,8 +157,10 @@ export const galleries: Gallery[] = [
     date: "2025–2026",
     camera: "Canon R6, 85mm f/1.8",
     images: [
-      { src: ph(4), caption: "Placeholder frame 01" },
-      { src: ph(6), caption: "Placeholder frame 02" },
+      { src: ph(2), caption: "Placeholder frame 01" },
+      { src: ph(4), caption: "Placeholder frame 02" },
+      { src: ph(6), caption: "Placeholder frame 03" },
+      { src: ph(8), caption: "Placeholder frame 04" },
     ],
   },
   {
@@ -157,10 +173,13 @@ export const galleries: Gallery[] = [
     date: "Summer 2025",
     camera: "Canon R6, 35mm f/2",
     images: [
-      { src: ph(1), caption: "Placeholder frame 01" },
-      { src: ph(3), caption: "Placeholder frame 02" },
-      { src: ph(5), caption: "Placeholder frame 03" },
-      { src: ph(2), caption: "Placeholder frame 04" },
+      { src: ph(5), caption: "Placeholder frame 01" },
+      { src: ph(7), caption: "Placeholder frame 02" },
+      { src: ph(9), caption: "Placeholder frame 03" },
+      { src: ph(1), caption: "Placeholder frame 04" },
+      { src: ph(3), caption: "Placeholder frame 05" },
+      { src: ph(5), caption: "Placeholder frame 06" },
+      { src: ph(7), caption: "Placeholder frame 07" },
     ],
   },
   {
@@ -173,9 +192,12 @@ export const galleries: Gallery[] = [
     date: "Ongoing",
     camera: "Canon R6, 35mm f/2",
     images: [
-      { src: ph(6), caption: "Placeholder frame 01" },
-      { src: ph(4), caption: "Placeholder frame 02" },
-      { src: ph(3), caption: "Placeholder frame 03" },
+      { src: ph(8), caption: "Placeholder frame 01" },
+      { src: ph(10), caption: "Placeholder frame 02" },
+      { src: ph(2), caption: "Placeholder frame 03" },
+      { src: ph(4), caption: "Placeholder frame 04" },
+      { src: ph(6), caption: "Placeholder frame 05" },
+      { src: ph(8), caption: "Placeholder frame 06" },
     ],
   },
 ];

@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens — see DESIGN_SYSTEM.md.
+ *
+ * ⚠️ All values are placeholders pending "THE ATLAS Design Standards" memo.
+ * When the memo is available, update the values here (and in the dark-mode
+ * block below) and the utilities (bg-background, text-accent, font-sans, …)
+ * will pick them up everywhere.
+ */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --accent: #2563eb;
+  --muted: #6b7280;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --accent: #3b82f6;
+    --muted: #9ca3af;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}

@@ -13,8 +13,8 @@ interface DropdownItem {
 const dropdowns: Record<string, DropdownItem[]> = {
   Atlas: [
     ...domains.map((d) => ({ label: d.name, href: `/atlas/${d.slug}` })),
-    { label: "Organizations" }, // Phase 4
-    { label: "Explorable Systems" }, // Phase 4
+    { label: "Organizations", href: "/atlas/organizations" },
+    { label: "Explorable Systems", href: "/atlas/explorable-systems" },
   ],
   Photography: photoCategories.map((c) => ({
     label: c.name,

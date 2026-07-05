@@ -94,7 +94,7 @@ export default async function DomainPage({
                         {folder.description}
                       </span>
                     </span>
-                    <span className="mt-6 block font-sans text-xs uppercase tracking-[0.2em] text-information/50">
+                    <span className="mt-6 block font-sans text-xs uppercase tracking-[0.2em] text-information/60">
                       {count} investigation{count === 1 ? "" : "s"}
                     </span>
                   </span>

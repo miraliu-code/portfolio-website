@@ -1,45 +1,37 @@
 import type { IndexEntry } from "./types";
-import { projects, projectHref } from "./projects";
+import { projects, projectHref, getOrganizations } from "./projects";
 import { domains } from "./domains";
 import { photoCategories } from "./photography";
 import { observatorySections } from "./observatory";
 
 /*
  * The Index: the publication's back matter. Every project, domain,
- * category, and organization across the site, alphabetically.
+ * category, organization, and a handful of cities, people, and
+ * concepts — alphabetically.
  */
 
-/* Manual entries: organizations, books, cities, people, concepts. */
+const slugify = (name: string) =>
+  name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
 const manual: IndexEntry[] = [
-  { label: "Costco", category: "Organization", href: "/atlas/strategy/market-entry/costco-membership-model" },
-  { label: "Duolingo", category: "Organization", href: "/atlas/io-psychology/consumer-psychology/duolingo-habit-formation" },
-  { label: "Google", category: "Organization", href: "/atlas/communication/internal-communication/google-return-to-office" },
-  { label: "Juicy Couture", category: "Organization", href: "/atlas/strategy/brand-strategy/juicy-couture-brand-audit" },
-  { label: "Smithsonian Institution", category: "Organization", href: "/atlas/notes/smithsonian-signage" },
-  { label: "Shenzhen Metro", category: "Organization", href: "/atlas/notes/shenzhen-metro-observations" },
-  { label: "American University", category: "Organization", href: "/about" },
-
-  { label: "The Culture Code", category: "Book", href: "/atlas/reading/the-culture-code" },
-  { label: "Thinking, Fast and Slow", category: "Book", href: "/atlas/reading/thinking-fast-and-slow" },
-  { label: "The Design of Everyday Things", category: "Book", href: "/observatory/currently-reading" },
-  { label: "Working", category: "Book", href: "/observatory/currently-reading" },
-
   { label: "Shenzhen", category: "City", href: "/photography/experience/shenzhen" },
   { label: "Washington, D.C.", category: "City", href: "/photography/experience/washington-dc" },
+  { label: "New York", category: "City", href: "/atlas/notes/a-day-in-new-york" },
+  { label: "Hong Kong", category: "City", href: "/atlas/design/systems-design/hong-kong-mtr-wayfinding" },
 
-  { label: "Daniel Coyle", category: "Person", href: "/atlas/reading/the-culture-code" },
+  { label: "Malcolm Gladwell", category: "Person", href: "/atlas/reading/outliers" },
   { label: "Daniel Kahneman", category: "Person", href: "/atlas/reading/thinking-fast-and-slow" },
-  { label: "Don Norman", category: "Person", href: "/observatory/currently-reading" },
+  { label: "Morgan Housel", category: "Person", href: "/atlas/reading/psychology-of-money" },
+  { label: "Nassim Nicholas Taleb", category: "Person", href: "/atlas/reading/antifragile" },
+  { label: "Edward Bernays", category: "Person", href: "/atlas/reading/propaganda" },
 
-  { label: "Habit formation", category: "Concept", href: "/atlas/io-psychology/consumer-psychology/duolingo-habit-formation" },
-  { label: "Loss aversion", category: "Concept", href: "/atlas/reading/thinking-fast-and-slow" },
-  { label: "Organizational trust", category: "Concept", href: "/atlas/communication/internal-communication/google-return-to-office" },
-  { label: "Psychological safety", category: "Concept", href: "/atlas/reading/the-culture-code" },
-  { label: "Restraint", category: "Concept", href: "/atlas/design/editorial-design/designing-the-atlas" },
-  { label: "Wayfinding", category: "Concept", href: "/atlas/notes/shenzhen-metro-observations" },
+  { label: "Organizational trust", category: "Concept", href: "/atlas/io-psychology/decision-making/trust-organizational-asset" },
+  { label: "Wayfinding", category: "Concept", href: "/atlas/design/systems-design/hong-kong-mtr-wayfinding" },
+  { label: "Communication debt", category: "Concept", href: "/atlas/communication/organizational-communication/communication-debt" },
+  { label: "Decision architecture", category: "Concept", href: "/atlas/io-psychology/decision-making/decision-architecture" },
+  { label: "Restraint", category: "Concept", href: "/atlas/design/editorial-design/atlas-design-system" },
 ];
 
-/* Derived entries: every project, domain, and category, exactly once. */
 const derived: IndexEntry[] = [
   ...projects.map((p) => ({
     label: p.title,
@@ -62,6 +54,11 @@ const derived: IndexEntry[] = [
     label: s.name,
     category: "Observatory",
     href: `/observatory/${s.slug}`,
+  })),
+  ...getOrganizations().map((org) => ({
+    label: org.name,
+    category: "Organization",
+    href: `/atlas/organizations#${slugify(org.name)}`,
   })),
 ];
 

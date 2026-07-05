@@ -69,11 +69,15 @@ interface ProjectBase {
   question: string;
   date: string;
   readingTime: number; // minutes
+  format: string; // roadmap format: Flagship Report, Case Study, …
+  length: string; // roadmap length: "40–50 pp", "2,500 words", …
   hero: string;
   draft: boolean;
   pdf?: string; // downloadable report
+  organizations?: string[]; // organizations this project mentions
+  explorable?: boolean; // has (or will have) an interactive component
   artifacts: Artifact[];
-  continueExploring: ContinueLink[];
+  continueExploring?: ContinueLink[]; // omitted = quiet same-domain fallback
 }
 
 /* Standard Atlas project: lives in a folder, tabbed body, Artifact tab last. */

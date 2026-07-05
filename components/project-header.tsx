@@ -35,7 +35,9 @@ export function ProjectHeader({
       <p className="mt-4 max-w-2xl font-serif text-xl italic leading-snug text-interaction">
         {project.question}
       </p>
-      <div className="mt-6 flex flex-wrap items-baseline gap-x-6 gap-y-2 font-sans text-xs uppercase tracking-[0.2em] text-information/50">
+      <div className="mt-6 flex flex-wrap items-baseline gap-x-6 gap-y-2 font-sans text-xs uppercase tracking-[0.2em] text-information/60">
+        <span>{project.format}</span>
+        <span>{project.length}</span>
         <span>{project.readingTime} min read</span>
         <span>{project.coordinate}</span>
         {project.type === "reading" && (

@@ -62,7 +62,7 @@ export default async function ObservatorySectionPage({
                     {entry.title}
                   </span>
                   {entry.meta && (
-                    <span className="mt-1 block font-sans text-xs uppercase tracking-[0.2em] text-information/50">
+                    <span className="mt-1 block font-sans text-xs uppercase tracking-[0.2em] text-information/60">
                       {entry.meta}
                     </span>
                   )}
@@ -85,7 +85,7 @@ export default async function ObservatorySectionPage({
                   </blockquote>
                 )}
                 <div>
-                  <p className="font-sans text-[0.65rem] uppercase tracking-[0.25em] text-information/50">
+                  <p className="font-sans text-[0.65rem] uppercase tracking-[0.25em] text-information/60">
                     Current thoughts
                   </p>
                   <p className="mt-2 font-serif text-base leading-relaxed text-information/80">

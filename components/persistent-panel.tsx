@@ -36,7 +36,7 @@ function Identity() {
 function Contact() {
   return (
     <div>
-      <p className="font-sans text-xs uppercase tracking-[0.25em] text-atmosphere/60">
+      <p className="font-sans text-xs uppercase tracking-[0.25em] text-atmosphere/70">
         Contact
       </p>
       <div className="mt-3 font-sans text-xs tracking-wide">
@@ -67,7 +67,7 @@ function ResumeSection() {
       >
         The Resume Library →
       </Link>
-      <p className="mt-3 font-sans text-xs leading-relaxed tracking-wide text-atmosphere/60">
+      <p className="mt-3 font-sans text-xs leading-relaxed tracking-wide text-atmosphere/70">
         Four tailored resumes — strategy, communications, marketing, and
         social impact. Pick the one that fits the conversation.
       </p>
@@ -111,7 +111,7 @@ export function PersistentPanel() {
 
   return (
     <>
-      <aside className="panel-scope fixed inset-y-0 right-0 z-10 hidden w-72 flex-col bg-structure px-10 py-12 lg:flex">
+      <aside className="panel-scope fixed inset-y-0 right-0 z-10 hidden w-72 flex-col bg-panel px-10 py-12 lg:flex">
         <div className="flex flex-1 flex-col gap-8 overflow-y-auto">
           <Identity />
           <Rule />
@@ -122,7 +122,7 @@ export function PersistentPanel() {
         </div>
       </aside>
 
-      <details className="panel-scope sticky top-0 z-10 bg-structure lg:hidden">
+      <details className="panel-scope sticky top-0 z-10 bg-panel lg:hidden">
         <summary className="flex cursor-pointer list-none items-baseline justify-between px-6 py-4 [&::-webkit-details-marker]:hidden">
           <span className="font-serif text-lg text-atmosphere">{site.wordmark}</span>
           <span className="font-sans text-xs uppercase tracking-[0.25em] text-atmosphere/70">

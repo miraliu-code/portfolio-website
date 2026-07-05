@@ -1,27 +1,73 @@
-import type { Project } from "./types";
+import type {
+  Block,
+  DomainSlug,
+  NoteEntry,
+  Project,
+  ReadingEntry,
+  StandardProject,
+  TabSection,
+} from "./types";
 
 /*
- * All prose below is DRAFT PLACEHOLDER content — realistic in tone and
- * structure so the layouts read truthfully, but not final writing.
- * Every project carries draft: true, which renders a visible draft badge.
+ * The Atlas project registry, populated from the Atlas Editorial Roadmap.
+ * Titles, formats, and lengths are real; all prose is DRAFT PLACEHOLDER
+ * (draft: true renders a visible badge). A handful of flagship pieces
+ * carry fuller draft prose; the rest are roadmap stubs awaiting writing.
  */
 
-export const projects: Project[] = [
-  /* ---------------- Strategy ---------------- */
-  {
+const heroes = [
+  "/placeholders/ph-1.svg",
+  "/placeholders/ph-2.svg",
+  "/placeholders/ph-3.svg",
+  "/placeholders/ph-4.svg",
+  "/placeholders/ph-5.svg",
+  "/placeholders/ph-6.svg",
+];
+let heroIndex = 0;
+const nextHero = () => heroes[heroIndex++ % heroes.length];
+
+const minutesByFormat: Record<string, number> = {
+  "Flagship Report": 18,
+  "Case Study": 12,
+  "White Paper": 12,
+  "Executive Memo": 6,
+  Essay: 8,
+  "Field Guide": 10,
+  "Atlas Note": 4,
+  "Reading Entry": 5,
+};
+
+interface StubInput {
+  slug: string;
+  folder: string;
+  coordinate: string;
+  title: string;
+  question: string;
+  format: string;
+  length: string;
+  organizations?: string[];
+  explorable?: boolean;
+  overview?: string;
+}
+
+function stub(domain: DomainSlug, s: StubInput): StandardProject {
+  return {
     type: "standard",
-    slug: "costco-membership-model",
-    longReport: true,
-    domain: "strategy",
-    folder: "market-entry",
-    coordinate: "S-01",
-    title: "Costco's Membership Model",
-    question: "Why do nine out of ten members renew, year after year?",
-    date: "2026-03-10",
-    readingTime: 14,
-    hero: "/placeholders/ph-1.svg",
+    slug: s.slug,
+    domain,
+    folder: s.folder,
+    coordinate: s.coordinate,
+    title: s.title,
+    question: s.question,
+    date: "2026-07-01",
+    readingTime: minutesByFormat[s.format.split(" + ")[0]] ?? 10,
+    format: s.format,
+    length: s.length,
+    hero: nextHero(),
     draft: true,
-    pdf: "/artifacts/sample-report.pdf",
+    organizations: s.organizations,
+    explorable: s.explorable,
+    artifacts: [],
     tabs: [
       {
         id: "overview",
@@ -29,15 +75,50 @@ export const projects: Project[] = [
         blocks: [
           {
             kind: "p",
-            text: "Costco is usually described as a retailer, but its financial statements describe something closer to a subscription business that happens to sell groceries. The membership fee is small relative to a household's annual spending, yet it produces most of the company's operating income. This project asks what the fee actually buys — not in goods, but in psychology.",
+            text:
+              s.overview ??
+              `Planned ${s.format.toLowerCase()} (${s.length}). ${s.question} This investigation is on the Atlas editorial roadmap; the draft has not yet been published. (Roadmap placeholder.)`,
           },
+        ],
+      },
+    ],
+  };
+}
+
+/* ============================ STRATEGY ============================ */
+
+const strategy: StandardProject[] = [
+  /* -- Michelin: flagship with fuller draft prose -- */
+  {
+    type: "standard",
+    slug: "michelin-guide",
+    domain: "strategy",
+    folder: "market-strategy",
+    coordinate: "S-01",
+    title: "The Michelin Guide",
+    question:
+      "How did a tire company become one of the world's most trusted cultural institutions?",
+    date: "2026-06-15",
+    readingTime: 22,
+    format: "Flagship Report",
+    length: "40–50 pp",
+    hero: nextHero(),
+    draft: true,
+    longReport: true,
+    pdf: "/artifacts/sample-report.pdf",
+    organizations: ["Michelin"],
+    tabs: [
+      {
+        id: "overview",
+        label: "Overview",
+        blocks: [
           {
             kind: "p",
-            text: "The investigation began in a warehouse aisle, watching shoppers pass premium brands to reach Kirkland Signature. A private label that outsells the brands it imitates is not a pricing story. It is a trust story.",
+            text: "In 1900, a tire manufacturer printed a free guide to encourage the French to drive more. A century later, that guide can close a restaurant with a phone call. This report asks how a piece of marketing collateral became one of the world's most trusted cultural institutions — and what its discipline teaches organizations about earning authority they were never granted. (Draft placeholder.)",
           },
           {
             kind: "quote",
-            text: "The membership card is not a payment. It is a boundary — and people defend what sits inside their boundaries.",
+            text: "Michelin never asked permission to judge the world's kitchens. It earned the standing one anonymous meal at a time.",
           },
         ],
       },
@@ -47,11 +128,11 @@ export const projects: Project[] = [
         blocks: [
           {
             kind: "p",
-            text: "Three mechanisms appear to hold the model together. First, the fee reframes every purchase: once paid, savings become the return on an investment the member has already made, and renewal becomes the way to protect it. Second, deliberate scarcity — roughly four thousand SKUs against a supermarket's forty thousand — converts choice from a burden into a curation the member has outsourced. Third, the treasure-hunt rotation gives repetition a reason: the warehouse is never quite the same place twice.",
+            text: "Three commitments appear to hold the Guide's authority together. First, anonymity: inspectors pay for their meals, and the organization spends real money to keep them unknown — credibility as an operating cost. Second, scarcity: stars are withheld far more often than they are granted, and the third star remains rare enough to reorganize a chef's life. Third, independence from the parent business: the Guide has never obviously served the tire company's quarterly interests, which is precisely why it serves the brand's century-long ones. (Draft placeholder.)",
           },
           {
             kind: "p",
-            text: "Comparing renewal cohorts against published loyalty research suggests the fee functions less like a price and more like a commitment device. The economics literature calls this a sunk-cost effect. Members appear to experience it as belonging.",
+            text: "The comparison set — rating agencies, awards bodies, review platforms — mostly failed to protect one of the three. Platforms monetized attention and lost scarcity; agencies monetized the rated and lost independence.",
           },
         ],
       },
@@ -61,14 +142,14 @@ export const projects: Project[] = [
         blocks: [
           {
             kind: "p",
-            text: "For organizations studying Costco, the transferable lesson is not the fee — it is the discipline. Every visible decision, from packaging to parking, communicates that the organization spends the member's money reluctantly. Imitating the membership without imitating the restraint produces a paywall, not a club.",
+            text: "For organizations seeking Michelin-grade trust, the transferable lesson is that authority is a cost center. Fund the expensive, invisible disciplines — verification, anonymity, restraint — before the visible ones, and let decades do the compounding. (Draft placeholder.)",
           },
           {
             kind: "list",
             items: [
-              "Treat pricing structure as a communication channel, not only a revenue lever.",
-              "Reduce assortment before reducing price; curation is a service members can feel.",
-              "Protect one visible symbol of discipline the way Costco protects the $1.50 hot dog.",
+              "Separate the judging function structurally from the commercial one.",
+              "Protect scarcity even when demand begs you to inflate.",
+              "Treat credibility expenses as brand capital, not overhead.",
             ],
           },
         ],
@@ -76,34 +157,28 @@ export const projects: Project[] = [
     ],
     artifacts: [
       {
-        label: "Annual report notes",
-        kind: "notes",
-        description:
-          "Reading notes on five years of 10-K filings, focused on membership economics. (Draft placeholder.)",
-      },
-      {
-        label: "Renewal-rate dataset",
-        kind: "dataset",
-        description:
-          "Published renewal figures by region, 2015–2025, compiled for comparison. (Draft placeholder.)",
-      },
-      {
         label: "Full report (PDF)",
         kind: "pdf",
         href: "/artifacts/sample-report.pdf",
         description: "The complete written analysis as a downloadable document.",
       },
+      {
+        label: "Institution comparison framework",
+        kind: "framework",
+        description:
+          "Anonymity, scarcity, independence — scored across rating institutions. (Draft placeholder.)",
+      },
     ],
     continueExploring: [
       {
-        slug: "duolingo-habit-formation",
-        relationship: "deepen",
-        note: "The renewal decision is a habit before it is a calculation.",
+        slug: "michelin-guide-identity",
+        relationship: "expand",
+        note: "The same institution, read through its visual system.",
       },
       {
-        slug: "thinking-fast-and-slow",
+        slug: "trust-organizational-asset",
         relationship: "deepen",
-        note: "Kahneman on why sunk costs feel like belonging.",
+        note: "Trust as a balance-sheet item, argued in full.",
       },
       {
         slug: "shenzhen-metro-observations",
@@ -112,152 +187,244 @@ export const projects: Project[] = [
       },
     ],
   },
-  {
-    type: "standard",
-    slug: "market-entry-southeast-asia",
-    domain: "strategy",
-    folder: "market-entry",
+  stub("strategy", {
+    slug: "smithsonian-next-generation",
+    folder: "market-strategy",
     coordinate: "S-02",
-    title: "Warehouse Retail in Southeast Asia",
-    question: "When should a retailer adapt, and when should it insist?",
-    date: "2026-01-22",
-    readingTime: 11,
-    hero: "/placeholders/ph-2.svg",
-    draft: true,
-    tabs: [
-      {
-        id: "overview",
-        label: "Overview",
-        blocks: [
-          {
-            kind: "p",
-            text: "Every market entry is a negotiation between identity and context. This project examines warehouse-club expansion into Southeast Asian cities — dense, humid, apartment-living markets that would seem to reject every assumption bulk retail is built on.",
-          },
-          {
-            kind: "p",
-            text: "The puzzle is that the format sometimes works anyway. Understanding why requires separating what a business model does from what it says — and noticing which parts of the experience customers were actually buying all along.",
-          },
-        ],
-      },
-      {
-        id: "analysis",
-        label: "Analysis",
-        blocks: [
-          {
-            kind: "p",
-            text: "Where the format succeeds, operators appear to have adapted the logistics while insisting on the identity: smaller pack sizes and urban formats, but unchanged pricing discipline and the same treasure-hunt theater. Where it fails, the adaptation ran the other direction — the identity was localized into something indistinct while the cost structure stayed foreign.",
-          },
-          {
-            kind: "quote",
-            text: "Customers forgave the format for being unfamiliar. They did not forgive it for being unclear.",
-          },
-        ],
-      },
-      {
-        id: "recommendations",
-        label: "Recommendations",
-        blocks: [
-          {
-            kind: "p",
-            text: "The working rule this analysis suggests: adapt everything the customer touches with their hands, and insist on everything the customer holds in their head. Logistics are local. Meaning is not.",
-          },
-        ],
-      },
-    ],
-    artifacts: [
-      {
-        label: "Market comparison framework",
-        kind: "framework",
-        description:
-          "A two-axis framework separating operational adaptation from identity adaptation. (Draft placeholder.)",
-      },
-    ],
-    continueExploring: [
-      {
-        slug: "costco-membership-model",
-        relationship: "expand",
-        note: "The identity being exported — examined at home.",
-      },
-      {
-        slug: "shenzhen-metro-observations",
-        relationship: "observe",
-        note: "Field notes from the region this analysis abstracts.",
-      },
-    ],
-  },
-  {
-    type: "standard",
-    slug: "juicy-couture-brand-audit",
-    domain: "strategy",
-    folder: "brand-strategy",
+    title: "The Smithsonian's Next Generation",
+    question: "What should growth mean for America's museums?",
+    format: "Flagship Report",
+    length: "30–40 pp",
+    organizations: ["Smithsonian Institution"],
+  }),
+  stub("strategy", {
+    slug: "uniqlo-outside-japan",
+    folder: "market-strategy",
     coordinate: "S-03",
-    title: "Juicy Couture Brand Audit",
-    question: "Can heritage brands reinvent themselves without losing authenticity?",
-    date: "2025-11-05",
-    readingTime: 9,
-    hero: "/placeholders/ph-3.svg",
-    draft: true,
-    tabs: [
-      {
-        id: "overview",
-        label: "Overview",
-        blocks: [
-          {
-            kind: "p",
-            text: "Juicy Couture is a case study in what happens when a brand's cultural moment ends before the brand does. The velour tracksuit was not a product; it was a timestamp. This audit examines the brand's revival attempts and asks which parts of a heritage identity are assets, which are anchors, and how an organization can tell the difference before spending on the wrong one.",
-          },
-          {
-            kind: "p",
-            text: "The audit compares three revival waves against the brand's original meaning, using archived campaigns, resale-market pricing, and the brand's own shifting vocabulary about itself.",
-          },
-          {
-            kind: "quote",
-            text: "Nostalgia is rented, never owned. A brand that lives on it pays rising rent to its own past.",
-          },
-        ],
-      },
-    ],
-    artifacts: [
-      {
-        label: "Campaign archive",
-        kind: "source",
-        description:
-          "Annotated advertising from 2001–2025, organized by claimed identity. (Draft placeholder.)",
-      },
-      {
-        label: "Resale price tracking",
-        kind: "dataset",
-        description:
-          "Secondary-market pricing as a proxy for cultural value. (Draft placeholder.)",
-      },
-    ],
-    continueExploring: [
-      {
-        slug: "designing-the-atlas",
-        relationship: "compare",
-        note: "Identity built to age deliberately rather than accidentally.",
-      },
-      {
-        slug: "smithsonian-signage",
-        relationship: "observe",
-        note: "Institutions that carry heritage without being trapped by it.",
-      },
-    ],
-  },
+    title: "UNIQLO Outside Japan",
+    question: "What should global brands standardize — and what should they localize?",
+    format: "White Paper",
+    length: "15–20 pp",
+    organizations: ["UNIQLO"],
+  }),
+  stub("strategy", {
+    slug: "novo-nordisk-demand",
+    folder: "market-strategy",
+    coordinate: "S-04",
+    title: "Novo Nordisk: Managing Success",
+    question: "How does an organization manage success when demand exceeds supply?",
+    format: "Case Study",
+    length: "20–25 pp",
+    organizations: ["Novo Nordisk"],
+  }),
+  stub("strategy", {
+    slug: "decathlon-in-america",
+    folder: "market-strategy",
+    coordinate: "S-05",
+    title: "Decathlon in America",
+    question: "Can Europe's biggest sporting-goods retailer learn to speak American?",
+    format: "Case Study",
+    length: "20–25 pp",
+    organizations: ["Decathlon"],
+  }),
+  stub("strategy", {
+    slug: "monocle-lifestyle-ecosystem",
+    folder: "market-strategy",
+    coordinate: "S-06",
+    title: "Monocle: Can a Magazine Become a Lifestyle Ecosystem?",
+    question: "Can a magazine become a lifestyle ecosystem?",
+    format: "Essay",
+    length: "2,000–2,500 words",
+    organizations: ["Monocle"],
+  }),
+  stub("strategy", {
+    slug: "pwhl-building-a-league",
+    folder: "comparative-strategy",
+    coordinate: "S-07",
+    title: "The PWHL: Building a League That Lasts",
+    question: "How do you build a league that lasts?",
+    format: "Flagship Report",
+    length: "25–35 pp",
+    organizations: ["PWHL"],
+  }),
+  stub("strategy", {
+    slug: "public-broadcasters",
+    folder: "comparative-strategy",
+    coordinate: "S-08",
+    title: "Public Broadcasters: BBC vs. CBC vs. ABC Australia",
+    question: "What keeps a public broadcaster public?",
+    format: "White Paper",
+    length: "20 pp",
+    organizations: ["BBC", "CBC", "ABC Australia"],
+  }),
+  stub("strategy", {
+    slug: "global-grocery-chains",
+    folder: "comparative-strategy",
+    coordinate: "S-09",
+    title: "Global Grocery Chains: Aldi, Carrefour, Aeon & Woolworths",
+    question: "Why does grocery loyalty look so different across countries?",
+    format: "White Paper",
+    length: "20 pp",
+    organizations: ["Aldi", "Carrefour", "Aeon", "Woolworths"],
+  }),
+  stub("strategy", {
+    slug: "high-speed-rail",
+    folder: "comparative-strategy",
+    coordinate: "S-10",
+    title: "High-Speed Rail Around the World",
+    question:
+      "Why have some countries built world-class high-speed rail systems while others continue to struggle?",
+    format: "Flagship Report + Interactive",
+    length: "30–40 pp + Interactive",
+    explorable: true,
+  }),
+  stub("strategy", {
+    slug: "international-airports",
+    folder: "comparative-strategy",
+    coordinate: "S-11",
+    title: "International Airports: Changi, Schiphol, Incheon & Dulles",
+    question: "What makes an airport feel like a country's front door?",
+    format: "Essay",
+    length: "2,500–3,000 words",
+    organizations: ["Changi Airport Group", "Schiphol", "Incheon International Airport", "Dulles International Airport"],
+  }),
+  stub("strategy", {
+    slug: "wikipedia-competing-without-competitors",
+    folder: "comparative-strategy",
+    coordinate: "S-12",
+    title: "Wikipedia: Competing Without Competitors",
+    question: "How do you compete without competitors?",
+    format: "Essay",
+    length: "2,500 words",
+    organizations: ["Wikipedia"],
+  }),
+  stub("strategy", {
+    slug: "formula-one-lvmh",
+    folder: "strategic-partnerships",
+    coordinate: "S-13",
+    title: "Formula One × LVMH",
+    question: "What do luxury and racing buy from each other?",
+    format: "Case Study",
+    length: "20 pp",
+    organizations: ["Formula One", "LVMH"],
+  }),
+  stub("strategy", {
+    slug: "olympic-top-sponsors",
+    folder: "strategic-partnerships",
+    coordinate: "S-14",
+    title: "Olympic TOP Sponsors",
+    question: "What does Olympic sponsorship actually purchase?",
+    format: "White Paper",
+    length: "20 pp",
+    organizations: ["International Olympic Committee"],
+  }),
+  stub("strategy", {
+    slug: "cities-and-megaevents",
+    folder: "strategic-partnerships",
+    coordinate: "S-15",
+    title: "Cities & Megaevents",
+    question: "Why do cities keep bidding for events that lose money?",
+    format: "White Paper",
+    length: "20 pp",
+  }),
+  stub("strategy", {
+    slug: "spotify-fc-barcelona",
+    folder: "strategic-partnerships",
+    coordinate: "S-16",
+    title: "Spotify × FC Barcelona",
+    question: "What should a streaming service do with a stadium?",
+    format: "Executive Memo",
+    length: "8–10 pp",
+    organizations: ["Spotify", "FC Barcelona"],
+  }),
+  stub("strategy", {
+    slug: "lego-nasa",
+    folder: "strategic-partnerships",
+    coordinate: "S-17",
+    title: "LEGO × NASA",
+    question: "Why does a toy company partner with a space agency?",
+    format: "Essay",
+    length: "2,000 words",
+    organizations: ["LEGO", "NASA"],
+  }),
+  stub("strategy", {
+    slug: "openai-mission-vs-commercialization",
+    folder: "organizational-strategy",
+    coordinate: "S-18",
+    title: "OpenAI: Mission vs. Commercialization",
+    question: "Can a mission survive its own commercialization?",
+    format: "Flagship Report",
+    length: "35–40 pp",
+    organizations: ["OpenAI"],
+  }),
+  stub("strategy", {
+    slug: "financial-times-reinvention",
+    folder: "organizational-strategy",
+    coordinate: "S-19",
+    title: "The Financial Times: Reinvention as Strategy",
+    question: "How does a 130-year-old newspaper make reinvention its strategy?",
+    format: "Case Study",
+    length: "20 pp",
+    organizations: ["Financial Times"],
+  }),
+  stub("strategy", {
+    slug: "national-trust-heritage",
+    folder: "organizational-strategy",
+    coordinate: "S-20",
+    title: "The National Trust: Managing Heritage as an Organization",
+    question: "How do you manage heritage as an organization?",
+    format: "Essay",
+    length: "2,000 words",
+    organizations: ["National Trust"],
+  }),
+  stub("strategy", {
+    slug: "four-futures-higher-education",
+    folder: "scenario-planning",
+    coordinate: "S-21",
+    title: "Four Futures for Higher Education",
+    question: "What futures should universities be preparing for?",
+    format: "White Paper",
+    length: "20–25 pp",
+  }),
+  stub("strategy", {
+    slug: "future-of-public-media",
+    folder: "scenario-planning",
+    coordinate: "S-22",
+    title: "The Future of Public Media",
+    question: "What is public media for, once broadcast is gone?",
+    format: "White Paper",
+    length: "20–25 pp",
+  }),
+  stub("strategy", {
+    slug: "professional-services-ai-economy",
+    folder: "scenario-planning",
+    coordinate: "S-23",
+    title: "Professional Services in an AI Economy",
+    question: "What happens to professional services in an AI economy?",
+    format: "White Paper",
+    length: "20 pp",
+  }),
+];
 
-  /* ---------------- Communication ---------------- */
+/* ========================== COMMUNICATION ========================== */
+
+const communication: StandardProject[] = [
+  /* -- American Airlines 5342: case study with fuller draft prose -- */
   {
     type: "standard",
-    slug: "product-recall-simulation",
+    slug: "american-airlines-5342",
     domain: "communication",
     folder: "crisis-communication",
     coordinate: "COM-01",
-    title: "Product Recall Simulation",
-    question: "What does honesty cost during a crisis — and what does it buy?",
-    date: "2026-02-14",
-    readingTime: 12,
-    hero: "/placeholders/ph-4.svg",
+    title: "American Airlines Flight 5342",
+    question: "What do the first hours of a tragedy demand from an organization?",
+    date: "2026-05-20",
+    readingTime: 14,
+    format: "Case Study",
+    length: "20–25 pp",
+    hero: nextHero(),
     draft: true,
+    organizations: ["American Airlines"],
     tabs: [
       {
         id: "overview",
@@ -265,11 +432,11 @@ export const projects: Project[] = [
         blocks: [
           {
             kind: "p",
-            text: "This simulation drafts the full communication sequence for a fictional consumer-goods recall: the first statement, the follow-up under new facts, the internal memo, and the return-to-market announcement. The constraint was writing each document before knowing how the next round of facts would break — the way real communicators must.",
+            text: "When Flight 5342 collided over the Potomac in January 2025, American Airlines faced the hardest communication problem an organization can face: speaking about a tragedy it did not yet understand, to families it could not yet console, under scrutiny it could not control. This case study reconstructs the first seventy-two hours of statements and asks what they reveal about how prepared organizations actually are for the worst day. (Draft placeholder.)",
           },
           {
-            kind: "p",
-            text: "The exercise tests a hypothesis from the trust literature: that early candor is expensive in the first news cycle and cheap in every cycle after.",
+            kind: "quote",
+            text: "In a tragedy, the first statement is not information. It is a promise about how the organization will behave.",
           },
         ],
       },
@@ -279,65 +446,382 @@ export const projects: Project[] = [
         blocks: [
           {
             kind: "p",
-            text: "Drafting under sequential uncertainty exposed a pattern the finished documents hide: every hedge in the first statement became a liability in the second. Language written to preserve options instead preserved doubt. The documents that survived new facts were the ones that had committed to specifics early — dates, counts, names of responsible executives.",
-          },
-          {
-            kind: "quote",
-            text: "A crisis statement is not judged when it is released. It is judged when the next fact arrives.",
-          },
-        ],
-      },
-      {
-        id: "recommendations",
-        label: "Recommendations",
-        blocks: [
-          {
-            kind: "p",
-            text: "The simulation suggests crisis playbooks should be tested the way these drafts were — sequentially, against adversarial facts — rather than reviewed as static documents. A statement that reads well in isolation may still be structurally fragile.",
+            text: "The record shows a sequence — acknowledgment before facts, care before cause, presence before defense — that maps closely onto what the crisis literature prescribes and what few organizations execute. Where the communication faltered, it faltered on coordination: multiple institutions owned pieces of the same tragedy, and their timelines diverged. (Draft placeholder.)",
           },
         ],
       },
     ],
     artifacts: [
       {
-        label: "Statement drafts, all rounds",
-        kind: "source",
+        label: "Statement timeline",
+        kind: "framework",
         description:
-          "Every draft in sequence, with the facts available at each round. (Draft placeholder.)",
-      },
-      {
-        label: "Trust-repair literature notes",
-        kind: "notes",
-        description:
-          "Reading notes on apology and trust-repair research. (Draft placeholder.)",
+          "Every public statement in the first 72 hours, by institution and hour. (Draft placeholder.)",
       },
     ],
     continueExploring: [
       {
-        slug: "google-return-to-office",
+        slug: "crowdstrike-outage",
         relationship: "compare",
-        note: "A slower crisis: trust eroded by policy rather than event.",
+        note: "A crisis of systems rather than lives — and a different first hour.",
       },
       {
-        slug: "the-culture-code",
+        slug: "cdc-communicating-uncertainty",
         relationship: "deepen",
-        note: "Coyle on why vulnerability precedes trust, not the reverse.",
+        note: "Speaking carefully when the facts are not yet in.",
       },
     ],
   },
+  stub("communication", {
+    slug: "crowdstrike-outage",
+    folder: "crisis-communication",
+    coordinate: "COM-02",
+    title: "CrowdStrike Global Outage",
+    question: "How do you apologize for breaking the internet?",
+    format: "Case Study",
+    length: "20–25 pp",
+    organizations: ["CrowdStrike"],
+  }),
+  stub("communication", {
+    slug: "francis-scott-key-bridge",
+    folder: "crisis-communication",
+    coordinate: "COM-03",
+    title: "Francis Scott Key Bridge",
+    question: "Who speaks when infrastructure fails?",
+    format: "Case Study",
+    length: "20 pp",
+    organizations: ["Maryland Transportation Authority"],
+  }),
+  stub("communication", {
+    slug: "toyota-recalls",
+    folder: "crisis-communication",
+    coordinate: "COM-04",
+    title: "Toyota Recalls",
+    question: "Can a recall strengthen trust instead of spending it?",
+    format: "Case Study",
+    length: "20 pp",
+    organizations: ["Toyota"],
+  }),
+  stub("communication", {
+    slug: "every-organization-communication-system",
+    folder: "organizational-communication",
+    coordinate: "COM-05",
+    title: "Every Organization Is Really a Communication System",
+    question: "What if every organization is really a communication system?",
+    format: "Flagship Report",
+    length: "30–40 pp",
+  }),
+  stub("communication", {
+    slug: "communication-debt",
+    folder: "organizational-communication",
+    coordinate: "COM-06",
+    title: "Communication Debt",
+    question: "What does an organization owe for every conversation it postpones?",
+    format: "White Paper",
+    length: "20 pp",
+  }),
+  stub("communication", {
+    slug: "why-meetings-are-a-design-problem",
+    folder: "organizational-communication",
+    coordinate: "COM-07",
+    title: "Why Meetings Are a Design Problem",
+    question: "Why are meetings a design problem?",
+    format: "Essay",
+    length: "2,500 words",
+  }),
+  stub("communication", {
+    slug: "organization-before-the-meeting",
+    folder: "organizational-communication",
+    coordinate: "COM-08",
+    title: "The Organization Before the Meeting",
+    question: "What happens to a decision before the meeting starts?",
+    format: "Essay",
+    length: "2,500 words",
+  }),
+  stub("communication", {
+    slug: "psychology-of-corporate-euphemism",
+    folder: "institutional-communication",
+    coordinate: "COM-09",
+    title: "The Psychology of Corporate Euphemism",
+    question: "Why do organizations speak in euphemism?",
+    format: "White Paper",
+    length: "20 pp",
+  }),
+  stub("communication", {
+    slug: "national-park-service-sounds-human",
+    folder: "institutional-communication",
+    coordinate: "COM-10",
+    title: "Why the National Park Service Sounds Human",
+    question: "Why does the National Park Service sound human?",
+    format: "Essay",
+    length: "2,000 words",
+    organizations: ["National Park Service"],
+  }),
+  stub("communication", {
+    slug: "the-economists-voice",
+    folder: "institutional-communication",
+    coordinate: "COM-11",
+    title: "The Economist's Voice",
+    question: "How does a magazine keep one voice for 180 years?",
+    format: "Case Study",
+    length: "20 pp",
+    organizations: ["The Economist"],
+  }),
+  stub("communication", {
+    slug: "a-letter-to-a-ceo",
+    folder: "institutional-communication",
+    coordinate: "COM-12",
+    title: "A Letter to a CEO",
+    question: "What would you tell a chief executive that nobody else will?",
+    format: "Essay",
+    length: "2,000 words",
+  }),
+  stub("communication", {
+    slug: "tiktok-at-congress",
+    folder: "public-affairs",
+    coordinate: "COM-13",
+    title: "TikTok at Congress",
+    question: "What happens when an algorithm testifies?",
+    format: "White Paper",
+    length: "20 pp",
+    organizations: ["TikTok"],
+  }),
+  stub("communication", {
+    slug: "cdc-communicating-uncertainty",
+    folder: "public-affairs",
+    coordinate: "COM-14",
+    title: "CDC: Communicating Uncertainty",
+    question: "How should institutions speak when they do not know?",
+    format: "White Paper",
+    length: "20 pp",
+    organizations: ["CDC"],
+  }),
+  stub("communication", {
+    slug: "noaa-communicating-probability",
+    folder: "public-affairs",
+    coordinate: "COM-15",
+    title: "NOAA: Communicating Probability",
+    question: "How do you communicate a thirty percent chance of catastrophe?",
+    format: "Essay",
+    length: "2,500 words",
+    organizations: ["NOAA"],
+  }),
+  stub("communication", {
+    slug: "european-commission-communications",
+    folder: "public-affairs",
+    coordinate: "COM-16",
+    title: "European Commission Communications",
+    question: "Can twenty-seven countries share one voice?",
+    format: "Essay",
+    length: "2,500 words",
+    organizations: ["European Commission"],
+  }),
+  stub("communication", {
+    slug: "bank-of-japan-communications",
+    folder: "public-affairs",
+    coordinate: "COM-17",
+    title: "Bank of Japan Communications",
+    question: "What do markets hear when a central bank whispers?",
+    format: "Essay",
+    length: "2,500 words",
+    organizations: ["Bank of Japan"],
+  }),
+  stub("communication", {
+    slug: "press-release-three-audiences",
+    folder: "professional-writing",
+    coordinate: "COM-18",
+    title: "Press Release (Three Audiences)",
+    question: "Can one announcement serve three audiences?",
+    format: "Executive Memo",
+    length: "4–6 pp",
+  }),
+  stub("communication", {
+    slug: "annotated-executive-speech",
+    folder: "professional-writing",
+    coordinate: "COM-19",
+    title: "Annotated Executive Speech",
+    question: "What is a speech doing, line by line?",
+    format: "Executive Memo",
+    length: "5–6 pp",
+  }),
+  stub("communication", {
+    slug: "donor-journey-email-series",
+    folder: "professional-writing",
+    coordinate: "COM-20",
+    title: "Donor Journey Email Series",
+    question: "What does a donor need to hear, and when?",
+    format: "Executive Memo",
+    length: "8 pp",
+  }),
+  stub("communication", {
+    slug: "internal-communications-brief",
+    folder: "professional-writing",
+    coordinate: "COM-21",
+    title: "Internal Communications Brief",
+    question: "How do you brief an organization about itself?",
+    format: "Executive Memo",
+    length: "6 pp",
+  }),
+];
+
+/* ============================= DESIGN ============================= */
+
+const design: StandardProject[] = [
+  stub("design", {
+    slug: "national-geographic-brand-audit",
+    folder: "identity-systems",
+    coordinate: "D-01",
+    title: "National Geographic Brand Audit",
+    question: "What holds a 137-year-old yellow rectangle together?",
+    format: "Field Guide",
+    length: "25–30 pp",
+    organizations: ["National Geographic"],
+  }),
+  stub("design", {
+    slug: "smithsonian-visual-system",
+    folder: "identity-systems",
+    coordinate: "D-02",
+    title: "Smithsonian Visual System",
+    question: "How does one identity serve nineteen museums?",
+    format: "Field Guide",
+    length: "20–25 pp",
+    organizations: ["Smithsonian Institution"],
+  }),
+  stub("design", {
+    slug: "michelin-guide-identity",
+    folder: "identity-systems",
+    coordinate: "D-03",
+    title: "Michelin Guide Identity System",
+    question: "What does a star system communicate?",
+    format: "Field Guide",
+    length: "20 pp",
+    organizations: ["Michelin"],
+  }),
+  stub("design", {
+    slug: "london-underground-identity",
+    folder: "identity-systems",
+    coordinate: "D-04",
+    title: "London Underground Identity",
+    question: "Why does a 1913 typeface still run a city?",
+    format: "Field Guide",
+    length: "20 pp",
+    organizations: ["Transport for London"],
+  }),
+  stub("design", {
+    slug: "consulting-recommendation-deck",
+    folder: "presentation",
+    coordinate: "D-05",
+    title: "Consulting Recommendation Deck",
+    question: "What makes a recommendation legible?",
+    format: "Field Guide",
+    length: "20 slides",
+  }),
+  stub("design", {
+    slug: "agency-brand-pitch",
+    folder: "presentation",
+    coordinate: "D-06",
+    title: "Agency Brand Pitch",
+    question: "How do you pitch an identity?",
+    format: "Field Guide",
+    length: "20 slides",
+  }),
+  stub("design", {
+    slug: "campaign-strategy-deck",
+    folder: "presentation",
+    coordinate: "D-07",
+    title: "Campaign Strategy Deck",
+    question: "How does a campaign argue for itself?",
+    format: "Field Guide",
+    length: "20 slides",
+  }),
+  stub("design", {
+    slug: "executive-briefing-deck",
+    folder: "presentation",
+    coordinate: "D-08",
+    title: "Executive Briefing Deck",
+    question: "How much can fifteen slides carry?",
+    format: "Field Guide",
+    length: "15 slides",
+  }),
+  stub("design", {
+    slug: "brookings-report-redesign",
+    folder: "information-design",
+    coordinate: "D-09",
+    title: "Brookings Report Redesign",
+    question: "Can serious research look inviting?",
+    format: "Field Guide",
+    length: "20 slides",
+    organizations: ["Brookings Institution"],
+  }),
+  stub("design", {
+    slug: "who-publication-redesign",
+    folder: "information-design",
+    coordinate: "D-10",
+    title: "WHO Publication Redesign",
+    question: "How should global health information look?",
+    format: "Field Guide",
+    length: "20 slides",
+    organizations: ["World Health Organization"],
+  }),
+  stub("design", {
+    slug: "us-census-redesign",
+    folder: "information-design",
+    coordinate: "D-11",
+    title: "U.S. Census Redesign",
+    question: "Can a form respect the person filling it in?",
+    format: "Field Guide",
+    length: "15 slides",
+    organizations: ["U.S. Census Bureau"],
+  }),
+  stub("design", {
+    slug: "google-hybrid-executive-report",
+    folder: "information-design",
+    coordinate: "D-12",
+    title: "Google Hybrid Executive Report",
+    question: "How do you brief executives on their own workforce?",
+    format: "Field Guide",
+    length: "15 slides",
+    organizations: ["Google"],
+  }),
+  stub("design", {
+    slug: "airport-ecosystem",
+    folder: "systems-design",
+    coordinate: "D-13",
+    title: "Airport Ecosystem",
+    question: "How does an airport function as one interconnected organizational system?",
+    format: "Field Guide + Interactive",
+    length: "20 pp + Interactive",
+    explorable: true,
+  }),
+  stub("design", {
+    slug: "changi-airport-experience",
+    folder: "systems-design",
+    coordinate: "D-14",
+    title: "Changi Airport Experience",
+    question: "Why does Changi feel fundamentally different from most airports?",
+    format: "Essay + Interactive",
+    length: "2,000 words + Interactive",
+    organizations: ["Changi Airport Group"],
+    explorable: true,
+  }),
+  /* -- Hong Kong MTR: the proof-of-concept interactive, fuller prose -- */
   {
     type: "standard",
-    slug: "google-return-to-office",
-    longReport: true,
-    domain: "communication",
-    folder: "internal-communication",
-    coordinate: "COM-02",
-    title: "Google's Return-to-Office Messaging",
-    question: "Can organizations maintain trust after abandoning remote work?",
-    date: "2025-12-01",
-    readingTime: 13,
-    hero: "/placeholders/ph-5.svg",
+    slug: "hong-kong-mtr-wayfinding",
+    domain: "design",
+    folder: "systems-design",
+    coordinate: "D-15",
+    title: "Hong Kong MTR Wayfinding",
+    question:
+      "Why is one of the world's busiest transit systems so easy to understand?",
+    date: "2026-06-28",
+    readingTime: 12,
+    format: "Field Guide + Interactive",
+    length: "20 pp + Interactive",
+    hero: nextHero(),
     draft: true,
+    organizations: ["MTR Corporation"],
+    explorable: true,
     tabs: [
       {
         id: "overview",
@@ -345,11 +829,15 @@ export const projects: Project[] = [
         blocks: [
           {
             kind: "p",
-            text: "Between 2021 and 2024, Google's internal messaging about where work happens reversed itself several times. This project reads the public record of those communications — leaked memos, executive statements, policy documents — as a single evolving text, and asks what each revision taught employees about how the organization makes decisions.",
+            text: "The MTR moves five million people a day through some of the densest urban space on earth, and almost nobody gets lost. This field guide examines the information system that makes that possible — the hierarchy, the typography, the color logic, the transfer design — and compares it with New York, London, Paris, and Washington. (Draft placeholder.)",
+          },
+          {
+            kind: "quote",
+            text: "The MTR does not tell passengers where to go. It makes everywhere else feel implausible.",
           },
           {
             kind: "p",
-            text: "The interest here is not whether hybrid work is good policy. It is what happens to internal trust when the reasons given for a policy change faster than the policy itself.",
+            text: "The written guide provides the argument; the Interactive tab lets you discover it — toggle the station's information layers and see what each audience actually reads.",
           },
         ],
       },
@@ -359,64 +847,77 @@ export const projects: Project[] = [
         blocks: [
           {
             kind: "p",
-            text: "The communications shift registers in their grammar. Early messages are written in the language of experiment — we are learning, we will adjust. Later messages are written in the language of conclusion — the data shows, collaboration requires. But the data was never shown, and employees noticed the shift from invitation to verdict. The messages lost less credibility from their content than from their change in voice.",
-          },
-          {
-            kind: "quote",
-            text: "Employees can accept a decision they disagree with. What they audit is whether the stated reason is the real one.",
-          },
-        ],
-      },
-      {
-        id: "recommendations",
-        label: "Recommendations",
-        blocks: [
-          {
-            kind: "p",
-            text: "For communicators, the case argues for keeping the voice of a policy consistent even as its content evolves — and for showing the evidence when claiming to have it. An unshared dataset cited as justification reads, internally, as no dataset at all.",
+            text: "Three principles recur. Information appears exactly at the decision point, never before; color is a system-wide language, not decoration, so a line's identity survives from map to platform edge; and exits are numbered destinations in their own right, which converts the hardest problem — leaving — into the easiest. Under time pressure, passengers stop reading and start pattern-matching, and the MTR is designed for the pattern-matcher. (Draft placeholder.)",
           },
         ],
       },
     ],
     artifacts: [
       {
-        label: "Message timeline",
+        label: "Signage inventory",
+        kind: "photography",
+        description:
+          "Photographic survey of station signage by decision point. (Draft placeholder.)",
+      },
+      {
+        label: "System comparison matrix",
         kind: "framework",
         description:
-          "Every public statement and reported memo, 2021–2024, on one axis. (Draft placeholder.)",
+          "MTR vs. NYC, London, Paris, and DC across ten wayfinding criteria. (Draft placeholder.)",
       },
     ],
     continueExploring: [
       {
-        slug: "worker-motivation-hybrid",
+        slug: "public-transit-information-design",
         relationship: "expand",
-        note: "The psychology underneath the policy.",
-      },
-      {
-        slug: "the-culture-code",
-        relationship: "deepen",
-        note: "What safety signals look like when they work.",
+        note: "The general argument this station proves.",
       },
       {
         slug: "shenzhen-metro-observations",
         relationship: "observe",
-        note: "Systems that communicate reliability without memos.",
+        note: "Field notes from across the border.",
+      },
+      {
+        slug: "london-underground-identity",
+        relationship: "compare",
+        note: "The century-old system the MTR learned from.",
       },
     ],
   },
-
-  /* ---------------- Design ---------------- */
+  stub("design", {
+    slug: "dutch-cycling-infrastructure",
+    folder: "systems-design",
+    coordinate: "D-16",
+    title: "Dutch Cycling Infrastructure",
+    question: "How do cities design cycling as transportation instead of recreation?",
+    format: "Field Guide + Interactive",
+    length: "20 pp + Interactive",
+    explorable: true,
+  }),
+  stub("design", {
+    slug: "public-transit-information-design",
+    folder: "systems-design",
+    coordinate: "D-17",
+    title: "Public Transit as Information Design",
+    question: "What if good transit is information before it is transportation?",
+    format: "Essay + Interactive",
+    length: "2,500 words + Interactive",
+    explorable: true,
+  }),
+  /* -- The Atlas design system: ported prose -- */
   {
     type: "standard",
-    slug: "designing-the-atlas",
+    slug: "atlas-design-system",
     domain: "design",
     folder: "editorial-design",
-    coordinate: "D-01",
-    title: "Designing The Atlas",
+    coordinate: "D-18",
+    title: "The Atlas Design System",
     question: "How should a publication about thinking be designed?",
     date: "2026-06-20",
-    readingTime: 8,
-    hero: "/placeholders/ph-6.svg",
+    readingTime: 15,
+    format: "Field Guide",
+    length: "30–40 pp",
+    hero: nextHero(),
     draft: true,
     tabs: [
       {
@@ -454,32 +955,49 @@ export const projects: Project[] = [
     ],
     continueExploring: [
       {
-        slug: "smithsonian-signage",
-        relationship: "observe",
-        note: "The wayfinding this site's navigation studies.",
+        slug: "hong-kong-mtr-wayfinding",
+        relationship: "compare",
+        note: "Wayfinding principles this site's navigation studies.",
       },
       {
-        slug: "juicy-couture-brand-audit",
-        relationship: "compare",
-        note: "What happens when identity is fashion instead of system.",
+        slug: "quiet-confidence-public-libraries",
+        relationship: "observe",
+        note: "The institutions whose restraint this design borrows.",
       },
     ],
   },
+  stub("design", {
+    slug: "trend-report",
+    folder: "editorial-design",
+    coordinate: "D-19",
+    title: "Trend Report",
+    question: "What is a trend report for?",
+    format: "Field Guide",
+    length: "20 slides",
+  }),
+];
 
-  /* ---------------- I/O Psychology ---------------- */
+/* ========================== I/O PSYCHOLOGY ========================== */
+
+const ioPsychology: StandardProject[] = [
+  /* -- Google's Hybrid Work Crisis: flagship, merged prior prose -- */
   {
     type: "standard",
-    slug: "worker-motivation-hybrid",
-    longReport: true,
+    slug: "google-hybrid-work-crisis",
     domain: "io-psychology",
-    folder: "organizational-behavior",
+    folder: "organizations",
     coordinate: "IO-01",
-    title: "Worker Motivation After Hybrid",
-    question: "What actually brings people back to an office?",
+    title: "Google's Hybrid Work Crisis",
+    question: "Can organizations maintain trust after abandoning remote work?",
     date: "2026-04-02",
-    readingTime: 15,
-    hero: "/placeholders/ph-1.svg",
+    readingTime: 20,
+    format: "Flagship Report",
+    length: "35–40 pp",
+    hero: nextHero(),
     draft: true,
+    longReport: true,
+    pdf: "/artifacts/sample-report.pdf",
+    organizations: ["Google"],
     tabs: [
       {
         id: "overview",
@@ -487,7 +1005,11 @@ export const projects: Project[] = [
         blocks: [
           {
             kind: "p",
-            text: "Return-to-office debates are usually argued in the language of productivity, but the research record suggests productivity was never the variable that moved. This literature review reads the motivation research — self-determination theory, belonging, status signaling — against the observed behavior of hybrid workforces, and asks what offices provide that mandates cannot.",
+            text: "Between 2021 and 2024, Google's messaging about where work happens reversed itself several times. This report reads the public record of those communications as a single evolving text, and pairs it with the motivation research — self-determination theory, belonging, status signaling — to ask what mandates can and cannot buy. (Draft placeholder.)",
+          },
+          {
+            kind: "p",
+            text: "The interest here is not whether hybrid work is good policy. It is what happens to internal trust when the reasons given for a policy change faster than the policy itself.",
           },
         ],
       },
@@ -497,11 +1019,15 @@ export const projects: Project[] = [
         blocks: [
           {
             kind: "p",
-            text: "Across the studies reviewed, voluntary attendance tracks three things mandates do not touch: whether specific colleagues will be there, whether the work planned for that day benefits from presence, and whether being seen carries career weight. Attendance policies address none of these; they address the aggregate, and the aggregate is not what any individual is deciding about.",
+            text: "The communications shift registers in their grammar. Early messages are written in the language of experiment — we are learning, we will adjust. Later messages are written in the language of conclusion — the data shows, collaboration requires. But the data was never shown, and employees noticed the shift from invitation to verdict.",
+          },
+          {
+            kind: "p",
+            text: "Meanwhile the attendance research suggests voluntary presence tracks three things mandates never touch: whether specific colleagues will be there, whether the day's work benefits from presence, and whether being seen carries career weight. Policies address the aggregate; no individual is deciding about the aggregate.",
           },
           {
             kind: "quote",
-            text: "Nobody commutes to a building. People commute to other people, and only when the people will be there.",
+            text: "Nobody commutes to a building. People commute to other people — and only when the people will be there.",
           },
         ],
       },
@@ -511,156 +1037,247 @@ export const projects: Project[] = [
         blocks: [
           {
             kind: "p",
-            text: "The review suggests organizations get further coordinating presence than compelling it — anchoring teams to shared days, making the office legibly social, and letting the mandate be the floor rather than the message.",
+            text: "Organizations get further coordinating presence than compelling it: anchor teams to shared days, make the office legibly social, keep the voice of a policy consistent even as its content evolves — and show the evidence when claiming to have it. An unshared dataset cited as justification reads, internally, as no dataset at all. (Draft placeholder.)",
           },
         ],
       },
     ],
     artifacts: [
+      {
+        label: "Message timeline",
+        kind: "framework",
+        description:
+          "Every public statement and reported memo, 2021–2024, on one axis. (Draft placeholder.)",
+      },
       {
         label: "Annotated bibliography",
         kind: "notes",
         description:
           "Forty sources on motivation and hybrid work, annotated. (Draft placeholder.)",
       },
+      {
+        label: "Full report (PDF)",
+        kind: "pdf",
+        href: "/artifacts/sample-report.pdf",
+        description: "The complete written analysis as a downloadable document.",
+      },
     ],
     continueExploring: [
       {
-        slug: "google-return-to-office",
-        relationship: "compare",
-        note: "The same question, seen from the communications office.",
+        slug: "google-hybrid-executive-report",
+        relationship: "expand",
+        note: "The same findings, designed as a fifteen-slide executive brief.",
       },
       {
-        slug: "the-culture-code",
+        slug: "trust-organizational-asset",
         relationship: "deepen",
-        note: "Belonging cues as the mechanism underneath attendance.",
+        note: "The asset this policy spent.",
+      },
+      {
+        slug: "shenzhen-metro-observations",
+        relationship: "observe",
+        note: "Systems that communicate reliability without memos.",
       },
     ],
   },
-  {
-    type: "standard",
-    slug: "duolingo-habit-formation",
-    domain: "io-psychology",
-    folder: "consumer-psychology",
+  stub("io-psychology", {
+    slug: "why-corporate-transformations-fail",
+    folder: "organizations",
     coordinate: "IO-02",
-    title: "Duolingo and Habit Formation",
-    question: "Why does a cartoon owl succeed where willpower fails?",
-    date: "2026-05-11",
-    readingTime: 10,
-    hero: "/placeholders/ph-2.svg",
-    draft: true,
-    tabs: [
-      {
-        id: "overview",
-        label: "Overview",
-        blocks: [
-          {
-            kind: "p",
-            text: "Duolingo's streak is one of the most effective habit mechanisms in consumer software, and it is built almost entirely from loss aversion. This project maps the app's design decisions onto the habit-formation literature and asks which mechanisms teach a language and which merely teach the habit of opening the app.",
-          },
-        ],
-      },
-      {
-        id: "analysis",
-        label: "Analysis",
-        blocks: [
-          {
-            kind: "p",
-            text: "The streak converts an approach goal — learn Spanish — into an avoidance goal: don't lose the number. Avoidance goals are stickier day to day but hollower over time, and the app's own design suggests its makers know it: streak freezes, repair mechanics, and notification tone all manage the guilt the streak manufactures. The tension is instructive for any organization that wants engagement to mean commitment rather than captivity.",
-          },
-          {
-            kind: "quote",
-            text: "A streak is a promise the user made to a number. The design question is whether the number was ever keeping its side.",
-          },
-        ],
-      },
-    ],
-    artifacts: [
-      {
-        label: "Mechanism map",
-        kind: "framework",
-        description:
-          "Each app mechanic mapped to its habit-loop role. (Draft placeholder.)",
-      },
-    ],
-    continueExploring: [
-      {
-        slug: "costco-membership-model",
-        relationship: "compare",
-        note: "A membership fee as the physical world's streak.",
-      },
-      {
-        slug: "thinking-fast-and-slow",
-        relationship: "deepen",
-        note: "The loss-aversion research the streak is built on.",
-      },
-    ],
-  },
+    title: "Why Corporate Transformations Fail",
+    question: "Why do corporate transformations fail?",
+    format: "White Paper",
+    length: "20–25 pp",
+  }),
+  stub("io-psychology", {
+    slug: "the-informal-organization",
+    folder: "organizations",
+    coordinate: "IO-03",
+    title: "The Informal Organization",
+    question: "Where does the real org chart live?",
+    format: "White Paper",
+    length: "20 pp",
+  }),
+  stub("io-psychology", {
+    slug: "pixars-braintrust",
+    folder: "organizations",
+    coordinate: "IO-04",
+    title: "Pixar's Braintrust",
+    question: "How does candor survive success?",
+    format: "Case Study",
+    length: "20 pp",
+    organizations: ["Pixar"],
+  }),
+  stub("io-psychology", {
+    slug: "executive-derailment",
+    folder: "leadership",
+    coordinate: "IO-05",
+    title: "Executive Derailment",
+    question: "Why do successful executives derail?",
+    format: "White Paper",
+    length: "20 pp",
+  }),
+  stub("io-psychology", {
+    slug: "the-all-blacks",
+    folder: "leadership",
+    coordinate: "IO-06",
+    title: "The All Blacks",
+    question: "What does a rugby team know about culture that companies don't?",
+    format: "Essay",
+    length: "2,500 words",
+    organizations: ["New Zealand All Blacks"],
+  }),
+  stub("io-psychology", {
+    slug: "hierarchy-autonomy-motivation",
+    folder: "leadership",
+    coordinate: "IO-07",
+    title: "Hierarchy, Autonomy & Motivation",
+    question: "Can hierarchy and autonomy exist at the same time?",
+    format: "White Paper",
+    length: "20 pp",
+  }),
+  stub("io-psychology", {
+    slug: "gig-economy-belonging",
+    folder: "leadership",
+    coordinate: "IO-08",
+    title: "Workplace Belonging in the Gig Economy",
+    question: "Can you belong to a platform?",
+    format: "Case Study",
+    length: "20 pp",
+  }),
+  stub("io-psychology", {
+    slug: "decision-architecture",
+    folder: "decision-making",
+    coordinate: "IO-09",
+    title: "Decision Architecture Inside Organizations",
+    question: "Who designs the decisions organizations think they make freely?",
+    format: "White Paper",
+    length: "20 pp",
+  }),
+  stub("io-psychology", {
+    slug: "organizational-identity-disruption",
+    folder: "decision-making",
+    coordinate: "IO-10",
+    title: "Organizational Identity Under Technological Disruption",
+    question: "What happens to identity under technological disruption?",
+    format: "White Paper",
+    length: "20–25 pp",
+  }),
+  stub("io-psychology", {
+    slug: "trust-organizational-asset",
+    folder: "decision-making",
+    coordinate: "IO-11",
+    title: "Trust Is an Organizational Asset",
+    question: "What if trust belongs on the balance sheet?",
+    format: "Essay",
+    length: "3,000 words",
+  }),
+  stub("io-psychology", {
+    slug: "dei-words-behavior",
+    folder: "decision-making",
+    coordinate: "IO-12",
+    title: "Do DEI Words Change Behavior or Just Perception?",
+    question: "Do DEI words change behavior, or just perception?",
+    format: "White Paper",
+    length: "20–25 pp",
+  }),
+  stub("io-psychology", {
+    slug: "japanese-convenience-stores",
+    folder: "culture-behavior",
+    coordinate: "IO-13",
+    title: "Japanese Convenience Stores",
+    question: "Why is the konbini the best-run organization you'll visit today?",
+    format: "Essay",
+    length: "2,000 words",
+    organizations: ["7-Eleven Japan", "Lawson", "FamilyMart"],
+  }),
+  stub("io-psychology", {
+    slug: "psychology-of-queueing",
+    folder: "culture-behavior",
+    coordinate: "IO-14",
+    title: "The Psychology of Queueing Across Cultures",
+    question: "Why do we queue so differently?",
+    format: "White Paper",
+    length: "20 pp",
+  }),
+  stub("io-psychology", {
+    slug: "how-countries-design-public-space",
+    folder: "culture-behavior",
+    coordinate: "IO-15",
+    title: "How Different Countries Design Public Space",
+    question: "How do different countries design public space?",
+    format: "Essay",
+    length: "2,500 words",
+  }),
+  stub("io-psychology", {
+    slug: "business-culture-east-asia",
+    folder: "culture-behavior",
+    coordinate: "IO-16",
+    title: "Business Culture Across East Asia",
+    question: "How do organizations in East Asia make decisions differently?",
+    format: "White Paper + Interactive",
+    length: "20 pp + Interactive",
+    explorable: true,
+  }),
+  stub("io-psychology", {
+    slug: "professional-norms-worldwide",
+    folder: "culture-behavior",
+    coordinate: "IO-17",
+    title: "Professional Norms Around the World",
+    question: "What does professionalism actually mean in different cultures?",
+    format: "Flagship Report + Interactive",
+    length: "30–40 pp + Interactive",
+    explorable: true,
+  }),
+];
 
-  /* ---------------- Reading (no folders) ---------------- */
-  {
+/* ============================= READING ============================= */
+
+function readingStub(
+  n: number,
+  slug: string,
+  title: string,
+  author: string,
+  sourceUrl: string,
+  question: string,
+  summary: string,
+): ReadingEntry {
+  return {
     type: "reading",
-    slug: "the-culture-code",
+    slug,
     domain: "reading",
-    coordinate: "R-01",
-    title: "The Culture Code",
-    author: "Daniel Coyle",
-    sourceUrl: "https://danielcoyle.com/the-culture-code/",
-    question: "Where does group chemistry actually come from?",
-    date: "2026-02-28",
-    readingTime: 6,
-    hero: "/placeholders/ph-3.svg",
+    coordinate: `R-${String(n).padStart(2, "0")}`,
+    title,
+    author,
+    sourceUrl,
+    question,
+    date: "2026-07-01",
+    readingTime: 5,
+    format: "Reading Entry",
+    length: "1–4 pp",
+    hero: nextHero(),
     draft: true,
+    artifacts: [],
     tabs: [
       {
         id: "summary",
         label: "Summary",
-        blocks: [
-          {
-            kind: "p",
-            text: "Coyle argues that high-performing cultures are built not from talent or strategy but from a steady exchange of small signals — safety cues, vulnerability loops, and shared purpose narratives. The book's most useful move is demoting culture from a mystery to a craft: something groups do, repeatedly and observably, rather than something they have.",
-          },
-        ],
-      },
-      {
-        id: "passages",
-        label: "Favorite Passages",
-        blocks: [
-          {
-            kind: "quote",
-            text: "Vulnerability doesn't come after trust — it precedes it. Leaping into the unknown, when done alongside others, causes the solid ground of trust to materialize beneath our feet.",
-          },
-          {
-            kind: "p",
-            text: "Also marked: the Navy SEAL debrief protocol, and the observation that belonging cues must be continually refreshed — belonging has a half-life. (Draft placeholder selection.)",
-          },
-        ],
-      },
-      {
-        id: "worldview",
-        label: "My Worldview",
-        blocks: [
-          {
-            kind: "p",
-            text: "This book reorganized how I read every organization in the Atlas. I now look for the smallest signals first — who speaks second in a meeting, what happens after a mistake — before reading any strategy document. The strategy explains what an organization intends. The signals explain what it is.",
-          },
-        ],
+        blocks: [{ kind: "p", text: summary }],
       },
     ],
-    artifacts: [],
-    continueExploring: [
-      {
-        slug: "worker-motivation-hybrid",
-        relationship: "expand",
-        note: "Belonging cues, tested against the hybrid office.",
-      },
-      {
-        slug: "product-recall-simulation",
-        relationship: "compare",
-        note: "Vulnerability loops under public pressure.",
-      },
-    ],
-  },
+  };
+}
+
+const reading: ReadingEntry[] = [
+  readingStub(
+    1,
+    "outliers",
+    "Outliers: The Story of Success",
+    "Malcolm Gladwell",
+    "https://en.wikipedia.org/wiki/Outliers_(book)",
+    "How much of success is circumstance wearing a person's name?",
+    "Gladwell's argument that success is an ecosystem — timing, culture, accumulated advantage — rather than an individual trait. Entry in progress: summary, favorite passages, and worldview notes to come. (Draft placeholder.)",
+  ),
   {
     type: "reading",
     slug: "thinking-fast-and-slow",
@@ -672,8 +1289,11 @@ export const projects: Project[] = [
     question: "How much of judgment is architecture rather than choice?",
     date: "2025-10-15",
     readingTime: 7,
-    hero: "/placeholders/ph-4.svg",
+    format: "Reading Entry",
+    length: "1–4 pp",
+    hero: nextHero(),
     draft: true,
+    artifacts: [],
     tabs: [
       {
         id: "summary",
@@ -705,27 +1325,117 @@ export const projects: Project[] = [
         blocks: [
           {
             kind: "p",
-            text: "I stopped treating consumer behavior as preference and started treating it as architecture. When a Costco member renews or a Duolingo streak survives midnight, the interesting question is no longer what the person wants — it is what the structure around them made effortless.",
+            text: "I stopped treating behavior as preference and started treating it as architecture. When a policy fails or a queue forms differently in a different country, the interesting question is no longer what people want — it is what the structure around them made effortless.",
           },
         ],
       },
     ],
-    artifacts: [],
     continueExploring: [
       {
-        slug: "duolingo-habit-formation",
+        slug: "decision-architecture",
         relationship: "expand",
-        note: "Loss aversion, shipped as a product feature.",
+        note: "The same argument, applied inside organizations.",
       },
       {
-        slug: "costco-membership-model",
+        slug: "psychology-of-queueing",
         relationship: "expand",
-        note: "Sunk costs, experienced as loyalty.",
+        note: "Predictable behavior, studied in line.",
       },
     ],
   },
+  readingStub(
+    3,
+    "the-undercover-economist",
+    "The Undercover Economist",
+    "Tim Harford",
+    "https://en.wikipedia.org/wiki/The_Undercover_Economist",
+    "What is the economics hiding inside a cup of coffee?",
+    "Harford's tour of everyday economics — scarcity, signaling, price discrimination — as a lens for reading organizations. Entry in progress. (Draft placeholder.)",
+  ),
+  readingStub(
+    4,
+    "freakonomics",
+    "Freakonomics",
+    "Steven D. Levitt & Stephen J. Dubner",
+    "https://en.wikipedia.org/wiki/Freakonomics",
+    "What do incentives explain that intentions cannot?",
+    "Levitt and Dubner on incentives as the hidden grammar of behavior. Entry in progress. (Draft placeholder.)",
+  ),
+  readingStub(
+    5,
+    "psychology-of-money",
+    "The Psychology of Money",
+    "Morgan Housel",
+    "https://en.wikipedia.org/wiki/The_Psychology_of_Money",
+    "Why is doing well with money a behavioral skill rather than a technical one?",
+    "Housel's timeless lessons on wealth, greed, and happiness — behavior beating spreadsheets. Entry in progress. (Draft placeholder.)",
+  ),
+  readingStub(
+    6,
+    "antifragile",
+    "Antifragile: Things That Gain From Disorder",
+    "Nassim Nicholas Taleb",
+    "https://en.wikipedia.org/wiki/Antifragile_(book)",
+    "What kind of organization gets stronger when it is stressed?",
+    "Taleb's case that the opposite of fragile is not robust but antifragile — systems that gain from disorder. Entry in progress. (Draft placeholder.)",
+  ),
+  readingStub(
+    7,
+    "globally-minded-marketing",
+    "Globally-Minded Marketing",
+    "Carlos J. Torelli & Maria A. Rodas",
+    "https://doi.org/10.1007/978-3-031-50812-7",
+    "How do iconic brands travel across cultures?",
+    "A cultural approach to building iconic brands (textbook, DOI:10.1007/978-3-031-50812-7). Entry in progress. (Draft placeholder.)",
+  ),
+  readingStub(
+    8,
+    "propaganda",
+    "Propaganda",
+    "Edward Bernays",
+    "https://en.wikipedia.org/wiki/Propaganda_(book)",
+    "What did the father of public relations actually believe he was doing?",
+    "Bernays' 1928 manual for engineering consent — uncomfortable, foundational reading for anyone studying institutional communication. Entry in progress. (Draft placeholder.)",
+  ),
+  readingStub(
+    9,
+    "inefficient-pricing-of-news",
+    "The Inefficient Pricing of News",
+    "Didisheim, Kelly, Pourmohammadi & Tian",
+    "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6540399",
+    "What is a piece of news actually worth, and to whom?",
+    "A study (SSRN: 6540399) on how markets misprice information. Entry in progress. (Draft placeholder.)",
+  ),
+];
 
-  /* ---------------- Notes (no folders, no tabs) ---------------- */
+/* ============================== NOTES ============================== */
+
+function noteStub(
+  n: number,
+  slug: string,
+  title: string,
+  question: string,
+  body: string,
+): NoteEntry {
+  return {
+    type: "note",
+    slug,
+    domain: "notes",
+    coordinate: `N-${String(n).padStart(2, "0")}`,
+    title,
+    question,
+    date: "2026-07-01",
+    readingTime: 4,
+    format: "Atlas Note",
+    length: "500–1,200 words",
+    hero: nextHero(),
+    draft: true,
+    artifacts: [],
+    body: [{ kind: "p", text: body }],
+  };
+}
+
+const notes: NoteEntry[] = [
   {
     type: "note",
     slug: "shenzhen-metro-observations",
@@ -735,8 +1445,11 @@ export const projects: Project[] = [
     question: "What can a subway system teach an organization?",
     date: "2025-08-19",
     readingTime: 5,
-    hero: "/placeholders/ph-5.svg",
+    format: "Atlas Note",
+    length: "500–1,200 words",
+    hero: nextHero(),
     draft: true,
+    artifacts: [],
     body: [
       {
         kind: "p",
@@ -760,59 +1473,105 @@ export const projects: Project[] = [
         text: "The note I keep returning to: trust in the system was not asked for anywhere. It accumulated from ten thousand small precisions — a train that arrives when the board says it will, every time. This is what operational discipline looks like when it becomes a communication strategy.",
       },
     ],
-    artifacts: [],
     continueExploring: [
       {
-        slug: "google-return-to-office",
-        relationship: "compare",
-        note: "An organization that asked for trust instead of accumulating it.",
+        slug: "hong-kong-mtr-wayfinding",
+        relationship: "expand",
+        note: "The same legibility, studied as a field guide across the border.",
       },
       {
-        slug: "designing-the-atlas",
-        relationship: "expand",
-        note: "The same wayfinding principles, applied to this site.",
+        slug: "shenzhen-innovation",
+        relationship: "observe",
+        note: "The city around the metro.",
       },
     ],
   },
-  {
-    type: "note",
-    slug: "smithsonian-signage",
-    domain: "notes",
-    coordinate: "N-02",
-    title: "Museum Signage at the Smithsonian",
-    question: "Why do some institutions speak so clearly?",
-    date: "2026-05-30",
-    readingTime: 4,
-    hero: "/placeholders/ph-6.svg",
-    draft: true,
-    body: [
-      {
-        kind: "p",
-        text: "An afternoon in the National Museum of American History, spent reading the labels instead of the exhibits. The best ones perform a small miracle of altitude: one sentence of fact, one of context, one of consequence — and then they stop. (Draft placeholder essay.)",
-      },
-      {
-        kind: "p",
-        text: "Corporate communication rarely stops. The press release equivalent of a museum label would run four paragraphs and include a quote from leadership. The Smithsonian's restraint is not modesty; it is confidence that the object can carry its share of the argument.",
-      },
-      {
-        kind: "quote",
-        text: "The label trusts the reader. That is the whole technique.",
-      },
-    ],
-    artifacts: [],
-    continueExploring: [
-      {
-        slug: "designing-the-atlas",
-        relationship: "expand",
-        note: "Museum restraint as a design standard for this publication.",
-      },
-      {
-        slug: "juicy-couture-brand-audit",
-        relationship: "compare",
-        note: "Heritage handled with confidence versus heritage as costume.",
-      },
-    ],
-  },
+  noteStub(
+    2,
+    "a-day-in-new-york",
+    "A Day in New York",
+    "What does one day in one city actually contain?",
+    "A single day, recorded honestly: what the city demanded, what it offered, and how often its systems explained themselves. Note in progress. (Draft placeholder.)",
+  ),
+  noteStub(
+    3,
+    "three-hours-in-union-station",
+    "Three Hours in Union Station",
+    "What does a station do with the people who are not going anywhere?",
+    "Union Station between trains — the waiting, the retail, the restoration scaffolding, and the quiet negotiation over whom the building is for. Note in progress. (Draft placeholder.)",
+  ),
+  noteStub(
+    4,
+    "cities-relationship-with-time",
+    "Every City Has a Different Relationship with Time",
+    "Why does an hour feel different in different cities?",
+    "Punctuality, queues, dinner hours, and walk signals — a city's clock is a cultural document. Note in progress. (Draft placeholder.)",
+  ),
+  noteStub(
+    5,
+    "walking-as-research",
+    "Walking Is an Underrated Research Method",
+    "What does a city tell you at three miles an hour?",
+    "The research method that requires no instrument: walking the same street until it starts explaining itself. Note in progress. (Draft placeholder.)",
+  ),
+  noteStub(
+    6,
+    "coffee-shops-behavioral-design",
+    "Coffee Shops as Behavioral Design",
+    "Who is a coffee shop designed to move, and who is it designed to keep?",
+    "Seating, sockets, playlists, and cup sizes as instruments of dwell time. Note in progress. (Draft placeholder.)",
+  ),
+  noteStub(
+    7,
+    "libraries-understand-attention",
+    "Libraries Understand Attention Better Than Most Apps",
+    "Why does focus come easily in a building full of strangers?",
+    "The library as attention architecture — and what product design keeps getting wrong about focus. Note in progress. (Draft placeholder.)",
+  ),
+  noteStub(
+    8,
+    "waiting-rooms",
+    "Waiting Rooms Reveal More Than Waiting",
+    "What does an organization believe about you while you wait?",
+    "Chairs, signage, and the order of names called: the waiting room as an organization's honest self-portrait. Note in progress. (Draft placeholder.)",
+  ),
+  noteStub(
+    9,
+    "yearbook-organizations",
+    "Three Things I Learned About Organizations from Editing a Yearbook",
+    "What does a yearbook staff know about deadlines that companies don't?",
+    "Volunteer labor, hard deadlines, and shared authorship — the yearbook room as a miniature organization. Note in progress. (Draft placeholder.)",
+  ),
+  noteStub(
+    10,
+    "donor-engagement-customer-loyalty",
+    "Why Donor Engagement and Customer Loyalty Are the Same Behavioral Problem",
+    "Why do donors and customers churn for the same reasons?",
+    "Two vocabularies, one behavior: recognition, reciprocity, and the moment someone quietly stops believing the relationship is mutual. Note in progress. (Draft placeholder.)",
+  ),
+  noteStub(
+    11,
+    "shenzhen-innovation",
+    "How Shenzhen Changed My Understanding of Innovation",
+    "What does innovation look like when it is a place instead of a pitch?",
+    "Hardware markets, iteration speed, and a city that prototypes itself. Note in progress. (Draft placeholder.)",
+  ),
+  noteStub(
+    12,
+    "quiet-confidence-public-libraries",
+    "The Quiet Confidence of Public Libraries",
+    "Why do libraries never have to advertise their trustworthiness?",
+    "The last institution nobody suspects of an agenda — and what its quiet confidence is built from. Note in progress. (Draft placeholder.)",
+  ),
+];
+
+export const projects: Project[] = [
+  ...strategy,
+  ...communication,
+  ...design,
+  ...ioPsychology,
+  ...reading,
+  ...notes,
 ];
 
 /* ---------------- Registry helpers ---------------- */
@@ -836,3 +1595,25 @@ export function projectHref(p: Project): string {
   if (p.type === "standard") return `/atlas/${p.domain}/${p.folder}/${p.slug}`;
   return `/atlas/${p.domain}/${p.slug}`;
 }
+
+/** Projects with an interactive component, for /atlas/explorable-systems. */
+export function getExplorableProjects(): Project[] {
+  return projects.filter((p) => p.explorable);
+}
+
+/** organization name → projects mentioning it, alphabetical. */
+export function getOrganizations(): { name: string; projects: Project[] }[] {
+  const map = new Map<string, Project[]>();
+  for (const p of projects) {
+    for (const org of p.organizations ?? []) {
+      if (!map.has(org)) map.set(org, []);
+      map.get(org)!.push(p);
+    }
+  }
+  return [...map.entries()]
+    .map(([name, list]) => ({ name, projects: list }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+/* Unused-type imports kept referenced for clarity of the model above. */
+export type { Block, TabSection };

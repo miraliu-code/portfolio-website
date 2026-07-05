@@ -52,11 +52,11 @@ export default async function IndexPage({
           defaultValue={q ?? ""}
           placeholder="Filter the index…"
           aria-label="Filter the index"
-          className="w-full border-b border-structure/30 bg-transparent pb-2 font-sans text-sm tracking-wide text-information placeholder:text-information/40 focus:border-interaction focus:outline-none"
+          className="w-full border-b border-structure/30 bg-transparent pb-2 font-sans text-sm tracking-wide text-information placeholder:text-information/60 focus:border-interaction focus:outline-none"
         />
       </form>
       {query && (
-        <p className="mt-4 font-sans text-xs uppercase tracking-[0.2em] text-information/50">
+        <p className="mt-4 font-sans text-xs uppercase tracking-[0.2em] text-information/60">
           {entries.length} result{entries.length === 1 ? "" : "s"} for “{q}” ·{" "}
           <Link href="/the-index" className="text-interaction hover:underline">
             clear
@@ -84,12 +84,12 @@ export default async function IndexPage({
                       <span className="font-serif text-base text-information transition-colors group-hover:text-interaction">
                         {entry.label}
                         {entry.coordinate && (
-                          <span className="ml-2 font-sans text-[0.65rem] uppercase tracking-[0.2em] text-information/40">
+                          <span className="ml-2 font-sans text-[0.65rem] uppercase tracking-[0.2em] text-information/60">
                             {entry.coordinate}
                           </span>
                         )}
                       </span>
-                      <span className="shrink-0 font-sans text-[0.65rem] uppercase tracking-[0.2em] text-information/45">
+                      <span className="shrink-0 font-sans text-[0.65rem] uppercase tracking-[0.2em] text-information/60">
                         {entry.category}
                       </span>
                     </Link>
@@ -98,7 +98,7 @@ export default async function IndexPage({
                       <span className="font-serif text-base text-information">
                         {entry.label}
                       </span>
-                      <span className="shrink-0 font-sans text-[0.65rem] uppercase tracking-[0.2em] text-information/45">
+                      <span className="shrink-0 font-sans text-[0.65rem] uppercase tracking-[0.2em] text-information/60">
                         {entry.category}
                       </span>
                     </span>

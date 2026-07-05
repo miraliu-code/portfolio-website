@@ -32,8 +32,12 @@ palette — a theme switch is only a future consideration.
 **Dark theme (extrapolated):** the site ships a theme toggle at the owner's
 request. The dark values in `app/globals.css` (`:root[data-theme="dark"]`) are
 *not from the memo* — they invert atmosphere/information (`#15181D` / `#E8E4DA`),
-keep Blue Ink structural, and lighten Burgundy to `#C98D9B` for contrast. Treat
-them as provisional until the standards document defines a dark palette.
+lighten Burgundy to `#C98D9B`, and lighten `structure` to `#8FA3B8` so
+structural text passes WCAG AA on the dark ground. The persistent panel uses a
+separate static token (`--color-panel: #2F4156`) so it stays Blue Ink in both
+themes. Small ink text uses a minimum alpha of `/60` (and `/70` on the panel)
+to hold AA in both themes. Treat all dark values as provisional until the
+standards document defines a dark palette.
 
 ## Typography (Standard 06)
 

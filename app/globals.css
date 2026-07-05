@@ -29,7 +29,7 @@
 :root[data-theme="dark"] {
   --atmosphere: #15181d; /* deep warm charcoal, paper's inverse */
   --information: #e8e4da; /* warm off-white ink */
-  --structure: #2f4156; /* Blue Ink holds as the structural color */
+  --structure: #8fa3b8; /* Blue Ink lightened so structural text passes AA */
   --interaction: #c98d9b; /* Burgundy lightened for dark-ground contrast */
 }
 
@@ -38,6 +38,8 @@
   --color-information: var(--information);
   --color-structure: var(--structure);
   --color-interaction: var(--interaction);
+  /* The persistent panel is always Blue Ink, in both themes. */
+  --color-panel: #2f4156;
 
   /* Libre Baskerville = voice (reading); Montserrat = system (interface). */
   --font-serif: var(--font-libre-baskerville), "Libre Baskerville", Georgia,

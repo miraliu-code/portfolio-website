@@ -46,7 +46,7 @@ export function SearchBox() {
           }}
           placeholder="Search the Atlas…"
           aria-label="Search the Atlas"
-          className="w-full max-w-56 border-b border-structure/30 bg-transparent pb-1 font-sans text-xs tracking-wide text-information placeholder:text-information/40 focus:border-interaction focus:outline-none"
+          className="w-full max-w-56 border-b border-structure/30 bg-transparent pb-1 font-sans text-xs tracking-wide text-information placeholder:text-information/60 focus:border-interaction focus:outline-none"
         />
       </form>
       {results.length > 0 && (
@@ -66,12 +66,12 @@ export function SearchBox() {
                     {doc.label}
                   </span>
                   {doc.sublabel && (
-                    <span className="block truncate font-serif text-xs italic text-information/55">
+                    <span className="block truncate font-serif text-xs italic text-information/60">
                       {doc.sublabel}
                     </span>
                   )}
                 </span>
-                <span className="shrink-0 font-sans text-[0.6rem] uppercase tracking-[0.2em] text-information/45">
+                <span className="shrink-0 font-sans text-[0.6rem] uppercase tracking-[0.2em] text-information/60">
                   {doc.category}
                 </span>
               </Link>

@@ -10,8 +10,8 @@ export interface PhotoWriting {
 
 export const photoWritings: PhotoWriting[] = [
   {
-    slug: "why-photograph-organizations",
-    title: "Why Photograph Organizations?",
+    slug: "looking-and-seeing",
+    title: "The Difference Between Looking and Seeing",
     body: [
       {
         kind: "p",
@@ -28,8 +28,8 @@ export const photoWritings: PhotoWriting[] = [
     ],
   },
   {
-    slug: "on-shooting-sports",
-    title: "On Shooting Sports",
+    slug: "sports-photography-decision-making",
+    title: "What Sports Photography Taught Me About Decision-Making Under Pressure",
     body: [
       {
         kind: "p",
@@ -42,8 +42,8 @@ export const photoWritings: PhotoWriting[] = [
     ],
   },
   {
-    slug: "the-restraint-of-the-frame",
-    title: "The Restraint of the Frame",
+    slug: "photographing-protests-attention",
+    title: "Photographing Protests Changed How I Think About Attention",
     body: [
       {
         kind: "p",

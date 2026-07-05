@@ -5,9 +5,9 @@ export const domains: DomainMeta[] = [
     slug: "strategy",
     name: "Strategy",
     prefix: "S",
-    question: "What should organizations do?",
+    question: "How do organizations compete, grow, and adapt?",
     description:
-      "Market entry analyses, business model studies, and brand audits — investigations into the choices organizations make and the reasoning behind them.",
+      "Flagship reports, case studies, and white papers on how organizations compete, grow, and adapt — from cultural institutions to global retailers.",
     letterform: "S",
     hasFolders: true,
   },
@@ -15,9 +15,9 @@ export const domains: DomainMeta[] = [
     slug: "communication",
     name: "Communication",
     prefix: "COM",
-    question: "How should organizations communicate?",
+    question: "How do organizations reduce uncertainty and build understanding?",
     description:
-      "Crisis simulations, internal communications, and public messaging — how organizations speak, and what their speech reveals about them.",
+      "Crisis cases, institutional voice studies, and professional writing — how organizations reduce uncertainty and build understanding.",
     letterform: "C",
     hasFolders: true,
   },
@@ -25,9 +25,9 @@ export const domains: DomainMeta[] = [
     slug: "design",
     name: "Design",
     prefix: "D",
-    question: "How does design shape understanding?",
+    question: "How does information shape perception, movement, and decision-making?",
     description:
-      "Editorial systems, identity work, and the design of this publication itself — every visual decision as an editorial decision.",
+      "Identity systems, information design, and explorable systems — how information shapes perception, movement, and decision-making.",
     letterform: "D",
     hasFolders: true,
   },
@@ -35,9 +35,9 @@ export const domains: DomainMeta[] = [
     slug: "io-psychology",
     name: "I/O Psychology",
     prefix: "IO",
-    question: "Why do people behave this way?",
+    question: "How do organizations shape human behavior?",
     description:
-      "Organizational behavior, motivation, and consumer psychology — organizations understood as collections of people rather than abstractions.",
+      "Organizational behavior, leadership, decision-making, and culture — how organizations shape human behavior, and are shaped by it.",
     letterform: "Ψ",
     hasFolders: true,
   },
@@ -47,7 +47,7 @@ export const domains: DomainMeta[] = [
     prefix: "R",
     question: "What ideas have changed my thinking?",
     description:
-      "Books in dialogue with the rest of the Atlas — summaries, favorite passages, and how each one revised my worldview.",
+      "A living archive of books, articles, reports, and research papers — summaries, favorite passages, and how each revised my worldview.",
     letterform: "R",
     hasFolders: false,
   },
@@ -57,68 +57,152 @@ export const domains: DomainMeta[] = [
     prefix: "N",
     question: "What have I been noticing?",
     description:
-      "Field notes and observations — subway systems, museum signage, storefronts. The smallest observations often reveal the largest patterns.",
+      "Growing short observations from travel, work, photography, and everyday life. The smallest observations often reveal the largest patterns.",
     letterform: "N",
     hasFolders: false,
   },
 ];
 
 export const folders: Folder[] = [
+  /* ---- Strategy ---- */
   {
-    slug: "market-entry",
+    slug: "market-strategy",
     domain: "strategy",
-    name: "Market Entry",
+    name: "Market Strategy",
     description: "How organizations decide where to compete, and on what terms.",
-    question:
-      "Can organizations enter new markets without losing what made them successful?",
+    question: "Where should an organization compete — and on whose terms?",
   },
   {
-    slug: "brand-strategy",
+    slug: "comparative-strategy",
     domain: "strategy",
-    name: "Brand Strategy",
-    description: "What brands promise, and whether their choices keep the promise.",
-    question:
-      "What do brands owe the identities they were built on?",
+    name: "Comparative Strategy",
+    description: "The same problem, solved differently across countries and organizations.",
+    question: "Why do different organizations solve the same problem so differently?",
   },
+  {
+    slug: "strategic-partnerships",
+    domain: "strategy",
+    name: "Strategic Partnerships",
+    description: "What organizations buy, borrow, and risk when they join forces.",
+    question: "What does a partnership actually purchase?",
+  },
+  {
+    slug: "organizational-strategy",
+    domain: "strategy",
+    name: "Organizational Strategy",
+    description: "Mission, structure, and reinvention inside single organizations.",
+    question: "Can an organization change what it does without losing what it is?",
+  },
+  {
+    slug: "scenario-planning",
+    domain: "strategy",
+    name: "Scenario Planning",
+    description: "Structured futures for institutions facing uncertainty.",
+    question: "What futures should an institution be preparing for?",
+  },
+
+  /* ---- Communication ---- */
   {
     slug: "crisis-communication",
     domain: "communication",
     name: "Crisis Communication",
     description: "What organizations say when something has gone wrong.",
-    question:
-      "What should an organization say when something has gone wrong?",
+    question: "What should an organization say when something has gone wrong?",
   },
   {
-    slug: "internal-communication",
+    slug: "organizational-communication",
     domain: "communication",
-    name: "Internal Communication",
-    description: "How organizations talk to their own people — and what it costs when they do it badly.",
-    question:
-      "Can an organization talk to its own people as honestly as it talks about them?",
+    name: "Organizational Communication",
+    description: "The internal systems of meetings, messages, and understanding.",
+    question: "What if communication is the organization, not a function of it?",
+  },
+  {
+    slug: "institutional-communication",
+    domain: "communication",
+    name: "Institutional Communication",
+    description: "How institutions develop — and lose — a recognizable voice.",
+    question: "What gives an institution a voice people trust?",
+  },
+  {
+    slug: "public-affairs",
+    domain: "communication",
+    name: "Public Affairs",
+    description: "Organizations speaking to publics, regulators, and markets.",
+    question: "How should institutions speak when everyone is listening?",
+  },
+  {
+    slug: "professional-writing",
+    domain: "communication",
+    name: "Professional Writing",
+    description: "Working documents: releases, speeches, briefs, and appeals.",
+    question: "What does a well-made working document actually do?",
+  },
+
+  /* ---- Design ---- */
+  {
+    slug: "identity-systems",
+    domain: "design",
+    name: "Identity Systems",
+    description: "Audits and anatomies of visual identities that endure.",
+    question: "What holds a visual identity together for a century?",
+  },
+  {
+    slug: "presentation",
+    domain: "design",
+    name: "Presentation",
+    description: "Decks and briefings designed to carry an argument.",
+    question: "How much argument can a room's worth of slides carry?",
+  },
+  {
+    slug: "information-design",
+    domain: "design",
+    name: "Information Design",
+    description: "Redesigns that make serious information legible.",
+    question: "Can serious information be made inviting without being diluted?",
+  },
+  {
+    slug: "systems-design",
+    domain: "design",
+    name: "Systems Design",
+    description: "Airports, transit, and infrastructure as designed information systems.",
+    question: "What becomes obvious when you can explore a system instead of reading about it?",
   },
   {
     slug: "editorial-design",
     domain: "design",
     name: "Editorial Design",
     description: "Publications, typography, and systems for making ideas legible.",
-    question:
-      "How should ideas be given a visible form?",
+    question: "How should ideas be given a visible form?",
+  },
+
+  /* ---- I/O Psychology ---- */
+  {
+    slug: "organizations",
+    domain: "io-psychology",
+    name: "Organizations",
+    description: "Culture, cohesion, and change inside real organizations.",
+    question: "What holds an organization together when it changes?",
   },
   {
-    slug: "organizational-behavior",
+    slug: "leadership",
     domain: "io-psychology",
-    name: "Organizational Behavior",
-    description: "Motivation, culture, and cohesion inside organizations.",
-    question:
-      "What holds groups of people together — and what quietly pulls them apart?",
+    name: "Leadership",
+    description: "Motivation, hierarchy, and the people at the front.",
+    question: "What do leaders actually control?",
   },
   {
-    slug: "consumer-psychology",
+    slug: "decision-making",
     domain: "io-psychology",
-    name: "Consumer Psychology",
-    description: "Habit, loyalty, and the psychology of everyday decisions.",
-    question:
-      "Why do people choose what they choose, again and again?",
+    name: "Decision Making",
+    description: "The architecture of choices inside institutions.",
+    question: "Who designs the decisions organizations think they make freely?",
+  },
+  {
+    slug: "culture-behavior",
+    domain: "io-psychology",
+    name: "Culture & Behavior",
+    description: "How place and culture shape organizational behavior.",
+    question: "How much of behavior is culture wearing a uniform?",
   },
 ];
 

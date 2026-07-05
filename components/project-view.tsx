@@ -3,6 +3,7 @@ import { getDomain, getFolder } from "@/lib/content/domains";
 import { BackLink } from "./back-link";
 import { Blocks } from "./blocks";
 import { ContinueExploring } from "./continue-exploring";
+import { InteractiveFrame } from "./interactive/frame";
 import { ProjectHeader } from "./project-header";
 import { Tabs, type TabDef } from "./tabs";
 import { Breadcrumbs, type Crumb } from "./breadcrumbs";
@@ -12,7 +13,7 @@ function ArtifactList({ artifacts }: { artifacts: Artifact[] }) {
     <ul className="max-w-2xl space-y-8">
       {artifacts.map((artifact) => (
         <li key={artifact.label} className="border-l border-structure/30 pl-6">
-          <p className="font-sans text-[0.65rem] uppercase tracking-[0.25em] text-information/50">
+          <p className="font-sans text-[0.65rem] uppercase tracking-[0.25em] text-information/60">
             {artifact.kind}
           </p>
           <p className="mt-1 font-serif text-lg text-information">
@@ -74,7 +75,7 @@ export function ProjectView({ project }: { project: Project }) {
         <div className="mt-12">
           <Blocks blocks={project.body} />
         </div>
-        <ContinueExploring links={project.continueExploring} />
+        <ContinueExploring project={project} />
       </main>
     );
   }
@@ -84,6 +85,14 @@ export function ProjectView({ project }: { project: Project }) {
     label: tab.label,
     content: <Blocks blocks={tab.blocks} />,
   }));
+  /* Interactive sits before Artifact; Artifact is always last. */
+  if (project.explorable) {
+    tabs.push({
+      id: "interactive",
+      label: "Interactive",
+      content: <InteractiveFrame project={project} />,
+    });
+  }
   if (project.artifacts.length > 0) {
     tabs.push({
       id: "artifact",
@@ -101,9 +110,9 @@ export function ProjectView({ project }: { project: Project }) {
     >
       <ProjectHeader project={project} crumbs={crumbs} />
       <div className="mt-16">
-        <Tabs tabs={tabs} withOutline={withOutline} />
+        <Tabs tabs={tabs} withOutline={withOutline} pdfHref={project.pdf} />
       </div>
-      <ContinueExploring links={project.continueExploring} />
+      <ContinueExploring project={project} />
     </main>
   );
 }

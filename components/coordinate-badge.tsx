@@ -8,7 +8,7 @@ export function CoordinateBadge({ map }: { map: Record<string, string> }) {
   const coordinate = map[pathname];
 
   return (
-    <p className="font-sans text-xs uppercase tracking-[0.25em] text-atmosphere/50">
+    <p className="font-sans text-xs uppercase tracking-[0.25em] text-atmosphere/70">
       {coordinate ? `Coordinate · ${coordinate}` : "The Atlas"}
     </p>
   );

@@ -25,7 +25,7 @@ export function ProjectCard({ project }: { project: Project }) {
       <p className="mt-3 font-serif text-base italic leading-relaxed text-information/70">
         {project.question}
       </p>
-      <p className="mt-4 pb-1 font-sans text-xs uppercase tracking-[0.2em] text-information/50">
+      <p className="mt-4 pb-1 font-sans text-xs uppercase tracking-[0.2em] text-information/60">
         {project.readingTime} min read · {project.coordinate}
       </p>
     </Link>

@@ -1,40 +1,51 @@
 @import "tailwindcss";
 
 /*
- * Design tokens — see DESIGN_SYSTEM.md.
+ * The Atlas — design tokens.
+ * Source: "THE ATLAS Design Standards" v1.0 (see DESIGN_SYSTEM.md for the summary).
  *
- * ⚠️ All values are placeholders pending "THE ATLAS Design Standards" memo.
- * When the memo is available, update the values here (and in the dark-mode
- * block below) and the utilities (bg-background, text-accent, font-sans, …)
- * will pick them up everywhere.
+ * Per Standard 05, colors are named by responsibility, not literal color:
+ *   atmosphere  → backgrounds, whitespace, the reading environment
+ *   information → typography, icons, primary interface elements
+ *   structure   → persistent panel, navigation, framework
+ *   interaction → links, hovers, buttons, questions, calls to action
+ *
+ * The memo defines a single light, paper-like palette; a theme switch is
+ * only a future consideration (Standard 07, persistent panel contents).
  */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --accent: #2563eb;
-  --muted: #6b7280;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --accent: #3b82f6;
-    --muted: #9ca3af;
-  }
+  --atmosphere: #fffdf8; /* Floral White */
+  --information: #222222; /* Ink Black */
+  --structure: #2f4156; /* Blue Ink */
+  --interaction: #6b2d3a; /* Burgundy */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-accent: var(--accent);
-  --color-muted: var(--muted);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-atmosphere: var(--atmosphere);
+  --color-information: var(--information);
+  --color-structure: var(--structure);
+  --color-interaction: var(--interaction);
+
+  /* Libre Baskerville = voice (reading); Montserrat = system (interface). */
+  --font-serif: var(--font-libre-baskerville), "Libre Baskerville", Georgia,
+    serif;
+  --font-sans: var(--font-montserrat), Montserrat, system-ui, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  background: var(--atmosphere);
+  color: var(--information);
+  font-family: var(--font-libre-baskerville), Georgia, serif;
+}
+
+/* Standard 08: motion must fully respect reduced-motion preferences. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

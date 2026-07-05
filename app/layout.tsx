@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Libre_Baskerville, Montserrat } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 // "Voice" — editorial serif for titles, questions, and long-form reading.
@@ -42,6 +43,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );

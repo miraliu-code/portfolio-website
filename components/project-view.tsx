@@ -4,7 +4,7 @@ import { Blocks } from "./blocks";
 import { ContinueExploring } from "./continue-exploring";
 import { ProjectHeader } from "./project-header";
 import { Tabs, type TabDef } from "./tabs";
-import type { Crumb } from "./breadcrumbs";
+import { Breadcrumbs, type Crumb } from "./breadcrumbs";
 
 function ArtifactList({ artifacts }: { artifacts: Artifact[] }) {
   return (
@@ -53,29 +53,49 @@ export function ProjectView({ project }: { project: Project }) {
   }
   crumbs.push({ label: project.coordinate });
 
-  let body: React.ReactNode;
+  /*
+   * Notes are journal entries (their own spec): breadcrumbs, title, then
+   * immediately the essay — no hero, no tabs, no metadata block.
+   */
   if (project.type === "note") {
-    body = <Blocks blocks={project.body} />;
-  } else {
-    const tabs: TabDef[] = project.tabs.map((tab) => ({
-      id: tab.id,
-      label: tab.label,
-      content: <Blocks blocks={tab.blocks} />,
-    }));
-    if (project.artifacts.length > 0) {
-      tabs.push({
-        id: "artifact",
-        label: "Artifact",
-        content: <ArtifactList artifacts={project.artifacts} />,
-      });
-    }
-    body = <Tabs tabs={tabs} />;
+    return (
+      <main className="mx-auto w-full max-w-3xl px-6 py-16 sm:px-10">
+        <Breadcrumbs crumbs={crumbs} />
+        <h1 className="mt-12 max-w-2xl font-serif text-3xl leading-tight text-information md:text-4xl">
+          {project.title}
+        </h1>
+        <div className="mt-12">
+          <Blocks blocks={project.body} />
+        </div>
+        <ContinueExploring links={project.continueExploring} />
+      </main>
+    );
   }
 
+  const tabs: TabDef[] = project.tabs.map((tab) => ({
+    id: tab.id,
+    label: tab.label,
+    content: <Blocks blocks={tab.blocks} />,
+  }));
+  if (project.artifacts.length > 0) {
+    tabs.push({
+      id: "artifact",
+      label: "Artifact",
+      content: <ArtifactList artifacts={project.artifacts} />,
+    });
+  }
+  const withOutline = project.type === "standard" && project.longReport === true;
+
   return (
-    <main className="mx-auto w-full max-w-4xl px-6 py-16 sm:px-10">
+    <main
+      className={`mx-auto w-full px-6 py-16 sm:px-10 ${
+        withOutline ? "max-w-5xl" : "max-w-4xl"
+      }`}
+    >
       <ProjectHeader project={project} crumbs={crumbs} />
-      <div className="mt-16">{body}</div>
+      <div className="mt-16">
+        <Tabs tabs={tabs} withOutline={withOutline} />
+      </div>
       <ContinueExploring links={project.continueExploring} />
     </main>
   );

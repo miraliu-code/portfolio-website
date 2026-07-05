@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Libre_Baskerville, Montserrat } from "next/font/google";
-import { PersistentPanel } from "@/components/persistent-panel";
-import { TopNav } from "@/components/top-nav";
 import "./globals.css";
 
 // "Voice" — editorial serif for titles, questions, and long-form reading.
@@ -43,11 +41,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
-        <PersistentPanel />
-        <div className="flex flex-1 flex-col lg:mr-72">
-          <TopNav />
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   );

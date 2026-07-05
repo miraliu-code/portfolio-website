@@ -11,6 +11,7 @@ export const projects: Project[] = [
   {
     type: "standard",
     slug: "costco-membership-model",
+    longReport: true,
     domain: "strategy",
     folder: "market-entry",
     coordinate: "S-01",
@@ -327,6 +328,7 @@ export const projects: Project[] = [
   {
     type: "standard",
     slug: "google-return-to-office",
+    longReport: true,
     domain: "communication",
     folder: "internal-communication",
     coordinate: "COM-02",
@@ -468,6 +470,7 @@ export const projects: Project[] = [
   {
     type: "standard",
     slug: "worker-motivation-hybrid",
+    longReport: true,
     domain: "io-psychology",
     folder: "organizational-behavior",
     coordinate: "IO-01",

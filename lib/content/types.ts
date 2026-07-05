@@ -21,6 +21,7 @@ export interface Folder {
   domain: DomainSlug;
   name: string;
   description: string;
+  question: string; // the folder's guiding question, shown on its page
 }
 
 /* Long-form bodies are structured blocks so typography rules stay enforced. */
@@ -80,6 +81,7 @@ export interface StandardProject extends ProjectBase {
   type: "standard";
   folder: string;
   tabs: TabSection[]; // Overview [, Analysis, Recommendations] — Artifact appended from artifacts[]
+  longReport?: boolean; // long-form research: adds the floating section rail
 }
 
 /* Reading entry: no folder. Summary / Favorite Passages / My Worldview. */

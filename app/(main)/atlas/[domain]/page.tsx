@@ -65,38 +65,33 @@ export default async function DomainPage({
       </header>
 
       {domain.hasFolders ? (
-        <ul className="mt-16 max-w-2xl">
+        /* Literal file folders: tab on top, label and count inside. */
+        <ul className="mt-20 grid max-w-3xl gap-x-10 gap-y-14 sm:grid-cols-2">
           {folders.map((folder) => {
             const count = getProjectsByFolder(slug, folder.slug).length;
             return (
-              <li key={folder.slug} className="border-t border-structure/15 last:border-b">
+              <li key={folder.slug}>
                 <Link
                   href={`/atlas/${slug}/${folder.slug}`}
-                  className="group flex gap-5 py-6"
+                  className="group relative block transition-transform duration-200 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
                 >
-                  {/* Folder glyph: an archival drawer, not a list bullet. */}
-                  <svg
+                  {/* The folder's tab */}
+                  <span
                     aria-hidden="true"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.1"
-                    className="mt-1 h-7 w-7 shrink-0 text-structure transition-colors group-hover:text-interaction"
-                  >
-                    <path d="M3 7a2 2 0 0 1 2-2h4.2a2 2 0 0 1 1.6.8L12.4 7H19a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z" />
-                    <path d="M3 10.5h18" strokeOpacity="0.5" />
-                  </svg>
-                  <span className="min-w-0 flex-1">
-                    <span className="flex items-baseline justify-between gap-6">
-                      <span className="font-serif text-xl text-information transition-colors group-hover:text-interaction">
+                    className="absolute -top-4 left-0 h-4 w-2/5 rounded-t-sm border border-b-0 border-structure/30 bg-structure/10 transition-colors group-hover:border-interaction/40"
+                  />
+                  {/* The folder's body */}
+                  <span className="flex min-h-40 flex-col justify-between border border-structure/30 bg-structure/10 p-6 transition-[border-color,box-shadow] duration-200 group-hover:border-interaction/40 group-hover:shadow-lg group-hover:shadow-structure/15">
+                    <span>
+                      <span className="block font-sans text-sm uppercase tracking-[0.2em] text-information transition-colors group-hover:text-interaction">
                         {folder.name}
                       </span>
-                      <span className="shrink-0 font-sans text-xs uppercase tracking-[0.2em] text-information/50">
-                        {count} investigation{count === 1 ? "" : "s"}
+                      <span className="mt-3 block font-serif text-sm italic leading-relaxed text-information/60">
+                        {folder.description}
                       </span>
                     </span>
-                    <span className="mt-2 block font-serif text-sm italic text-information/60">
-                      {folder.description}
+                    <span className="mt-6 block font-sans text-xs uppercase tracking-[0.2em] text-information/50">
+                      {count} investigation{count === 1 ? "" : "s"}
                     </span>
                   </span>
                 </Link>

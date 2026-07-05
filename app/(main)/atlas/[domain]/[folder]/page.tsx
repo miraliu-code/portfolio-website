@@ -71,16 +71,15 @@ export default async function FolderOrProjectPage({
         crumbs={[
           { label: "Atlas", href: "/atlas" },
           { label: domain.name, href: `/atlas/${domain.slug}` },
-          { label: folder.name },
         ]}
       />
       <h1 className="mt-12 font-serif text-4xl leading-tight text-information">
         {folder.name}
       </h1>
-      <p className="mt-4 max-w-xl font-serif text-lg italic leading-relaxed text-information/70">
-        {folder.description}
+      <p className="mt-4 max-w-2xl font-serif text-xl italic leading-snug text-interaction">
+        {folder.question}
       </p>
-      <div className="mt-16 grid gap-x-10 gap-y-14 sm:grid-cols-2">
+      <div className="mt-16 grid gap-x-10 gap-y-12 sm:grid-cols-2">
         {projects.map((project) => (
           <ProjectCard key={project.slug} project={project} />
         ))}

@@ -69,42 +69,56 @@ export const folders: Folder[] = [
     domain: "strategy",
     name: "Market Entry",
     description: "How organizations decide where to compete, and on what terms.",
+    question:
+      "Can organizations enter new markets without losing what made them successful?",
   },
   {
     slug: "brand-strategy",
     domain: "strategy",
     name: "Brand Strategy",
     description: "What brands promise, and whether their choices keep the promise.",
+    question:
+      "What do brands owe the identities they were built on?",
   },
   {
     slug: "crisis-communication",
     domain: "communication",
     name: "Crisis Communication",
     description: "What organizations say when something has gone wrong.",
+    question:
+      "What should an organization say when something has gone wrong?",
   },
   {
     slug: "internal-communication",
     domain: "communication",
     name: "Internal Communication",
     description: "How organizations talk to their own people — and what it costs when they do it badly.",
+    question:
+      "Can an organization talk to its own people as honestly as it talks about them?",
   },
   {
     slug: "editorial-design",
     domain: "design",
     name: "Editorial Design",
     description: "Publications, typography, and systems for making ideas legible.",
+    question:
+      "How should ideas be given a visible form?",
   },
   {
     slug: "organizational-behavior",
     domain: "io-psychology",
     name: "Organizational Behavior",
     description: "Motivation, culture, and cohesion inside organizations.",
+    question:
+      "What holds groups of people together — and what quietly pulls them apart?",
   },
   {
     slug: "consumer-psychology",
     domain: "io-psychology",
     name: "Consumer Psychology",
     description: "Habit, loyalty, and the psychology of everyday decisions.",
+    question:
+      "Why do people choose what they choose, again and again?",
   },
 ];
 

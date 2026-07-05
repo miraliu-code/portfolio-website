@@ -3,6 +3,7 @@ import { site } from "@/lib/site";
 import { buildCoordinateMap } from "@/lib/coordinates";
 import { ThemeToggle } from "./theme-toggle";
 import { CoordinateBadge } from "./coordinate-badge";
+import { ResumeLibrary } from "./resume-library";
 
 function Rule() {
   return <hr className="border-atmosphere/15" />;
@@ -11,32 +12,65 @@ function Rule() {
 function Identity() {
   return (
     <div>
-      <Link href="/" className="font-serif text-xl text-atmosphere hover:underline hover:underline-offset-4">
+      <Link
+        href="/"
+        className="font-serif text-xl text-atmosphere hover:underline hover:underline-offset-4"
+      >
         {site.name}
       </Link>
       <p className="mt-2 font-sans text-xs leading-relaxed tracking-wide text-atmosphere/70">
         {site.affiliation}
       </p>
-      <p className="mt-4 space-x-3 font-sans text-xs tracking-wide">
-        <a
-          href={`mailto:${site.email}`}
-          className="text-atmosphere/70 transition-colors hover:text-atmosphere hover:underline hover:underline-offset-4"
-        >
-          Email
-        </a>
-        <span className="text-atmosphere/30">·</span>
-        <a
-          href={site.linkedin}
-          className="text-atmosphere/70 transition-colors hover:text-atmosphere hover:underline hover:underline-offset-4"
-        >
-          LinkedIn
-        </a>
+      <p className="mt-4 font-serif text-sm italic leading-relaxed text-atmosphere/80">
+        {site.bio}
       </p>
+      <Link
+        href="/about"
+        className="mt-3 inline-block font-sans text-xs uppercase tracking-[0.25em] text-atmosphere/80 transition-colors hover:text-atmosphere hover:underline hover:underline-offset-4"
+      >
+        About →
+      </Link>
     </div>
   );
 }
 
-function PanelNav() {
+function ResumeSection() {
+  return (
+    <div>
+      <p className="font-sans text-xs uppercase tracking-[0.25em] text-atmosphere/60">
+        Resume Library
+      </p>
+      <p className="mt-2 font-sans text-xs leading-relaxed tracking-wide text-atmosphere/60">
+        Four tailored resumes — pick the one that fits the conversation.
+      </p>
+      <div className="mt-4">
+        <ResumeLibrary compact />
+      </div>
+    </div>
+  );
+}
+
+function Contact() {
+  return (
+    <div className="font-sans text-xs tracking-wide">
+      <a
+        href={`mailto:${site.email}`}
+        className="block text-atmosphere/70 transition-colors hover:text-atmosphere hover:underline hover:underline-offset-4"
+      >
+        {site.email}
+      </a>
+      <a
+        href={site.linkedin}
+        className="mt-2 block text-atmosphere/70 transition-colors hover:text-atmosphere hover:underline hover:underline-offset-4"
+      >
+        LinkedIn
+      </a>
+    </div>
+  );
+}
+
+/* Mobile only: the drawer is the sole navigation below the desktop top nav. */
+function DrawerNav() {
   return (
     <nav aria-label="Primary">
       <ul className="space-y-3">
@@ -55,21 +89,6 @@ function PanelNav() {
   );
 }
 
-function PanelFooter({ coordinateMap }: { coordinateMap: Record<string, string> }) {
-  return (
-    <div className="space-y-4">
-      <a
-        href={site.cv}
-        className="inline-block border border-atmosphere/40 px-4 py-2 font-sans text-xs uppercase tracking-[0.2em] text-atmosphere/80 transition-colors hover:border-atmosphere hover:text-atmosphere"
-      >
-        Download CV
-      </a>
-      <ThemeToggle />
-      <CoordinateBadge map={coordinateMap} />
-    </div>
-  );
-}
-
 /*
  * The persistent Blue Ink panel (Standard 07): the publication's spine.
  * Fixed right on large screens; a collapsible drawer below that.
@@ -77,15 +96,23 @@ function PanelFooter({ coordinateMap }: { coordinateMap: Record<string, string> 
 export function PersistentPanel() {
   const coordinateMap = buildCoordinateMap();
 
+  const footer = (
+    <div className="space-y-4">
+      <ThemeToggle />
+      <CoordinateBadge map={coordinateMap} />
+    </div>
+  );
+
   return (
     <>
       <aside className="panel-scope fixed inset-y-0 right-0 z-10 hidden w-72 flex-col bg-structure px-10 py-12 lg:flex">
         <div className="flex flex-1 flex-col gap-8 overflow-y-auto">
           <Identity />
           <Rule />
-          <PanelNav />
+          <ResumeSection />
           <Rule />
-          <PanelFooter coordinateMap={coordinateMap} />
+          <Contact />
+          {footer}
         </div>
       </aside>
 
@@ -98,8 +125,10 @@ export function PersistentPanel() {
         </summary>
         <div className="space-y-8 border-t border-atmosphere/15 px-6 py-8">
           <Identity />
-          <PanelNav />
-          <PanelFooter coordinateMap={coordinateMap} />
+          <DrawerNav />
+          <ResumeSection />
+          <Contact />
+          {footer}
         </div>
       </details>
     </>

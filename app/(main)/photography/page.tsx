@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BackLink } from "@/components/back-link";
 import { SectionLabel } from "@/components/section-label";
 import { photoCategories, getGalleries } from "@/lib/content/photography";
 
@@ -9,7 +10,10 @@ export default function PhotographyPage() {
   return (
     <main className="mx-auto w-full max-w-4xl px-6 py-16 sm:px-10">
       <SectionLabel>Photography</SectionLabel>
-      <h1 className="mt-8 max-w-2xl font-serif text-4xl leading-tight text-information">
+      <div>
+        <BackLink href="/" label="Back to the homepage" />
+      </div>
+      <h1 className="mt-6 max-w-2xl font-serif text-4xl leading-tight text-information">
         Observation as evidence.
       </h1>
       <p className="mt-6 max-w-xl font-serif text-lg leading-relaxed text-information/80">

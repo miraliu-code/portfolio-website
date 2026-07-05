@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BackLink } from "@/components/back-link";
 import { SectionLabel } from "@/components/section-label";
 import { ResumeLibrary } from "@/components/resume-library";
 
@@ -8,7 +9,10 @@ export default function ResumesPage() {
   return (
     <main className="mx-auto w-full max-w-3xl px-6 py-16 sm:px-10">
       <SectionLabel>Resume Library</SectionLabel>
-      <h1 className="mt-8 font-serif text-4xl leading-tight text-information">
+      <div>
+        <BackLink href="/" label="Back to the homepage" />
+      </div>
+      <h1 className="mt-6 font-serif text-4xl leading-tight text-information">
         Four resumes, four conversations.
       </h1>
       <p className="mt-6 max-w-xl font-serif text-lg leading-relaxed text-information/80">

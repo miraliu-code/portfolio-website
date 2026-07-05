@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { BackLink } from "@/components/back-link";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import {
   observatorySections,
@@ -41,7 +42,10 @@ export default async function ObservatorySectionPage({
           { label: section.name },
         ]}
       />
-      <h1 className="mt-12 font-serif text-4xl leading-tight text-information">
+      <div>
+        <BackLink href="/observatory" label="Back to the Observatory" />
+      </div>
+      <h1 className="mt-6 font-serif text-4xl leading-tight text-information">
         {section.name}
       </h1>
       <p className="mt-4 max-w-xl font-serif text-lg italic leading-relaxed text-information/70">

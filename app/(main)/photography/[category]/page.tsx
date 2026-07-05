@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BackLink } from "@/components/back-link";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import {
   photoCategories,
@@ -40,7 +41,10 @@ export default async function PhotoCategoryPage({
           { label: category.name },
         ]}
       />
-      <h1 className="mt-12 font-serif text-4xl leading-tight text-information">
+      <div>
+        <BackLink href="/photography" label="Back to Photography" />
+      </div>
+      <h1 className="mt-6 font-serif text-4xl leading-tight text-information">
         {category.name}
       </h1>
       <p className="mt-4 max-w-xl font-serif text-lg italic leading-relaxed text-information/70">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { BackLink } from "@/components/back-link";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import {
   galleries,
@@ -41,7 +42,13 @@ export default async function GalleryPage({
           { label: gallery.name },
         ]}
       />
-      <h1 className="mt-12 font-serif text-4xl leading-tight text-information">
+      <div>
+        <BackLink
+          href={`/photography/${category.slug}`}
+          label={`Back to ${category.name}`}
+        />
+      </div>
+      <h1 className="mt-6 font-serif text-4xl leading-tight text-information">
         {gallery.name}
       </h1>
       <p className="mt-5 max-w-xl font-serif text-base leading-relaxed text-information/75">

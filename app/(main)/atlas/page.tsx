@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AtlasMap } from "@/components/atlas-map";
+import { BackLink } from "@/components/back-link";
 import { SectionLabel } from "@/components/section-label";
 import { domains } from "@/lib/content/domains";
 
@@ -10,7 +11,10 @@ export default function AtlasPage() {
   return (
     <main className="mx-auto w-full max-w-5xl px-6 py-16 sm:px-10">
       <SectionLabel>The Atlas</SectionLabel>
-      <h1 className="mt-8 max-w-2xl font-serif text-4xl leading-tight text-information">
+      <div>
+        <BackLink href="/" label="Back to the homepage" />
+      </div>
+      <h1 className="mt-6 max-w-2xl font-serif text-4xl leading-tight text-information">
         A map of investigations.
       </h1>
       <p className="mt-6 max-w-xl font-serif text-lg leading-relaxed text-information/80">
@@ -39,6 +43,15 @@ export default function AtlasPage() {
           </li>
         ))}
       </ul>
+
+      <p className="mx-auto mt-10 max-w-2xl">
+        <Link
+          href="/observatory"
+          className="font-sans text-xs uppercase tracking-[0.25em] text-interaction transition-colors hover:underline hover:underline-offset-4"
+        >
+          → what&apos;s in motion
+        </Link>
+      </p>
     </main>
   );
 }

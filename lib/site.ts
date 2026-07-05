@@ -10,7 +10,7 @@ export const site = {
     { label: "Atlas", href: "/atlas" },
     { label: "Photography", href: "/photography" },
     { label: "Observatory", href: "/observatory" },
-    { label: "Index", href: "/index" },
+    { label: "Index", href: "/the-index" },
     { label: "About", href: "/about" },
   ],
 };

@@ -140,14 +140,7 @@ export interface ObservatorySection {
 
 export interface IndexEntry {
   label: string;
-  category:
-    | "Organizations"
-    | "Books"
-    | "Cities"
-    | "Projects"
-    | "Essays"
-    | "People"
-    | "Concepts";
+  category: string; // "Organization", "Project", "Domain", "Book", …
   href?: string;
   coordinate?: string;
 }

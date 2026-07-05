@@ -1,4 +1,5 @@
 import type { Project } from "@/lib/content/types";
+import { BackLink } from "./back-link";
 import { Breadcrumbs, type Crumb } from "./breadcrumbs";
 
 /*
@@ -12,14 +13,21 @@ export function ProjectHeader({
   project: Project;
   crumbs: Crumb[];
 }) {
+  const parent = [...crumbs].reverse().find((crumb) => crumb.href);
+
   return (
     <header>
       <Breadcrumbs crumbs={crumbs} />
+      {parent && (
+        <div>
+          <BackLink href={parent.href!} label={`Back to ${parent.label}`} />
+        </div>
+      )}
       {/* eslint-disable-next-line @next/next/no-img-element -- local placeholder SVGs need no optimization */}
       <img
         src={project.hero}
         alt=""
-        className="mt-10 aspect-[21/9] w-full border border-structure/10 object-cover"
+        className="mt-8 aspect-[21/9] w-full border border-structure/10 object-cover"
       />
       <h1 className="mt-10 max-w-3xl font-serif text-3xl leading-tight text-information md:text-4xl">
         {project.title}

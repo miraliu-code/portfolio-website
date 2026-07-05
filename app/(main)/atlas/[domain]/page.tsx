@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BackLink } from "@/components/back-link";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ProjectCard } from "@/components/project-card";
 import { domains, getDomain, getFolders } from "@/lib/content/domains";
@@ -43,8 +44,11 @@ export default async function DomainPage({
           { label: domain.name },
         ]}
       />
+      <div>
+        <BackLink href="/atlas" label="Back to the Atlas" />
+      </div>
 
-      <header className="mt-12 grid gap-10 sm:grid-cols-[1fr_auto] sm:items-start">
+      <header className="mt-6 grid gap-10 sm:grid-cols-[1fr_auto] sm:items-start">
         <div>
           <h1 className="font-serif text-4xl leading-tight text-information">
             {domain.name}

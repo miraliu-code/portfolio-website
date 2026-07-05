@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { BackLink } from "@/components/back-link";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ProjectCard } from "@/components/project-card";
 import { ProjectView } from "@/components/project-view";
@@ -73,7 +74,13 @@ export default async function FolderOrProjectPage({
           { label: domain.name, href: `/atlas/${domain.slug}` },
         ]}
       />
-      <h1 className="mt-12 font-serif text-4xl leading-tight text-information">
+      <div>
+        <BackLink
+          href={`/atlas/${domain.slug}`}
+          label={`Back to ${domain.name}`}
+        />
+      </div>
+      <h1 className="mt-6 font-serif text-4xl leading-tight text-information">
         {folder.name}
       </h1>
       <p className="mt-4 max-w-2xl font-serif text-xl italic leading-snug text-interaction">

@@ -1,5 +1,6 @@
 import type { Artifact, Project } from "@/lib/content/types";
 import { getDomain, getFolder } from "@/lib/content/domains";
+import { BackLink } from "./back-link";
 import { Blocks } from "./blocks";
 import { ContinueExploring } from "./continue-exploring";
 import { ProjectHeader } from "./project-header";
@@ -58,10 +59,16 @@ export function ProjectView({ project }: { project: Project }) {
    * immediately the essay — no hero, no tabs, no metadata block.
    */
   if (project.type === "note") {
+    const parent = [...crumbs].reverse().find((crumb) => crumb.href);
     return (
       <main className="mx-auto w-full max-w-3xl px-6 py-16 sm:px-10">
         <Breadcrumbs crumbs={crumbs} />
-        <h1 className="mt-12 max-w-2xl font-serif text-3xl leading-tight text-information md:text-4xl">
+        {parent && (
+          <div>
+            <BackLink href={parent.href!} label={`Back to ${parent.label}`} />
+          </div>
+        )}
+        <h1 className="mt-6 max-w-2xl font-serif text-3xl leading-tight text-information md:text-4xl">
           {project.title}
         </h1>
         <div className="mt-12">

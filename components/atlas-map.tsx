@@ -91,15 +91,16 @@ export function AtlasMap({ className = "" }: { className?: string }) {
         </g>
       </svg>
 
-      {/* Organizations — the fixed conceptual center, never a link. */}
-      <div
+      {/* Organizations — the fixed conceptual center, linking to its index. */}
+      <Link
+        href="/atlas/organizations"
         style={circleStyle(CENTER)}
-        className="absolute z-10 flex aspect-square -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-interaction p-3 text-center"
+        className="absolute z-10 flex aspect-square -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-interaction p-3 text-center transition-[transform,box-shadow] duration-300 ease-out hover:scale-[1.03] hover:shadow-lg hover:shadow-structure/25 focus-visible:scale-[1.03] motion-reduce:transition-none motion-reduce:hover:scale-100"
       >
         <span className="font-serif text-sm italic text-atmosphere md:text-lg">
           Organizations
         </span>
-      </div>
+      </Link>
 
       {domains.map((domain, i) => (
         <Link

@@ -5,14 +5,12 @@ import { useState } from "react";
 import { domains } from "@/lib/content/domains";
 
 /*
- * The Atlas as a conceptual map. Slot-based layout: one large center slot
- * and six organically placed satellite slots of varied sizes. At rest,
- * Organizations holds the center (large, burgundy). Hovering a domain
- * swaps it smoothly into the center slot — trading places with whatever
- * was centered — and mouse-off restores the resting arrangement.
- *
- * The hairlines and dots connect SLOTS, not nodes, so they never move;
- * only the occupants glide between slots. Reduced motion = instant swap.
+ * The Atlas as a conceptual map. Organizations holds the center — large,
+ * burgundy, immovable. Domain nodes sit at organically varied satellite
+ * slots. Hovering a domain grows it and turns it burgundy IN PLACE while
+ * its connecting line to the center warms to burgundy; mouse-off eases
+ * everything back. Clicking navigates to the domain.
+ * Reduced motion: same states, instant (no transitions).
  */
 
 interface Slot {
@@ -44,47 +42,47 @@ const DOTS: { x: number; y: number; r: number; from?: Slot }[] = [
   { x: 44, y: 3, r: 0.5 },
 ];
 
-const transition =
-  "transition-[left,top,width,background-color,color,box-shadow] duration-500 ease-[cubic-bezier(0.33,0,0.2,1)] motion-reduce:transition-none";
-
 function circleStyle(slot: Slot): React.CSSProperties {
   return { left: `${slot.x}%`, top: `${slot.y}%`, width: `${slot.d}%` };
 }
 
 export function AtlasMap({ className = "" }: { className?: string }) {
   const [hovered, setHovered] = useState<string | null>(null);
-  const hoveredIndex = domains.findIndex((d) => d.slug === hovered);
-
-  /* Organizations sits in the center unless a domain has taken it. */
-  const organizationsSlot =
-    hoveredIndex === -1 ? CENTER : SATELLITES[hoveredIndex];
 
   return (
-    <div
-      className={`relative aspect-square w-full select-none ${className}`}
-      onMouseLeave={() => setHovered(null)}
-      onBlur={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget)) setHovered(null);
-      }}
-    >
+    <div className={`relative aspect-square w-full select-none ${className}`}>
       <svg
         aria-hidden="true"
         viewBox="0 0 100 100"
         className="absolute inset-0 h-full w-full"
       >
-        <g stroke="var(--structure)" strokeOpacity="0.25" strokeWidth="0.25">
-          {SATELLITES.map((s, i) => (
-            <line key={i} x1={CENTER.x} y1={CENTER.y} x2={s.x} y2={s.y} />
-          ))}
-          {DOTS.filter((dot) => dot.from).map((dot, i) => (
-            <line
-              key={`t${i}`}
-              x1={dot.from!.x}
-              y1={dot.from!.y}
-              x2={dot.x}
-              y2={dot.y}
-            />
-          ))}
+        <g strokeWidth="0.25">
+          {SATELLITES.map((s, i) => {
+            const isHot = hovered === domains[i]?.slug;
+            return (
+              <line
+                key={i}
+                x1={CENTER.x}
+                y1={CENTER.y}
+                x2={s.x}
+                y2={s.y}
+                className="transition-[stroke,stroke-opacity] duration-300 ease-out motion-reduce:transition-none"
+                stroke={isHot ? "var(--interaction)" : "var(--structure)"}
+                strokeOpacity={isHot ? 0.85 : 0.25}
+              />
+            );
+          })}
+          <g stroke="var(--structure)" strokeOpacity="0.25">
+            {DOTS.filter((dot) => dot.from).map((dot, i) => (
+              <line
+                key={`t${i}`}
+                x1={dot.from!.x}
+                y1={dot.from!.y}
+                x2={dot.x}
+                y2={dot.y}
+              />
+            ))}
+          </g>
         </g>
         <g fill="var(--structure)" fillOpacity="0.3">
           {DOTS.map((dot, i) => (
@@ -93,54 +91,36 @@ export function AtlasMap({ className = "" }: { className?: string }) {
         </g>
       </svg>
 
-      {/* Organizations — the conceptual center, never a link. */}
+      {/* Organizations — the fixed conceptual center, never a link. */}
       <div
-        style={circleStyle(organizationsSlot)}
-        className={`absolute z-10 flex aspect-square -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full p-3 text-center ${transition} ${
-          hoveredIndex === -1
-            ? "bg-interaction"
-            : "bg-structure/10"
-        }`}
+        style={circleStyle(CENTER)}
+        className="absolute z-10 flex aspect-square -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-interaction p-3 text-center"
       >
-        <span
-          className={`${transition} ${
-            hoveredIndex === -1
-              ? "font-serif text-sm italic text-atmosphere md:text-lg"
-              : "font-sans text-[0.55rem] uppercase tracking-[0.15em] text-information md:text-[0.65rem]"
-          }`}
-        >
+        <span className="font-serif text-sm italic text-atmosphere md:text-lg">
           Organizations
         </span>
       </div>
 
-      {domains.map((domain, i) => {
-        const isCentered = hovered === domain.slug;
-        const slot = isCentered ? CENTER : SATELLITES[i];
-        return (
-          <Link
-            key={domain.slug}
-            href={`/atlas/${domain.slug}`}
-            style={circleStyle(slot)}
-            onMouseEnter={() => setHovered(domain.slug)}
-            onFocus={() => setHovered(domain.slug)}
-            className={`absolute flex aspect-square -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full p-3 text-center ${transition} ${
-              isCentered
-                ? "z-20 bg-interaction shadow-xl shadow-structure/20"
-                : "z-10 bg-structure/10 hover:bg-structure/15"
+      {domains.map((domain, i) => (
+        <Link
+          key={domain.slug}
+          href={`/atlas/${domain.slug}`}
+          style={circleStyle(SATELLITES[i])}
+          onMouseEnter={() => setHovered(domain.slug)}
+          onMouseLeave={() => setHovered(null)}
+          onFocus={() => setHovered(domain.slug)}
+          onBlur={() => setHovered(null)}
+          className="absolute z-10 flex aspect-square -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-structure/10 p-3 text-center transition-[transform,background-color,color,box-shadow] duration-300 ease-out hover:scale-110 hover:bg-interaction hover:shadow-lg hover:shadow-structure/20 focus-visible:scale-110 focus-visible:bg-interaction motion-reduce:transition-none motion-reduce:hover:scale-100"
+        >
+          <span
+            className={`font-sans text-[0.55rem] uppercase tracking-[0.15em] transition-colors duration-300 motion-reduce:transition-none md:text-[0.65rem] ${
+              hovered === domain.slug ? "text-atmosphere" : "text-information"
             }`}
           >
-            <span
-              className={`${transition} ${
-                isCentered
-                  ? "font-serif text-sm italic text-atmosphere md:text-lg"
-                  : "font-sans text-[0.55rem] uppercase tracking-[0.15em] text-information md:text-[0.65rem]"
-              }`}
-            >
-              {domain.name}
-            </span>
-          </Link>
-        );
-      })}
+            {domain.name}
+          </span>
+        </Link>
+      ))}
     </div>
   );
 }

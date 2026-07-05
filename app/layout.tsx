@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Libre_Baskerville, Montserrat } from "next/font/google";
 import { PersistentPanel } from "@/components/persistent-panel";
+import { TopNav } from "@/components/top-nav";
 import "./globals.css";
 
 // "Voice" — editorial serif for titles, questions, and long-form reading.
@@ -18,10 +19,16 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "The Atlas",
+  title: {
+    default: "The Atlas",
+    template: "%s · The Atlas",
+  },
   description:
     "A digital publication making visible the relationships between people, organizations, and the systems that shape them.",
 };
+
+/* Applies the stored theme before paint to avoid a flash. */
+const themeInit = `try{if(localStorage.getItem("atlas-theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}`;
 
 export default function RootLayout({
   children,
@@ -31,11 +38,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${libreBaskerville.variable} ${montserrat.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
         <PersistentPanel />
-        <div className="flex flex-1 flex-col lg:mr-72">{children}</div>
+        <div className="flex flex-1 flex-col lg:mr-72">
+          <TopNav />
+          {children}
+        </div>
       </body>
     </html>
   );

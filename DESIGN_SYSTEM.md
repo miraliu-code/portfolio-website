@@ -29,6 +29,12 @@ photography provides the visual richness, so the interface around it disappears;
 every combination meets **WCAG AA** minimum. The memo defines a single light
 palette — a theme switch is only a future consideration.
 
+**Dark theme (extrapolated):** the site ships a theme toggle at the owner's
+request. The dark values in `app/globals.css` (`:root[data-theme="dark"]`) are
+*not from the memo* — they invert atmosphere/information (`#15181D` / `#E8E4DA`),
+keep Blue Ink structural, and lighten Burgundy to `#C98D9B` for contrast. Treat
+them as provisional until the standards document defines a dark palette.
+
 ## Typography (Standard 06)
 
 Exactly **two typefaces** — every additional face weakens the system:

@@ -20,6 +20,19 @@
   --interaction: #6b2d3a; /* Burgundy */
 }
 
+/*
+ * Dark theme — an EXTRAPOLATION, not part of the memo (which defines a
+ * single light palette and lists a theme switch only as a future
+ * consideration). Values chosen to preserve each color's responsibility
+ * and WCAG AA contrast; refine freely.
+ */
+:root[data-theme="dark"] {
+  --atmosphere: #15181d; /* deep warm charcoal, paper's inverse */
+  --information: #e8e4da; /* warm off-white ink */
+  --structure: #2f4156; /* Blue Ink holds as the structural color */
+  --interaction: #c98d9b; /* Burgundy lightened for dark-ground contrast */
+}
+
 @theme inline {
   --color-atmosphere: var(--atmosphere);
   --color-information: var(--information);
@@ -34,6 +47,22 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+/*
+ * React Flow disables node pointer events when drag/select/connect are all
+ * off; the Atlas map nodes are plain links, so restore them.
+ */
+.atlas-map .react-flow__node {
+  pointer-events: auto !important;
+}
+
+/*
+ * The persistent panel is always Blue Ink, so its foreground stays Floral
+ * White regardless of theme — pin the variable within the panel's scope.
+ */
+.panel-scope {
+  --atmosphere: #fffdf8;
 }
 
 body {

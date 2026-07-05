@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SearchBox } from "./search-box";
 import { site } from "@/lib/site";
 import { domains } from "@/lib/content/domains";
 import { photoCategories } from "@/lib/content/photography";
@@ -41,15 +42,7 @@ export function TopNav() {
         >
           {site.wordmark}
         </Link>
-        <form action="/the-index" className="min-w-0 flex-1" role="search">
-          <input
-            type="search"
-            name="q"
-            placeholder="Search the Atlas…"
-            aria-label="Search the Atlas"
-            className="w-full max-w-56 border-b border-structure/30 bg-transparent pb-1 font-sans text-xs tracking-wide text-information placeholder:text-information/40 focus:border-interaction focus:outline-none"
-          />
-        </form>
+        <SearchBox />
         <nav aria-label="Sections">
           <ul className="flex items-baseline gap-6">
             {site.nav.map((item) => {

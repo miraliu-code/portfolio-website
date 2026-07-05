@@ -40,20 +40,37 @@ const skills = [
 
 const interests = [
   "Social & abnormal psychology",
-  "Comparative politics & international development",
   "East Asian cultures & languages",
   "Memoirs & poetry",
-  "Acrylic & graphite, sustainable architecture & technology",
+  "Acrylic & graphite",
+  "Sustainable architecture & technology",
   "Culinary arts & baking",
   "Rock & indie",
   "Jazz & classical",
+  "Comparative politics & international development",
 ];
 
+/* Museum-wall label — /75 ink keeps small caps above WCAG AA on paper. */
 function WallLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-sans text-[0.65rem] uppercase tracking-[0.3em] text-information/50">
+    <p className="font-sans text-[0.65rem] font-medium uppercase tracking-[0.3em] text-information/75">
       {children}
     </p>
+  );
+}
+
+function PillList({ items }: { items: string[] }) {
+  return (
+    <ul className="mt-5 flex flex-wrap gap-2.5">
+      {items.map((item) => (
+        <li
+          key={item}
+          className="border border-structure/35 px-3 py-1.5 font-sans text-xs tracking-wide text-information/90"
+        >
+          {item}
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -125,16 +142,7 @@ function LeftColumn() {
 
       <section>
         <WallLabel>Skills &amp; Competencies</WallLabel>
-        <ul className="mt-5 flex flex-wrap gap-2.5">
-          {skills.map((skill) => (
-            <li
-              key={skill}
-              className="border border-structure/25 px-3 py-1.5 font-sans text-xs tracking-wide text-information/80"
-            >
-              {skill}
-            </li>
-          ))}
-        </ul>
+        <PillList items={skills} />
       </section>
 
       <section>
@@ -208,24 +216,15 @@ function RightColumn() {
           <dt>
             <WallLabel>Favorite question</WallLabel>
           </dt>
-          <dd className="mt-2 font-serif text-base italic text-information/60">
-            [To be filled in]
+          <dd className="mt-2 font-serif text-base italic text-information/90">
+            What binds a group of people to a shared belief?
           </dd>
         </div>
       </dl>
 
       <div>
         <WallLabel>Interests</WallLabel>
-        <ul className="mt-4 space-y-2">
-          {interests.map((interest) => (
-            <li
-              key={interest}
-              className="font-serif text-sm leading-relaxed text-information/80"
-            >
-              {interest}
-            </li>
-          ))}
-        </ul>
+        <PillList items={interests} />
       </div>
     </div>
   );

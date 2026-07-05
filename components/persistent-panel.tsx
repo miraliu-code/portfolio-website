@@ -50,7 +50,7 @@ function Contact() {
           href={site.linkedin}
           className="mt-2 block text-atmosphere/70 transition-colors hover:text-atmosphere hover:underline hover:underline-offset-4"
         >
-          LinkedIn
+          linkedin.com/in/4mira-liu/
         </a>
       </div>
     </div>

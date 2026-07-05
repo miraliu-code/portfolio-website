@@ -47,6 +47,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Paint the root too, so overscroll never flashes pure white. */
+  background: var(--atmosphere);
 }
 
 /*

@@ -3,7 +3,6 @@ import { site } from "@/lib/site";
 import { buildCoordinateMap } from "@/lib/coordinates";
 import { ThemeToggle } from "./theme-toggle";
 import { CoordinateBadge } from "./coordinate-badge";
-import { ResumeLibrary } from "./resume-library";
 
 function Rule() {
   return <hr className="border-atmosphere/15" />;
@@ -34,37 +33,44 @@ function Identity() {
   );
 }
 
-function ResumeSection() {
+function Contact() {
   return (
     <div>
       <p className="font-sans text-xs uppercase tracking-[0.25em] text-atmosphere/60">
-        Resume Library
+        Contact
       </p>
-      <p className="mt-2 font-sans text-xs leading-relaxed tracking-wide text-atmosphere/60">
-        Four tailored resumes — pick the one that fits the conversation.
-      </p>
-      <div className="mt-4">
-        <ResumeLibrary compact />
+      <div className="mt-3 font-sans text-xs tracking-wide">
+        <a
+          href={`mailto:${site.email}`}
+          className="block text-atmosphere/70 transition-colors hover:text-atmosphere hover:underline hover:underline-offset-4"
+        >
+          {site.email}
+        </a>
+        <a
+          href={site.linkedin}
+          className="mt-2 block text-atmosphere/70 transition-colors hover:text-atmosphere hover:underline hover:underline-offset-4"
+        >
+          LinkedIn
+        </a>
       </div>
     </div>
   );
 }
 
-function Contact() {
+/* A pointer to the library — the cards themselves live at /resumes. */
+function ResumeSection() {
   return (
-    <div className="font-sans text-xs tracking-wide">
-      <a
-        href={`mailto:${site.email}`}
-        className="block text-atmosphere/70 transition-colors hover:text-atmosphere hover:underline hover:underline-offset-4"
+    <div>
+      <Link
+        href="/resumes"
+        className="font-sans text-xs uppercase tracking-[0.25em] text-atmosphere/80 transition-colors hover:text-atmosphere hover:underline hover:underline-offset-4"
       >
-        {site.email}
-      </a>
-      <a
-        href={site.linkedin}
-        className="mt-2 block text-atmosphere/70 transition-colors hover:text-atmosphere hover:underline hover:underline-offset-4"
-      >
-        LinkedIn
-      </a>
+        The Resume Library →
+      </Link>
+      <p className="mt-3 font-sans text-xs leading-relaxed tracking-wide text-atmosphere/60">
+        Four tailored resumes — strategy, communications, marketing, and
+        social impact. Pick the one that fits the conversation.
+      </p>
     </div>
   );
 }
@@ -109,9 +115,9 @@ export function PersistentPanel() {
         <div className="flex flex-1 flex-col gap-8 overflow-y-auto">
           <Identity />
           <Rule />
-          <ResumeSection />
-          <Rule />
           <Contact />
+          <Rule />
+          <ResumeSection />
           {footer}
         </div>
       </aside>
@@ -126,8 +132,8 @@ export function PersistentPanel() {
         <div className="space-y-8 border-t border-atmosphere/15 px-6 py-8">
           <Identity />
           <DrawerNav />
-          <ResumeSection />
           <Contact />
+          <ResumeSection />
           {footer}
         </div>
       </details>

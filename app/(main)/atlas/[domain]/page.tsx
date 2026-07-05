@@ -78,10 +78,10 @@ export default async function DomainPage({
                   {/* The folder's tab */}
                   <span
                     aria-hidden="true"
-                    className="absolute -top-4 left-0 h-4 w-2/5 rounded-t-sm border border-b-0 border-structure/30 bg-structure/10 transition-colors group-hover:border-interaction/40"
+                    className="absolute -top-4 left-0 h-4 w-2/5 rounded-t-sm border border-b-0 border-structure/40 bg-structure/15 transition-colors group-hover:border-interaction/50"
                   />
                   {/* The folder's body */}
-                  <span className="flex min-h-40 flex-col justify-between border border-structure/30 bg-structure/10 p-6 transition-[border-color,box-shadow] duration-200 group-hover:border-interaction/40 group-hover:shadow-lg group-hover:shadow-structure/15">
+                  <span className="flex min-h-40 flex-col justify-between border border-structure/40 bg-structure/15 p-6 transition-[border-color,box-shadow] duration-200 group-hover:border-interaction/50 group-hover:shadow-lg group-hover:shadow-structure/15">
                     <span>
                       <span className="block font-sans text-sm uppercase tracking-[0.2em] text-information transition-colors group-hover:text-interaction">
                         {folder.name}

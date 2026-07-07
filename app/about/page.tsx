@@ -39,14 +39,48 @@ const cities = [
   "Copenhagen",
 ];
 
-/* Skills from the v1 site's sidebar. */
-const skills = [
-  "Donor engagement",
-  "Marketing strategy",
-  "Operations streamlining",
-  "Data management",
-  "Advocacy",
-  "Creative direction",
+const functionalSkills = [
+  "Brand Strategy",
+  "Marketing Analytics",
+  "Competitive Intelligence",
+  "Client Communications",
+  "Consumer Insight & Research",
+  "Campaign Strategy & Execution",
+  "CRM & Audience Segmentation",
+  "Content Strategy",
+  "Stakeholder Management",
+  "Business Case Development",
+];
+
+const behavioralSkills = [
+  "Cross-Functional Collaboration",
+  "Client Relationship Management",
+  "Team Leadership",
+  "Adaptability Under Pressure",
+  "Intercultural Communication",
+  "Cognitive Empathy",
+  "Conflict Resolution",
+  "Attention to Detail",
+  "Initiative & Ownership",
+];
+
+const platformProficiency = [
+  "Microsoft 365",
+  "Adobe Creative Suite",
+  "Canva",
+  "CapCut",
+  "Constant Contact",
+  "IBISWorld",
+  "MRI-Simmons",
+  "Euromonitor",
+  "Modash",
+  "Instagram",
+  "LinkedIn",
+  "AI Tools",
+  "WordPress",
+  "Mailchimp",
+  "ROI Solutions",
+  "Engaging Networks",
 ];
 
 const interests = [
@@ -171,8 +205,10 @@ function LeftColumn() {
               Washington, D.C.
             </p>
             <p className="mt-2 font-serif text-base leading-relaxed text-information/85">
-              Double major: Business Administration (Marketing concentration)
-              and Psychology.
+              B.S. in Business Administration with a concentration in
+              Marketing, and a B.A. in Psychology. Based in the nation&apos;s
+              capital, where consulting, policy, and communications intersect
+              with national policy.
             </p>
           </div>
           <div>
@@ -183,17 +219,27 @@ function LeftColumn() {
               Shenzhen, China · Semester abroad
             </p>
             <p className="mt-2 font-serif text-base leading-relaxed text-information/85">
-              Study at one of China&apos;s most internationally connected
-              universities, in a city defined by fast-moving business and
-              technology.
+              One of China&apos;s most internationally connected campuses.
+              Studied global business, finance, and marketing in the
+              country&apos;s fastest-growing tech and finance hub.
             </p>
           </div>
         </div>
       </section>
 
-      <section>
-        <WallLabel>Skills &amp; Competencies</WallLabel>
-        <PillList items={skills} />
+      <section className="space-y-10">
+        <div>
+          <WallLabel>Functional Skills</WallLabel>
+          <PillList items={functionalSkills} />
+        </div>
+        <div>
+          <WallLabel>Behavioral Skills</WallLabel>
+          <PillList items={behavioralSkills} />
+        </div>
+        <div>
+          <WallLabel>Platform Proficiency</WallLabel>
+          <PillList items={platformProficiency} />
+        </div>
       </section>
 
       <section>
@@ -203,12 +249,6 @@ function LeftColumn() {
         </p>
       </section>
 
-      <section>
-        <WallLabel>Cities on the list</WallLabel>
-        <p className="mt-4 max-w-md font-serif text-lg italic leading-[1.9] text-interaction">
-          {cities.join(" · ")}
-        </p>
-      </section>
     </div>
   );
 }
@@ -231,7 +271,7 @@ function RightColumn() {
     <div className="space-y-12">
       <Photo
         src={aboutPhoto(1)}
-        alt="Mira Liu"
+        alt="Portrait of Mira Liu"
         className="aspect-[3/4] w-full border border-structure/10 object-cover"
       />
 
@@ -245,7 +285,7 @@ function RightColumn() {
       <div className="grid grid-cols-2 gap-5">
         <Photo
           src={aboutPhoto(2)}
-          alt="Mira at a WAMU / NPR 1A event"
+          alt="Mira under the willows"
           className="aspect-square w-full border border-structure/10 object-cover"
         />
         <Photo
@@ -255,12 +295,12 @@ function RightColumn() {
         />
         <Photo
           src={aboutPhoto(4)}
-          alt="Mira under the willows"
+          alt="Mira at a WAMU / NPR 1A event"
           className="aspect-square w-full border border-structure/10 object-cover"
         />
         <Photo
           src={aboutPhoto(5)}
-          alt="Mira at the office"
+          alt="Mira with a bouquet by the fountain"
           className="aspect-square w-full border border-structure/10 object-cover object-top"
         />
       </div>
@@ -300,6 +340,13 @@ function RightColumn() {
       <div>
         <WallLabel>Interests</WallLabel>
         <PillList items={interests} />
+      </div>
+
+      <div>
+        <WallLabel>Cities on the list</WallLabel>
+        <p className="mt-4 font-serif text-lg italic leading-[1.9] text-interaction">
+          {cities.join(" · ")}
+        </p>
       </div>
     </div>
   );

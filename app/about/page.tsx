@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import fs from "node:fs";
+import path from "node:path";
 import Link from "next/link";
 import { site } from "@/lib/site";
 
@@ -8,8 +10,18 @@ export const metadata: Metadata = { title: "About" };
  * The About page deliberately breaks from the Atlas chrome: no Blue Ink
  * panel, no top navigation — a two-column spread that should feel like
  * opening the first chapter of a book. Same typography and palette.
- * Prose marked (draft) is placeholder for Mira's own voice.
+ *
+ * Photos: drop the five real images at public/about/about-1.jpg …
+ * about-5.jpg (1 = main portrait). Until a file exists, the matching
+ * placeholder renders instead — no code change needed.
  */
+
+function aboutPhoto(n: number): string {
+  const file = path.join(process.cwd(), "public", "about", `about-${n}.jpg`);
+  return fs.existsSync(file)
+    ? `/about/about-${n}.jpg`
+    : `/placeholders/portrait-${n}.svg`;
+}
 
 const cities = [
   "New York",
@@ -27,15 +39,14 @@ const cities = [
   "Copenhagen",
 ];
 
+/* Skills from the v1 site's sidebar. */
 const skills = [
-  "Strategy research",
-  "Market analysis",
-  "Communication planning",
-  "Crisis simulation",
-  "Editorial writing",
-  "Photography",
-  "Data organization",
-  "Design systems",
+  "Donor engagement",
+  "Marketing strategy",
+  "Operations streamlining",
+  "Data management",
+  "Advocacy",
+  "Creative direction",
 ];
 
 const interests = [
@@ -50,7 +61,6 @@ const interests = [
   "Comparative politics & international development",
 ];
 
-/* Museum-wall label — /75 ink keeps small caps above WCAG AA on paper. */
 function WallLabel({ children }: { children: React.ReactNode }) {
   return (
     <p className="font-sans text-[0.65rem] font-medium uppercase tracking-[0.3em] text-information/75">
@@ -78,22 +88,41 @@ function LeftColumn() {
   return (
     <div className="space-y-16">
       <section>
-        <h1 className="font-serif text-5xl leading-tight text-information">
-          About
-        </h1>
+        <WallLabel>About</WallLabel>
         <div className="mt-8 space-y-5 font-serif text-base leading-[1.85] text-information/90">
           <p>
-            I&apos;m Mira Liu, a student of business and psychology at American
-            University in Washington, D.C. The Atlas is my attempt to practice
-            a particular kind of attention: to how organizations earn trust,
-            create meaning, and make decisions — and to the people, systems,
-            and cities that shape them. (Draft placeholder.)
+            I&apos;m Mira Liu, a junior at American University in Washington,
+            DC, double majoring in Psychology and Business Administration with
+            a concentration in Marketing. My work has centered on brand
+            strategy, client communications, and consumer insight, supporting
+            both Fortune 500 and nonprofit clients.
           </p>
           <p>
-            I came to this work through an unplanned combination of marketing
-            projects, psychology coursework, a camera, and a habit of taking
-            notes on things most people walk past. The Atlas is where those
-            habits stopped being separate.
+            Psychology gives me a grounded read on how people actually make
+            decisions. Business gives me a framework for turning that read
+            into a strategy that a client or an organization can act on.
+            I&apos;ve used that combination on projects ranging from donor and
+            audience analytics to brand positioning to campaign design, and
+            it&apos;s consistently made me a stronger strategist than either
+            discipline would on its own.
+          </p>
+          <p>
+            I spent a semester at Chinese University of Hong Kong, Shenzhen,
+            one of the most internationally connected universities in China,
+            located in a city defined by fast-moving business and technology.
+            The experience strengthened my Mandarin and gave me a much clearer
+            sense of how markets, institutions, and consumer behavior shift
+            across regions. It also confirmed that I want a career with an
+            international footprint rather than one confined to a single
+            market.
+          </p>
+          <p>
+            Outside of coursework and client work, I spend time on
+            photography, reading on social psychology and political analysis,
+            and exploring DC&apos;s restaurant scene. My list of cities
+            I&apos;d like to eventually work in, including New York, Hong
+            Kong, and Amsterdam, reflects where I see the strongest
+            opportunities in consulting, brand strategy, and global business.
           </p>
         </div>
       </section>
@@ -133,11 +162,33 @@ function LeftColumn() {
 
       <section>
         <WallLabel>Education</WallLabel>
-        <p className="mt-4 font-serif text-base leading-[1.85] text-information/90">
-          American University — B.S., Business Administration and Psychology.
-          Coursework spanning strategy, organizational behavior, consumer
-          psychology, and communication. (Draft placeholder.)
-        </p>
+        <div className="mt-5 space-y-8">
+          <div>
+            <p className="font-serif text-lg text-information">
+              American University
+            </p>
+            <p className="mt-1 font-sans text-xs uppercase tracking-[0.2em] text-information/60">
+              Washington, D.C.
+            </p>
+            <p className="mt-2 font-serif text-base leading-relaxed text-information/85">
+              Double major: Business Administration (Marketing concentration)
+              and Psychology.
+            </p>
+          </div>
+          <div>
+            <p className="font-serif text-lg text-information">
+              Chinese University of Hong Kong, Shenzhen
+            </p>
+            <p className="mt-1 font-sans text-xs uppercase tracking-[0.2em] text-information/60">
+              Shenzhen, China · Semester abroad
+            </p>
+            <p className="mt-2 font-serif text-base leading-relaxed text-information/85">
+              Study at one of China&apos;s most internationally connected
+              universities, in a city defined by fast-moving business and
+              technology.
+            </p>
+          </div>
+        </div>
       </section>
 
       <section>
@@ -148,8 +199,7 @@ function LeftColumn() {
       <section>
         <WallLabel>Languages</WallLabel>
         <p className="mt-4 font-serif text-base leading-relaxed text-information/90">
-          English (native) · Mandarin Chinese (intermediate). (Draft
-          placeholder.)
+          Fluent in English · Intermediate Mandarin.
         </p>
       </section>
 
@@ -163,17 +213,26 @@ function LeftColumn() {
   );
 }
 
-function Portrait({ src, alt }: { src: string; alt: string }) {
-  /* eslint-disable-next-line @next/next/no-img-element -- local placeholder SVGs need no optimization */
-  return <img src={src} alt={alt} className="w-full border border-structure/10" />;
+function Photo({
+  src,
+  alt,
+  className,
+}: {
+  src: string;
+  alt: string;
+  className: string;
+}) {
+  /* eslint-disable-next-line @next/next/no-img-element -- local images, layout-cropped */
+  return <img src={src} alt={alt} className={className} />;
 }
 
 function RightColumn() {
   return (
     <div className="space-y-12">
-      <Portrait
-        src="/placeholders/portrait-1.svg"
-        alt="Portrait of Mira Liu (placeholder)"
+      <Photo
+        src={aboutPhoto(1)}
+        alt="Mira Liu"
+        className="aspect-[3/4] w-full border border-structure/10 object-cover"
       />
 
       <figure className="border-y border-structure/25 py-8 text-center">
@@ -184,10 +243,26 @@ function RightColumn() {
       </figure>
 
       <div className="grid grid-cols-2 gap-5">
-        <Portrait src="/placeholders/portrait-2.svg" alt="Mira photographing (placeholder)" />
-        <Portrait src="/placeholders/portrait-3.svg" alt="Mira at work (placeholder)" />
-        <Portrait src="/placeholders/portrait-4.svg" alt="Mira traveling (placeholder)" />
-        <Portrait src="/placeholders/portrait-5.svg" alt="Mira presenting (placeholder)" />
+        <Photo
+          src={aboutPhoto(2)}
+          alt="Mira at a WAMU / NPR 1A event"
+          className="aspect-square w-full border border-structure/10 object-cover"
+        />
+        <Photo
+          src={aboutPhoto(3)}
+          alt="Mira with the CAPAL cohort"
+          className="aspect-square w-full border border-structure/10 object-cover"
+        />
+        <Photo
+          src={aboutPhoto(4)}
+          alt="Mira under the willows"
+          className="aspect-square w-full border border-structure/10 object-cover"
+        />
+        <Photo
+          src={aboutPhoto(5)}
+          alt="Mira at the office"
+          className="aspect-square w-full border border-structure/10 object-cover object-top"
+        />
       </div>
 
       <dl className="space-y-6">
@@ -243,9 +318,17 @@ export default function AboutPage() {
         </Link>
       </header>
 
-      <main className="mx-auto grid max-w-6xl gap-16 px-6 py-16 sm:px-10 lg:grid-cols-[3fr_2fr] lg:gap-24">
-        <LeftColumn />
-        <RightColumn />
+      <main className="mx-auto max-w-6xl px-6 py-16 sm:px-10">
+        {/* Hero quote — the page's opening line, set in the voice type. */}
+        <h1 className="max-w-3xl font-serif text-3xl italic leading-snug text-information md:text-4xl md:leading-snug">
+          I study people and organizations, and I put that combination to work
+          on nearly everything I do.
+        </h1>
+
+        <div className="mt-16 grid gap-16 lg:grid-cols-[3fr_2fr] lg:gap-24">
+          <LeftColumn />
+          <RightColumn />
+        </div>
       </main>
     </div>
   );

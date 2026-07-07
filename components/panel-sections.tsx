@@ -22,9 +22,16 @@ export function Identity() {
       <p className="mt-2 font-sans text-xs leading-relaxed tracking-wide text-atmosphere/70">
         {site.affiliation}
       </p>
-      <p className="mt-4 font-serif text-sm italic leading-relaxed text-atmosphere/80">
-        {site.bio}
-      </p>
+      <div className="mt-4 space-y-3">
+        {site.bio.map((paragraph) => (
+          <p
+            key={paragraph.slice(0, 24)}
+            className="font-serif text-sm italic leading-relaxed text-atmosphere/80"
+          >
+            {paragraph}
+          </p>
+        ))}
+      </div>
       <Link
         href="/about"
         className="mt-3 inline-block font-sans text-xs uppercase tracking-[0.25em] text-atmosphere/80 transition-colors hover:text-atmosphere hover:underline hover:underline-offset-4"

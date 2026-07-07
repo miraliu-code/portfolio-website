@@ -5,7 +5,11 @@ export const site = {
   location: "Washington, D.C.",
   email: "miraliumc@gmail.com",
   linkedin: "https://www.linkedin.com/in/4mira-liu/",
-  bio: "I study how organizations earn trust, create meaning, and make decisions — through strategy, communication, psychology, design, and a camera.",
+  bio: [
+    "Rising junior double majoring in Business Administration (marketing) and Psychology at American University, Washington, DC.",
+    "Experience spans brand strategy, client communications, marketing analytics, and CRM systems, with a strong foundation in consumer and organizational behavior.",
+    "Fluent in English, intermediate Mandarin. Focused on consulting, brand strategy, and corporate communications, with interest in roles based across the US, East Asia, and Europe.",
+  ],
   nav: [
     { label: "Atlas", href: "/atlas" },
     { label: "Photography", href: "/photography" },

@@ -14,7 +14,7 @@
  * only a future consideration (Standard 07, persistent panel contents).
  */
 :root {
-  --atmosphere: #fffdf8; /* Floral White */
+  --atmosphere: #fcf8ee; /* warm paper — one step warmer than the memo's Floral White (user-approved deviation) */
   --information: #222222; /* Ink Black */
   --structure: #2f4156; /* Blue Ink */
   --interaction: #6b2d3a; /* Burgundy */
@@ -58,7 +58,7 @@ html {
  * White regardless of theme — pin the variable within the panel's scope.
  */
 .panel-scope {
-  --atmosphere: #fffdf8;
+  --atmosphere: #fcf8ee;
 }
 
 body {

@@ -37,6 +37,7 @@ const cities = [
   "Seoul",
   "Berlin",
   "Copenhagen",
+  "Sydney",
 ];
 
 const functionalSkills = [
@@ -50,6 +51,7 @@ const functionalSkills = [
   "Content Strategy",
   "Stakeholder Management",
   "Business Case Development",
+  "AI-Assisted Research & Drafting (Claude, ChatGPT, Perplexity)",
 ];
 
 const behavioralSkills = [
@@ -81,6 +83,8 @@ const platformProficiency = [
   "Mailchimp",
   "ROI Solutions",
   "Engaging Networks",
+  "Meltwater",
+  "Tableau",
 ];
 
 const interests = [
@@ -88,9 +92,9 @@ const interests = [
   "East Asian cultures & languages",
   "Memoirs & poetry",
   "Acrylic & graphite",
+  "Rock & indie",
   "Sustainable architecture & technology",
   "Culinary arts & baking",
-  "Rock & indie",
   "Jazz & classical",
   "Comparative politics & international development",
 ];
@@ -277,8 +281,8 @@ function RightColumn() {
 
       <figure className="border-y border-structure/25 py-8 text-center">
         <blockquote className="font-serif text-xl italic leading-snug text-information">
-          Organizations tell stories. I&apos;m interested in understanding
-          them.
+          &ldquo;Give me a blank page and a deadline, and I&apos;ll figure out
+          the rest.&rdquo;
         </blockquote>
       </figure>
 
@@ -291,7 +295,7 @@ function RightColumn() {
         <Photo
           src={aboutPhoto(3)}
           alt="Mira with the CAPAL cohort"
-          className="aspect-square w-full border border-structure/10 object-cover"
+          className="aspect-square w-full border border-structure/10 object-cover object-[55%_50%]"
         />
         <Photo
           src={aboutPhoto(4)}
@@ -368,8 +372,8 @@ export default function AboutPage() {
       <main className="mx-auto max-w-6xl px-6 py-16 sm:px-10">
         {/* Hero quote — the page's opening line, set in the voice type. */}
         <h1 className="max-w-3xl font-serif text-3xl italic leading-snug text-information md:text-4xl md:leading-snug">
-          I study people and organizations, and I put that combination to work
-          on nearly everything I do.
+          Behind every strong business decision is an accurate read on
+          people. That&apos;s the read I&apos;m trained to make.
         </h1>
 
         <div className="mt-16 grid gap-16 lg:grid-cols-[3fr_2fr] lg:gap-24">

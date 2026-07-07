@@ -19,7 +19,7 @@ by **function, not literal color** (these are the Tailwind tokens in
 
 | Token | Name | HEX | Responsibility |
 |---|---|---|---|
-| `atmosphere` | Warm Paper | `#FCF8EE` | Backgrounds, whitespace, the reading environment. One step warmer than the memo's Floral White `#FFFDF8` (owner-approved deviation — the original read as pure white on most monitors). Never used as an accent. |
+| `atmosphere` | Floral White | `#FFFDF8` | Backgrounds, whitespace, the reading environment. Warm paper-like white — never used as an accent. |
 | `information` | Ink Black | `#222222` | Body text, headlines, captions, icons, metadata, dividers. Softened black for long reading; don't add extra dark grays. |
 | `structure` | Blue Ink | `#2F4156` | The persistent panel, primary navigation, major dividers, Atlas framework. Appears sparingly — its rarity gives it authority; it frames pages, never dominates them. |
 | `interaction` | Burgundy | `#6B2D3A` | Links, hover states, buttons, selected navigation, questions, Continue Exploring. The only expressive color — an invitation, never large text blocks. |

@@ -75,6 +75,20 @@ html {
   }
 }
 
+/* Professional Norms globe: same quiet hover/focus language. */
+.pn-country {
+  transition: fill-opacity 200ms ease;
+}
+.pn-country:hover,
+.pn-country:focus-visible {
+  fill-opacity: 0.3;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pn-country {
+    transition: none;
+  }
+}
+
 /* Atlas node map: the fill eases in like liquid (slower than the
    movement); the lift and shadow stay snappy. */
 .atlas-node {

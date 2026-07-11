@@ -508,7 +508,7 @@ export function HsrExplore({
       <div
         ref={panelRef}
         aria-hidden={!selected}
-        className={`fixed inset-x-0 bottom-0 z-30 max-h-[70vh] overflow-y-auto overscroll-contain border-t border-structure/20 bg-atmosphere shadow-xl shadow-structure/15 transition-transform duration-500 ease-out motion-reduce:transition-none md:absolute md:inset-x-auto md:inset-y-0 md:right-0 md:z-auto md:max-h-none md:w-[24rem] md:border-l md:border-t-0 ${
+        className={`fixed inset-x-0 bottom-0 z-30 max-h-[65vh] overflow-y-auto overscroll-contain border-t border-structure/20 bg-atmosphere shadow-xl shadow-structure/15 transition-transform duration-500 ease-out motion-reduce:transition-none md:absolute md:inset-x-auto md:inset-y-0 md:right-0 md:z-auto md:max-h-none md:w-[24rem] md:border-l md:border-t-0 ${
           selected
             ? "translate-y-0 md:translate-x-0"
             : "translate-y-full md:translate-x-full md:translate-y-0"

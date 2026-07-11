@@ -1,5 +1,14 @@
 import type { Project } from "@/lib/content/types";
+import { HighSpeedRailInteractive } from "./high-speed-rail";
 import { MtrWayfinding } from "./mtr-wayfinding";
+
+/*
+ * Flagship interactives own their full section structure (they still
+ * follow the shared design language internally).
+ */
+const customExperiences: Record<string, React.ComponentType> = {
+  "high-speed-rail": HighSpeedRailInteractive,
+};
 
 /*
  * The shared design language for every Atlas interactive (per the
@@ -36,6 +45,9 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 }
 
 export function InteractiveFrame({ project }: { project: Project }) {
+  const Custom = customExperiences[project.slug];
+  if (Custom) return <Custom />;
+
   const spec = interactives[project.slug];
 
   return (

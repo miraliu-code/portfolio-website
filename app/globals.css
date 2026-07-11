@@ -61,6 +61,20 @@ html {
   --atmosphere: #fffdf8;
 }
 
+/* High-Speed Rail map: quiet hover/focus states for selectable countries. */
+.hsr-country {
+  transition: fill-opacity 200ms ease;
+}
+.hsr-country:hover,
+.hsr-country:focus-visible {
+  fill-opacity: 0.3;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hsr-country {
+    transition: none;
+  }
+}
+
 body {
   background: var(--atmosphere);
   color: var(--information);

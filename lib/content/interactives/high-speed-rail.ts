@@ -59,18 +59,37 @@ export function hsrKmAtYear(growth: GrowthPoint[], year: number): number {
   return last.km;
 }
 
-/* Key insights — Phase 1 static placement. DRAFT PLACEHOLDER text. */
-export const hsrInsights: { country: string; text: string }[] = [
+/* Key insights — static cards below the map, and (Phase 2b) map-native
+ * pins that reveal as the timeline crosses each insight's year.
+ * DRAFT PLACEHOLDER text. */
+export interface HsrInsight {
+  country: string;
+  countryId: string; // matches HsrCountry.id — anchors the map pin
+  year: number; // the scrubber year at which the pin reveals
+  text: string;
+}
+
+export const hsrInsights: HsrInsight[] = [
   {
     country: "France",
+    countryId: "france",
+    year: 1981, // TGV opens, Paris–Lyon
     text: "France chose rail as national industrial policy — decades before most competitors. (Draft placeholder.)",
   },
   {
     country: "China",
+    countryId: "china",
+    /* 2014: computed from the growth series above — the first year
+       China's interpolated network exceeds the other eight countries'
+       combined total (≈16,400 km vs ≈15,600 km; in 2013 it still
+       trails). */
+    year: 2014,
     text: "China built more high-speed rail in twenty years than the rest of the world combined. (Draft placeholder.)",
   },
   {
     country: "United States",
+    countryId: "united-states",
+    year: 2024, // the insight is about absence — pinned to the present
     text: "The American gap isn't geography or engineering — it's follow-through. (Draft placeholder.)",
   },
 ];

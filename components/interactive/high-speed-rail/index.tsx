@@ -30,7 +30,11 @@ export function HighSpeedRailInteractive() {
           Explore
         </h3>
         <div className="mt-5">
-          <HsrExplore geo={geo} countries={hsrCountries} />
+          <HsrExplore
+            geo={geo}
+            countries={hsrCountries}
+            insights={hsrInsights}
+          />
         </div>
       </section>
 

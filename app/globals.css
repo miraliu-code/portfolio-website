@@ -75,21 +75,29 @@ html {
   }
 }
 
-/* HSR timeline scrubber: a thin editorial rule with a burgundy thumb. */
+/* HSR timeline scrubber: a thin editorial rule with a burgundy thumb.
+   The input itself is a 32px-tall strip so the touch target is
+   comfortable; only the track paints as a 2px rule. */
 .hsr-scrubber {
   -webkit-appearance: none;
   appearance: none;
+  height: 32px;
+  background: transparent;
+  cursor: ew-resize;
+  outline-offset: 2px;
+  touch-action: pan-y pinch-zoom;
+}
+.hsr-scrubber::-webkit-slider-runnable-track {
   height: 2px;
   border-radius: 9999px;
   background: color-mix(in srgb, var(--structure) 30%, transparent);
-  cursor: ew-resize;
-  outline-offset: 8px;
 }
 .hsr-scrubber::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 15px;
   height: 15px;
+  margin-top: -6.5px;
   border-radius: 50%;
   background: var(--interaction);
   border: 2px solid var(--atmosphere);
@@ -98,6 +106,11 @@ html {
 }
 .hsr-scrubber:active::-webkit-slider-thumb {
   cursor: grabbing;
+}
+.hsr-scrubber::-moz-range-track {
+  height: 2px;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--structure) 30%, transparent);
 }
 .hsr-scrubber::-moz-range-thumb {
   width: 15px;
@@ -110,6 +123,18 @@ html {
 }
 .hsr-scrubber:focus-visible {
   outline: 1px solid var(--interaction);
+}
+
+/* HSR insight pins: scale-and-fade reveal, anchored at the pin point. */
+@keyframes hsr-pin-in {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 body {

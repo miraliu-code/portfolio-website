@@ -60,8 +60,11 @@ function useMediaQuery(query: string) {
 const normLambda = (l: number) => ((((l + 180) % 360) + 360) % 360) - 180;
 const easeCubicOut = (t: number) => 1 - Math.pow(1 - t, 3);
 
-/* Tier fill opacities, ordered high → low intensity per lens. */
-const TIER_OPACITY = [0.45, 0.24, 0.12];
+/* Tier fill opacities, ordered high → low intensity per lens. The
+   spread is deliberately wide: a large landmass over the tinted ocean
+   reads darker than a small legend swatch, so adjacent tiers need
+   clear separation to stay distinguishable on the map itself. */
+const TIER_OPACITY = [0.55, 0.24, 0.08];
 
 export function PnGlobe() {
   const reduced = useMediaQuery("(prefers-reduced-motion: reduce)");
@@ -551,7 +554,7 @@ export function PnGlobe() {
                   );
                   const tierFill =
                     lens.tiers.length > 0
-                      ? { fill: "var(--interaction)", fillOpacity: [0.9, 0.55, 0.3][tierIdx] ?? 0.3 }
+                      ? { fill: "var(--interaction)", fillOpacity: [0.95, 0.55, 0.25][tierIdx] ?? 0.25 }
                       : isSel
                         ? { fill: "var(--interaction)", fillOpacity: 0.9 }
                         : { fill: "var(--atmosphere)", fillOpacity: 1 };

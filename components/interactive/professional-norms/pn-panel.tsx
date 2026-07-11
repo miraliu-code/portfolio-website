@@ -3,24 +3,25 @@
 import { useState } from "react";
 import {
   pnAxisLabels,
-  getPnLens,
-  getPnTier,
   type PnCountry,
   type PnAxisScore,
 } from "@/lib/content/interactives/professional-norms";
 import {
-  pnBaselines,
   pnCells,
+  pnMeetingBaselines,
   pnSituations,
   type PnSituationId,
 } from "@/lib/content/interactives/professional-norms-situations";
 
 /*
- * The selected country's reading layer (Phase 2): A2 segmentation,
- * A1 coverage + review metadata, the A3 axis profile, and the three
- * built situation cells. Reading order per the editorial rules: the
- * country delta always renders before the regional baseline.
+ * The selected country's reading layer: A2 segmentation, A1 coverage +
+ * review metadata, the A3 axis profile, and the three built situation
+ * cells. Reading order per the schema: the country delta always
+ * renders before the regional baseline, and "Largely converged" gets
+ * its own visual treatment — a first-class answer, not an absence.
  */
+
+const CONVERGED_RE = /^(Largely converged|Same as Australia)/;
 
 /* Inline confidence tags — [Reported] etc. — render as quiet chips. */
 function Tagged({
@@ -59,11 +60,32 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-function FieldLabel({ children }: { children: React.ReactNode }) {
+/* A field block: label, optional converged badge, tagged body. */
+function Field({
+  label,
+  text,
+  accent = false,
+}: {
+  label: string;
+  text: string;
+  accent?: boolean;
+}) {
+  const converged = CONVERGED_RE.test(text);
   return (
-    <p className="font-sans text-[0.6rem] uppercase tracking-[0.2em] text-interaction">
-      {children}
-    </p>
+    <div className={accent ? "border-l-2 border-interaction/60 pl-4" : ""}>
+      <p className="flex flex-wrap items-baseline gap-2 font-sans text-[0.6rem] uppercase tracking-[0.2em] text-interaction">
+        {label}
+        {converged && (
+          <span className="border border-structure/30 bg-structure/10 px-1.5 py-px font-sans text-[0.55rem] uppercase tracking-[0.12em] text-information/60">
+            ✓ Converged
+          </span>
+        )}
+      </p>
+      <Tagged
+        text={text}
+        className="mt-2 font-serif text-sm leading-[1.8] text-information/90"
+      />
+    </div>
   );
 }
 
@@ -113,17 +135,6 @@ export function PnCountryPanel({ country }: { country: PnCountry }) {
   const [situationId, setSituationId] = useState<PnSituationId>("meeting");
   const cells = pnCells[country.id];
   const situation = pnSituations.find((s) => s.id === situationId)!;
-  const groupingLens = getPnLens(situation.groupingLensId);
-  const tier = getPnTier(groupingLens, country.id);
-  const baseline =
-    !situation.deferred && tier
-      ? pnBaselines[situationId as "meeting" | "feedback" | "negotiation"][
-          tier.id
-        ]
-      : null;
-
-  const deltaBody = "font-serif text-sm leading-[1.8] text-information/90";
-  const quietBody = "font-serif text-sm leading-[1.8] text-information/70";
 
   return (
     <div className="space-y-9 border-t border-structure/20 px-5 py-8 md:px-7">
@@ -192,91 +203,85 @@ export function PnCountryPanel({ country }: { country: PnCountry }) {
 
         {!situation.deferred && cells && (
           <div className="mt-7 max-w-2xl space-y-7">
-            {/* Country delta first — the editorial rule. */}
             {situationId === "meeting" && (
-              <div>
-                <FieldLabel>{country.name} delta</FieldLabel>
-                <Tagged text={cells.meeting.delta} className={`mt-2 ${deltaBody}`} />
-              </div>
-            )}
-            {situationId === "negotiation" && (
-              <div>
-                <FieldLabel>{country.name} delta</FieldLabel>
-                <Tagged
-                  text={cells.negotiation.delta}
-                  className={`mt-2 ${deltaBody}`}
+              <>
+                <Field
+                  label={`${country.name} delta`}
+                  text={cells.meeting.delta}
                 />
-              </div>
+                <Field label="Sequence" text={cells.meeting.sequence} />
+                <Field
+                  label="The costly error"
+                  text={cells.meeting.costlyError}
+                  accent
+                />
+                <Field
+                  label="Disconfirming signal"
+                  text={cells.meeting.disconfirmingSignal}
+                />
+                {/* Regional baseline LAST — background, not anchor. */}
+                <div className="border-t border-structure/15 pt-5">
+                  <p className="font-sans text-[0.6rem] uppercase tracking-[0.2em] text-information/50">
+                    Regional pattern —{" "}
+                    {pnMeetingBaselines[cells.meeting.baseline].name}
+                    {cells.meeting.baselineNote
+                      ? ` (${cells.meeting.baselineNote})`
+                      : ""}
+                  </p>
+                  <Tagged
+                    text={pnMeetingBaselines[cells.meeting.baseline].text}
+                    className="mt-2 font-serif text-sm leading-[1.8] text-information/70"
+                  />
+                </div>
+              </>
             )}
+
             {situationId === "feedback" && (
-              <div className="space-y-5">
-                <div>
-                  <FieldLabel>Upward — the one that varies most</FieldLabel>
-                  <Tagged
-                    text={cells.feedback.upward}
-                    className={`mt-2 ${deltaBody}`}
-                  />
-                </div>
-                <div>
-                  <FieldLabel>Sideways</FieldLabel>
-                  <Tagged
-                    text={cells.feedback.sideways}
-                    className={`mt-2 ${deltaBody}`}
-                  />
-                </div>
-                <div>
-                  <FieldLabel>Downward</FieldLabel>
-                  <Tagged
-                    text={cells.feedback.downward}
-                    className={`mt-2 ${deltaBody}`}
-                  />
-                </div>
-              </div>
+              <>
+                <Field
+                  label="Upward — the consequential one"
+                  text={cells.feedback.upward}
+                />
+                <Field label="Sideways" text={cells.feedback.sideways} />
+                <Field label="Downward" text={cells.feedback.downward} />
+                <Field
+                  label="The costly error"
+                  text={cells.feedback.costlyError}
+                  accent
+                />
+                <Field
+                  label="Disconfirming signal"
+                  text={cells.feedback.disconfirmingSignal}
+                />
+              </>
             )}
 
-            {(() => {
-              const cell =
-                situationId === "meeting"
-                  ? cells.meeting
-                  : situationId === "feedback"
-                    ? cells.feedback
-                    : cells.negotiation;
-              return (
-                <>
-                  <div>
-                    <FieldLabel>Sequence</FieldLabel>
-                    <Tagged
-                      text={cell.sequence}
-                      className={`mt-2 ${deltaBody}`}
-                    />
-                  </div>
-                  <div className="border-l-2 border-interaction/60 pl-4">
-                    <FieldLabel>The costly error</FieldLabel>
-                    <Tagged
-                      text={cell.costlyError}
-                      className={`mt-2 ${deltaBody}`}
-                    />
-                  </div>
-                  <div>
-                    <FieldLabel>Disconfirming signal</FieldLabel>
-                    <Tagged
-                      text={cell.disconfirmingSignal}
-                      className={`mt-2 ${deltaBody}`}
-                    />
-                  </div>
-                </>
-              );
-            })()}
-
-            {/* Regional baseline LAST — background, not anchor. */}
-            {baseline && tier && (
-              <div className="border-t border-structure/15 pt-5">
-                <p className="font-sans text-[0.6rem] uppercase tracking-[0.2em] text-information/50">
-                  Regional pattern — {tier.name} tier (
-                  {groupingLens.name.toLowerCase()})
-                </p>
-                <Tagged text={baseline} className={`mt-2 ${quietBody}`} />
-              </div>
+            {situationId === "negotiation" && (
+              <>
+                <Field
+                  label={`${country.name} delta`}
+                  text={cells.negotiation.delta}
+                />
+                {cells.negotiation.sequence && (
+                  <Field
+                    label="Sequence"
+                    text={cells.negotiation.sequence}
+                  />
+                )}
+                {cells.negotiation.costlyError && (
+                  <Field
+                    label="The costly error"
+                    text={cells.negotiation.costlyError}
+                    accent
+                  />
+                )}
+                {cells.negotiation.disconfirmingSignal && (
+                  <Field
+                    label="Disconfirming signal"
+                    text={cells.negotiation.disconfirmingSignal}
+                  />
+                )}
+              </>
             )}
           </div>
         )}

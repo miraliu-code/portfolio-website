@@ -175,9 +175,14 @@ export function HsrExplore({
               />
             );
           })}
-          {/* Rail lines: resting = faint; selected country's draw in burgundy. */}
+          {/* Rail lines: resting = faint; selected country's draw in burgundy.
+              No non-scaling-stroke here — Chromium computes dash patterns in
+              screen space under it, which breaks the pathLength-normalized
+              draw mask at high zoom. Width is compensated by the zoom factor
+              instead. */}
           {(() => {
             const perCountryIndex = new Map<string, number>();
+            const zoomK = focus?.k ?? 1;
             return geo.rails.map((rail, i) => {
               const idx = perCountryIndex.get(rail.countryId) ?? 0;
               perCountryIndex.set(rail.countryId, idx + 1);
@@ -187,11 +192,9 @@ export function HsrExplore({
                 <path
                   key={i}
                   d={rail.d}
-                  pathLength={100}
+                  pathLength={rail.dashed ? undefined : 100}
                   fill="none"
                   stroke="var(--interaction)"
-                  strokeWidth={isActive ? 1.6 : 1}
-                  vectorEffect="non-scaling-stroke"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeDasharray={
@@ -203,9 +206,10 @@ export function HsrExplore({
                   opacity={isActive ? 0.95 : resting ? 0.4 : 0.12}
                   style={{
                     pointerEvents: "none",
+                    strokeWidth: (isActive ? 1.6 : 1) / zoomK,
                     transition: reduced
                       ? "opacity 0s"
-                      : `stroke-dashoffset 1000ms ease-out ${idx * 140}ms, opacity 300ms ease`,
+                      : `stroke-dashoffset 1000ms ease-out ${idx * 140}ms, opacity 300ms ease, stroke-width 800ms cubic-bezier(0.33, 0, 0.2, 1)`,
                   }}
                 />
               );
@@ -218,7 +222,7 @@ export function HsrExplore({
       <div
         ref={panelRef}
         aria-hidden={!selected}
-        className={`absolute inset-x-0 bottom-0 max-h-[75%] overflow-y-auto overscroll-contain border-t border-structure/20 bg-atmosphere shadow-xl shadow-structure/15 transition-transform duration-500 ease-out motion-reduce:transition-none md:inset-x-auto md:inset-y-0 md:right-0 md:max-h-none md:w-[24rem] md:border-l md:border-t-0 ${
+        className={`fixed inset-x-0 bottom-0 z-30 max-h-[70vh] overflow-y-auto overscroll-contain border-t border-structure/20 bg-atmosphere shadow-xl shadow-structure/15 transition-transform duration-500 ease-out motion-reduce:transition-none md:absolute md:inset-x-auto md:inset-y-0 md:right-0 md:z-auto md:max-h-none md:w-[24rem] md:border-l md:border-t-0 ${
           selected
             ? "translate-y-0 md:translate-x-0"
             : "translate-y-full md:translate-x-full md:translate-y-0"

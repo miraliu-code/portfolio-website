@@ -19,8 +19,10 @@ import type { Feature, FeatureCollection, Geometry } from "geojson";
 import worldData from "world-atlas/countries-110m.json";
 import {
   pnCountries,
-  getPnCluster,
+  pnLenses,
+  getPnLens,
 } from "@/lib/content/interactives/professional-norms";
+import { PnCountryPanel } from "./pn-panel";
 
 /*
  * The globe (Phase 1). An orthographic projection that must re-project
@@ -58,9 +60,14 @@ function useMediaQuery(query: string) {
 const normLambda = (l: number) => ((((l + 180) % 360) + 360) % 360) - 180;
 const easeCubicOut = (t: number) => 1 - Math.pow(1 - t, 3);
 
+/* Tier fill opacities, ordered high → low intensity per lens. */
+const TIER_OPACITY = [0.45, 0.24, 0.12];
+
 export function PnGlobe() {
   const reduced = useMediaQuery("(prefers-reduced-motion: reduce)");
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [lensId, setLensId] = useState("geography");
+  const lens = getPnLens(lensId);
 
   /* ---- static geometry (computed once) ---- */
   const { landGeom, highlightedFeatures, graticule } = useMemo(() => {
@@ -337,26 +344,94 @@ export function PnGlobe() {
   const wasDrag = () => movedRef.current > 6;
 
   const selected = pnCountries.find((c) => c.id === selectedId) ?? null;
-  const selectedCluster = selected ? getPnCluster(selected) : null;
-  const clusterMates = useMemo(() => {
-    if (!selected?.cluster) return new Set<string>();
-    return new Set(
-      pnCountries
-        .filter((c) => c.cluster === selected.cluster && c.id !== selected.id)
-        .map((c) => c.id),
-    );
-  }, [selected]);
 
+  /* Fill encodes the active lens tier; selection is a stroke ring so
+     the tier reading survives selection. Geography keeps the Phase 1
+     treatment. */
   const countryFill = (id: string) => {
+    if (lens.tiers.length > 0) {
+      const tierIdx = lens.tiers.findIndex((t) => t.countryIds.includes(id));
+      return {
+        fill: "var(--interaction)",
+        fillOpacity: TIER_OPACITY[tierIdx] ?? 0.13,
+      };
+    }
     if (id === selectedId)
       return { fill: "var(--interaction)", fillOpacity: 0.32 };
-    if (clusterMates.has(id))
-      return { fill: "var(--interaction)", fillOpacity: 0.13 };
     return { fill: "var(--structure)", fillOpacity: 0.13 };
   };
 
+  const countryStroke = (id: string) =>
+    id === selectedId
+      ? {
+          stroke: "var(--interaction)",
+          strokeOpacity: 0.95,
+          strokeWidth: 1.4,
+        }
+      : {
+          stroke: "var(--structure)",
+          strokeOpacity: 0.6,
+          strokeWidth: 0.7,
+        };
+
   return (
     <div className="border border-structure/20 bg-atmosphere">
+      {/* Lens picker: axis-based re-clustering. */}
+      <div className="border-b border-structure/20 px-5 py-4 md:px-7">
+        <div className="flex flex-wrap items-baseline gap-x-5 gap-y-2">
+          <span className="font-sans text-[0.65rem] font-medium uppercase tracking-[0.3em] text-information/70">
+            Lens
+          </span>
+          {pnLenses.map((l) => (
+            <button
+              key={l.id}
+              type="button"
+              onClick={() => setLensId(l.id)}
+              aria-pressed={lensId === l.id}
+              className={`font-sans text-xs tracking-wide transition-colors motion-reduce:transition-none ${
+                lensId === l.id
+                  ? "text-interaction underline underline-offset-4"
+                  : "text-information/60 hover:text-interaction"
+              }`}
+            >
+              {l.name}
+            </button>
+          ))}
+        </div>
+        {lens.tiers.length > 0 && (
+          <>
+            <div className="mt-3.5 flex flex-wrap gap-x-6 gap-y-2">
+              {lens.tiers.map((t, i) => (
+                <span key={t.id} className="inline-flex items-center gap-2">
+                  <span className="inline-block h-3 w-3 border border-structure/30">
+                    <span
+                      className="block h-full w-full"
+                      style={{
+                        background: "var(--interaction)",
+                        opacity: TIER_OPACITY[i],
+                      }}
+                    />
+                  </span>
+                  <span className="font-sans text-[0.65rem] uppercase tracking-[0.15em] text-information/70">
+                    {t.name}
+                  </span>
+                </span>
+              ))}
+            </div>
+            <div className="mt-3 max-w-2xl space-y-1">
+              {lens.observations.map((o) => (
+                <p
+                  key={o}
+                  className="font-serif text-sm italic leading-relaxed text-information/70"
+                >
+                  {o}
+                </p>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+
       <div className="relative flex justify-center px-4 pt-4 md:px-8 md:pt-8">
         <svg
           ref={svgRef}
@@ -418,9 +493,7 @@ export function PnGlobe() {
               aria-label={`${country.name} — select`}
               aria-pressed={selectedId === country.id}
               {...countryFill(country.id)}
-              stroke="var(--structure)"
-              strokeOpacity="0.6"
-              strokeWidth="0.7"
+              {...countryStroke(country.id)}
               className="pn-country cursor-pointer focus:outline-none"
               onClick={(e) => {
                 e.stopPropagation();
@@ -470,14 +543,31 @@ export function PnGlobe() {
                 }}
               >
                 <circle r="9" fill="transparent" />
-                <circle
-                  r="4"
-                  fill={isSel ? "var(--interaction)" : "var(--atmosphere)"}
-                  fillOpacity={isSel ? 0.9 : 1}
-                  stroke={isSel ? "var(--interaction)" : "var(--structure)"}
-                  strokeOpacity="0.8"
-                  strokeWidth="1.2"
-                />
+                {(() => {
+                  /* The dot is tiny, so tier opacity maps denser than
+                     the country fills to stay legible. */
+                  const tierIdx = lens.tiers.findIndex((t) =>
+                    t.countryIds.includes(m.id),
+                  );
+                  const tierFill =
+                    lens.tiers.length > 0
+                      ? { fill: "var(--interaction)", fillOpacity: [0.9, 0.55, 0.3][tierIdx] ?? 0.3 }
+                      : isSel
+                        ? { fill: "var(--interaction)", fillOpacity: 0.9 }
+                        : { fill: "var(--atmosphere)", fillOpacity: 1 };
+                  return (
+                    <circle
+                      r="4"
+                      {...tierFill}
+                      stroke={
+                        isSel ? "var(--interaction)" : "var(--structure)"
+                      }
+                      strokeOpacity="0.8"
+                      strokeWidth={isSel ? 1.6 : 1.2}
+                      className="pn-country"
+                    />
+                  );
+                })()}
               </g>
             );
           })}
@@ -493,9 +583,7 @@ export function PnGlobe() {
                 {selected.name}
               </p>
               <p className="mt-1.5 font-sans text-[0.65rem] uppercase tracking-[0.25em] text-information/60">
-                {selectedCluster
-                  ? `${selectedCluster.name} cluster · fellow members highlighted`
-                  : "Standalone"}
+                {selected.region}
               </p>
             </div>
             <button
@@ -513,6 +601,9 @@ export function PnGlobe() {
           </p>
         )}
       </div>
+
+      {/* The reading layer: A1–A3 + situations (Phase 2). */}
+      {selected && <PnCountryPanel country={selected} />}
     </div>
   );
 }

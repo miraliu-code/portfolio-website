@@ -298,17 +298,27 @@ export function PnGlobe() {
     return () => window.removeEventListener("keydown", onKey);
   }, [select]);
 
-  /* ---- drag ---- */
+  /* ---- drag ----
+     Pointer capture is taken only once the gesture is unambiguously a
+     drag (>4px). Capturing on pointerdown would retarget the browser's
+     compatibility click event to the svg itself, which silently breaks
+     real mouse/touch selection of countries and the ocean-deselect. */
+  const capturedRef = useRef(false);
+
   const onPointerDown = (e: React.PointerEvent<SVGSVGElement>) => {
-    e.currentTarget.setPointerCapture(e.pointerId);
     modeRef.current = "drag";
     lastPointerRef.current = [e.clientX, e.clientY];
     movedRef.current = 0;
     velRef.current = [0, 0];
+    capturedRef.current = false;
   };
 
   const onPointerMove = (e: React.PointerEvent<SVGSVGElement>) => {
     if (modeRef.current !== "drag" || !lastPointerRef.current) return;
+    if (!capturedRef.current && movedRef.current > 4) {
+      e.currentTarget.setPointerCapture(e.pointerId);
+      capturedRef.current = true;
+    }
     const rect = e.currentTarget.getBoundingClientRect();
     const degPerPx = 0.38 * (SIZE / rect.width);
     const dx = e.clientX - lastPointerRef.current[0];
@@ -330,6 +340,7 @@ export function PnGlobe() {
 
   const onPointerUp = () => {
     if (modeRef.current !== "drag") return;
+    capturedRef.current = false;
     lastPointerRef.current = null;
     lastInteractionRef.current = performance.now();
     const v = velRef.current;
@@ -391,7 +402,7 @@ export function PnGlobe() {
               type="button"
               onClick={() => setLensId(l.id)}
               aria-pressed={lensId === l.id}
-              className={`font-sans text-xs tracking-wide transition-colors motion-reduce:transition-none ${
+              className={`py-1.5 font-sans text-xs tracking-wide transition-colors motion-reduce:transition-none ${
                 lensId === l.id
                   ? "text-interaction underline underline-offset-4"
                   : "text-information/60 hover:text-interaction"

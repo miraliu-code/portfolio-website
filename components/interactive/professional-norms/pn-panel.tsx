@@ -91,7 +91,7 @@ function Field({
 
 function AxisRow({ label, axis }: { label: string; axis: PnAxisScore }) {
   return (
-    <div className="grid grid-cols-[minmax(9rem,1fr)_auto] items-baseline gap-x-4 gap-y-1 border-l border-structure/25 py-2 pl-4 md:grid-cols-[minmax(11rem,14rem)_auto_1fr]">
+    <div className="grid grid-cols-1 items-baseline gap-x-4 gap-y-1 border-l border-structure/25 py-2 pl-4 md:grid-cols-[minmax(11rem,14rem)_auto_1fr]">
       <p className="font-sans text-xs tracking-wide text-information/90">
         {label}
       </p>
@@ -123,7 +123,7 @@ function AxisRow({ label, axis }: { label: string; axis: PnAxisScore }) {
         </span>
       </div>
       {axis.note && (
-        <p className="col-span-2 font-serif text-xs italic leading-relaxed text-information/60 md:col-span-1 md:col-start-3">
+        <p className="font-serif text-xs italic leading-relaxed text-information/60 md:col-start-3">
           {axis.note}
         </p>
       )}

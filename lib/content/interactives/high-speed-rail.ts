@@ -35,6 +35,30 @@ export interface HsrCountry {
 export const hsrQuestion =
   "Why have some countries built world-class high-speed rail systems while others continue to struggle?";
 
+/* Timeline (Phase 2a): the scrubber spans the Shinkansen's opening year
+ * to the present. */
+export const hsrTimeline = { start: 1964, end: 2024 };
+
+/*
+ * Network size at an arbitrary year: 0 before the first build year,
+ * linear interpolation between known growth points, flat after the
+ * last. Fractional years are fine — the scrubber is continuous.
+ */
+export function hsrKmAtYear(growth: GrowthPoint[], year: number): number {
+  if (growth.length === 0 || year < growth[0].year) return 0;
+  const last = growth[growth.length - 1];
+  if (year >= last.year) return last.km;
+  for (let i = 1; i < growth.length; i++) {
+    if (year <= growth[i].year) {
+      const a = growth[i - 1];
+      const b = growth[i];
+      const t = (year - a.year) / (b.year - a.year);
+      return a.km + t * (b.km - a.km);
+    }
+  }
+  return last.km;
+}
+
 /* Key insights — Phase 1 static placement. DRAFT PLACEHOLDER text. */
 export const hsrInsights: { country: string; text: string }[] = [
   {

@@ -6,6 +6,7 @@ import {
   Cell,
   Line,
   LineChart,
+  ReferenceDot,
   ResponsiveContainer,
   XAxis,
   YAxis,
@@ -27,9 +28,12 @@ const axisTick = {
 export function HsrGrowthChart({
   data,
   note,
+  marker,
 }: {
   data: GrowthPoint[];
   note?: string;
+  /* Current scrubber position (Phase 2a) — a dot riding the line. */
+  marker?: { year: number; km: number } | null;
 }) {
   return (
     <div>
@@ -44,10 +48,12 @@ export function HsrGrowthChart({
           >
             <XAxis
               dataKey="year"
+              type="number"
+              domain={["dataMin", "dataMax"]}
+              ticks={data.map((d) => d.year)}
               tick={axisTick}
               tickLine={false}
               axisLine={{ stroke: "var(--structure)", strokeOpacity: 0.25 }}
-              interval="preserveStartEnd"
             />
             <YAxis
               tick={axisTick}
@@ -58,14 +64,26 @@ export function HsrGrowthChart({
                 v >= 1000 ? `${Math.round(v / 1000)}k` : String(v)
               }
             />
+            {/* linear (not monotone): matches the map's interpolation, so
+                the marker sits exactly on the drawn line */}
             <Line
-              type="monotone"
+              type="linear"
               dataKey="km"
               stroke="var(--interaction)"
               strokeWidth={1.5}
               dot={{ r: 2, fill: "var(--interaction)", strokeWidth: 0 }}
               isAnimationActive={false}
             />
+            {marker && (
+              <ReferenceDot
+                x={marker.year}
+                y={marker.km}
+                r={4}
+                fill="var(--interaction)"
+                stroke="var(--atmosphere)"
+                strokeWidth={1.5}
+              />
+            )}
           </LineChart>
         </ResponsiveContainer>
       </div>

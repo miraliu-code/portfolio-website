@@ -75,6 +75,43 @@ html {
   }
 }
 
+/* HSR timeline scrubber: a thin editorial rule with a burgundy thumb. */
+.hsr-scrubber {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 2px;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--structure) 30%, transparent);
+  cursor: ew-resize;
+  outline-offset: 8px;
+}
+.hsr-scrubber::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--interaction);
+  border: 2px solid var(--atmosphere);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--structure) 45%, transparent);
+  cursor: grab;
+}
+.hsr-scrubber:active::-webkit-slider-thumb {
+  cursor: grabbing;
+}
+.hsr-scrubber::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--interaction);
+  border: 2px solid var(--atmosphere);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--structure) 45%, transparent);
+  cursor: grab;
+}
+.hsr-scrubber:focus-visible {
+  outline: 1px solid var(--interaction);
+}
+
 body {
   background: var(--atmosphere);
   color: var(--information);

@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import { BackLink } from "@/components/back-link";
-import { Blocks } from "@/components/blocks";
 import { SectionLabel } from "@/components/section-label";
+import { PhotoWritingCard } from "@/components/photo-writing-card";
 import { photoWritings } from "@/lib/content/photo-writings";
 
 export const metadata: Metadata = { title: "Featured Writings · Photography" };
 
-/* Notes-style page: the essays themselves, stacked like journal entries. */
+/*
+ * Featured Writings: essays as expandable cards — title, subtitle, and
+ * the closing pull quote visible at rest; the body drops in between on
+ * click (see PhotoWritingCard).
+ */
 export default function PhotoWritingsPage() {
   return (
     <main className="mx-auto w-full max-w-3xl px-6 py-16 sm:px-10">
@@ -18,20 +22,9 @@ export default function PhotoWritingsPage() {
         Writing about looking.
       </h1>
 
-      <div className="mt-16 space-y-20">
+      <div className="mt-16 space-y-10">
         {photoWritings.map((essay) => (
-          <article
-            key={essay.slug}
-            id={essay.slug}
-            className="border-t border-structure/15 pt-12 first:border-t-0 first:pt-0"
-          >
-            <h2 className="font-serif text-2xl leading-snug text-information">
-              {essay.title}
-            </h2>
-            <div className="mt-8">
-              <Blocks blocks={essay.body} />
-            </div>
-          </article>
+          <PhotoWritingCard key={essay.slug} essay={essay} />
         ))}
       </div>
     </main>

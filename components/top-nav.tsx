@@ -16,10 +16,13 @@ const dropdowns: Record<string, DropdownItem[]> = {
     { label: "Organizations", href: "/atlas/organizations" },
     { label: "Explorable Systems", href: "/atlas/explorable-systems" },
   ],
-  Photography: photoCategories.map((c) => ({
-    label: c.name,
-    href: `/photography/${c.slug}`,
-  })),
+  Photography: [
+    ...photoCategories.map((c) => ({
+      label: c.name,
+      href: `/photography/${c.slug}`,
+    })),
+    { label: "Featured Writings", href: "/photography/writings" },
+  ],
   Observatory: observatorySections.map((s) => ({
     label: s.name,
     href: `/observatory/${s.slug}`,

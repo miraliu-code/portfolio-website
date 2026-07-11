@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import fs from "node:fs";
 import path from "node:path";
 import Link from "next/link";
+import { BackLink } from "@/components/back-link";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = { title: "About" };
@@ -78,7 +79,7 @@ const platformProficiency = [
   "Modash",
   "Instagram",
   "LinkedIn",
-  "AI Tools",
+  "Statista",
   "WordPress",
   "Mailchimp",
   "ROI Solutions",
@@ -304,8 +305,8 @@ function RightColumn() {
         />
         <Photo
           src={aboutPhoto(5)}
-          alt="Mira with a bouquet by the fountain"
-          className="aspect-square w-full border border-structure/10 object-cover object-top"
+          alt="Mira at the Library of Congress"
+          className="aspect-square w-full border border-structure/10 object-cover"
         />
       </div>
 
@@ -367,6 +368,9 @@ export default function AboutPage() {
         >
           {site.wordmark}
         </Link>
+        <div>
+          <BackLink href="/" label="Back to the homepage" />
+        </div>
       </header>
 
       <main className="mx-auto max-w-6xl px-6 py-16 sm:px-10">

@@ -4,6 +4,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import {
   hsrKmAtYear,
   hsrTimeline,
+  HSR_MAP_W,
+  HSR_MAP_H,
   type HsrCountry,
   type HsrInsight,
 } from "@/lib/content/interactives/high-speed-rail";
@@ -22,8 +24,8 @@ import { HsrGrowthChart, HsrCostChart } from "./hsr-charts";
  * update (they are data), they just snap.
  */
 
-const MAP_W = 960;
-const MAP_H = 500;
+const MAP_W = HSR_MAP_W;
+const MAP_H = HSR_MAP_H;
 
 function useMediaQuery(query: string) {
   const [matches, setMatches] = useState(false);
@@ -72,6 +74,8 @@ export function HsrExplore({
   insights: HsrInsight[];
 }) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  /* Europe callout dot currently hovered (tooltip + country highlight). */
+  const [hotCallout, setHotCallout] = useState<string | null>(null);
   const [drawn, setDrawn] = useState(false);
   /* While true, the selected country's rails transition their dash
      offset (the select-flourish). Off otherwise, so scrubbing feels
@@ -310,7 +314,9 @@ export function HsrExplore({
                 aria-label={`${country.name} — view high-speed rail details`}
                 aria-pressed={isSelected}
                 fill="var(--structure)"
-                fillOpacity={isSelected ? 0.22 : 0.13}
+                fillOpacity={
+                  isSelected ? 0.22 : hotCallout === c.id ? 0.3 : 0.13
+                }
                 stroke="var(--structure)"
                 strokeOpacity="0.55"
                 strokeWidth="0.7"
@@ -406,8 +412,87 @@ export function HsrExplore({
               />
             ))}
           </g>
+          {/* Europe callouts: leader lines + dots so the five clustered
+              countries stay individually selectable at world scale.
+              Hidden while zoomed — the zoom solves the same problem. */}
+          <g
+            aria-hidden="true"
+            style={{
+              opacity: selectedId ? 0 : 1,
+              pointerEvents: selectedId ? "none" : "auto",
+              transition: reduced ? "none" : "opacity 300ms ease",
+            }}
+          >
+            {geo.callouts.map((c) => {
+              const hot = hotCallout === c.id;
+              return (
+                <g key={c.id}>
+                  <line
+                    x1={c.cx}
+                    y1={c.cy}
+                    x2={c.ex}
+                    y2={c.ey}
+                    stroke={hot ? "var(--interaction)" : "var(--structure)"}
+                    strokeOpacity={hot ? 0.8 : 0.45}
+                    strokeWidth="0.5"
+                    style={{ pointerEvents: "none" }}
+                  />
+                  {/* generous invisible hit area behind the visible dot */}
+                  <circle
+                    cx={c.ex}
+                    cy={c.ey}
+                    r={7}
+                    fill="transparent"
+                    className="cursor-pointer"
+                    onMouseEnter={() => setHotCallout(c.id)}
+                    onMouseLeave={() => setHotCallout(null)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setHotCallout(null);
+                      setSelectedId(c.id);
+                    }}
+                  />
+                  <circle
+                    cx={c.ex}
+                    cy={c.ey}
+                    r={hot ? 2.6 : 2}
+                    fill={hot ? "var(--interaction)" : "var(--atmosphere)"}
+                    stroke="var(--interaction)"
+                    strokeWidth="0.8"
+                    style={{
+                      pointerEvents: "none",
+                      transition: reduced ? "none" : "r 150ms ease, fill 150ms ease",
+                    }}
+                  />
+                </g>
+              );
+            })}
+          </g>
         </g>
       </svg>
+
+      {/* Callout tooltip: the country's name beside the hovered dot. */}
+      {!selectedId &&
+        hotCallout &&
+        (() => {
+          const c = geo.callouts.find((x) => x.id === hotCallout);
+          if (!c) return null;
+          const onRight = c.ex > c.cx;
+          return (
+            <div
+              className="pointer-events-none absolute z-10 -translate-y-1/2 border border-structure/25 bg-atmosphere px-2.5 py-1.5 font-sans text-[0.6rem] uppercase tracking-[0.2em] text-information shadow-md shadow-structure/15"
+              style={{
+                left: `${(c.ex / MAP_W) * 100}%`,
+                top: `${(c.ey / MAP_H) * 100}%`,
+                transform: onRight
+                  ? "translate(12px, -50%)"
+                  : "translate(calc(-100% - 12px), -50%)",
+              }}
+            >
+              {c.name}
+            </div>
+          );
+        })()}
 
       {/* Insight pins: revealed once the timeline reaches their year,
           then persistent. Positioned in screen space with the same

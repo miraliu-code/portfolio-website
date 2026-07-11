@@ -39,6 +39,12 @@ export const hsrQuestion =
  * to the present. */
 export const hsrTimeline = { start: 1964, end: 2024 };
 
+/* Map frame, shared by the server geo pipeline and the client SVGs.
+ * Antarctica is dropped from the projection, so the frame is shorter
+ * than the classic 960×500 world — less empty southern ocean. */
+export const HSR_MAP_W = 960;
+export const HSR_MAP_H = 432;
+
 /*
  * Network size at an arbitrary year: 0 before the first build year,
  * linear interpolation between known growth points, flat after the
@@ -71,10 +77,10 @@ export interface HsrInsight {
 
 export const hsrInsights: HsrInsight[] = [
   {
-    country: "France",
-    countryId: "france",
-    year: 1981, // TGV opens, Paris–Lyon
-    text: "France chose rail as national industrial policy — decades before most competitors. (Draft placeholder.)",
+    country: "Italy",
+    countryId: "italy",
+    year: 2009, // dual-operator era begins (see infrastructure stats)
+    text: "Direct competition between operators on the same tracks drove fares down and service up: proof that liberalization, not just investment, can be a growth strategy.",
   },
   {
     country: "China",
@@ -84,13 +90,13 @@ export const hsrInsights: HsrInsight[] = [
        combined total (≈16,400 km vs ≈15,600 km; in 2013 it still
        trails). */
     year: 2014,
-    text: "China built more high-speed rail in twenty years than the rest of the world combined. (Draft placeholder.)",
+    text: "China built more high-speed rail in twenty years than the rest of the world combined.",
   },
   {
     country: "United States",
     countryId: "united-states",
     year: 2024, // the insight is about absence — pinned to the present
-    text: "The American gap isn't geography or engineering — it's follow-through. (Draft placeholder.)",
+    text: "The American gap isn't geography or engineering — it's follow-through.",
   },
 ];
 

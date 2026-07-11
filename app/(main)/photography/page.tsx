@@ -17,8 +17,8 @@ export default function PhotographyPage() {
         Observation as evidence.
       </h1>
       <p className="mt-6 max-w-xl font-serif text-lg leading-relaxed text-information/80">
-        Photography here is not decoration. Each collection is a way of paying
-        attention — to institutions, cities, and the people moving through them.
+        Each collection here is a way of paying attention to institutions,
+        cities, and the people moving through them.
       </p>
 
       {/* Featured writings: essays about the photography itself. */}
@@ -33,7 +33,7 @@ export default function PhotographyPage() {
             </span>
           </span>
           <span className="mt-2 block font-serif text-sm italic text-information/60">
-            Short essays on why and how these photographs get made.
+            On the instincts a camera builds, and where else they turn out to matter.
           </span>
         </Link>
       </div>

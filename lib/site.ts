@@ -6,7 +6,7 @@ export const site = {
   email: "miraliumc@gmail.com",
   linkedin: "https://www.linkedin.com/in/4mira-liu/",
   bio: [
-    "Focused on consulting, brand strategy, and corporate communications, with interest in roles based across the US, East Asia, and Europe. Fluent in English, intermediate Mandarin.",
+    "Focused on consulting, brand strategy, and corporate communications, with interest in roles based across the US, East Asia, and Europe.",
     "Experience spans brand strategy, client communications, marketing analytics, and CRM systems, with a strong foundation in consumer and organizational behavior.",
   ],
   nav: [

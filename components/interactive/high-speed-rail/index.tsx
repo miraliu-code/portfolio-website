@@ -66,8 +66,8 @@ export function HighSpeedRailInteractive() {
           Continue Reading
         </h3>
         <p className="mt-4 max-w-2xl font-serif text-base leading-relaxed text-information/85">
-          The map shows you where high-speed rail happened. The written
-          report argues why — history, politics, funding, and what the next
+          The map shows where high-speed rail happened. The written report
+          argues why: history, politics, funding, and what the next
           generation of investment should learn from both columns of this
           map.
         </p>

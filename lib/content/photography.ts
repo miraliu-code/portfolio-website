@@ -6,12 +6,12 @@ export const photoCategories: PhotoCategory[] = [
   {
     slug: "editorial",
     name: "Editorial",
-    description: "Composed work — portraits, publications, and directed shoots.",
+    description: "Composed work: portraits, publications, and directed shoots.",
   },
   {
     slug: "sports",
     name: "Sports",
-    description: "Court, ice, and track — organizations at their most legible.",
+    description: "Court, ice, and stage — organizations at their most legible.",
   },
   {
     slug: "events",

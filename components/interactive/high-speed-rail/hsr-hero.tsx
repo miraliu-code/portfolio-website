@@ -1,7 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { hsrQuestion } from "@/lib/content/interactives/high-speed-rail";
+import {
+  hsrQuestion,
+  HSR_MAP_W,
+  HSR_MAP_H,
+} from "@/lib/content/interactives/high-speed-rail";
 import type { HsrGeo } from "./geo";
 
 /*
@@ -20,7 +24,7 @@ export function HsrHero({ geo }: { geo: HsrGeo }) {
     <div className="panel-scope relative overflow-hidden bg-panel">
       {/* Faint world + glowing rail preview */}
       <svg
-        viewBox="0 0 960 500"
+        viewBox={`0 0 ${HSR_MAP_W} ${HSR_MAP_H}`}
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-60"
         preserveAspectRatio="xMidYMid slice"
@@ -76,7 +80,7 @@ export function HsrHero({ geo }: { geo: HsrGeo }) {
           {hsrQuestion}
         </h3>
         <p className="mt-8 font-sans text-xs uppercase tracking-[0.25em] text-atmosphere/70">
-          Click a country to begin.
+          Click a country below to begin.
         </p>
       </div>
     </div>

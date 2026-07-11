@@ -20,9 +20,12 @@ interface Slot {
 }
 
 const CENTER: Slot = { x: 50, y: 48, d: 33 };
+/* Slot 1 (Communication) is sized so the label stays inside the circle
+   even at hover scale — outside the burgundy fill the light label text
+   would vanish against the page. */
 const SATELLITES: Slot[] = [
   { x: 26, y: 17, d: 21 },
-  { x: 71, y: 14, d: 17 },
+  { x: 71, y: 15, d: 22 },
   { x: 87, y: 45, d: 23 },
   { x: 70, y: 79, d: 18 },
   { x: 35, y: 85, d: 20 },
@@ -95,7 +98,7 @@ export function AtlasMap({ className = "" }: { className?: string }) {
       <Link
         href="/atlas/organizations"
         style={circleStyle(CENTER)}
-        className="absolute z-10 flex aspect-square -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-interaction p-3 text-center transition-[transform,box-shadow] duration-300 ease-out hover:scale-[1.03] hover:shadow-lg hover:shadow-structure/25 focus-visible:scale-[1.03] motion-reduce:transition-none motion-reduce:hover:scale-100"
+        className="atlas-node absolute z-10 flex aspect-square -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-interaction p-3 text-center hover:translate-y-[calc(-50%-0.3rem)] hover:scale-[1.03] hover:shadow-xl hover:shadow-structure/30 focus-visible:translate-y-[calc(-50%-0.3rem)] focus-visible:scale-[1.03] focus-visible:shadow-xl focus-visible:shadow-structure/30 motion-reduce:hover:-translate-y-1/2 motion-reduce:hover:scale-100 motion-reduce:hover:shadow-none"
       >
         <span className="font-serif text-sm italic text-atmosphere md:text-lg">
           Organizations
@@ -111,7 +114,7 @@ export function AtlasMap({ className = "" }: { className?: string }) {
           onMouseLeave={() => setHovered(null)}
           onFocus={() => setHovered(domain.slug)}
           onBlur={() => setHovered(null)}
-          className="absolute z-10 flex aspect-square -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-structure/10 p-3 text-center transition-[transform,background-color,color,box-shadow] duration-300 ease-out hover:scale-110 hover:bg-interaction hover:shadow-lg hover:shadow-structure/20 focus-visible:scale-110 focus-visible:bg-interaction motion-reduce:transition-none motion-reduce:hover:scale-100"
+          className="atlas-node absolute z-10 flex aspect-square -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-structure/10 p-3 text-center hover:translate-y-[calc(-50%-0.3rem)] hover:scale-110 hover:bg-interaction hover:shadow-xl hover:shadow-structure/25 focus-visible:translate-y-[calc(-50%-0.3rem)] focus-visible:scale-110 focus-visible:bg-interaction focus-visible:shadow-xl focus-visible:shadow-structure/25 motion-reduce:hover:-translate-y-1/2 motion-reduce:hover:scale-100 motion-reduce:hover:shadow-none"
         >
           <span
             className={`font-sans text-[0.55rem] uppercase tracking-[0.15em] transition-colors duration-300 motion-reduce:transition-none md:text-[0.65rem] ${

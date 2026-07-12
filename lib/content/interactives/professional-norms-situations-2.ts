@@ -33,6 +33,16 @@ export const pnInterviewBaselineNames: Record<PnInterviewBaselineId, string> =
     d: "Baseline D — modest, context-framed",
   };
 
+/* Interview baselines — kept brief: Interview is the schema's most
+   narrowly scoped situation (self-promotion tolerance + which personal
+   questions are routine). */
+export const pnInterviewBaselines: Record<PnInterviewBaselineId, string> = {
+  a: "Achievements are stated plainly, early, and in the first person; the interviewer treats a confident account of your own work as information, not arrogance. [Well-established] Questions center on individual accomplishment — what you did, and how it was measured. [Reported]",
+  b: "Achievements are stated once, without embellishment, and often credited partly to the team. [Reported] Overselling is noticed and quietly discounted; the interviewer probes for the substance behind modest answers rather than rewarding volume. [Reported]",
+  c: "The interview opens formally and runs on qualifications: degrees, certifications, and specific technical experience, stated precisely. [Well-established] Claims are tested with detailed follow-up questions, and the precision of the answer counts alongside the claim itself. [Reported]",
+  d: "Achievements are framed through the team, the organization, or the relationship that produced them, and the interviewer weighs how a candidate fits alongside what they did. [Reported] Personal context can be a routine part of the conversation rather than off-limits. [Reported]",
+};
+
 export interface PnTier2Cells {
   interview: PnInterviewCell;
   "business-dinner": PnBasicCell;

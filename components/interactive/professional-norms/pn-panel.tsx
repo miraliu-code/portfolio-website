@@ -15,6 +15,7 @@ import {
 import {
   pnCellsTier2,
   pnInterviewBaselineNames,
+  pnInterviewBaselines,
   type PnBasicCell,
 } from "@/lib/content/interactives/professional-norms-situations-2";
 
@@ -308,9 +309,13 @@ export function PnCountryPanel({ country }: { country: PnCountry }) {
                 footer={
                   <div className="border-t border-structure/15 pt-5">
                     <p className="font-sans text-[0.6rem] uppercase tracking-[0.2em] text-information/50">
-                      Interview grouping —{" "}
+                      Regional pattern —{" "}
                       {pnInterviewBaselineNames[tier2.interview.baseline]}
                     </p>
+                    <Tagged
+                      text={pnInterviewBaselines[tier2.interview.baseline]}
+                      className="mt-2 font-serif text-sm leading-[1.8] text-information/70"
+                    />
                   </div>
                 }
               />

@@ -5,9 +5,12 @@
  * you don't know). Editor-supplied final text; same editorial rules
  * as the first three situations.
  *
- * Interview carries its own A–D grouping (self-promotion tolerance);
- * only the grouping labels were specified, so cells render the label
- * without an invented baseline paragraph.
+ * Interview carries its own A–E grouping (self-promotion tolerance).
+ * The groupings were re-derived in the editorial fix pass: the earlier
+ * catch-all "modest, context-framed" group bundled every non-Western
+ * country (plus Italy) together, which contradicted the country pages
+ * themselves — Chinese tech and Indian IT interviews are direct and
+ * individually framed, not modest.
  */
 
 export interface PnBasicCell {
@@ -19,7 +22,7 @@ export interface PnBasicCell {
   readerNote?: string;
 }
 
-export type PnInterviewBaselineId = "a" | "b" | "c" | "d";
+export type PnInterviewBaselineId = "a" | "b" | "c" | "d" | "e";
 
 export interface PnInterviewCell extends PnBasicCell {
   baseline: PnInterviewBaselineId;
@@ -30,7 +33,8 @@ export const pnInterviewBaselineNames: Record<PnInterviewBaselineId, string> =
     a: "Baseline A — self-promotion rewarded",
     b: "Baseline B — self-promotion muted",
     c: "Baseline C — credential-led, formal",
-    d: "Baseline D — modest, context-framed",
+    d: "Baseline D — split register: sector decides",
+    e: "Baseline E — rapport-led",
   };
 
 /* Interview baselines — kept brief: Interview is the schema's most
@@ -40,7 +44,8 @@ export const pnInterviewBaselines: Record<PnInterviewBaselineId, string> = {
   a: "Achievements are stated plainly, early, and in the first person; the interviewer treats a confident account of your own work as information, not arrogance. [Well-established] Questions center on individual accomplishment — what you did, and how it was measured. [Reported]",
   b: "Achievements are stated once, without embellishment, and often credited partly to the team. [Reported] Overselling is noticed and quietly discounted; the interviewer probes for the substance behind modest answers rather than rewarding volume. [Reported]",
   c: "The interview opens formally and runs on qualifications: degrees, certifications, and specific technical experience, stated precisely. [Well-established] Claims are tested with detailed follow-up questions, and the precision of the answer counts alongside the claim itself. [Reported]",
-  d: "Achievements are framed through the team, the organization, or the relationship that produced them, and the interviewer weighs how a candidate fits alongside what they did. [Reported] Personal context can be a routine part of the conversation rather than off-limits. [Reported]",
+  d: "The register is set by the sector more than the country: a state-owned enterprise, chaebol, or traditional family firm expects modest, organization-framed answers, while the same country's tech sector runs direct, individually framed interviews — Indian IT and Chinese tech screening can probe individual accomplishment harder than the US baseline does. [Reported] Establish which segment you're interviewing with before calibrating either way. [Reported]",
+  e: "Personal rapport and presentation are assessed alongside credentials, and questions about family or personal background can be part of the conversation. [Reported] Where they are, they can function as screening as much as rapport — a risk that falls unevenly across candidates, and one this guide flags rather than resolves; identity-based deltas are a stated gap here. [Contested]",
 };
 
 export interface PnTier2Cells {
@@ -59,7 +64,7 @@ const PRESENTATION_ANGLO: PnBasicCell = {
   sequence: "Similar to the US. [Reported]",
   costlyError: "Similar to the US. [Reported]",
   disconfirmingSignal:
-    "A silent, deferential room suggests a more hierarchical sub-sector or foreign-calibrated context. [Contested]",
+    "A silent, deferential room suggests a more hierarchical sub-sector — government, parts of finance — rather than the general norm. [Contested]",
 };
 
 const EMAIL_CONVERGED: PnBasicCell = {
@@ -80,7 +85,7 @@ const NETWORKING_ANZ: PnBasicCell = {
     "Casual approach, modest self-introduction, genuine mutual questions before any ask. [Reported]",
   costlyError: "Leading with credentials or achievements. [Reported]",
   disconfirmingSignal:
-    "Confident credential-leading landing well signals a foreign-calibrated attendee or multinational event. [Contested]",
+    "Confident credential-leading landing well signals a recruiting- or sales-driven event rather than the general register. [Contested]",
 };
 
 const NETWORKING_DACH: PnBasicCell = {
@@ -159,7 +164,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       costlyError:
         "A humorless, credentials-heavy delivery can read as stiff. [Reported]",
       disconfirmingSignal:
-        "A very direct, US-style pitch suggests a foreign multinational's local office. [Contested]",
+        "A very direct, US-style pitch landing well suggests a US multinational's Dublin office — a genuinely large share of the market — rather than an indigenous firm. [Contested]",
     },
     "business-dinner": {
       delta:
@@ -169,7 +174,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       costlyError:
         "Steering the conversation too insistently toward business. [Reported]",
       disconfirmingSignal:
-        "A formal, business-only dinner signals a foreign-calibrated multinational context. [Contested]",
+        "A formal, business-only dinner signals a corporate-finance or deal-stage context rather than the relationship-building norm. [Contested]",
     },
     presentation: PRESENTATION_ANGLO,
     email: EMAIL_CONVERGED,
@@ -181,7 +186,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       costlyError:
         "Leading with a direct pitch to someone you weren't introduced to. [Reported]",
       disconfirmingSignal:
-        "An immediate, US-style pitch from a stranger signals a foreign-calibrated event or attendee. [Contested]",
+        "An immediate, US-style pitch from a stranger signals a startup or recruiting event rather than the general pattern. [Contested]",
     },
   },
 
@@ -195,7 +200,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       costlyError:
         "A polished, credentials-forward opening reads as insecure. [Reported]",
       disconfirmingSignal:
-        "An interviewer pushing you to 'sell yourself' harder signals a multinational calibrated to a non-Australian HQ. [Contested]",
+        "An interviewer pushing you to 'sell yourself' harder signals a sales-driven or finance employer rather than the national register. [Contested]",
     },
     "business-dinner": {
       delta:
@@ -215,19 +220,24 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
   "new-zealand": {
     interview: {
       baseline: "b",
-      delta: "Largely converged with Australia. [Reported]",
+      delta:
+        "Largely converged with the muted-self-promotion pattern; real space is given to who the candidate is as a person, not just the resume. [Reported]",
       sequence:
-        "Similar to Australia, with slightly more space given to questions about the candidate as a person, not just a resume. [Reported]",
+        "Achievements stated plainly, without embellishment; genuine questions about the candidate beyond the resume are part of the assessment, not filler. [Reported]",
       costlyError:
         "Treating personal questions as filler rather than genuine interest. [Reported]",
       disconfirmingSignal:
-        "A tightly scripted, resume-only interview suggests a larger corporate or foreign-owned employer. [Contested]",
+        "A tightly scripted, resume-only interview suggests a larger corporate employer rather than the general norm. [Contested]",
     },
     "business-dinner": {
-      delta: "Largely converged with Australia. [Reported]",
-      sequence: "Similar informal, direct pattern. [Reported]",
-      costlyError: "Same as Australia. [Reported]",
-      disconfirmingSignal: "Same as Australia. [Contested]",
+      delta:
+        "Largely converged with an informal, direct working meal — a casual restaurant or barbecue is as likely a venue as a formal dinner. In a market this small, how you handle the social setting reaches your next counterparty before you do. [Reported]",
+      sequence:
+        "Casual opening, social and professional talk mixing freely; business surfaces naturally rather than by agenda. [Reported]",
+      costlyError:
+        "Over-formality, or treating the meal as a transaction to get through. [Reported]",
+      disconfirmingSignal:
+        "A stiff, agenda-driven dinner suggests a formal corporate context rather than the general norm. [Contested]",
     },
     presentation: PRESENTATION_ANGLO,
     email: EMAIL_CONVERGED,
@@ -244,7 +254,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       costlyError:
         "Vague answers about qualifications instead of specific credentials. [Well-established]",
       disconfirmingSignal:
-        "An informal, credential-light interview suggests a startup or foreign-owned subsidiary. [Reported]",
+        "An informal, credential-light interview suggests a Berlin-style startup rather than a legacy corporate. [Reported]",
     },
     "business-dinner": {
       delta:
@@ -253,7 +263,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
         "Structured, courteous conversation through the meal; business, if raised, comes at the end. [Reported]",
       costlyError: "Introducing business topics early in the meal. [Reported]",
       disconfirmingSignal:
-        "Business discussed openly mid-meal suggests a more Americanized company culture. [Contested]",
+        "Business discussed openly mid-meal suggests a startup or tech context rather than a legacy corporate. [Contested]",
     },
     presentation: {
       delta:
@@ -286,7 +296,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       costlyError:
         "Broad, unspecific answers to direct technical questions. [Reported]",
       disconfirmingSignal:
-        "A loosely structured, conversational interview suggests a smaller or foreign-influenced employer. [Contested]",
+        "A loosely structured, conversational interview suggests a smaller firm or startup rather than the corporate norm. [Contested]",
     },
     "business-dinner": {
       delta:
@@ -295,7 +305,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
         "Courteous, measured conversation; business deferred to the close of the meal or a separate follow-up. [Reported]",
       costlyError: "Discussing other clients or deals at the table. [Reported]",
       disconfirmingSignal:
-        "Open, casual business talk mid-meal suggests an atypical or foreign-influenced host. [Contested]",
+        "Open, casual business talk mid-meal suggests a trading-house or startup host rather than the corporate norm. [Contested]",
     },
     presentation: {
       delta:
@@ -333,10 +343,13 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
     },
     presentation: {
       delta:
-        "Largely converged with Germany's direct-critique pattern, possibly sharper. [Reported]",
-      sequence: "Similar to Germany. [Reported]",
-      costlyError: "Same as Germany. [Reported]",
-      disconfirmingSignal: "Same as Germany. [Reported]",
+        "Blunt, public critique of the content is normal and can begin before the presentation ends — it signals engagement here more than almost anywhere else in this dataset. [Reported]",
+      sequence:
+        "Interruption mid-slide is unremarkable; questions are direct and expect equally direct answers. [Reported]",
+      costlyError:
+        "Reading blunt public critique as hostility or a failing pitch — it usually means the room is taking the content seriously. [Reported]",
+      disconfirmingSignal:
+        "A quiet, deferential room is the unusual signal here — worth asking directly what the room thinks. [Reported]",
     },
     email: EMAIL_CONVERGED,
     networking: {
@@ -370,7 +383,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
         "Informal, unhurried; business surfaces gently, without a hard push. [Reported]",
       costlyError: "Skipping the fika invitation as unimportant. [Reported]",
       disconfirmingSignal:
-        "A formal, business-scripted dinner suggests an atypical or foreign-influenced host. [Contested]",
+        "A formal, business-scripted dinner suggests an atypical, more corporate host rather than the general norm. [Contested]",
     },
     presentation: {
       delta:
@@ -390,7 +403,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
         "Unhurried, collaborative conversation; a direct individual ask is less common than a shared, exploratory framing. [Reported]",
       costlyError: "Pushing for a fast individual commitment. [Reported]",
       disconfirmingSignal:
-        "A fast, transactional ask suggests a foreign-calibrated attendee. [Contested]",
+        "A fast, transactional ask suggests a founder-led startup context rather than the consensus norm. [Contested]",
     },
   },
 
@@ -413,9 +426,9 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       costlyError:
         "Insisting on splitting the bill, or raising business terms too directly at the table. [Well-established]",
       disconfirmingSignal:
-        "A casual, Western-style business dinner suggests a younger tech company or foreign-founded host. [Reported]",
+        "A casual, unceremonial business dinner suggests a Shenzhen-style founder-led host, not a state-owned or legacy one. [Reported]",
       readerNote:
-        "In some regions, heavy toasting culture involves social pressure to drink — declining gracefully (citing health, driving, or simply preference) is increasingly accepted and rarely damages the relationship. [Reported]",
+        "In some regions, heavy toasting culture involves social pressure to drink — declining gracefully (citing health, driving, or simply preference) is increasingly accepted and rarely damages the relationship. [Reported] Banquet dynamics — toasting expectations, seating, who is addressed — can also differ with the reader's gender; this page flags that dimension rather than covering it, and the fuller treatment belongs in the written report. [Contested]",
     },
     presentation: {
       delta:
@@ -451,7 +464,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
 
   japan: {
     interview: {
-      baseline: "d",
+      baseline: "b",
       delta:
         "Self-promotion is muted; achievements are often framed as team or organizational outcomes rather than individual ones, more so in legacy firms than younger tech companies. [Well-established]",
       sequence:
@@ -469,7 +482,9 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       costlyError:
         "Treating the informality as an invitation to raise business terms directly — it usually isn't. [Well-established]",
       disconfirmingSignal:
-        "A younger colleague raising business directly at this kind of gathering signals a foreign-influenced or younger company. [Reported]",
+        "A younger colleague raising business directly at this kind of gathering signals a younger company. [Reported]",
+      readerNote:
+        "The after-hours izakaya circuit has historically been easier terrain for some readers than others — gender shapes both who is invited and how the evening reads. This page flags that dimension rather than covering it; the fuller treatment belongs in the written report. [Contested]",
     },
     presentation: {
       delta:
@@ -479,7 +494,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       costlyError:
         "Treating a silent room as full buy-in and moving forward without following up individually. [Well-established]",
       disconfirmingSignal:
-        "Direct public challenge, especially from a junior attendee, signals a younger or foreign-influenced company. [Well-established]",
+        "Direct public challenge, especially from a junior attendee, signals a younger tech company. [Well-established]",
     },
     email: {
       delta:
@@ -523,9 +538,9 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       costlyError:
         "Leaving early from a traditional company's multi-stage evening without acknowledgment. [Well-established]",
       disconfirmingSignal:
-        "A single, early-ending dinner signals a startup or more Westernized company. [Reported]",
+        "A single, early-ending dinner signals a startup rather than a chaebol-affiliated company. [Reported]",
       readerNote:
-        "As in China, drinking-heavy gatherings carry some social pressure; declining is increasingly accepted, particularly in younger companies. [Reported]",
+        "As in China, drinking-heavy gatherings carry some social pressure; declining is increasingly accepted, particularly in younger companies. [Reported] The multi-stage evening can also be a different experience depending on the reader's gender; that gap is flagged here and treated more fully in the written report. [Contested]",
     },
     presentation: {
       delta:
@@ -569,7 +584,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       costlyError:
         "Over-elaborating past the point the interviewer needs. [Reported]",
       disconfirmingSignal:
-        "A very informal interview suggests a very Westernized multinational office. [Contested]",
+        "A very informal interview suggests a startup employer rather than the corporate or government-linked norm. [Contested]",
     },
     "business-dinner": {
       delta:
@@ -589,7 +604,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       costlyError:
         "Assuming an unchallenged public Q&A means full agreement. [Reported]",
       disconfirmingSignal:
-        "Sharp public challenge signals a very Westernized audience. [Contested]",
+        "Sharp public challenge signals a startup audience rather than the corporate norm. [Contested]",
     },
     email: EMAIL_CONVERGED,
     networking: {
@@ -600,13 +615,13 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       costlyError:
         "Assuming the efficiency means the card-exchange formality doesn't matter. [Reported]",
       disconfirmingSignal:
-        "Skipping the card exchange entirely signals a very Westernized multinational attendee. [Contested]",
+        "Skipping the card exchange entirely signals a startup-scene event rather than the corporate norm. [Contested]",
     },
   },
 
   uae: {
     interview: {
-      baseline: "d",
+      baseline: "e",
       delta:
         "Personal and family context may be raised as part of establishing who the candidate is, more common in family-owned or government-adjacent employers than multinational offices. [Reported]",
       sequence:
@@ -614,7 +629,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       costlyError:
         "A purely transactional, credentials-only opening can read as cold. [Reported]",
       disconfirmingSignal:
-        "A brisk, Western-style interview signals a multinational or foreign-founded employer. [Contested]",
+        "A brisk, transactional interview signals a free-zone or fintech employer rather than a family-owned or government-adjacent one. [Contested]",
     },
     "business-dinner": {
       delta:
@@ -624,7 +639,9 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       costlyError:
         "Treating the meal as purely social and disconnected from the business relationship. [Reported]",
       disconfirmingSignal:
-        "A brief, transactional meal suggests a foreign-founded or multinational host. [Contested]",
+        "A brief, transactional meal suggests a free-zone or fintech host rather than a family-owned business. [Contested]",
+      readerNote:
+        "Hospitality norms can differ with the reader's gender — including who hosts and expectations around greetings such as handshakes. This page flags that dimension rather than covering it; the fuller treatment belongs in the written report. [Contested]",
     },
     presentation: {
       delta:
@@ -634,7 +651,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       costlyError:
         "Treating a quiet room as full agreement without private follow-up. [Reported]",
       disconfirmingSignal:
-        "Open public challenge signals a foreign-founded or multinational audience. [Contested]",
+        "Open public challenge signals a free-zone or fintech audience rather than a family-owned or government-adjacent one. [Contested]",
     },
     email: {
       delta:
@@ -643,7 +660,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
         "Warm framing throughout; chasing silence should be patient and relationship-toned rather than urgent. [Reported]",
       costlyError: "A terse, deadline-driven chase email. [Reported]",
       disconfirmingSignal:
-        "A brisk, purely transactional follow-up landing well signals a foreign-founded or multinational counterparty. [Contested]",
+        "A brisk, purely transactional follow-up landing well signals a free-zone or fintech counterparty. [Contested]",
     },
     networking: {
       delta:
@@ -652,7 +669,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
         "Extended hospitality-driven conversation; professional purpose surfaces only once this concludes naturally. [Well-established]",
       costlyError: "Rushing toward the professional ask. [Well-established]",
       disconfirmingSignal:
-        "An efficient, fast-moving conversation signals a foreign-founded or multinational attendee. [Reported]",
+        "An efficient, fast-moving conversation signals a free-zone or fintech context rather than the general norm. [Reported]",
     },
   },
 
@@ -712,14 +729,14 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
 
   brazil: {
     interview: {
-      baseline: "d",
+      baseline: "e",
       delta:
         "Warmth and personal rapport are part of how a candidate is assessed, alongside credentials — a candidate who builds rapport well is read favorably even with a modest resume. [Reported]",
       sequence:
         "Personal rapport-building opens the interview before substantive questions. [Reported]",
       costlyError: "A cold, purely credentials-focused delivery. [Reported]",
       disconfirmingSignal:
-        "A brisk, no-rapport interview signals a multinational corporate office. [Contested]",
+        "A brisk, no-rapport interview signals a São Paulo banking or private-equity employer. [Contested]",
     },
     "business-dinner": {
       delta:
@@ -729,7 +746,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       costlyError:
         "Checking the time or steering urgently back to business. [Well-established]",
       disconfirmingSignal:
-        "A tightly time-boxed meal suggests a multinational corporate context. [Contested]",
+        "A tightly time-boxed meal suggests a banking or private-equity context rather than the broader norm. [Contested]",
     },
     presentation: {
       delta:
@@ -748,7 +765,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
         "Warm framing, referencing the personal conversation, not just the business discussed; chasing silence can be more direct once rapport is established. [Reported]",
       costlyError: "A cold, purely transactional follow-up email. [Reported]",
       disconfirmingSignal:
-        "A brisk, efficient email landing well signals a multinational corporate counterparty. [Contested]",
+        "A brisk, efficient email landing well signals a banking or private-equity counterparty. [Contested]",
     },
     networking: {
       delta:
@@ -758,13 +775,13 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       costlyError:
         "Typical Western brevity or physical distance reads as coldness. [Well-established]",
       disconfirmingSignal:
-        "An efficient, purpose-first conversation signals a multinational corporate attendee. [Contested]",
+        "An efficient, purpose-first conversation signals a finance-sector attendee rather than the broader norm. [Contested]",
     },
   },
 
   italy: {
     interview: {
-      baseline: "d",
+      baseline: "e",
       delta:
         "Similar to Brazil — presentation and personal rapport carry real weight alongside stated qualifications. [Reported]",
       sequence:
@@ -772,7 +789,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       costlyError:
         "Treating credentials alone as sufficient without attention to how they're presented. [Reported]",
       disconfirmingSignal:
-        "A purely credentials-driven interview signals a multinational subsidiary. [Contested]",
+        "A purely credentials-driven interview signals Milanese finance rather than a family-owned firm. [Contested]",
     },
     "business-dinner": {
       delta:
@@ -781,7 +798,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
         "Long, attentive to the meal itself, business discussed comfortably within a relaxed frame rather than urgently. [Reported]",
       costlyError: "Visible impatience with the meal's pace. [Reported]",
       disconfirmingSignal:
-        "A rushed, efficiency-focused meal suggests a multinational subsidiary. [Contested]",
+        "A rushed, efficiency-focused meal suggests a Milanese finance host rather than a family-owned firm. [Contested]",
     },
     presentation: {
       delta:
@@ -791,7 +808,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       costlyError:
         "Assuming content quality alone will generate engagement without any relationship-building. [Reported]",
       disconfirmingSignal:
-        "A highly formal, low-engagement room suggests a multinational subsidiary context. [Contested]",
+        "A highly formal, low-engagement room suggests low rapport with the presenter rather than the general norm. [Contested]",
     },
     email: {
       delta:
@@ -799,7 +816,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       sequence: "Warm, personally framed follow-up. [Reported]",
       costlyError: "A cold, purely transactional tone. [Reported]",
       disconfirmingSignal:
-        "A brisk, efficient email landing well signals a multinational subsidiary counterparty. [Contested]",
+        "A brisk, efficient email landing well signals a Milanese finance counterparty. [Contested]",
     },
     networking: {
       delta:
@@ -808,7 +825,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
         "Personal conversation first; professional purpose emerges comfortably within it rather than being stated directly. [Reported]",
       costlyError: "Skipping to the professional ask too quickly. [Reported]",
       disconfirmingSignal:
-        "An efficient, purpose-first approach signals a multinational subsidiary attendee. [Contested]",
+        "An efficient, purpose-first approach signals a finance-sector attendee rather than the general pattern. [Contested]",
     },
   },
 };

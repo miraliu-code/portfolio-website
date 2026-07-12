@@ -27,7 +27,7 @@ import {
  * its own visual treatment — a first-class answer, not an absence.
  */
 
-const CONVERGED_RE = /^(Largely converged|Same as Australia)/;
+const CONVERGED_RE = /^Largely converged/;
 
 /* Inline confidence tags — [Reported] etc. — render as quiet chips. */
 function Tagged({
@@ -185,20 +185,19 @@ export function PnCountryPanel({ country }: { country: PnCountry }) {
       {/* A2 — who the page describes (first: it scopes everything). */}
       <section>
         <SectionLabel>Who this page describes</SectionLabel>
-        <p className="mt-3 max-w-2xl font-serif text-sm leading-[1.8] text-information/90">
-          {country.segmentation}
-        </p>
+        <Tagged
+          text={country.segmentation}
+          className="mt-3 max-w-2xl font-serif text-sm leading-[1.8] text-information/90"
+        />
       </section>
 
-      {/* A1 — coverage honesty + review metadata. */}
+      {/* A1 — coverage honesty. */}
       <section>
         <SectionLabel>Coverage</SectionLabel>
-        <p className="mt-3 max-w-2xl font-serif text-sm italic leading-[1.8] text-information/75">
-          {country.coverage}
-        </p>
-        <p className="mt-2 font-sans text-[0.6rem] uppercase tracking-[0.15em] text-information/50">
-          Last reviewed: {country.lastReviewed}
-        </p>
+        <Tagged
+          text={country.coverage}
+          className="mt-3 max-w-2xl font-serif text-sm italic leading-[1.8] text-information/75"
+        />
       </section>
 
       {/* A3 — the seven axes. */}
@@ -209,9 +208,12 @@ export function PnCountryPanel({ country }: { country: PnCountry }) {
             <AxisRow key={key} label={label} axis={country.axes[key]} />
           ))}
         </div>
-        <p className="mt-3 font-serif text-xs italic text-information/55">
+        <p className="mt-3 max-w-3xl font-serif text-xs italic leading-relaxed text-information/55">
           1–5 per axis; hollow dots mark the in-country range. Higher =
-          more direct, faster, more contract-literal, stricter.
+          more direct disagreement, more decision authority in the room,
+          faster decisions, a more literal contract, a firmer calendar
+          commitment, stricter hierarchy, and trust built on demonstrated
+          competence rather than on the relationship.
         </p>
       </section>
 

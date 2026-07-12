@@ -41,8 +41,8 @@ export const pnSituations: PnSituationDef[] = [
   { id: "interview", name: "Interview" },
   { id: "business-dinner", name: "Business Dinner" },
   { id: "presentation", name: "Presentation" },
-  { id: "email", name: "Email" },
-  { id: "networking", name: "Networking" },
+  { id: "email", name: "Follow-up in writing" },
+  { id: "networking", name: "Meeting someone new" },
 ];
 
 /* ---------------------------------------------------------------- */
@@ -160,7 +160,7 @@ export const pnCells: Record<string, PnCountryCells> = {
       costlyError:
         "Treating the humor as filler and rushing past it — it's doing real relationship work. [Reported]",
       disconfirmingSignal:
-        "If business is raised in the first 60 seconds, you're likely with a foreign-owned subsidiary calibrating to a non-Irish HQ's norms rather than local ones. [Contested]",
+        "If business is raised in the first 60 seconds, you're likely in Dublin's financial-services or tech segment, where pace runs closer to the US pattern than the professional-services norm. [Contested]",
     },
     feedback: {
       upward:
@@ -172,7 +172,7 @@ export const pnCells: Record<string, PnCountryCells> = {
       costlyError:
         "Reading the humor as the whole message and missing the substantive critique inside it. [Reported]",
       disconfirmingSignal:
-        "Direct, unhedged pushback in the room suggests a foreign-owned subsidiary calibrated to non-Irish norms. [Contested]",
+        "Direct, unhedged pushback in the room suggests a trading-floor or tech-sector context rather than the professional-services norm. [Contested]",
     },
     negotiation: {
       delta: NEGOTIATION_CONVERGED,
@@ -185,11 +185,11 @@ export const pnCells: Record<string, PnCountryCells> = {
       delta:
         "Largely converged, with one addition: opening self-promotion by anyone in the room, including the most senior person, is muted deliberately. [Reported]",
       sequence:
-        "Minute 0: informal greeting, no ceremony. Minute 3: purpose stated plainly. Minute 15: direct exchange, disagreement common and undramatic. [Reported]",
+        "Minute 0: in formal, public-sector, or larger corporate settings, proceedings commonly open with an Acknowledgement of Country — a short statement recognizing the Traditional Owners of the land — and significant occasions may open with a Welcome to Country delivered by a Traditional Owner. [Well-established] Otherwise: informal greeting, first names immediately. Minute 3: purpose stated plainly. Minute 15: direct exchange, disagreement common and undramatic. [Reported]",
       costlyError:
         "Opening with a credentials-heavy introduction. It reads as insecure, not impressive. [Reported]",
       disconfirmingSignal:
-        "If someone opens by listing their title and background unprompted, you're likely dealing with a multinational's local office calibrating to a non-Australian HQ. [Contested]",
+        "If someone opens by listing their title and background unprompted, you're likely in a banking or consulting context where credential display runs closer to the US register. [Contested]",
     },
     feedback: {
       upward:
@@ -200,7 +200,7 @@ export const pnCells: Record<string, PnCountryCells> = {
       costlyError:
         "A senior person visibly punishing someone for direct pushback — this damages their own standing more than the challenger's. [Reported]",
       disconfirmingSignal:
-        "A room where junior staff never openly disagree suggests a more traditionally hierarchical sub-sector or a foreign-owned office. [Contested]",
+        "A room where junior staff never openly disagree suggests a more traditionally hierarchical sub-sector — banking, parts of government — rather than the general norm. [Contested]",
     },
     negotiation: {
       delta: NEGOTIATION_CONVERGED,
@@ -211,9 +211,9 @@ export const pnCells: Record<string, PnCountryCells> = {
     meeting: {
       baseline: "a",
       delta:
-        "Largely converged with Australia. One distinct addition: the room tends to ask more questions about the visitor before proceeding — a one-sided pitch is noticed. [Reported]",
+        "Largely converged with the flat, direct baseline, with one distinct addition: the room tends to ask more questions about the visitor before proceeding — a one-sided pitch is noticed. [Reported] Where the counterparty is an iwi-affiliated enterprise or a public-sector body, tikanga Māori shapes the opening: expect a mihi (formal greeting and introductions), and on significant occasions a pōwhiri (formal welcome) — follow your host's lead. [Reported]",
       sequence:
-        "Similar to Australia's, with slightly more time (minute 0–5) spent on mutual questions before the stated purpose. [Reported]",
+        "Minute 0: informal greeting — or, in public-sector and iwi-affiliated settings, a mihi that is part of the meeting, not preamble to it. Minute 0–5: mutual questions; the room asks about you before you pitch. Minute 5: purpose stated plainly, direct exchange follows. [Reported]",
       costlyError:
         "Treating the meeting as a one-way presentation rather than an exchange. [Reported]",
       disconfirmingSignal:
@@ -221,12 +221,14 @@ export const pnCells: Record<string, PnCountryCells> = {
     },
     feedback: {
       upward:
-        "Similar openness to Australia, with a slightly stronger expectation that the challenge is grounded in genuine curiosity rather than assertion for its own sake. [Reported]",
-      sideways: "Largely converged with Australia. [Reported]",
+        "Openly challenging a senior person is normal, with a strong expectation that the challenge is grounded in genuine curiosity rather than assertion for its own sake. [Reported]",
+      sideways:
+        "Largely converged — peer critique happens openly and undramatically. [Reported]",
       downward: "Largely converged. [Reported]",
       costlyError:
-        "Pushing back purely to demonstrate confidence rather than because of a genuine point — this is noticed and read poorly. [Reported]",
-      disconfirmingSignal: "Same as Australia. [Contested]",
+        "Pushing back purely to demonstrate confidence rather than because of a genuine point — this is noticed and read poorly, and in a market this small the impression travels. [Reported]",
+      disconfirmingSignal:
+        "A room where junior staff never openly disagree suggests a more formal sub-sector rather than the general norm. [Contested]",
     },
     negotiation: {
       delta: NEGOTIATION_CONVERGED,
@@ -243,7 +245,7 @@ export const pnCells: Record<string, PnCountryCells> = {
       costlyError:
         "Arriving without having read circulated material — this reads as a lack of seriousness, not a minor oversight. [Well-established]",
       disconfirmingSignal:
-        "If the agenda is loose and the tone is informal from the outset, you're likely with a startup or foreign-owned subsidiary, not a legacy German corporate. [Reported]",
+        "If the agenda is loose and the tone is informal from the outset, you're likely with a Berlin-style startup, not a Mittelstand corporate. [Reported]",
     },
     feedback: {
       upward:
@@ -265,7 +267,7 @@ export const pnCells: Record<string, PnCountryCells> = {
       costlyError:
         "Opening with an aggressively low or high anchor — this can damage credibility for the rest of the negotiation. [Well-established]",
       disconfirmingSignal:
-        "A counterparty opening far from their real position and expecting large moves suggests a foreign-owned subsidiary calibrated to a different norm. [Reported]",
+        "A counterparty opening far from their real position and expecting large moves is negotiating outside the Mittelstand register — recalibrate before assuming your own anchor strategy. [Reported]",
     },
   },
 
@@ -279,7 +281,7 @@ export const pnCells: Record<string, PnCountryCells> = {
       costlyError:
         "Naming other clients or deals to build credibility — reads as indiscreet. [Reported]",
       disconfirmingSignal:
-        "If the counterparty volunteers information about other clients unprompted, you may be in a more Americanized multinational subsidiary rather than a traditional Swiss firm. [Contested]",
+        "If the counterparty volunteers information about other clients unprompted, you may be with a Geneva or Zug trading house rather than a traditional corporate — discretion norms are at their strictest in private banking. [Contested]",
     },
     feedback: {
       upward:
@@ -291,7 +293,7 @@ export const pnCells: Record<string, PnCountryCells> = {
       costlyError:
         "An imprecise or emotionally framed objection, even if correct, being dismissed for its lack of rigor. [Reported]",
       disconfirmingSignal:
-        "Loud, public disagreement without documentation afterward suggests a more Americanized multinational subsidiary. [Contested]",
+        "Loud, public disagreement without documentation afterward suggests a trading-floor or startup context rather than the corporate and private-banking norm. [Contested]",
     },
     negotiation: {
       delta: NEGOTIATION_CONVERGED,
@@ -416,7 +418,7 @@ export const pnCells: Record<string, PnCountryCells> = {
       costlyError:
         "Missing an indirect no and proceeding as though the answer was yes. [Well-established]",
       disconfirmingSignal:
-        "A senior person openly and immediately challenged in the room, without visible discomfort from others, signals a younger or foreign-influenced organization. [Well-established]",
+        "A senior person openly and immediately challenged in the room, without visible discomfort from others, signals a younger tech organization. [Well-established]",
     },
     negotiation: {
       delta:
@@ -477,7 +479,7 @@ export const pnCells: Record<string, PnCountryCells> = {
       costlyError:
         "Assuming the efficiency means the formality doesn't matter — skipping the card ritual or rushing past introductions is noticed. [Reported]",
       disconfirmingSignal:
-        "If the counterparty skips the card exchange entirely, you're likely dealing with a very Westernized multinational office. [Contested]",
+        "If the counterparty skips the card exchange entirely, you're likely in the startup segment rather than the corporate or government-linked one. [Contested]",
     },
     feedback: {
       upward:
@@ -488,7 +490,7 @@ export const pnCells: Record<string, PnCountryCells> = {
       costlyError:
         "Mistaking the efficient, Western-feeling pace for an absence of hierarchy sensitivity — form still matters even when the substance is direct. [Reported]",
       disconfirmingSignal:
-        "A very informal, Western-feeling exchange with no attention to seniority in how things are phrased suggests a very Westernized multinational office. [Contested]",
+        "A very informal exchange with no attention to seniority in how things are phrased suggests a startup context rather than the corporate or government-linked norm. [Contested]",
     },
     negotiation: {
       delta:
@@ -513,7 +515,7 @@ export const pnCells: Record<string, PnCountryCells> = {
       costlyError:
         "Visibly rushing the personal conversation or declining offered coffee/tea. [Well-established]",
       disconfirmingSignal:
-        "If your counterparty moves to business within the first few minutes, you're likely dealing with a foreign-founded startup or multinational subsidiary. [Reported]",
+        "If your counterparty moves to business within the first few minutes, you're likely dealing with a Dubai fintech or free-zone firm — a different segment, not a change in the family-business norm. [Reported]",
     },
     feedback: {
       upward:
@@ -525,7 +527,7 @@ export const pnCells: Record<string, PnCountryCells> = {
       costlyError:
         "Publicly challenging a senior figure, even with good intent — this can cause a loss of standing for both parties. [Reported]",
       disconfirmingSignal:
-        "Open, public upward challenge without visible discomfort suggests a foreign-founded or multinational subsidiary context. [Reported]",
+        "Open, public upward challenge without visible discomfort suggests a free-zone or fintech context rather than a family-owned or government-adjacent one. [Reported]",
     },
     negotiation: {
       delta:
@@ -535,7 +537,7 @@ export const pnCells: Record<string, PnCountryCells> = {
       costlyError:
         "Negotiating hard on terms before the relationship is established — this can stall a deal that terms alone wouldn't have stalled. [Reported]",
       disconfirmingSignal:
-        "A counterparty willing to negotiate hard on terms in a first encounter, without relationship-building first, suggests a foreign-founded or multinational context. [Reported]",
+        "A counterparty willing to negotiate hard on terms in a first encounter, without relationship-building first, suggests a Dubai free-zone or fintech counterparty rather than a family-owned business. [Reported]",
     },
   },
 
@@ -586,7 +588,7 @@ export const pnCells: Record<string, PnCountryCells> = {
       costlyError:
         "Maintaining typical Anglo physical distance or rushing the personal opening — reads as cold. [Well-established]",
       disconfirmingSignal:
-        "If the meeting opens directly with business, you're likely dealing with a multinational corporate office calibrated to a non-Brazilian HQ. [Reported]",
+        "If the meeting opens directly with business, you're likely with a São Paulo private-equity or banking counterparty, where meetings run more transactional than the broader pattern. [Reported]",
     },
     feedback: {
       upward:
@@ -598,7 +600,7 @@ export const pnCells: Record<string, PnCountryCells> = {
       costlyError:
         "Attempting direct upward challenge before rapport is built — the same words land very differently depending on relationship context. [Reported]",
       disconfirmingSignal:
-        "Immediate, rapport-free directness suggests a foreign multinational subsidiary context. [Contested]",
+        "Immediate, rapport-free directness suggests a private-equity or banking context rather than the broader norm. [Contested]",
     },
     negotiation: {
       delta:
@@ -608,7 +610,7 @@ export const pnCells: Record<string, PnCountryCells> = {
       costlyError:
         "Treating relationship-building and deal terms as separate tracks — in practice they're intertwined. [Reported]",
       disconfirmingSignal:
-        "A negotiation that proceeds efficiently and impersonally from the outset suggests a multinational corporate context. [Contested]",
+        "A negotiation that proceeds efficiently and impersonally from the outset suggests a banking or private-equity counterparty rather than the broader norm. [Contested]",
     },
   },
 
@@ -622,7 +624,7 @@ export const pnCells: Record<string, PnCountryCells> = {
       costlyError:
         "Treating the personal conversation as preamble to skip past — it's often doing real relationship work. [Reported]",
       disconfirmingSignal:
-        "If business is raised immediately and personal topics are notably absent, you're likely with a multinational corporate subsidiary. [Contested]",
+        "If business is raised immediately and personal topics are notably absent, you're likely with a Milanese finance counterparty — the segment of Italian business that runs closest to northern-European pace. [Contested]",
     },
     feedback: {
       upward:
@@ -634,7 +636,7 @@ export const pnCells: Record<string, PnCountryCells> = {
       costlyError:
         "Delivering technically correct but poorly-toned feedback — the tone can undermine an otherwise valid point. [Reported]",
       disconfirmingSignal:
-        "Blunt, rapport-free feedback landing well suggests a multinational subsidiary context rather than a traditional Italian firm. [Contested]",
+        "Blunt, rapport-free feedback landing well suggests Milanese finance rather than a traditional family-owned firm. [Contested]",
     },
     negotiation: {
       delta:
@@ -644,7 +646,7 @@ export const pnCells: Record<string, PnCountryCells> = {
       costlyError:
         "Pushing for a fast close before rapport is solid — this can read as transactional and stall the deal. [Reported]",
       disconfirmingSignal:
-        "A fast, impersonal negotiation suggests a multinational subsidiary context. [Contested]",
+        "A fast, impersonal negotiation suggests a Milanese finance counterparty rather than a family-owned firm. [Contested]",
     },
   },
 };
@@ -655,4 +657,5 @@ export const pnMethodNote = [
   "This guide was built against a specific failure mode: cultural guides that manufacture differences to fill space, and that describe what people supposedly feel rather than what a reader could actually observe. Every claim here is written to be behavioral — what happens, not what it means — and tagged for confidence rather than presented as settled fact. Country detail always renders before the regional pattern, and where a country doesn't meaningfully differ from that pattern, the convergence is stated plainly rather than invented around. What follows is placeholder-tier content written for a portfolio project: a working demonstration of that discipline, not a reviewed guide.",
   "Some of the concepts underneath this interactive — directness, decision speed, attitudes to contracts and hierarchy — trace back to Hofstede-style dimension research (rooted in IBM survey data from the 1960s–70s) and to Erin Meyer's Culture Map lineage of executive-classroom observation. Those foundations are dated and narrow, and they are named here rather than inherited silently.",
   "Coverage is sixteen countries; that leaves most of the world unrepresented. The gap is stated here, and uncovered countries render greyed-out on the globe, because an unstated gap is a claim by omission.",
+  "One more gap is structural rather than geographic: this guide does not model how these norms shift with who the reader is. Several dynamics described here — personal questions in interviews, drinking-centered evenings — carry different stakes depending on the reader's gender, age, or family status. Where a cell touches one of those dynamics, a reader note flags it; the deeper treatment belongs in the full written report, not in a tooltip.",
 ] as const;

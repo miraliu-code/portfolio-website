@@ -12,6 +12,11 @@ import {
   pnSituations,
   type PnSituationId,
 } from "@/lib/content/interactives/professional-norms-situations";
+import {
+  pnCellsTier2,
+  pnInterviewBaselineNames,
+  type PnBasicCell,
+} from "@/lib/content/interactives/professional-norms-situations-2";
 
 /*
  * The selected country's reading layer: A2 segmentation, A1 coverage +
@@ -131,9 +136,47 @@ function AxisRow({ label, axis }: { label: string; axis: PnAxisScore }) {
   );
 }
 
+/* Generic cell block for the Tier-2 situations (and negotiation):
+   delta first, then whichever optional fields the cell carries. */
+function BasicCellBlock({
+  countryName,
+  cell,
+  footer,
+}: {
+  countryName: string;
+  cell: PnBasicCell;
+  footer?: React.ReactNode;
+}) {
+  return (
+    <>
+      <Field label={`${countryName} delta`} text={cell.delta} />
+      {cell.sequence && <Field label="Sequence" text={cell.sequence} />}
+      {cell.costlyError && (
+        <Field label="The costly error" text={cell.costlyError} accent />
+      )}
+      {cell.disconfirmingSignal && (
+        <Field label="Disconfirming signal" text={cell.disconfirmingSignal} />
+      )}
+      {cell.readerNote && (
+        <div>
+          <p className="font-sans text-[0.6rem] uppercase tracking-[0.2em] text-information/50">
+            Reader note
+          </p>
+          <Tagged
+            text={cell.readerNote}
+            className="mt-2 font-serif text-sm italic leading-[1.8] text-information/70"
+          />
+        </div>
+      )}
+      {footer}
+    </>
+  );
+}
+
 export function PnCountryPanel({ country }: { country: PnCountry }) {
   const [situationId, setSituationId] = useState<PnSituationId>("meeting");
   const cells = pnCells[country.id];
+  const tier2 = pnCellsTier2[country.id];
   const situation = pnSituations.find((s) => s.id === situationId)!;
 
   return (
@@ -153,8 +196,7 @@ export function PnCountryPanel({ country }: { country: PnCountry }) {
           {country.coverage}
         </p>
         <p className="mt-2 font-sans text-[0.6rem] uppercase tracking-[0.15em] text-information/50">
-          Last reviewed: {country.lastReviewed} · Reviewed by:{" "}
-          {country.reviewedBy}
+          Last reviewed: {country.lastReviewed}
         </p>
       </section>
 
@@ -197,11 +239,7 @@ export function PnCountryPanel({ country }: { country: PnCountry }) {
             </button>
           ))}
         </div>
-        <p className="mt-2 font-serif text-xs italic text-information/50">
-          Dotted situations are in development.
-        </p>
-
-        {!situation.deferred && cells && (
+        {!situation.deferred && cells && tier2 && (
           <div className="mt-7 max-w-2xl space-y-7">
             {situationId === "meeting" && (
               <>
@@ -257,31 +295,50 @@ export function PnCountryPanel({ country }: { country: PnCountry }) {
             )}
 
             {situationId === "negotiation" && (
-              <>
-                <Field
-                  label={`${country.name} delta`}
-                  text={cells.negotiation.delta}
-                />
-                {cells.negotiation.sequence && (
-                  <Field
-                    label="Sequence"
-                    text={cells.negotiation.sequence}
-                  />
-                )}
-                {cells.negotiation.costlyError && (
-                  <Field
-                    label="The costly error"
-                    text={cells.negotiation.costlyError}
-                    accent
-                  />
-                )}
-                {cells.negotiation.disconfirmingSignal && (
-                  <Field
-                    label="Disconfirming signal"
-                    text={cells.negotiation.disconfirmingSignal}
-                  />
-                )}
-              </>
+              <BasicCellBlock
+                countryName={country.name}
+                cell={cells.negotiation}
+              />
+            )}
+
+            {situationId === "interview" && (
+              <BasicCellBlock
+                countryName={country.name}
+                cell={tier2.interview}
+                footer={
+                  <div className="border-t border-structure/15 pt-5">
+                    <p className="font-sans text-[0.6rem] uppercase tracking-[0.2em] text-information/50">
+                      Interview grouping —{" "}
+                      {pnInterviewBaselineNames[tier2.interview.baseline]}
+                    </p>
+                  </div>
+                }
+              />
+            )}
+
+            {situationId === "business-dinner" && (
+              <BasicCellBlock
+                countryName={country.name}
+                cell={tier2["business-dinner"]}
+              />
+            )}
+
+            {situationId === "presentation" && (
+              <BasicCellBlock
+                countryName={country.name}
+                cell={tier2.presentation}
+              />
+            )}
+
+            {situationId === "email" && (
+              <BasicCellBlock countryName={country.name} cell={tier2.email} />
+            )}
+
+            {situationId === "networking" && (
+              <BasicCellBlock
+                countryName={country.name}
+                cell={tier2.networking}
+              />
             )}
           </div>
         )}

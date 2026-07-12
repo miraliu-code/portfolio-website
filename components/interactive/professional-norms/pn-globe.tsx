@@ -446,7 +446,7 @@ export function PnGlobe() {
         )}
       </div>
 
-      <div className="relative flex justify-center px-4 pt-4 md:px-8 md:pt-8">
+      <div className="flex flex-col items-center gap-6 px-4 pt-4 md:flex-row md:items-center md:justify-center md:gap-10 md:px-8 md:pt-8">
         <svg
           ref={svgRef}
           viewBox={`0 0 ${SIZE} ${SIZE}`}
@@ -586,6 +586,34 @@ export function PnGlobe() {
             );
           })}
         </svg>
+
+        {/* Jump list: every country selectable by name — small
+            countries are hard to locate on the globe at a glance. */}
+        <nav aria-label="Country list" className="w-full shrink-0 pb-4 md:w-44 md:pb-0">
+          <p className="font-sans text-[0.6rem] font-medium uppercase tracking-[0.25em] text-information/50">
+            Jump to a country
+          </p>
+          <ul className="mt-3 grid grid-cols-2 gap-x-6 md:grid-cols-1">
+            {[...pnCountries]
+              .sort((a, b) => a.name.localeCompare(b.name))
+              .map((c) => (
+                <li key={c.id}>
+                  <button
+                    type="button"
+                    onClick={() => select(c.id)}
+                    aria-pressed={selectedId === c.id}
+                    className={`block w-full border-l py-1 pl-3 text-left font-sans text-xs tracking-wide transition-colors motion-reduce:transition-none ${
+                      selectedId === c.id
+                        ? "border-interaction text-interaction"
+                        : "border-structure/20 text-information/65 hover:border-interaction/60 hover:text-interaction"
+                    }`}
+                  >
+                    {c.name}
+                  </button>
+                </li>
+              ))}
+          </ul>
+        </nav>
       </div>
 
       {/* Caption / selection readout — panels come in Phase 2. */}

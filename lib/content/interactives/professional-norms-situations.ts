@@ -38,11 +38,11 @@ export const pnSituations: PnSituationDef[] = [
   { id: "meeting", name: "Meeting" },
   { id: "feedback", name: "Feedback" },
   { id: "negotiation", name: "Negotiation" },
-  { id: "interview", name: "Interview", deferred: true },
-  { id: "business-dinner", name: "Business Dinner", deferred: true },
-  { id: "presentation", name: "Presentation", deferred: true },
-  { id: "email", name: "Email", deferred: true },
-  { id: "networking", name: "Networking", deferred: true },
+  { id: "interview", name: "Interview" },
+  { id: "business-dinner", name: "Business Dinner" },
+  { id: "presentation", name: "Presentation" },
+  { id: "email", name: "Email" },
+  { id: "networking", name: "Networking" },
 ];
 
 /* ---------------------------------------------------------------- */
@@ -649,8 +649,10 @@ export const pnCells: Record<string, PnCountryCells> = {
   },
 };
 
-/* Methodology note rendered with the interactive. */
+/* Methodology note rendered with the interactive: discipline first,
+   lineage second, coverage gap third. */
 export const pnMethodNote = [
-  "Some of the concepts underneath this interactive — directness, decision speed, attitudes to contracts and hierarchy — trace back to Hofstede-style dimension research (rooted in IBM survey data from the 1960s–70s) and to Erin Meyer's Culture Map lineage of executive-classroom observation. Those foundations are dated and narrow, and they are named here rather than inherited silently. The scores and prose are original placeholder-tier content written for a portfolio project: they have not been through the two-reviewer in-market review this subject demands, and they should be read as a design of how such a guide would work, not as the guide itself.",
-  "Coverage is sixteen countries: the United States, Ireland, Australia, New Zealand, Germany, Switzerland, the Netherlands, Sweden, China, Japan, South Korea, Singapore, the UAE, India, Brazil, and Italy. That leaves most of the world unrepresented — no Mexico, Indonesia, Poland, Vietnam, Nigeria, or anywhere in Africa, among many others. The gap is stated here, and uncovered countries render greyed-out on the globe, because an unstated gap is a claim by omission.",
+  "This guide was built against a specific failure mode: cultural guides that manufacture differences to fill space, and that describe what people supposedly feel rather than what a reader could actually observe. Every claim here is written to be behavioral — what happens, not what it means — and tagged for confidence rather than presented as settled fact. Country detail always renders before the regional pattern, and where a country doesn't meaningfully differ from that pattern, the convergence is stated plainly rather than invented around.",
+  "Some of the concepts underneath this interactive — directness, decision speed, attitudes to contracts and hierarchy — trace back to Hofstede-style dimension research (rooted in IBM survey data from the 1960s–70s) and to Erin Meyer's Culture Map lineage of executive-classroom observation. Those foundations are dated and narrow, and they are named here rather than inherited silently.",
+  "Coverage is sixteen countries; that leaves most of the world unrepresented. The gap is stated here, and uncovered countries render greyed-out on the globe, because an unstated gap is a claim by omission.",
 ] as const;

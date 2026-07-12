@@ -33,7 +33,7 @@ export const pnInterviewBaselineNames: Record<PnInterviewBaselineId, string> =
     a: "Baseline A — self-promotion rewarded",
     b: "Baseline B — self-promotion muted",
     c: "Baseline C — credential-led, formal",
-    d: "Baseline D — split register: sector decides",
+    d: "Baseline D — sector split, at its widest",
     e: "Baseline E — rapport-led",
   };
 
@@ -44,7 +44,7 @@ export const pnInterviewBaselines: Record<PnInterviewBaselineId, string> = {
   a: "Achievements are stated plainly, early, and in the first person; the interviewer treats a confident account of your own work as information, not arrogance. [Well-established] Questions center on individual accomplishment — what you did, and how it was measured. [Reported]",
   b: "Achievements are stated once, without embellishment, and often credited partly to the team. [Reported] Overselling is noticed and quietly discounted; the interviewer probes for the substance behind modest answers rather than rewarding volume. [Reported]",
   c: "The interview opens formally and runs on qualifications: degrees, certifications, and specific technical experience, stated precisely. [Well-established] Claims are tested with detailed follow-up questions, and the precision of the answer counts alongside the claim itself. [Reported]",
-  d: "The register is set by the sector more than the country: a state-owned enterprise, chaebol, or traditional family firm expects modest, organization-framed answers, while the same country's tech sector runs direct, individually framed interviews — Indian IT and Chinese tech screening can probe individual accomplishment harder than the US baseline does. [Reported] Establish which segment you're interviewing with before calibrating either way. [Reported]",
+  d: "A sector split runs through every country in this guide — the US page says as much about regulated sectors versus tech. What marks these three markets is the width of that split, not its existence: a state-owned enterprise, chaebol, or traditional family firm expects modest, organization-framed answers, while the same country's tech sector runs direct, individually framed interviews — Indian IT and Chinese tech screening can probe individual accomplishment harder than the US baseline does. [Reported] Establish which segment you're interviewing with before calibrating either way. [Reported]",
   e: "Personal rapport and presentation are assessed alongside credentials, and questions about family or personal background can be part of the conversation. [Reported] Where they are, they can function as screening as much as rapport — a risk that falls unevenly across candidates, and one this guide flags rather than resolves; identity-based deltas are a stated gap here. [Contested]",
 };
 

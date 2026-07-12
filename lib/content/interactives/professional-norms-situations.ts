@@ -107,11 +107,17 @@ export interface PnCountryCells {
   negotiation: PnNegotiationCell;
 }
 
-/* Shared negotiation block for the six converged countries. */
-const NEGOTIATION_CONVERGED =
-  "Largely converged with the United States baseline on negotiation mechanics — first offers function as real anchors, silence is often tactical rather than emotional, and counterparties are frequently empowered to close directly. [Reported]";
-const NEGOTIATION_CONVERGED_CONSENSUS_NOTE =
-  " Minor delta: Swedish and Dutch counterparties may defer more visibly to colleagues before finalizing even when personally aligned — treat a Swedish or Dutch 'let me confirm with the team' as closer to genuine process than a similar phrase elsewhere. [Reported]";
+/* Shared negotiation block for the six converged countries. There is
+   no negotiation A–D system; the Anglo pattern functions as the
+   baseline here and is named as a pattern, not as one country's.
+   The deferral note rides along wherever decision locus scores low —
+   Switzerland (2, federated) and Sweden (1, the dataset's most
+   consensus-bound) — because "empowered to close directly" is not
+   true of those two without it. */
+const NEGOTIATION_ANGLO_BASELINE =
+  "Largely converged with the Anglo negotiation baseline — first offers function as real anchors, silence is often tactical rather than emotional, and counterparties are frequently empowered to close directly. [Reported]";
+const NEGOTIATION_DEFERRAL_NOTE =
+  " Significant delta: Swiss and Swedish counterparties often cannot close alone — the decision is federated across stakeholders or taken back to the group — so treat a Swiss or Swedish 'let me confirm with the team' as genuine process, not a tactic. [Reported]";
 
 export const pnCells: Record<string, PnCountryCells> = {
   "united-states": {
@@ -175,7 +181,7 @@ export const pnCells: Record<string, PnCountryCells> = {
         "Direct, unhedged pushback in the room suggests a trading-floor or tech-sector context rather than the professional-services norm. [Contested]",
     },
     negotiation: {
-      delta: NEGOTIATION_CONVERGED,
+      delta: NEGOTIATION_ANGLO_BASELINE,
     },
   },
 
@@ -203,7 +209,7 @@ export const pnCells: Record<string, PnCountryCells> = {
         "A room where junior staff never openly disagree suggests a more traditionally hierarchical sub-sector — banking, parts of government — rather than the general norm. [Contested]",
     },
     negotiation: {
-      delta: NEGOTIATION_CONVERGED,
+      delta: NEGOTIATION_ANGLO_BASELINE,
     },
   },
 
@@ -231,7 +237,7 @@ export const pnCells: Record<string, PnCountryCells> = {
         "A room where junior staff never openly disagree suggests a more formal sub-sector rather than the general norm. [Contested]",
     },
     negotiation: {
-      delta: NEGOTIATION_CONVERGED,
+      delta: NEGOTIATION_ANGLO_BASELINE,
     },
   },
 
@@ -296,7 +302,7 @@ export const pnCells: Record<string, PnCountryCells> = {
         "Loud, public disagreement without documentation afterward suggests a trading-floor or startup context rather than the corporate and private-banking norm. [Contested]",
     },
     negotiation: {
-      delta: NEGOTIATION_CONVERGED,
+      delta: NEGOTIATION_ANGLO_BASELINE + NEGOTIATION_DEFERRAL_NOTE,
     },
   },
 
@@ -326,7 +332,7 @@ export const pnCells: Record<string, PnCountryCells> = {
         "Visible discomfort at open upward disagreement suggests a foreign-owned or non-Dutch-led organization. [Reported]",
     },
     negotiation: {
-      delta: NEGOTIATION_CONVERGED + NEGOTIATION_CONVERGED_CONSENSUS_NOTE,
+      delta: NEGOTIATION_ANGLO_BASELINE,
     },
   },
 
@@ -356,7 +362,7 @@ export const pnCells: Record<string, PnCountryCells> = {
         "Blunt, individually-delivered criticism without group framing suggests a smaller founder-led company diverging from the norm. [Reported]",
     },
     negotiation: {
-      delta: NEGOTIATION_CONVERGED + NEGOTIATION_CONVERGED_CONSENSUS_NOTE,
+      delta: NEGOTIATION_ANGLO_BASELINE + NEGOTIATION_DEFERRAL_NOTE,
     },
   },
 

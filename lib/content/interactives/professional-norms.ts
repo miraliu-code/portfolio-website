@@ -115,9 +115,9 @@ export const pnCountries: PnCountry[] = [
       "The rest of this page describes a first meeting with a mid-size or large private-sector company in a major metro. Government, healthcare, and regulated finance run slower and more formal than the scores suggest; a venture-backed startup runs flatter and faster. [Well-established] The distance between those two poles is most of the ranges shown below.",
     axes: {
       disagreement: {
-        score: 4,
+        score: 3,
         range: [3, 5],
-        note: "Startups ≈5, regulated corporate ≈3.",
+        note: "Opinion is offered freely, but negative feedback is routinely cushioned ('sandwich' pattern); startups run blunter (≈5).",
         confidence: "Well-established",
       },
       decisionLocus: {
@@ -602,7 +602,7 @@ export const pnCountries: PnCountry[] = [
     region: "South America",
     focus: [-53, -10.5],
     coverage:
-      "South America — sole representative in this guide. Portuguese-speaking Brazil is not a proxy for its Spanish-speaking neighbors; Argentina and Chile, absent, differ on formality and pace. [Reported]",
+      "South America — sole representative in this guide. Portuguese-speaking Brazil is not a proxy for its Spanish-speaking neighbors; Argentina and Chile, absent, differ on formality and pace. [Reported] One instrument limit stated plainly: Brazil and Italy land on identical scores across all seven axes below — a limit of the axes' resolution, not a claim that the two countries are interchangeable.",
     segmentation:
       "The rest of this page describes a first meeting with an established São Paulo firm — that city, not the whole country, is what the scores describe; Brazil's regional variation is real, and this page does not attempt to map it. [Reported] Multinational subsidiaries follow their headquarters' forms with Brazilian warmth layered over them. [Reported]",
     axes: {
@@ -630,7 +630,7 @@ export const pnCountries: PnCountry[] = [
     region: "Southern Europe",
     focus: [12.5, 42.5],
     coverage:
-      "Southern Europe — sole representative in this guide. Spain and Greece, absent, share the relational lean but not the specifics. [Reported] This page scores the industrial north and does not attempt to map Italy's internal variation.",
+      "Southern Europe — sole representative in this guide. Spain and Greece, absent, share the relational lean but not the specifics. [Reported] This page scores the industrial north and does not attempt to map Italy's internal variation. One instrument limit stated plainly: Italy and Brazil land on identical scores across all seven axes below — a limit of the axes' resolution, not a claim that the two countries are interchangeable.",
     segmentation:
       "The rest of this page describes a first meeting with an established family-owned northern firm (Milan, Bologna, Turin) — that segment, not the whole country, is what the scores describe. A Milanese finance counterparty may read as northern-European until the contract stage, where the relational pattern reasserts itself. [Reported]",
     axes: {
@@ -661,21 +661,79 @@ export function getPnCountry(id: string): PnCountry | null {
 /* score ≥ 4 → top tier, score = 3 → middle, score ≤ 2 → bottom —    */
 /* applied identically to all sixteen countries on every lens, so a  */
 /* country's tier can never contradict the dots on its own page.     */
-/* Observations are hand-written but verified against the derived    */
-/* groupings; any observation the data stops supporting gets cut.    */
+/*                                                                    */
+/* Observations are generated FROM the derived tiers: each is a      */
+/* template over live tier names plus a guard over every tier fact   */
+/* the sentence asserts. If a data change breaks a fact, the         */
+/* observation drops out automatically instead of rendering stale    */
+/* prose — captions structurally cannot contradict the tiers.        */
 /* ---------------------------------------------------------------- */
 
+type PnAxisLensId =
+  | "directness"
+  | "decision-speed"
+  | "contract-relationship"
+  | "hierarchy";
+
+const LENS_AXIS: Record<PnAxisLensId, keyof PnAxes> = {
+  directness: "disagreement",
+  "decision-speed": "decisionSpeed",
+  "contract-relationship": "contractFunction",
+  hierarchy: "hierarchy",
+};
+
 function deriveTiers(
-  axis: keyof PnAxes,
-  tiers: [string, string][], // [id, name] ordered high → low
+  lensId: PnAxisLensId,
+  tierDefs: [string, string][], // [id, name] ordered high → low
 ): PnLensTier[] {
+  const axis = LENS_AXIS[lensId];
   const ids = (test: (score: number) => boolean) =>
     pnCountries.filter((c) => test(c.axes[axis].score)).map((c) => c.id);
   return [
-    { id: tiers[0][0], name: tiers[0][1], countryIds: ids((s) => s >= 4) },
-    { id: tiers[1][0], name: tiers[1][1], countryIds: ids((s) => s === 3) },
-    { id: tiers[2][0], name: tiers[2][1], countryIds: ids((s) => s <= 2) },
+    { id: tierDefs[0][0], name: tierDefs[0][1], countryIds: ids((s) => s >= 4) },
+    { id: tierDefs[1][0], name: tierDefs[1][1], countryIds: ids((s) => s === 3) },
+    { id: tierDefs[2][0], name: tierDefs[2][1], countryIds: ids((s) => s <= 2) },
   ];
+}
+
+const tiersByLens: Record<PnAxisLensId, PnLensTier[]> = {
+  directness: deriveTiers("directness", [
+    ["blunt", "Blunt"],
+    ["calibrated", "Direct but calibrated"],
+    ["indirect", "Indirect"],
+  ]),
+  "decision-speed": deriveTiers("decision-speed", [
+    ["fast", "Fast"],
+    ["moderate", "Moderate"],
+    ["slow", "Slow"],
+  ]),
+  "contract-relationship": deriveTiers("contract-relationship", [
+    ["contract-first", "Contract-first"],
+    ["mixed", "Mixed"],
+    ["relational", "Relational"],
+  ]),
+  hierarchy: deriveTiers("hierarchy", [
+    ["strict", "Strict"],
+    ["moderate", "Moderate"],
+    ["flat", "Flat"],
+  ]),
+};
+
+/* Tier-fact helpers for observation guards and templates. */
+const tierIdx = (lens: PnAxisLensId, id: string) =>
+  tiersByLens[lens].findIndex((t) => t.countryIds.includes(id));
+const tierName = (lens: PnAxisLensId, id: string) =>
+  tiersByLens[lens][tierIdx(lens, id)]?.name.toLowerCase() ?? "?";
+const sameTier = (lens: PnAxisLensId, ...ids: string[]) =>
+  tierIdx(lens, ids[0]) !== -1 &&
+  ids.every((id) => tierIdx(lens, id) === tierIdx(lens, ids[0]));
+const apartFrom = (lens: PnAxisLensId, a: string, b: string) =>
+  tierIdx(lens, a) !== tierIdx(lens, b);
+const tierBelow = (lens: PnAxisLensId, a: string, b: string) =>
+  tierIdx(lens, a) > tierIdx(lens, b);
+
+function observations(specs: (() => string | null)[]): string[] {
+  return specs.map((spec) => spec()).filter((s): s is string => s !== null);
 }
 
 export const pnLenses: PnLens[] = [
@@ -688,53 +746,90 @@ export const pnLenses: PnLens[] = [
   {
     id: "directness",
     name: "Directness",
-    tiers: deriveTiers("disagreement", [
-      ["blunt", "Blunt"],
-      ["calibrated", "Direct but calibrated"],
-      ["indirect", "Indirect"],
+    tiers: tiersByLens.directness,
+    observations: observations([
+      () =>
+        sameTier("directness", "sweden", "japan", "india") &&
+        apartFrom("directness", "sweden", "netherlands")
+          ? `On directness, Sweden leaves its neighbors: it shares the ${tierName("directness", "sweden")} tier with Japan and India, not with the Netherlands next door.`
+          : null,
+      () =>
+        sameTier("directness", "ireland", "japan", "china", "south-korea") &&
+        apartFrom("directness", "ireland", "united-states") &&
+        apartFrom("directness", "ireland", "australia")
+          ? `Ireland sits in the ${tierName("directness", "ireland")} tier with East Asia here, apart from its Anglo peers.`
+          : null,
     ]),
-    observations: [
-      "On directness, Sweden leaves its neighbors: it groups with Japan and India, not with the Netherlands next door.",
-      "Ireland sits in the indirect tier with East Asia here, apart from its Anglo peers.",
-    ],
   },
   {
     id: "decision-speed",
     name: "Decision speed",
-    tiers: deriveTiers("decisionSpeed", [
-      ["fast", "Fast"],
-      ["moderate", "Moderate"],
-      ["slow", "Slow"],
+    tiers: tiersByLens["decision-speed"],
+    observations: observations([
+      () =>
+        sameTier("decision-speed", "uae", "united-states", "singapore") &&
+        tierBelow("decision-speed", "new-zealand", "australia")
+          ? "On decision speed, the UAE runs with the US and Singapore — and New Zealand sits a tier below Australia."
+          : null,
+      () => {
+        const range = getPnCountry("china")?.axes.decisionSpeed.range;
+        return range && range[0] === 1 && range[1] === 5
+          ? "China's tier is an average of extremes: state-owned and founder-led firms sit at opposite ends of the range."
+          : null;
+      },
     ]),
-    observations: [
-      "On decision speed, the UAE runs with the US and Singapore — and New Zealand sits a tier below Australia.",
-      "China's tier is an average of extremes: state-owned and founder-led firms sit at opposite ends of the range.",
-    ],
   },
   {
     id: "contract-relationship",
     name: "Contract vs. relationship",
-    tiers: deriveTiers("contractFunction", [
-      ["contract-first", "Contract-first"],
-      ["mixed", "Mixed"],
-      ["relational", "Relational"],
+    tiers: tiersByLens["contract-relationship"],
+    observations: observations([
+      () =>
+        sameTier("contract-relationship", "japan", "south-korea") &&
+        apartFrom("contract-relationship", "japan", "china")
+          ? `On contracts, Japan and South Korea share the ${tierName("contract-relationship", "japan")} tier while China sits in the ${tierName("contract-relationship", "china")} one — the East Asian trio splits.`
+          : null,
+      () =>
+        sameTier("contract-relationship", "italy", "brazil", "india") &&
+        ["ireland", "germany", "switzerland", "netherlands", "sweden"].every(
+          (id) => apartFrom("contract-relationship", "italy", id),
+        )
+          ? "Italy groups with Brazil and India here, not with the rest of Europe in this guide."
+          : null,
     ]),
-    observations: [
-      "On contracts, Japan and South Korea share the mixed tier while China sits in the relational one — the East Asian trio splits.",
-      "Italy groups with Brazil and India here, not with the rest of Europe in this guide.",
-    ],
   },
   {
     id: "hierarchy",
     name: "Hierarchy in the room",
-    tiers: deriveTiers("hierarchy", [
-      ["strict", "Strict"],
-      ["moderate", "Moderate"],
-      ["flat", "Flat"],
+    tiers: tiersByLens.hierarchy,
+    observations: observations([
+      () =>
+        sameTier("hierarchy", "united-states", "sweden", "netherlands", "ireland")
+          ? `On hierarchy, the United States lands in the ${tierName("hierarchy", "united-states")} tier with Sweden, the Netherlands, and Ireland.`
+          : null,
+      () =>
+        sameTier("hierarchy", "italy", "brazil", "germany", "switzerland") &&
+        sameTier("contract-relationship", "italy", "brazil") &&
+        apartFrom("contract-relationship", "italy", "germany")
+          ? `Italy and Brazil group with Germany and Switzerland here — not with the ${tierName("contract-relationship", "italy")} tier they occupy on contracts.`
+          : null,
     ]),
-    observations: [
-      "On hierarchy, the United States lands in the flat tier with Sweden, the Netherlands, and Ireland.",
-      "Italy and Brazil group with Germany and Switzerland here — not with the relational tier they occupy on contracts.",
-    ],
   },
 ];
+
+/* Brazil and Italy score identically on all seven axes; both A1 notes
+   state this limitation explicitly. This check keeps those sentences
+   honest: if the scores ever diverge, it fails loudly in development
+   so the notes get removed alongside the change. */
+if (process.env.NODE_ENV !== "production") {
+  const brazil = pnCountries.find((c) => c.id === "brazil")!.axes;
+  const italy = pnCountries.find((c) => c.id === "italy")!.axes;
+  const identical = (Object.keys(brazil) as (keyof PnAxes)[]).every(
+    (k) => brazil[k].score === italy[k].score,
+  );
+  if (!identical) {
+    throw new Error(
+      "Brazil and Italy axis scores have diverged — remove the identical-scores sentences from both countries' coverage notes.",
+    );
+  }
+}

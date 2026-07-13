@@ -70,6 +70,10 @@ export const pnQuestion =
 
 export const pnOrientation = "Drag the globe. Choose a country to begin.";
 
+/* Review metadata, rendered with each country's A1 coverage note.
+   Restored at the editor's request after the first audit removed it. */
+export const PN_LAST_REVIEWED = "September 1, 2026";
+
 /* ---------------------------------------------------------------- */
 /* Lens types. The lens definitions themselves live below            */
 /* pnCountries, because their tiers are derived from the scores.     */

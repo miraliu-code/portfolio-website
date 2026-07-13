@@ -665,3 +665,16 @@ export const pnMethodNote = [
   "Coverage is sixteen countries; that leaves most of the world unrepresented. The gap is stated here, and uncovered countries render greyed-out on the globe, because an unstated gap is a claim by omission.",
   "One more gap is structural rather than geographic: this guide does not model how these norms shift with who the reader is. Several dynamics described here — personal questions in interviews, drinking-centered evenings — carry different stakes depending on the reader's gender, age, or family status. Where a cell touches one of those dynamics, a reader note flags it; the deeper treatment belongs in the full written report, not in a tooltip.",
 ] as const;
+
+/* A6-lite: the "adaptation stops here" boundary, stated once as a
+   shared principle rather than per country. Normative content, so it
+   is tagged [Contested] throughout and flagged for subject-matter
+   review. Referenced from the four gender reader notes and Interview
+   Baseline E; rendered as its own block under Method & Sources. */
+export const pnAdaptationBoundaryTitle = "Where adaptation stops";
+
+export const pnAdaptationBoundary = [
+  "Everything in this guide is about adapting form — pace, register, sequence, who speaks first. Adaptation stops where a norm stops asking you to change your own behavior and starts asking you to accept someone's exclusion or diminishment, most often along lines of gender, family status, or identity. [Contested]",
+  "Three concrete boundaries recur in this guide's territory: a counterparty requesting that a female colleague not attend — staffing is your decision, not theirs; interview questions about marriage, family plans, or age that function as screening rather than rapport; and drinking or attendance pressure framed as a condition of the relationship. Declining any of these is not a cultural misstep, and nothing in this guide advises absorbing them as local custom. [Contested]",
+  "A full per-country treatment of these boundaries — section A6 of the content schema — is a named, tracked gap of this interactive, alongside the reader-identity deltas of A5. Both belong to the full written report, with subject-matter review this project is not set up to provide.",
+] as const;

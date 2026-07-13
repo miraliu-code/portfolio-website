@@ -45,7 +45,7 @@ export const pnInterviewBaselines: Record<PnInterviewBaselineId, string> = {
   b: "Achievements are stated once, without embellishment, and often credited partly to the team. [Reported] Overselling is noticed and quietly discounted; the interviewer probes for the substance behind modest answers rather than rewarding volume. [Reported]",
   c: "The interview opens formally and runs on qualifications: degrees, certifications, and specific technical experience, stated precisely. [Well-established] Claims are tested with detailed follow-up questions, and the precision of the answer counts alongside the claim itself. [Reported]",
   d: "A sector split runs through every country in this guide — the US page says as much about regulated sectors versus tech. What marks these three markets is the width of that split, not its existence: a state-owned enterprise, chaebol, or traditional family firm expects modest, organization-framed answers, while the same country's tech sector runs direct, individually framed interviews — Indian IT and Chinese tech screening can probe individual accomplishment harder than the US baseline does. [Reported] Establish which segment you're interviewing with before calibrating either way. [Reported]",
-  e: "Personal rapport and presentation are assessed alongside credentials, and questions about family or personal background can be part of the conversation. [Reported] Where they are, they can function as screening as much as rapport — a risk that falls unevenly across candidates, and one this guide flags rather than resolves; identity-based deltas are a stated gap here. [Contested]",
+  e: "Personal rapport and presentation are assessed alongside credentials, and questions about family or personal background can be part of the conversation. [Reported] Where they are, they can function as screening as much as rapport — a risk that falls unevenly across candidates, and one this guide flags rather than resolves; identity-based deltas are a stated gap here. [Contested] Where such questions shade from rapport into screening, the 'Where adaptation stops' note under Method & Sources draws the line. [Contested]",
 };
 
 export interface PnTier2Cells {
@@ -428,7 +428,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       disconfirmingSignal:
         "A casual, unceremonial business dinner suggests a Shenzhen-style founder-led host, not a state-owned or legacy one. [Reported]",
       readerNote:
-        "In some regions, heavy toasting culture involves social pressure to drink — declining gracefully (citing health, driving, or simply preference) is increasingly accepted and rarely damages the relationship. [Reported] Banquet dynamics — toasting expectations, seating, who is addressed — can also differ with the reader's gender; this page flags that dimension rather than covering it, and the fuller treatment belongs in the written report. [Contested]",
+        "In some regions, heavy toasting culture involves social pressure to drink — declining gracefully (citing health, driving, or simply preference) is increasingly accepted and rarely damages the relationship. [Reported] Toasts at a formal banquet are often routed senior-to-senior and man-to-man, and a woman leading a delegation may find toasts directed past her to a male colleague. Initiating the toast herself, or having the host briefed beforehand on who leads the delegation, are accepted correctives — not breaches of etiquette. [Contested] Where this shades from custom into exclusion, the 'Where adaptation stops' note under Method & Sources applies. [Contested]",
     },
     presentation: {
       delta:
@@ -484,7 +484,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       disconfirmingSignal:
         "A younger colleague raising business directly at this kind of gathering signals a younger company. [Reported]",
       readerNote:
-        "The after-hours izakaya circuit has historically been easier terrain for some readers than others — gender shapes both who is invited and how the evening reads. This page flags that dimension rather than covering it; the fuller treatment belongs in the written report. [Contested]",
+        "The after-hours izakaya circuit remains male-dominated terrain in many legacy firms: women are invited less often, and when present can be read as guests rather than participants in the candor the setting exists to produce. Because real reservations often surface there rather than in the office, a reader excluded from the evening is losing information, not just a social event — asking a trusted counterpart afterward what was actually said is legitimate practice, not prying. [Contested] The 'Where adaptation stops' note under Method & Sources applies here too. [Contested]",
     },
     presentation: {
       delta:
@@ -540,7 +540,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       disconfirmingSignal:
         "A single, early-ending dinner signals a startup rather than a chaebol-affiliated company. [Reported]",
       readerNote:
-        "As in China, drinking-heavy gatherings carry some social pressure; declining is increasingly accepted, particularly in younger companies. [Reported] The multi-stage evening can also be a different experience depending on the reader's gender; that gap is flagged here and treated more fully in the written report. [Contested]",
+        "As in China, drinking-heavy gatherings carry some social pressure; declining is increasingly accepted, particularly in younger companies. [Reported] For women, the multi-stage evening carries a structurally different calculus: later venues can shift from relationship-building toward settings where presence itself is read differently, and deciding when to leave is a judgment call male colleagues rarely face. Arranging an early exit through the host or a senior ally beforehand is a recognized move, not a slight. [Contested] Where attendance pressure shades into a condition of the relationship, the 'Where adaptation stops' note under Method & Sources applies. [Contested]",
     },
     presentation: {
       delta:
@@ -641,7 +641,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       disconfirmingSignal:
         "A brief, transactional meal suggests a free-zone or fintech host rather than a family-owned business. [Contested]",
       readerNote:
-        "Hospitality norms can differ with the reader's gender — including who hosts and expectations around greetings such as handshakes. This page flags that dimension rather than covering it; the fuller treatment belongs in the written report. [Contested]",
+        "Gender-mixed business meals are normal in the UAE's commercial mainstream, and the hospitality itself is warm regardless of the reader's gender. Greetings differ: some counterparts do not shake hands across gender for religious reasons — waiting for the other party to offer a hand first, whatever your own gender, avoids the misstep entirely and reads as courtesy, not hesitation. [Reported] Who hosts, and who attends, can narrow with gender in more traditional family businesses. [Contested] If participation is ever conditioned on a colleague's absence, the 'Where adaptation stops' note under Method & Sources applies. [Contested]",
     },
     presentation: {
       delta:

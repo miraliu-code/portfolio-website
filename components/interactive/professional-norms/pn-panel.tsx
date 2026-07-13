@@ -3,6 +3,7 @@
 import { useState } from "react";
 import {
   pnAxisLabels,
+  PN_LAST_REVIEWED,
   type PnCountry,
   type PnAxisScore,
 } from "@/lib/content/interactives/professional-norms";
@@ -29,8 +30,9 @@ import {
 
 const CONVERGED_RE = /^Largely converged/;
 
-/* Inline confidence tags — [Reported] etc. — render as quiet chips. */
-function Tagged({
+/* Inline confidence tags — [Reported] etc. — render as quiet chips.
+   Exported for the Method & Sources block in index.tsx. */
+export function Tagged({
   text,
   className = "",
 }: {
@@ -191,13 +193,16 @@ export function PnCountryPanel({ country }: { country: PnCountry }) {
         />
       </section>
 
-      {/* A1 — coverage honesty. */}
+      {/* A1 — coverage honesty + review metadata. */}
       <section>
         <SectionLabel>Coverage</SectionLabel>
         <Tagged
           text={country.coverage}
           className="mt-3 max-w-2xl font-serif text-sm italic leading-[1.8] text-information/75"
         />
+        <p className="mt-2 font-sans text-[0.6rem] uppercase tracking-[0.15em] text-information/50">
+          Last reviewed: {PN_LAST_REVIEWED}
+        </p>
       </section>
 
       {/* A3 — the seven axes. */}

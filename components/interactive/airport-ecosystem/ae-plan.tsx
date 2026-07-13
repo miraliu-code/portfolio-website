@@ -2,8 +2,12 @@
 
 import { useEffect, useState } from "react";
 import {
+  aeDetailFields,
+  aeOrganizations,
   aeZones,
+  getAeOrganization,
   getAeZone,
+  getAeZoneOrganizations,
 } from "@/lib/content/interactives/airport-ecosystem";
 
 /*
@@ -1121,15 +1125,72 @@ export function AeTerminalGhost() {
   );
 }
 
-/* The Explore section: floor plan + selection caption. */
+/* Small pill button shared by the org selector and the pivot chips. */
+function Chip({
+  active = false,
+  onClick,
+  children,
+}: {
+  active?: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={active}
+      className={`border px-3 py-1.5 font-sans text-xs tracking-wide transition-colors motion-reduce:transition-none ${
+        active
+          ? "border-interaction bg-interaction text-atmosphere"
+          : "border-structure/35 text-information/80 hover:border-interaction hover:text-interaction"
+      }`}
+    >
+      {children}
+    </button>
+  );
+}
+
+/* One field of the four-field detail panel. */
+function DetailField({ label, text }: { label: string; text: string }) {
+  return (
+    <div>
+      <p className="font-sans text-[0.6rem] uppercase tracking-[0.2em] text-interaction">
+        {label}
+      </p>
+      <p className="mt-2 font-serif text-sm leading-[1.8] text-information/90">
+        {text}
+      </p>
+    </div>
+  );
+}
+
+type AeSelection = { kind: "zone" | "org"; id: string } | null;
+
+/* The Explore section: org selector, floor plan with
+   cross-highlighting, and the four-field detail panel. */
 export function AeFloorPlan() {
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-  const selected = selectedId ? getAeZone(selectedId) : null;
+  const [selection, setSelection] = useState<AeSelection>(null);
+  const selectedZone =
+    selection?.kind === "zone" ? getAeZone(selection.id) : null;
+  const selectedOrg =
+    selection?.kind === "org" ? getAeOrganization(selection.id) : null;
+  /* Cross-highlighting: an organization lights every zone it touches. */
+  const litZones = selectedOrg ? new Set(selectedOrg.zones) : null;
+
+  const selectZone = (id: string) =>
+    setSelection((prev) =>
+      prev?.kind === "zone" && prev.id === id ? null : { kind: "zone", id },
+    );
+  const selectOrg = (id: string) =>
+    setSelection((prev) =>
+      prev?.kind === "org" && prev.id === id ? null : { kind: "org", id },
+    );
 
   /* Escape deselects, matching the globe. */
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setSelectedId(null);
+      if (e.key === "Escape") setSelection(null);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -1137,10 +1198,34 @@ export function AeFloorPlan() {
 
   return (
     <div className="border border-structure/20 bg-atmosphere">
+      {/* Organization selector — the second axis into the same system. */}
+      <div className="border-b border-structure/20 px-5 py-4 md:px-7">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="mr-3 font-sans text-[0.65rem] font-medium uppercase tracking-[0.3em] text-information/70">
+            Organizations
+          </span>
+          {aeOrganizations.map((org) => (
+            <Chip
+              key={org.id}
+              active={selection?.kind === "org" && selection.id === org.id}
+              onClick={() => selectOrg(org.id)}
+            >
+              {org.name}
+            </Chip>
+          ))}
+        </div>
+        {selectedOrg && (
+          <p className="mt-3 font-serif text-sm italic leading-relaxed text-information/70">
+            {selectedOrg.name} touches {selectedOrg.zones.length} of the 8
+            zones — highlighted on the plan below.
+          </p>
+        )}
+      </div>
+
       <svg
         viewBox={`0 0 ${W} ${H}`}
         role="group"
-        aria-label="Stylized airport terminal floor plan. Eight zones are selectable."
+        aria-label="Stylized airport terminal floor plan. Eight zones are selectable; selecting an organization highlights every zone it operates in."
         className="block w-full select-none"
       >
         {/* background click = deselect */}
@@ -1150,12 +1235,14 @@ export function AeFloorPlan() {
           width={W}
           height={H}
           fill="transparent"
-          onClick={() => setSelectedId(null)}
+          onClick={() => setSelection(null)}
         />
         <TerminalArt />
         {ZONE_SHAPES.map((shape) => {
           const zone = getAeZone(shape.id)!;
-          const isSelected = selectedId === shape.id;
+          const isSelected =
+            selection?.kind === "zone" && selection.id === shape.id;
+          const isLit = litZones?.has(shape.id) ?? false;
           return (
             <rect
               key={shape.id}
@@ -1169,48 +1256,154 @@ export function AeFloorPlan() {
               aria-label={`${zone.name} — select`}
               aria-pressed={isSelected}
               className={`ae-zone cursor-pointer focus:outline-none ${
-                isSelected ? "ae-zone-selected" : ""
+                isSelected ? "ae-zone-selected" : isLit ? "ae-zone-lit" : ""
               }`}
               onClick={(e) => {
                 e.stopPropagation();
-                setSelectedId(isSelected ? null : shape.id);
+                selectZone(shape.id);
               }}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
                   e.preventDefault();
-                  setSelectedId(isSelected ? null : shape.id);
+                  selectZone(shape.id);
                 }
               }}
             />
           );
         })}
+        {/* The vacant stand's callout, restored from Phase 1 — now an
+            entry point into the turnaround content instead of a bare
+            assertion. */}
+        <g
+          role="button"
+          tabIndex={0}
+          aria-label="Next aircraft in 40 minutes — open Ramp / Aircraft Turnaround"
+          className="ae-callout ae-label-tiny cursor-pointer focus:outline-none"
+          onClick={(e) => {
+            e.stopPropagation();
+            setSelection({ kind: "zone", id: "ramp" });
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              setSelection({ kind: "zone", id: "ramp" });
+            }
+          }}
+        >
+          <text
+            x={899}
+            y={94}
+            textAnchor="middle"
+            fontSize="9"
+            letterSpacing="1.2"
+            fill={INK}
+            fillOpacity="0.55"
+            style={{ fontFamily: "var(--font-sans)" }}
+          >
+            NEXT AIRCRAFT · 40 MIN
+          </text>
+          <line
+            x1={848}
+            y1={99}
+            x2={950}
+            y2={99}
+            stroke={INK}
+            strokeOpacity="0.35"
+            strokeWidth="1"
+            strokeDasharray="3 3"
+          />
+        </g>
       </svg>
 
-      {/* Selection caption — mirrors the globe's readout bar. */}
-      <div className="flex min-h-[5.5rem] items-baseline justify-between gap-6 border-t border-structure/20 px-5 py-4 md:px-7">
-        {selected ? (
-          <>
-            <div>
-              <p className="font-serif text-xl leading-snug text-information">
-                {selected.name}
-              </p>
-              <p className="mt-1.5 max-w-2xl font-serif text-sm italic leading-relaxed text-information/75">
-                {selected.blurb}
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={() => setSelectedId(null)}
-              className="shrink-0 font-sans text-xs uppercase tracking-[0.2em] text-information/60 transition-colors hover:text-interaction"
-            >
-              Reset
-            </button>
-          </>
-        ) : (
+      {/* Detail panel — the four-field structure for either node kind. */}
+      <div className="min-h-[5.5rem] border-t border-structure/20 px-5 py-5 md:px-7">
+        {!selection && (
           <p className="font-serif text-sm italic leading-relaxed text-information/60">
             Eight zones of the terminal are selectable — from the curb to the
-            ramp. Choose one.
+            ramp. Choose one, or choose an organization above to see its
+            footprint.
           </p>
+        )}
+
+        {selectedZone && (
+          <div>
+            <div className="flex items-baseline justify-between gap-6">
+              <p className="font-serif text-xl leading-snug text-information">
+                {selectedZone.name}
+              </p>
+              <button
+                type="button"
+                onClick={() => setSelection(null)}
+                className="shrink-0 font-sans text-xs uppercase tracking-[0.2em] text-information/60 transition-colors hover:text-interaction"
+              >
+                Reset
+              </button>
+            </div>
+            <p className="mt-1.5 max-w-2xl font-serif text-sm italic leading-relaxed text-information/75">
+              {selectedZone.blurb}
+            </p>
+            {/* Who runs it — each tag pivots into that organization. */}
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              <span className="mr-1 font-sans text-[0.6rem] uppercase tracking-[0.2em] text-information/50">
+                Run by
+              </span>
+              {getAeZoneOrganizations(selectedZone.id).map((org) => (
+                <Chip key={org.id} onClick={() => selectOrg(org.id)}>
+                  {org.name}
+                </Chip>
+              ))}
+            </div>
+            <div className="mt-7 grid max-w-4xl gap-x-10 gap-y-6 md:grid-cols-2">
+              {aeDetailFields.map(({ key, label }) => (
+                <DetailField
+                  key={key}
+                  label={label}
+                  text={selectedZone.detail[key]}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {selectedOrg && (
+          <div>
+            <div className="flex items-baseline justify-between gap-6">
+              <p className="font-serif text-xl leading-snug text-information">
+                {selectedOrg.name}
+              </p>
+              <button
+                type="button"
+                onClick={() => setSelection(null)}
+                className="shrink-0 font-sans text-xs uppercase tracking-[0.2em] text-information/60 transition-colors hover:text-interaction"
+              >
+                Reset
+              </button>
+            </div>
+            <p className="mt-1.5 max-w-2xl font-serif text-sm italic leading-relaxed text-information/75">
+              {selectedOrg.role}
+            </p>
+            {/* Footprint — each tag pivots into that zone. */}
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              <span className="mr-1 font-sans text-[0.6rem] uppercase tracking-[0.2em] text-information/50">
+                Footprint — {selectedOrg.zones.length}{" "}
+                {selectedOrg.zones.length === 1 ? "zone" : "zones"}
+              </span>
+              {selectedOrg.zones.map((zoneId) => (
+                <Chip key={zoneId} onClick={() => selectZone(zoneId)}>
+                  {getAeZone(zoneId)!.name}
+                </Chip>
+              ))}
+            </div>
+            <div className="mt-7 grid max-w-4xl gap-x-10 gap-y-6 md:grid-cols-2">
+              {aeDetailFields.map(({ key, label }) => (
+                <DetailField
+                  key={key}
+                  label={label}
+                  text={selectedOrg.detail[key]}
+                />
+              ))}
+            </div>
+          </div>
         )}
       </div>
     </div>

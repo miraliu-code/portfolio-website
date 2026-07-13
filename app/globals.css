@@ -117,10 +117,30 @@ html {
 }
 .ae-zone-selected,
 .ae-zone-selected:hover,
-.ae-zone-selected:focus-visible {
+.ae-zone-selected:focus-visible,
+.ae-zone-lit,
+.ae-zone-lit:hover,
+.ae-zone-lit:focus-visible {
   fill: var(--interaction);
   fill-opacity: 0.12;
   stroke-opacity: 0.85;
+}
+
+/* The vacant stand's callout — a quiet interactive footnote on the
+   ramp that opens the turnaround content. */
+.ae-callout text,
+.ae-callout line {
+  transition:
+    fill-opacity 200ms ease,
+    stroke-opacity 200ms ease;
+}
+.ae-callout:hover text,
+.ae-callout:focus-visible text {
+  fill-opacity: 0.95;
+}
+.ae-callout:hover line,
+.ae-callout:focus-visible line {
+  stroke-opacity: 0.75;
 }
 @media (prefers-reduced-motion: reduce) {
   .ae-zone {

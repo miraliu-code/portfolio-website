@@ -269,9 +269,14 @@ export function HsrExplore({
       {/* Map + jump list. DOM order keeps the map first (matching the
           Professional Norms globe) while md:flex-row-reverse seats the
           list on the left; on mobile the list stacks below the map in
-          the globe's two-column pattern. */}
-      <div className="flex flex-col md:flex-row-reverse">
-      <div className="relative min-w-0 flex-1 overflow-hidden">
+          the globe's two-column pattern. The row is the positioning
+          context for the desktop detail panel; the inner div is the
+          tight positioning context for pins and tooltips — it matches
+          the svg's height exactly, where the stretched flex column
+          does not (the cropped map is shorter than the list). */}
+      <div className="relative flex flex-col overflow-hidden md:flex-row-reverse">
+      <div className="min-w-0 flex-1 md:flex md:items-center">
+      <div className="relative w-full">
       <svg
         viewBox={`0 0 ${MAP_W} ${MAP_H}`}
         role="group"
@@ -442,11 +447,13 @@ export function HsrExplore({
                     strokeWidth="0.5"
                     style={{ pointerEvents: "none" }}
                   />
-                  {/* generous invisible hit area behind the visible dot */}
+                  {/* generous invisible hit area behind the visible dot —
+                      r=9 is the widest that keeps the UK and France
+                      targets from overlapping */}
                   <circle
                     cx={c.ex}
                     cy={c.ey}
-                    r={7}
+                    r={9}
                     fill="transparent"
                     className="cursor-pointer"
                     onMouseEnter={() => setHotCallout(c.id)}
@@ -593,6 +600,8 @@ export function HsrExplore({
           </div>
         );
       })()}
+      </div>
+      </div>
 
       {/* Detail panel: right slide-over (md+), bottom sheet (mobile) */}
       <div
@@ -699,7 +708,6 @@ export function HsrExplore({
             </PanelSection>
           </div>
         )}
-      </div>
       </div>
 
       {/* Jump list: every country selectable by name — the Europe

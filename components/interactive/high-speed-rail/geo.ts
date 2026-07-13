@@ -14,14 +14,34 @@ import {
  * Server-only geo pipeline: Natural Earth 110m boundaries (world-atlas)
  * are projected with d3-geo at build time. Only the resulting SVG path
  * strings cross to the client — no topojson or d3 in the bundle.
- * Antarctica is dropped before fitting, so the frame carries less
- * empty southern ocean and the nine countries read larger.
+ *
+ * The projection is fitted to a cropped window rather than the whole
+ * world: longitude −169°…172°, latitude −12° (the top of Australia)
+ * to 78°. Antarctica, the far southern ocean, and the emptiest Pacific
+ * margins never enter the frame, so the nine countries — the European
+ * cluster especially — read larger at any rendered size. Background
+ * land crossing the frame edge is simply clipped by the viewBox.
  */
 
 export const MAP_W = HSR_MAP_W;
 export const MAP_H = HSR_MAP_H;
 
 const ANTARCTICA_ID = "010";
+
+/* The crop window, sampled as a MultiPoint (avoids spherical-polygon
+   winding pitfalls in fitSize): frame-edge extremes at the latitudes
+   where the projection is widest/tallest. */
+const CROP_BOUNDS = {
+  type: "MultiPoint" as const,
+  coordinates: [
+    ...[-169, 172].flatMap((lon) =>
+      [-12, 0, 30, 60, 78].map((lat) => [lon, lat]),
+    ),
+    ...[-120, -60, 0, 60, 120].flatMap((lon) =>
+      [-12, 78].map((lat) => [lon, lat]),
+    ),
+  ],
+};
 
 /* Label-callout leaders for the tight European cluster: a line from
    each country's center out to a dot over open water/quiet land, so
@@ -82,12 +102,11 @@ export function buildHsrGeo(): HsrGeo {
   const features = world.features.filter(
     (f) => String(f.id) !== ANTARCTICA_ID,
   );
-  const fitted: FeatureCollection<Geometry> = {
-    type: "FeatureCollection",
-    features,
-  };
 
-  const projection = geoNaturalEarth1().fitSize([MAP_W, MAP_H], fitted);
+  const projection = geoNaturalEarth1().fitSize(
+    [MAP_W, MAP_H],
+    CROP_BOUNDS as unknown as Geometry,
+  );
   const pathGen = geoPath(projection);
 
   const byNumericId = new Map(hsrCountries.map((c) => [c.numericId, c]));

@@ -1214,10 +1214,18 @@ export function AeFloorPlan() {
             </Chip>
           ))}
         </div>
-        {selectedOrg && (
+        {selectedOrg ? (
           <p className="mt-3 font-serif text-sm italic leading-relaxed text-information/70">
             {selectedOrg.name} touches {selectedOrg.zones.length} of the 8
             zones — highlighted on the plan below.
+          </p>
+        ) : (
+          /* The two click categories, named plainly: orgs and zones are
+             different kinds of node, but both open the same panel. */
+          <p className="mt-3 max-w-3xl font-serif text-sm italic leading-relaxed text-information/60">
+            Two ways in: choose an organization above to light every zone it
+            operates, or choose a zone of the terminal to see who runs it —
+            either way, the panel beneath the plan opens with the detail.
           </p>
         )}
       </div>
@@ -1407,17 +1415,19 @@ export function AeFloorPlan() {
         )}
       </div>
 
-      {/* Jump row: all fifteen nodes by name (the Professional Norms
-          lens-bar treatment) — straight to any zone or organization
-          without locating it on the drawing first. Runs the identical
-          selection path as the plan and the org chips, toggle included. */}
+      {/* Jump rows: all fifteen nodes by name (the Professional Norms
+          lens-bar treatment), grouped under explicit ZONES and
+          ORGANIZATIONS sub-labels so the two click categories never
+          read as one undifferentiated set. Runs the identical
+          selection path as the plan and the org chips, toggle
+          included. */}
       <nav
         aria-label="All zones and organizations"
-        className="border-t border-structure/20 px-5 py-4 md:px-7"
+        className="space-y-3 border-t border-structure/20 px-5 py-4 md:px-7"
       >
-        <div className="md:flex md:flex-wrap md:items-baseline md:gap-x-5 md:gap-y-2">
-          <p className="mb-2 font-sans text-[0.65rem] font-medium uppercase tracking-[0.3em] text-information/70 md:mb-0">
-            Jump to
+        <div className="md:flex md:flex-wrap md:items-baseline md:gap-x-5 md:gap-y-1">
+          <p className="mb-1.5 font-sans text-[0.65rem] font-medium uppercase tracking-[0.3em] text-information/70 md:mb-0 md:w-32 md:shrink-0">
+            Zones
           </p>
           <div className="grid grid-cols-2 gap-x-6 md:contents">
             {aeZones.map((zone) => (
@@ -1437,6 +1447,13 @@ export function AeFloorPlan() {
                 {zone.name}
               </button>
             ))}
+          </div>
+        </div>
+        <div className="md:flex md:flex-wrap md:items-baseline md:gap-x-5 md:gap-y-1">
+          <p className="mb-1.5 font-sans text-[0.65rem] font-medium uppercase tracking-[0.3em] text-information/70 md:mb-0 md:w-32 md:shrink-0">
+            Organizations
+          </p>
+          <div className="grid grid-cols-2 gap-x-6 md:contents">
             {aeOrganizations.map((org) => (
               <button
                 key={org.id}

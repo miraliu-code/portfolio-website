@@ -40,10 +40,12 @@ export const hsrQuestion =
 export const hsrTimeline = { start: 1964, end: 2024 };
 
 /* Map frame, shared by the server geo pipeline and the client SVGs.
- * Antarctica is dropped from the projection, so the frame is shorter
- * than the classic 960×500 world — less empty southern ocean. */
+ * The projection is fitted to a cropped window — longitude −169°…172°,
+ * latitude −12° (the top of Australia) to 78° — so the frame carries
+ * no Antarctica, no far southern ocean, and less empty Pacific on
+ * either edge (see geo.ts). Height follows from that window at W=960. */
 export const HSR_MAP_W = 960;
-export const HSR_MAP_H = 432;
+export const HSR_MAP_H = 282;
 
 /*
  * Network size at an arbitrary year: 0 before the first build year,

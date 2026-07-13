@@ -75,6 +75,28 @@ html {
   }
 }
 
+/* Professional Norms globe. Fill transitions carry the lens
+   re-clustering (a crossfade between groupings, not a re-render);
+   hover/focus emphasize the stroke so they never fight a tier tint. */
+.pn-country {
+  transition:
+    fill 600ms ease,
+    fill-opacity 600ms ease,
+    stroke 250ms ease,
+    stroke-opacity 250ms ease,
+    stroke-width 250ms ease;
+}
+.pn-country:hover,
+.pn-country:focus-visible {
+  stroke-opacity: 1;
+  stroke-width: 1.2;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pn-country {
+    transition: none;
+  }
+}
+
 /* Atlas node map: the fill eases in like liquid (slower than the
    movement); the lift and shadow stay snappy. */
 .atlas-node {

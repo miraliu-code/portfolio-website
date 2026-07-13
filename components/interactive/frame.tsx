@@ -1,5 +1,6 @@
 import type { Project } from "@/lib/content/types";
 import { HighSpeedRailInteractive } from "./high-speed-rail";
+import { ProfessionalNormsInteractive } from "./professional-norms";
 import { MtrWayfinding } from "./mtr-wayfinding";
 
 /*
@@ -8,6 +9,7 @@ import { MtrWayfinding } from "./mtr-wayfinding";
  */
 const customExperiences: Record<string, React.ComponentType> = {
   "high-speed-rail": HighSpeedRailInteractive,
+  "professional-norms-worldwide": ProfessionalNormsInteractive,
 };
 
 /*

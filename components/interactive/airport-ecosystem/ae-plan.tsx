@@ -1406,6 +1406,57 @@ export function AeFloorPlan() {
           </div>
         )}
       </div>
+
+      {/* Jump row: all fifteen nodes by name (the Professional Norms
+          lens-bar treatment) — straight to any zone or organization
+          without locating it on the drawing first. Runs the identical
+          selection path as the plan and the org chips, toggle included. */}
+      <nav
+        aria-label="All zones and organizations"
+        className="border-t border-structure/20 px-5 py-4 md:px-7"
+      >
+        <div className="md:flex md:flex-wrap md:items-baseline md:gap-x-5 md:gap-y-2">
+          <p className="mb-2 font-sans text-[0.65rem] font-medium uppercase tracking-[0.3em] text-information/70 md:mb-0">
+            Jump to
+          </p>
+          <div className="grid grid-cols-2 gap-x-6 md:contents">
+            {aeZones.map((zone) => (
+              <button
+                key={zone.id}
+                type="button"
+                onClick={() => selectZone(zone.id)}
+                aria-pressed={
+                  selection?.kind === "zone" && selection.id === zone.id
+                }
+                className={`py-1.5 text-left font-sans text-xs tracking-wide transition-colors motion-reduce:transition-none ${
+                  selection?.kind === "zone" && selection.id === zone.id
+                    ? "text-interaction underline underline-offset-4"
+                    : "text-information/60 hover:text-interaction"
+                }`}
+              >
+                {zone.name}
+              </button>
+            ))}
+            {aeOrganizations.map((org) => (
+              <button
+                key={org.id}
+                type="button"
+                onClick={() => selectOrg(org.id)}
+                aria-pressed={
+                  selection?.kind === "org" && selection.id === org.id
+                }
+                className={`py-1.5 text-left font-sans text-xs tracking-wide transition-colors motion-reduce:transition-none ${
+                  selection?.kind === "org" && selection.id === org.id
+                    ? "text-interaction underline underline-offset-4"
+                    : "text-information/60 hover:text-interaction"
+                }`}
+              >
+                {org.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      </nav>
     </div>
   );
 }

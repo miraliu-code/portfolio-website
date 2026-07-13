@@ -282,6 +282,7 @@ function TinyLabel({
       letterSpacing="1.2"
       fill={INK}
       fillOpacity="0.5"
+      className="ae-label-tiny"
       style={{ fontFamily: "var(--font-sans)" }}
     >
       {children}
@@ -494,9 +495,6 @@ function TerminalArt() {
           <path d={`M 852 144 h 10 M 852 144 v -10`} fill="none" />
           <path d={`M 946 144 h -10 M 946 144 v -10`} fill="none" />
         </g>
-        <TinyLabel x={899} y={94} anchor="middle">
-          NEXT AIRCRAFT · 40 MIN
-        </TinyLabel>
       </g>
       <ZoneLabel x={64} y={172}>
         GATES /

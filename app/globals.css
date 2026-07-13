@@ -127,6 +127,14 @@ html {
     transition: none;
   }
 }
+/* The smallest label tier (gate numbers, FUEL, ATM …) becomes
+   illegible once the plan scales below tablet width — hide it rather
+   than shrink it further. Band labels (11px tier) stay. */
+@media (max-width: 640px) {
+  .ae-label-tiny {
+    display: none;
+  }
+}
 
 /* Atlas node map: the fill eases in like liquid (slower than the
    movement); the lift and shadow stay snappy. */

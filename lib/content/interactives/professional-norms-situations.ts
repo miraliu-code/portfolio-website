@@ -114,7 +114,9 @@ export interface PnCountryCells {
    Switzerland (2, federated) and Sweden (1, the dataset's most
    consensus-bound) — because "empowered to close directly" is not
    true of those two without it. */
-const NEGOTIATION_ANGLO_BASELINE =
+/* Exported for the converged-block consistency check in
+   professional-norms-situations-2.ts. */
+export const NEGOTIATION_ANGLO_BASELINE =
   "Largely converged with the Anglo negotiation baseline — first offers function as real anchors, silence is often tactical rather than emotional, and counterparties are frequently empowered to close directly. [Reported]";
 const NEGOTIATION_DEFERRAL_NOTE =
   " Significant delta: Swiss and Swedish counterparties often cannot close alone — the decision is federated across stakeholders or taken back to the group — so treat a Swiss or Swedish 'let me confirm with the team' as genuine process, not a tactic. [Reported]";
@@ -181,7 +183,9 @@ export const pnCells: Record<string, PnCountryCells> = {
         "Direct, unhedged pushback in the room suggests a trading-floor or tech-sector context rather than the professional-services norm. [Contested]",
     },
     negotiation: {
-      delta: NEGOTIATION_ANGLO_BASELINE,
+      delta:
+        NEGOTIATION_ANGLO_BASELINE +
+        " Minor delta: at the Irish subsidiary of a US or UK multinational, the person across the table may need sign-off from a non-Irish HQ — ask early where authority actually sits. [Reported]",
     },
   },
 
@@ -237,7 +241,9 @@ export const pnCells: Record<string, PnCountryCells> = {
         "A room where junior staff never openly disagree suggests a more formal sub-sector rather than the general norm. [Contested]",
     },
     negotiation: {
-      delta: NEGOTIATION_ANGLO_BASELINE,
+      delta:
+        NEGOTIATION_ANGLO_BASELINE +
+        " Minor delta: consensus-leaning rooms are common here — a counterparty may take the close back to colleagues before confirming; treat that as process, not hesitation. [Reported]",
     },
   },
 
@@ -660,7 +666,7 @@ export const pnCells: Record<string, PnCountryCells> = {
 /* Methodology note rendered with the interactive: discipline first,
    lineage second, coverage gap third. */
 export const pnMethodNote = [
-  "This guide was built against a specific failure mode: cultural guides that manufacture differences to fill space, and that describe what people supposedly feel rather than what a reader could actually observe. Every claim here is written to be behavioral — what happens, not what it means — and tagged for confidence rather than presented as settled fact. Country detail always renders before the regional pattern, and where a country doesn't meaningfully differ from that pattern, the convergence is stated plainly rather than invented around. What follows is placeholder-tier content written for a portfolio project: a working demonstration of that discipline, not a reviewed guide.",
+  "This guide was built against a specific failure mode: cultural guides that manufacture differences to fill space, and that describe what people supposedly feel rather than what a reader could actually observe. Every claim here is written to be behavioral — what happens, not what it means — and tagged for confidence rather than presented as settled fact. Country detail always renders before the regional pattern, and where a country doesn't meaningfully differ from that pattern, the convergence is stated plainly rather than invented around. This guide has been through multiple internal accuracy and sensitivity passes but has not undergone external subject-matter review.",
   "Some of the concepts underneath this interactive — directness, decision speed, attitudes to contracts and hierarchy — trace back to Hofstede-style dimension research (rooted in IBM survey data from the 1960s–70s) and to Erin Meyer's Culture Map lineage of executive-classroom observation. Those foundations are dated and narrow, and they are named here rather than inherited silently.",
   "Coverage is sixteen countries; that leaves most of the world unrepresented. The gap is stated here, and uncovered countries render greyed-out on the globe, because an unstated gap is a claim by omission.",
   "One more gap is structural rather than geographic: this guide does not model how these norms shift with who the reader is. Several dynamics described here — personal questions in interviews, drinking-centered evenings — carry different stakes depending on the reader's gender, age, or family status. Where a cell touches one of those dynamics, a reader note flags it; the deeper treatment belongs in the full written report, not in a tooltip.",

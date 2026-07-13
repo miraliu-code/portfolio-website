@@ -606,7 +606,7 @@ export const pnCountries: PnCountry[] = [
     region: "South America",
     focus: [-53, -10.5],
     coverage:
-      "South America — sole representative in this guide. Portuguese-speaking Brazil is not a proxy for its Spanish-speaking neighbors; Argentina and Chile, absent, differ on formality and pace. [Reported] One instrument limit stated plainly: Brazil and Italy land on identical scores across all seven axes below — a limit of the axes' resolution, not a claim that the two countries are interchangeable.",
+      "South America — sole representative in this guide. Portuguese-speaking Brazil is not a proxy for its Spanish-speaking neighbors; Argentina and Chile, absent, differ on formality and pace. [Reported] One instrument limit stated plainly: Brazil and Italy land on identical scores across all seven axes below, which means the two will co-occur in every lens grouping on this page. That is a limit of this seven-axis model's resolution, surfaced rather than hidden — not a claim that the two countries are interchangeable.",
     segmentation:
       "The rest of this page describes a first meeting with an established São Paulo firm — that city, not the whole country, is what the scores describe; Brazil's regional variation is real, and this page does not attempt to map it. [Reported] Multinational subsidiaries follow their headquarters' forms with Brazilian warmth layered over them. [Reported]",
     axes: {
@@ -634,7 +634,7 @@ export const pnCountries: PnCountry[] = [
     region: "Southern Europe",
     focus: [12.5, 42.5],
     coverage:
-      "Southern Europe — sole representative in this guide. Spain and Greece, absent, share the relational lean but not the specifics. [Reported] This page scores the industrial north and does not attempt to map Italy's internal variation. One instrument limit stated plainly: Italy and Brazil land on identical scores across all seven axes below — a limit of the axes' resolution, not a claim that the two countries are interchangeable.",
+      "Southern Europe — sole representative in this guide. Spain and Greece, absent, share the relational lean but not the specifics. [Reported] This page scores the industrial north and does not attempt to map Italy's internal variation. One instrument limit stated plainly: Italy and Brazil land on identical scores across all seven axes below, which means the two will co-occur in every lens grouping on this page. That is a limit of this seven-axis model's resolution, surfaced rather than hidden — not a claim that the two countries are interchangeable.",
     segmentation:
       "The rest of this page describes a first meeting with an established family-owned northern firm (Milan, Bologna, Turin) — that segment, not the whole country, is what the scores describe. A Milanese finance counterparty may read as northern-European until the contract stage, where the relational pattern reasserts itself. [Reported]",
     axes: {

@@ -11,7 +11,20 @@
  * country (plus Italy) together, which contradicted the country pages
  * themselves — Chinese tech and Indian IT interviews are direct and
  * individually framed, not modest.
+ *
+ * The bottom of this file runs a converged-block consistency check
+ * over every shared block in both situation files.
  */
+
+import {
+  getPnCountry,
+  pnCountries,
+  type PnAxes,
+} from "./professional-norms";
+import {
+  NEGOTIATION_ANGLO_BASELINE,
+  pnCells,
+} from "./professional-norms-situations";
 
 export interface PnBasicCell {
   delta: string;
@@ -78,7 +91,7 @@ const EMAIL_CONVERGED: PnBasicCell = {
     "Discomfort with a written summary suggests an atypical, more relationship-first counterparty in any of these contexts. [Contested]",
 };
 
-const NETWORKING_ANZ: PnBasicCell = {
+const NETWORKING_AU: PnBasicCell = {
   delta:
     "Largely converged with the US event format; self-promotion is notably more muted, and overselling is quietly discounted. [Reported]",
   sequence:
@@ -176,7 +189,16 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
       disconfirmingSignal:
         "A formal, business-only dinner signals a corporate-finance or deal-stage context rather than the relationship-building norm. [Contested]",
     },
-    presentation: PRESENTATION_ANGLO,
+    presentation: {
+      delta:
+        "The room is engaged but softened: challenge arrives wrapped in humor or framed as a question, and the sharpest reservations often don't surface publicly at all. [Reported]",
+      sequence:
+        "Warm, responsive Q&A; objections gently framed, often self-deprecating; substantive doubts are more likely to arrive afterward, one-to-one. [Reported]",
+      costlyError:
+        "Reading a warm, joke-leavened Q&A as full agreement — the humor can be carrying the objection. [Reported]",
+      disconfirmingSignal:
+        "Blunt, unhedged public challenge suggests a trading-floor or tech-sector audience rather than the professional-services norm. [Contested]",
+    },
     email: EMAIL_CONVERGED,
     networking: {
       delta:
@@ -214,7 +236,7 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
     },
     presentation: PRESENTATION_ANGLO,
     email: EMAIL_CONVERGED,
-    networking: NETWORKING_ANZ,
+    networking: NETWORKING_AU,
   },
 
   "new-zealand": {
@@ -241,7 +263,16 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
     },
     presentation: PRESENTATION_ANGLO,
     email: EMAIL_CONVERGED,
-    networking: NETWORKING_ANZ,
+    networking: {
+      delta:
+        "The standing-room event exists, but in a market this small, introductions through shared connections do most of the real work, and genuine mutual curiosity is expected before any ask. Self-promotion is muted; overselling is quietly discounted. [Reported]",
+      sequence:
+        "Casual approach, modest self-introduction, real questions in both directions before any professional purpose surfaces. [Reported]",
+      costlyError:
+        "Leading with credentials or an ask before mutual interest is established — reputations travel here, and the impression follows you. [Reported]",
+      disconfirmingSignal:
+        "Confident credential-leading landing well signals a recruiting- or sales-driven event rather than the general register. [Contested]",
+    },
   },
 
   germany: {
@@ -829,3 +860,93 @@ export const pnCellsTier2: Record<string, PnTier2Cells> = {
     },
   },
 };
+
+/* ---------------------------------------------------------------- */
+/* Converged-block consistency check.                                 */
+/*                                                                    */
+/* Bug class (caught twice by manual audit before this existed:       */
+/* Switzerland/negotiation, Ireland/presentation): a country reuses a */
+/* shared "largely converged with X" block while sitting in a         */
+/* different tier from X on the axis that governs the block's claim.  */
+/*                                                                    */
+/* Rule: a BARE shared block requires the same tier (score ≥4 / =3 /  */
+/* ≤2, matching the lens cutoffs) as the reference country on the     */
+/* governing axis. Appending a country-specific rider — which states  */
+/* the difference — exempts the cell. A block whose own text already  */
+/* states a delta from the reference gets one tier of slack, never    */
+/* two. Deterministic over static data and unguarded, so a violation  */
+/* throws during `next build` prerender and fails the build before    */
+/* anything ships.                                                    */
+/* ---------------------------------------------------------------- */
+
+const scoreTier = (countryId: string, axis: keyof PnAxes): number => {
+  const score = getPnCountry(countryId)!.axes[axis].score;
+  return score >= 4 ? 0 : score === 3 ? 1 : 2;
+};
+
+const sharedBlockChecks: {
+  name: string;
+  axis: keyof PnAxes;
+  reference: string;
+  block: string;
+  /* The block's own text states a delta from the reference. */
+  statesDelta?: boolean;
+  text: (countryId: string) => string | undefined;
+}[] = [
+  {
+    name: "negotiation / Anglo baseline",
+    axis: "decisionLocus",
+    reference: "united-states",
+    block: NEGOTIATION_ANGLO_BASELINE,
+    text: (id) => pnCells[id]?.negotiation.delta,
+  },
+  {
+    name: "presentation / Anglo",
+    axis: "disagreement",
+    reference: "united-states",
+    block: PRESENTATION_ANGLO.delta,
+    text: (id) => pnCellsTier2[id]?.presentation.delta,
+  },
+  {
+    name: "email / converged",
+    axis: "contractFunction",
+    reference: "united-states",
+    block: EMAIL_CONVERGED.delta,
+    text: (id) => pnCellsTier2[id]?.email.delta,
+  },
+  {
+    name: "networking / muted US format",
+    axis: "trustBasis",
+    reference: "united-states",
+    statesDelta: true,
+    block: NETWORKING_AU.delta,
+    text: (id) => pnCellsTier2[id]?.networking.delta,
+  },
+  {
+    name: "networking / DACH",
+    axis: "trustBasis",
+    reference: "germany",
+    statesDelta: true,
+    block: NETWORKING_DACH.delta,
+    text: (id) => pnCellsTier2[id]?.networking.delta,
+  },
+];
+
+for (const check of sharedBlockChecks) {
+  for (const country of pnCountries) {
+    const text = check.text(country.id);
+    if (!text || !text.startsWith(check.block)) continue;
+    if (text.length > check.block.length) continue; // rider states the delta
+    const distance = Math.abs(
+      scoreTier(country.id, check.axis) - scoreTier(check.reference, check.axis),
+    );
+    if (distance > (check.statesDelta ? 1 : 0)) {
+      throw new Error(
+        `Converged-block violation: ${country.name} uses the "${check.name}" ` +
+          `shared block bare, but sits ${distance} tier(s) away from its ` +
+          `reference (${check.reference}) on ${String(check.axis)}. ` +
+          `Give the cell a rider stating the difference, or its own content.`,
+      );
+    }
+  }
+}

@@ -3,6 +3,7 @@ import { HighSpeedRailInteractive } from "./high-speed-rail";
 import { ProfessionalNormsInteractive } from "./professional-norms";
 import { AirportEcosystemInteractive } from "./airport-ecosystem";
 import { ChinaPlusOneInteractive } from "./china-plus-one";
+import { ChangiExperienceInteractive } from "./changi-experience";
 import { MtrWayfinding } from "./mtr-wayfinding";
 
 /*
@@ -14,6 +15,7 @@ const customExperiences: Record<string, React.ComponentType> = {
   "professional-norms-worldwide": ProfessionalNormsInteractive,
   "airport-ecosystem": AirportEcosystemInteractive,
   "china-plus-one": ChinaPlusOneInteractive,
+  "changi-airport-experience": ChangiExperienceInteractive,
 };
 
 /*

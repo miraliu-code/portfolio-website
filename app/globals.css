@@ -152,7 +152,8 @@ html {
    than shrink it further. Band labels (11px tier) stay. */
 @media (max-width: 640px) {
   .ae-label-tiny,
-  .cpo-label-tiny {
+  .cpo-label-tiny,
+  .cx-label-tiny {
     display: none;
   }
 }
@@ -182,6 +183,38 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .cpo-node,
   .cpo-node-smooth {
+    transition: none;
+  }
+}
+
+/* Changi floor plan: zones are groups of one or more fill shapes
+   (Free Attractions is two disjoint areas), surfacing on hover with
+   a whisper fill; selection commits to the interaction color. Same
+   quiet language as the other Atlas plans. */
+.cx-zone .cx-zone-fill {
+  fill: var(--structure);
+  fill-opacity: 0;
+  stroke: var(--interaction);
+  stroke-opacity: 0;
+  stroke-width: 1.5;
+  transition:
+    fill 250ms ease,
+    fill-opacity 250ms ease,
+    stroke-opacity 250ms ease;
+}
+.cx-zone:hover .cx-zone-fill,
+.cx-zone:focus-visible .cx-zone-fill {
+  fill-opacity: 0.07;
+}
+.cx-zone-selected .cx-zone-fill,
+.cx-zone-selected:hover .cx-zone-fill,
+.cx-zone-selected:focus-visible .cx-zone-fill {
+  fill: var(--interaction);
+  fill-opacity: 0.12;
+  stroke-opacity: 0.85;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cx-zone .cx-zone-fill {
     transition: none;
   }
 }

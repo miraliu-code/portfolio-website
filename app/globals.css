@@ -151,8 +151,38 @@ html {
    illegible once the plan scales below tablet width — hide it rather
    than shrink it further. Band labels (11px tier) stay. */
 @media (max-width: 640px) {
-  .ae-label-tiny {
+  .ae-label-tiny,
+  .cpo-label-tiny {
     display: none;
+  }
+}
+
+/* China Plus One nodes: the sector toggle animates each node's radius
+   (the interactive's central payoff — a smooth re-weighting, not a
+   jump); while the timeline is being scrubbed the smoothing class is
+   dropped so radii track the thumb directly. */
+.cpo-node {
+  transition:
+    fill-opacity 250ms ease,
+    stroke-opacity 250ms ease,
+    stroke-width 250ms ease;
+}
+.cpo-node-smooth {
+  transition:
+    r 700ms cubic-bezier(0.33, 0, 0.2, 1),
+    fill-opacity 250ms ease,
+    stroke-opacity 250ms ease,
+    stroke-width 250ms ease;
+}
+.cpo-node:hover,
+.cpo-node:focus-visible {
+  fill-opacity: 0.24;
+  stroke-opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cpo-node,
+  .cpo-node-smooth {
+    transition: none;
   }
 }
 

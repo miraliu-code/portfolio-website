@@ -396,6 +396,17 @@ const strategy: StandardProject[] = [
     length: "20–25 pp",
   }),
   stub("strategy", {
+    slug: "china-plus-one",
+    folder: "comparative-strategy",
+    coordinate: "S-24",
+    title: "Following the Factory (China Plus One)",
+    question:
+      "When manufacturing costs rise in one country, where does it actually go — and does it actually go anywhere at all?",
+    format: "Flagship Report + Interactive",
+    length: "30–40 pp + Interactive",
+    explorable: true,
+  }),
+  stub("strategy", {
     slug: "professional-services-ai-economy",
     folder: "scenario-planning",
     coordinate: "S-23",

@@ -40,12 +40,12 @@ export const hsrQuestion =
 export const hsrTimeline = { start: 1964, end: 2024 };
 
 /* Map frame, shared by the server geo pipeline and the client SVGs.
- * The projection is fitted to a cropped window — longitude −169°…172°,
- * latitude −12° (the top of Australia) to 78° — so the frame carries
- * no Antarctica, no far southern ocean, and less empty Pacific on
- * either edge (see geo.ts). Height follows from that window at W=960. */
+ * The projection keeps the full longitude range but trims the dead
+ * polar bands — latitude −56° (past the tip of South America, so no
+ * Antarctica or far southern ocean) to 70°N (no high Arctic). Height
+ * follows from that window at W = 960 (see geo.ts). */
 export const HSR_MAP_W = 960;
-export const HSR_MAP_H = 282;
+export const HSR_MAP_H = 382;
 
 /*
  * Network size at an arbitrary year: 0 before the first build year,

@@ -15,12 +15,11 @@ import {
  * are projected with d3-geo at build time. Only the resulting SVG path
  * strings cross to the client — no topojson or d3 in the bundle.
  *
- * The projection is fitted to a cropped window rather than the whole
- * world: longitude −169°…172°, latitude −12° (the top of Australia)
- * to 78°. Antarctica, the far southern ocean, and the emptiest Pacific
- * margins never enter the frame, so the nine countries — the European
- * cluster especially — read larger at any rendered size. Background
- * land crossing the frame edge is simply clipped by the viewBox.
+ * The projection keeps the full longitude range but trims the dead
+ * polar bands: latitude −56° (past the tip of South America, so no
+ * Antarctica or far southern ocean) to 70°N (no high Arctic). Neither
+ * band is ever relevant to the nine countries. Background land
+ * crossing the frame edge is simply clipped by the viewBox.
  */
 
 export const MAP_W = HSR_MAP_W;
@@ -34,11 +33,11 @@ const ANTARCTICA_ID = "010";
 const CROP_BOUNDS = {
   type: "MultiPoint" as const,
   coordinates: [
-    ...[-169, 172].flatMap((lon) =>
-      [-12, 0, 30, 60, 78].map((lat) => [lon, lat]),
+    ...[-180, 180].flatMap((lon) =>
+      [-56, -20, 0, 40, 70].map((lat) => [lon, lat]),
     ),
     ...[-120, -60, 0, 60, 120].flatMap((lon) =>
-      [-12, 78].map((lat) => [lon, lat]),
+      [-56, 70].map((lat) => [lon, lat]),
     ),
   ],
 };

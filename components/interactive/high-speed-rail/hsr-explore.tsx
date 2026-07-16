@@ -266,17 +266,39 @@ export function HsrExplore({
 
   return (
     <div className="border border-structure/20 bg-atmosphere">
-      {/* Map + jump list. DOM order keeps the map first (matching the
-          Professional Norms globe) while md:flex-row-reverse seats the
-          list on the left; on mobile the list stacks below the map in
-          the globe's two-column pattern. The row is the positioning
-          context for the desktop detail panel; the inner div is the
-          tight positioning context for pins and tooltips — it matches
-          the svg's height exactly, where the stretched flex column
-          does not (the cropped map is shorter than the list). */}
-      <div className="relative flex flex-col overflow-hidden md:flex-row-reverse">
-      <div className="min-w-0 flex-1 md:flex md:items-center">
-      <div className="relative w-full">
+      {/* Country bar above the map (the Airport Ecosystem org-row
+          pattern): every country selectable by name — the Europe
+          cluster especially is hard to click precisely at world scale.
+          Selecting from here runs the identical state path as a map
+          click: same zoom, same stroke-draw, same panel. */}
+      <div className="border-b border-structure/20 px-5 py-4 md:px-7">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="mr-3 font-sans text-[0.65rem] font-medium uppercase tracking-[0.3em] text-information/70">
+            Countries
+          </span>
+          {[...countries]
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map((c) => (
+              <button
+                key={c.id}
+                type="button"
+                onClick={() =>
+                  setSelectedId((prev) => (prev === c.id ? null : c.id))
+                }
+                aria-pressed={selectedId === c.id}
+                className={`border px-3 py-1.5 font-sans text-xs tracking-wide transition-colors motion-reduce:transition-none ${
+                  selectedId === c.id
+                    ? "border-interaction bg-interaction text-atmosphere"
+                    : "border-structure/35 text-information/80 hover:border-interaction hover:text-interaction"
+                }`}
+              >
+                {c.name}
+              </button>
+            ))}
+        </div>
+      </div>
+
+      <div className="relative overflow-hidden">
       <svg
         viewBox={`0 0 ${MAP_W} ${MAP_H}`}
         role="group"
@@ -600,8 +622,6 @@ export function HsrExplore({
           </div>
         );
       })()}
-      </div>
-      </div>
 
       {/* Detail panel: right slide-over (md+), bottom sheet (mobile) */}
       <div
@@ -709,39 +729,6 @@ export function HsrExplore({
           </div>
         )}
       </div>
-
-      {/* Jump list: every country selectable by name — the Europe
-          cluster especially is hard to click precisely at world scale.
-          Selecting from here runs the identical state path as a map
-          click: same zoom, same stroke-draw, same panel. */}
-      <nav
-        aria-label="Country list"
-        className="w-full shrink-0 border-t border-structure/15 px-5 pb-5 pt-4 md:w-44 md:border-r md:border-t-0 md:py-5 md:pl-7 md:pr-4"
-      >
-        <p className="font-sans text-[0.6rem] font-medium uppercase tracking-[0.25em] text-information/50">
-          Jump to a country
-        </p>
-        <ul className="mt-3 grid grid-cols-2 gap-x-6 md:grid-cols-1">
-          {[...countries]
-            .sort((a, b) => a.name.localeCompare(b.name))
-            .map((c) => (
-              <li key={c.id}>
-                <button
-                  type="button"
-                  onClick={() => setSelectedId(c.id)}
-                  aria-pressed={selectedId === c.id}
-                  className={`block w-full border-l py-1 pl-3 text-left font-sans text-xs tracking-wide transition-colors motion-reduce:transition-none ${
-                    selectedId === c.id
-                      ? "border-interaction text-interaction"
-                      : "border-structure/20 text-information/65 hover:border-interaction/60 hover:text-interaction"
-                  }`}
-                >
-                  {c.name}
-                </button>
-              </li>
-            ))}
-        </ul>
-      </nav>
       </div>
 
       {/* Timeline scrubber (Phase 2a): manual drag, 1964–2024. Drives

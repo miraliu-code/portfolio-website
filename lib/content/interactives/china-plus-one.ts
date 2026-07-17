@@ -8,19 +8,26 @@
  * while its share of what America imports has collapsed, and that
  * distinction is the point.
  *
- * Sourcing: the 2025 endpoints are sourced —
+ * Sourcing: the 2025 anchors carried by the report are sourced —
  *   Electronics: US smartphone import shares, Q2 2025
  *     (Canalys/Census-derived): India ~44%, Vietnam ~30%, China ~25%
  *     (down from ~61% in Q2 2024).
  *   Apparel: US apparel import shares by value (OTEXA / Sheng Lu,
  *     2025): China 11.3% (from 19.8% a year earlier), Vietnam
- *     17.7–21.5% depending on series (19.6 used here), and the five
+ *     17.7–21.5% depending on series (19.6 used here), the five
  *     non-China Asian suppliers on this map summing to the sourced
- *     record 44.2%; Mexico 2.3%.
+ *     record 44.2%, and Mexico 2.3%.
+ * The REMAINING 2025 endpoints — the individual apparel splits for
+ * Bangladesh, India, Cambodia, and Indonesia, and the small-country
+ * electronics shares — are NOT individually sourced: they are
+ * estimates set at plausible reported magnitudes and fitted (for
+ * apparel) to sum with Vietnam's sourced figure to the 44.2% total.
+ * Each is flagged in `estimated2025`, marked "est." in its panel,
+ * disclosed in the on-page caption, and guarded below.
  * The 2010 endpoints are stylized per the Phase 1 spec — "China
  * dominant, the other six minimal". Mid-timeline values are linear
  * interpolation between the endpoints: illustrative motion, not
- * year-by-year data, and labeled as such on the page.
+ * year-by-year data. Both facts are labeled on the page.
  *
  * Phase 2 adds the four-field country panels (What moved here, and
  * why / What it cost to build / The labor reality / The ceiling),
@@ -56,7 +63,8 @@ export const cpoSectors: { id: CpoSector; name: string }[] = [
 
 export interface CpoShare {
   start: number; // % of US imports at 2010 (stylized endpoint)
-  end: number; // % of US imports at 2025 (sourced)
+  end: number; // % of US imports at 2025 — sourced anchor, or a fitted
+  // estimate where the country's `estimated2025` flags the sector
 }
 
 /* The four-field panel. `laborRestructured` pulls The Labor Reality
@@ -90,6 +98,13 @@ export interface CpoCountry {
   /* One-line summary shown in the panel header. */
   summary: string;
   shares: Record<CpoSector, CpoShare>;
+  /* Provenance: sectors whose 2025 endpoint is NOT an individually
+     sourced figure but an estimate fitted at plausible reported
+     magnitude — constrained, for apparel, to sum with the sourced
+     anchors to the record 44.2% five-supplier total. Rendered as
+     "est." in the panel and covered by the on-page caption; guarded
+     below so the flags can't silently drift from the data. */
+  estimated2025?: Partial<Record<CpoSector, true>>;
   detail: CpoDetail;
 }
 
@@ -157,6 +172,7 @@ export const cpoCountries: CpoCountry[] = [
       electronics: { start: 0.2, end: 0.5 },
       apparel: { start: 2.4, end: 4.4 },
     },
+    estimated2025: { electronics: true, apparel: true },
     detail: {
       whatMoved:
         "Apparel, specifically and almost exclusively: +26.9% growth in 2025 — among the fastest of any supplier — with the share of US buyers sourcing here jumping from 75% to 94% in a single year. [Reported]",
@@ -182,6 +198,7 @@ export const cpoCountries: CpoCountry[] = [
       electronics: { start: 0.1, end: 0.3 },
       apparel: { start: 4.6, end: 9.3 },
     },
+    estimated2025: { electronics: true, apparel: true },
     detail: {
       whatMoved:
         "The mature, longest-standing apparel destination of the whole shift — scale built over decades, not tariff cycles. [Well-established]",
@@ -207,6 +224,7 @@ export const cpoCountries: CpoCountry[] = [
       electronics: { start: 1, end: 44 },
       apparel: { start: 4.0, end: 6.3 },
     },
+    estimated2025: { apparel: true },
     detail: {
       whatMoved:
         "iPhone assembly: under 1% of Apple's global output in 2017, 25% by the end of 2025 — and in Q2 2025 India overtook China as the largest source of US smartphone imports, at 44% (Canalys). [Well-established]",
@@ -231,6 +249,7 @@ export const cpoCountries: CpoCountry[] = [
       electronics: { start: 0.5, end: 1.2 },
       apparel: { start: 5.0, end: 4.6 },
     },
+    estimated2025: { electronics: true, apparel: true },
     detail: {
       whatMoved:
         "Not apparel volume but an EV battery supply chain, built out around the world's largest nickel reserves — roughly $65bn in cumulative Chinese investment. [Reported]",
@@ -256,6 +275,7 @@ export const cpoCountries: CpoCountry[] = [
       electronics: { start: 3, end: 1.5 },
       apparel: { start: 4.5, end: 2.3 },
     },
+    estimated2025: { electronics: true },
     detail: {
       whatMoved:
         "The headline says record investment; the composition says something quieter — see the callout below, which this field deliberately does not compress into one line. [Reported]",
@@ -272,13 +292,13 @@ export const cpoCountries: CpoCountry[] = [
 /* Persistent honesty captions (rendered under the map). */
 export const cpoCaptions = {
   sizing:
-    "Node size reflects sourced share-of-US-import figures — cited in each country's panel — not a live trade index. Every figure is a US-market share, the report's stated scope.",
+    "Node size encodes share of US imports — not a live trade index; every figure is a US-market share, the report's stated scope. Sourced 2025 anchors: China and Vietnam in both sectors, India's electronics share, Mexico's apparel share, and the five-supplier 44.2% apparel total. The remaining 2025 shares — including Bangladesh's and India's individual apparel splits — are estimates fitted within that sourced total, and are marked \"est.\" in their panels.",
+  baseline:
+    "The 2010 baseline is stylized — China dominant, the other six minimal — and between the endpoints the motion is illustrative interpolation, not year-by-year data.",
   scope:
     "Malaysia and Thailand are deliberately outside this map's scope — a stated gap, not an oversight.",
   cafta:
     "Off this map entirely: CAFTA-DR Central America fell from 9.6% to 7.6% of US apparel imports — the industry everyone assumed would nearshore first is not nearshoring.",
-  interpolation:
-    "Between the endpoints the motion is illustrative interpolation, not year-by-year data.",
 };
 
 /* ------------------------------------------------------------------ */
@@ -474,6 +494,42 @@ export function getCpoCountry(id: string): CpoCountry | null {
   if (!(est[0] > est[1] && est[1] > est[2])) {
     throw new Error(
       "China Plus One: transshipment estimates must strictly shrink as granularity increases (coarse → fine).",
+    );
+  }
+  /* Provenance guards: the estimated-2025 flags must match reality.
+     Sourced anchors (China + Vietnam both sectors, India electronics,
+     Mexico apparel) must NOT be flagged; every fitted estimate MUST
+     be — so an unflagged estimate, or a flag on a sourced figure,
+     fails the build rather than quietly mislabeling provenance. */
+  const expectedEstimates: Record<string, CpoSector[]> = {
+    china: [],
+    vietnam: [],
+    cambodia: ["electronics", "apparel"],
+    bangladesh: ["electronics", "apparel"],
+    india: ["apparel"],
+    indonesia: ["electronics", "apparel"],
+    mexico: ["electronics"],
+  };
+  for (const c of cpoCountries) {
+    const expected = expectedEstimates[c.id];
+    if (!expected) {
+      throw new Error(
+        `China Plus One: country "${c.id}" has no provenance expectation registered.`,
+      );
+    }
+    for (const sector of ["electronics", "apparel"] as const) {
+      const flagged = c.estimated2025?.[sector] === true;
+      const shouldBe = expected.includes(sector);
+      if (flagged !== shouldBe) {
+        throw new Error(
+          `China Plus One: "${c.id}" ${sector} 2025 provenance flag is ${flagged} but must be ${shouldBe} — sourced anchors and fitted estimates may not be conflated.`,
+        );
+      }
+    }
+  }
+  if (!cpoCaptions.sizing.includes("est.") || !cpoCaptions.baseline.includes("stylized")) {
+    throw new Error(
+      "China Plus One: the on-page captions must disclose the fitted estimates and the stylized 2010 baseline.",
     );
   }
 }

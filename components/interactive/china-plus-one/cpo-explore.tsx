@@ -26,8 +26,9 @@ import type { CpoGeo } from "./geo";
  * flipping Electronics → Apparel re-sizes every node smoothly and
  * should visibly contradict the nearshoring assumption (apparel
  * diversified WITHIN Asia; Mexico shrinks). The timeline scrubber
- * drives a simplified 2010 → 2025 interpolation (endpoints correct,
- * mid-years labeled as illustrative). Phase 2 adds the four-field
+ * drives a simplified 2010 → 2025 interpolation (2025 anchors sourced
+ * or flagged "est.", 2010 baseline stylized, mid-years illustrative —
+ * all labeled on the page). Phase 2 adds the four-field
  * country panels — with the labor field pulled out of the template
  * where a routine label would neutralize it — plus Vietnam's
  * transshipment-resolution control and Mexico's brownfield callout.
@@ -205,8 +206,9 @@ export function CpoExplore({ geo }: { geo: CpoGeo }) {
   const [smooth, setSmooth] = useState(true);
 
   const displayYear = Math.round(year);
-  const atEndpoint =
-    year === cpoTimeline.start || year === cpoTimeline.end;
+  /* Only the 2025 endpoint is a data anchor; 2010 is a stylized
+     baseline, so it keeps the ≈ the mid-years get. */
+  const atAnchor = year === cpoTimeline.end;
   const selected = selectedId ? getCpoCountry(selectedId) : null;
   const sectorName = cpoSectors.find((s) => s.id === sector)!.name;
 
@@ -229,8 +231,8 @@ export function CpoExplore({ geo }: { geo: CpoGeo }) {
     setSector(id);
   };
 
-  const shareLabel = (share: number) =>
-    `${atEndpoint ? "" : "≈"}${Number.isInteger(share) ? share.toFixed(0) : share.toFixed(1)}%`;
+  const shareLabel = (share: number, estimated?: boolean) =>
+    `${atAnchor && !estimated ? "" : "≈"}${Number.isInteger(share) ? share.toFixed(0) : share.toFixed(1)}%`;
 
   return (
     <div className="border border-structure/20 bg-atmosphere">
@@ -440,7 +442,7 @@ export function CpoExplore({ geo }: { geo: CpoGeo }) {
                   fontVariantNumeric: "tabular-nums",
                 }}
               >
-                {shareLabel(share)}
+                {shareLabel(share, country.estimated2025?.[sector])}
               </text>
             </g>
           );
@@ -450,7 +452,10 @@ export function CpoExplore({ geo }: { geo: CpoGeo }) {
       {/* Honesty captions — persistent, quiet. */}
       <div className="space-y-1.5 border-t border-structure/15 px-5 py-4 md:px-7">
         <p className="max-w-3xl font-serif text-xs italic leading-relaxed text-information/55">
-          {cpoCaptions.sizing} {cpoCaptions.interpolation}
+          {cpoCaptions.sizing}
+        </p>
+        <p className="max-w-3xl font-serif text-xs italic leading-relaxed text-information/55">
+          {cpoCaptions.baseline}
         </p>
         <p className="max-w-3xl font-serif text-xs italic leading-relaxed text-information/55">
           {cpoCaptions.scope}
@@ -474,7 +479,11 @@ export function CpoExplore({ geo }: { geo: CpoGeo }) {
               <p className="flex flex-wrap items-baseline gap-x-4 font-serif text-xl leading-snug text-information">
                 {selected.name}
                 <span className="font-sans text-[0.65rem] uppercase tracking-[0.2em] text-interaction">
-                  {shareLabel(cpoShareAt(selected, sector, year))} of US{" "}
+                  {shareLabel(
+                    cpoShareAt(selected, sector, year),
+                    selected.estimated2025?.[sector],
+                  )}
+                  {selected.estimated2025?.[sector] ? " (est.)" : ""} of US{" "}
                   {sectorName.toLowerCase()} imports · {displayYear}
                 </span>
               </p>

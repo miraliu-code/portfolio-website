@@ -1221,16 +1221,6 @@ const ioPsychology: StandardProject[] = [
     length: "2,500 words",
   }),
   stub("io-psychology", {
-    slug: "business-culture-east-asia",
-    folder: "culture-behavior",
-    coordinate: "IO-16",
-    title: "Business Culture Across East Asia",
-    question: "How do organizations in East Asia make decisions differently?",
-    format: "White Paper + Interactive",
-    length: "20 pp + Interactive",
-    explorable: true,
-  }),
-  stub("io-psychology", {
     slug: "professional-norms-worldwide",
     folder: "culture-behavior",
     coordinate: "IO-17",

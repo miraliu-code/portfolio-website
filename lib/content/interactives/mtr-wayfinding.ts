@@ -73,7 +73,7 @@ export const mtrElements: MtrSignElement[] = [
     name: "The terminus",
     locus: "“Sheung Wan” — direction by final stop",
     note:
-      "The second grammar: naming a direction by the line's terminus. Rich if you know the city's geography; nearly empty if you don't. Line-naming and terminus-naming answer the same question — which way is my train — in two different languages, and Central uses both, sometimes for trains going the same direction. The second view of this interactive shows that documented conflict side by side. [Reported]",
+      "The second grammar: naming a direction by the line's terminus. Rich if you know the city's geography; nearly empty if you don't. Line-naming and terminus-naming answer the same question — which way is my train — in two different languages, and Central uses both, sometimes for trains going the same direction. The second view of this interactive reconstructs that documented conflict side by side. [Reported]",
   },
   {
     id: "exit-letter",
@@ -153,29 +153,29 @@ export interface MtrCentralSign {
 }
 
 export const mtrCentralIntro =
-  "Central / Hong Kong Station, as documented: some directional signage in this real interchange names where a train is going by LINE, while other signage in the same station names it by TERMINUS — for trains running the same direction. Both signs below are real conventions in simultaneous use. Click either one.";
+  "The documented inconsistency at Central / Hong Kong Station: some directional signage names where a train is going by LINE, while other signage in the same interchange names it by TERMINUS — for trains running the same direction. The two signs below are illustrative reconstructions of those two real conventions, built to show the documented pattern side by side — not reproductions of specific photographed installations. Click either one.";
 
 export const mtrCentralSigns: MtrCentralSign[] = [
   {
     id: "by-line",
-    heading: "Concourse corridor",
+    heading: "The line-naming convention",
     zh: "港島綫",
     en: "Island Line",
     note:
-      "The corridor convention: direction named by line. To follow it, you need the map in your head — “Island Line” only helps a passenger who already knows their destination is on it. [Reported]",
+      "The first convention: direction named by line. To follow it, you need the map in your head — “Island Line” only helps a passenger who already knows their destination is on it. [Reported]",
   },
   {
     id: "by-terminus",
-    heading: "Platform entrance — same trains",
+    heading: "The terminus-naming convention — same trains",
     zh: "往上環",
     en: "To Sheung Wan",
     note:
-      "Steps away, the same direction named by terminus instead. Neither sign is wrong; they are two grammars for one fact — and a passenger following the words, rather than the colour, has to translate between them mid-journey. [Reported]",
+      "The second convention: the same direction named by terminus instead. Neither sign is wrong; they are two grammars for one fact — and a passenger following the words, rather than the colour, has to translate between them mid-journey. [Reported] One period detail in this reconstruction: Sheung Wan was the Island Line's western terminus only until the 2014 West Island Line extension — these trains now run to Kennedy Town. [Dated]",
   },
 ];
 
 export const mtrCentralFinding =
-  "Both signs direct passengers to the same westbound Island Line trains. The system absorbs its own inconsistency because colour — the Island Line blue carried on both signs — keeps answering the question even where the words disagree.";
+  "In the reconstruction as in the station: both signs point to the same westbound Island Line trains. The system absorbs its own inconsistency because colour — the Island Line blue carried on both signs — keeps answering the question even where the words disagree.";
 
 /* ------------------------------------------------------------------ */
 /* Sourcing note — the Hofstede-lineage-note pattern from              */
@@ -183,7 +183,7 @@ export const mtrCentralFinding =
 /* ------------------------------------------------------------------ */
 
 export const mtrSourcing =
-  "Sourcing note: the colour-coding history and the Central Station naming inconsistency presented here trace principally to Keith Tam — a Hong Kong-based information designer and academic who has written specifically and critically about MTR signage. A genuine expert source, but a personal design-writing platform rather than an institutional or peer-reviewed one. These claims will be firmed up with additional sourcing before Phase 2's fuller content; read them as expert observation, not settled record.";
+  "Sourcing note: the colour-coding history and the Central Station naming inconsistency presented here trace principally to Keith Tam — a Hong Kong-based information designer and academic who has written specifically and critically about MTR signage. A genuine expert source, but a personal design-writing platform rather than an institutional or peer-reviewed one. The paired Central signs in this interactive are illustrative reconstructions of the two conventions he documents, not reproductions of photographed signage. These claims will be firmed up with additional sourcing before Phase 2's fuller content; read them as expert observation, not settled record.";
 
 export const mtrPhaseNote =
   "Phase 1 — this build proves the signage-board interaction and the reading-mode toggle. Full element content, the mosaic-tile deep dive, the Song-typeface story, the Central Station comparison in full, the NYC/London/Paris/DC comparison, and Key Insights arrive in Phase 2.";
@@ -261,6 +261,30 @@ export const mtrPhaseNote =
   ) {
     throw new Error(
       "MTR Follow the Sign: the sourcing note must name Keith Tam and its personal-platform status.",
+    );
+  }
+  /* The paired Central signs are constructed illustrations of the
+     documented PATTERN, not sourced reproductions of specific
+     installations — the framing must say so, on the page, in both
+     the intro and the sourcing note, and the terminus sign must
+     carry its pre-2015 dating. */
+  if (!mtrCentralIntro.includes("illustrative reconstructions")) {
+    throw new Error(
+      "MTR Follow the Sign: the Central intro must label the paired signs as illustrative reconstructions of the documented pattern.",
+    );
+  }
+  if (!mtrSourcing.includes("illustrative reconstructions")) {
+    throw new Error(
+      "MTR Follow the Sign: the sourcing note must disclose that the Central signs are reconstructions, not photographed signage.",
+    );
+  }
+  const terminusSign = mtrCentralSigns.find((s) => s.id === "by-terminus")!;
+  if (
+    !terminusSign.note.includes("[Dated]") ||
+    !terminusSign.note.includes("Kennedy Town")
+  ) {
+    throw new Error(
+      "MTR Follow the Sign: the terminus sign must carry its pre-2015 dating (Sheung Wan → Kennedy Town, 2014 extension).",
     );
   }
   const modeIds = mtrModes.map((m) => m.id);

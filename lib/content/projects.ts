@@ -824,7 +824,7 @@ const design: StandardProject[] = [
     coordinate: "D-15",
     title: "Hong Kong MTR Wayfinding",
     question:
-      "Why is one of the world's busiest transit systems so easy to understand?",
+      "Why does a signage system with real, documented inconsistencies still feel effortless to navigate?",
     date: "2026-06-28",
     readingTime: 12,
     format: "Field Guide + Interactive",

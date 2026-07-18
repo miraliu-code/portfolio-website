@@ -4,7 +4,7 @@ import { ProfessionalNormsInteractive } from "./professional-norms";
 import { AirportEcosystemInteractive } from "./airport-ecosystem";
 import { ChinaPlusOneInteractive } from "./china-plus-one";
 import { ChangiExperienceInteractive } from "./changi-experience";
-import { MtrWayfinding } from "./mtr-wayfinding";
+import { MtrFollowTheSign } from "./mtr-wayfinding";
 
 /*
  * Flagship interactives own their full section structure (they still
@@ -16,6 +16,7 @@ const customExperiences: Record<string, React.ComponentType> = {
   "airport-ecosystem": AirportEcosystemInteractive,
   "china-plus-one": ChinaPlusOneInteractive,
   "changi-airport-experience": ChangiExperienceInteractive,
+  "hong-kong-mtr-wayfinding": MtrFollowTheSign,
 };
 
 /*
@@ -30,19 +31,10 @@ interface InteractiveSpec {
   explore?: React.ReactNode;
 }
 
-const interactives: Record<string, InteractiveSpec> = {
-  "hong-kong-mtr-wayfinding": {
-    orientation:
-      "Below is a schematic MTR interchange: two lines, a concourse, stairs, and exits. The station's information system is drawn as numbered signs. Toggle the three layers to see what each audience is shown — and click any sign to learn why it exists.",
-    insights: [
-      "Information appears exactly at the decision point — never before, never after.",
-      "Color is a system-wide language: a line's identity survives from map to platform edge.",
-      "Exits are destinations with names, which turns leaving — the hardest problem — into the easiest.",
-      "The step-free route is designed as a first-class path, not an appendix to the stairs.",
-    ],
-    explore: <MtrWayfinding />,
-  },
-};
+/* Currently none: every shipped interactive is a flagship above. The
+   generic frame below still serves explorable projects that are on
+   the roadmap but not yet built. */
+const interactives: Record<string, InteractiveSpec> = {};
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (

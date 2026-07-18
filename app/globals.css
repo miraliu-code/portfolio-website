@@ -153,8 +153,42 @@ html {
 @media (max-width: 640px) {
   .ae-label-tiny,
   .cpo-label-tiny,
-  .cx-label-tiny {
+  .cx-label-tiny,
+  .mtr-label-tiny {
     display: none;
+  }
+}
+
+/* MTR Follow the Sign: the reading-mode toggle cross-fades whole
+   categories of sign parts (text / shape / mosaic); selection and
+   hover outlines share the quiet transition language. */
+.mtr-fade {
+  transition: opacity 450ms ease;
+}
+.mtr-el {
+  cursor: pointer;
+}
+.mtr-el:focus-visible {
+  outline: none;
+}
+.mtr-outline {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+.mtr-el:hover .mtr-outline,
+.mtr-el:focus-visible .mtr-outline {
+  opacity: 0.5;
+}
+.mtr-outline-on,
+.mtr-el:hover .mtr-outline-on,
+.mtr-el:focus-visible .mtr-outline-on {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mtr-fade,
+  .mtr-outline {
+    transition: none;
   }
 }
 

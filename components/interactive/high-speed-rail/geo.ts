@@ -27,6 +27,15 @@ export const MAP_H = HSR_MAP_H;
 
 const ANTARCTICA_ID = "010";
 
+/* world-atlas's France geometry (ISO 250) is a MultiPolygon that
+   includes French Guiana in South America. The HSR highlight must
+   cover European France only — Guiana has no part in the report's
+   network — so France's polygons are split by longitude: anything
+   west of 20°W leaves the highlight and rejoins the map as plain
+   background land (it should still be drawn, just not light up). */
+const FRANCE_ID = "250";
+const isOverseasPolygon = (polygon: number[][][]) => polygon[0][0][0] < -20;
+
 /* The crop window, sampled as a MultiPoint (avoids spherical-polygon
    winding pitfalls in fitSize): frame-edge extremes at the latitudes
    where the projection is widest/tallest. */
@@ -114,9 +123,25 @@ export function buildHsrGeo(): HsrGeo {
   const highlighted: CountryShape[] = [];
 
   for (const f of features) {
+    const hsr = byNumericId.get(String(f.id));
+    if (hsr && String(f.id) === FRANCE_ID && f.geometry.type === "MultiPolygon") {
+      const polygons = f.geometry.coordinates as number[][][][];
+      const mainland = polygons.filter((p) => !isOverseasPolygon(p));
+      const overseas = polygons.filter(isOverseasPolygon);
+      const mainlandD = pathGen({
+        type: "MultiPolygon",
+        coordinates: mainland,
+      } as Geometry);
+      if (mainlandD) highlighted.push({ id: hsr.id, d: mainlandD });
+      const overseasD = pathGen({
+        type: "MultiPolygon",
+        coordinates: overseas,
+      } as Geometry);
+      if (overseasD) countries.push({ id: "", d: overseasD });
+      continue;
+    }
     const d = pathGen(f);
     if (!d) continue;
-    const hsr = byNumericId.get(String(f.id));
     if (hsr) highlighted.push({ id: hsr.id, d });
     else countries.push({ id: "", d });
   }

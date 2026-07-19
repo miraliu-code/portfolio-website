@@ -122,14 +122,15 @@ export function DcExplore() {
                 Reset
               </button>
             </div>
+            {element.principle && (
+              <p className="mt-2 inline-block border border-structure/30 px-2 py-1 font-sans text-[0.6rem] uppercase tracking-[0.2em] text-information/65">
+                Sustainable Safety · {element.principle}
+              </p>
+            )}
             <Tagged
               text={element.note}
               className="mt-3 max-w-3xl font-serif text-sm leading-[1.8] text-information/90"
             />
-            <p className="mt-3 font-sans text-[0.6rem] uppercase tracking-[0.2em] text-information/45">
-              Phase 1 note — the full reading of each element arrives in
-              Phase 2
-            </p>
           </div>
         ) : (
           <p className="font-serif text-sm italic leading-relaxed text-information/60">

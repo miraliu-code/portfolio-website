@@ -430,26 +430,48 @@ function AccessRoad({ p }: { p: Pal }) {
         stroke={p.glyph}
         strokeOpacity={0.25}
       />
+      {/* entry threshold: contrasting paver band + woonerf gate sign,
+          announcing the category change at the boundary */}
+      <rect
+        x={132}
+        y={244}
+        width={34}
+        height={GRADE - 244}
+        fill={p.table}
+        stroke={p.glyph}
+        strokeOpacity={0.3}
+      />
+      <line x1={149} y1={244} x2={149} y2={GRADE} stroke={p.glyph} strokeOpacity={0.25} />
+      <rect x={140} y={186} width={4} height={58} fill={p.glyph} />
+      <rect x={130} y={168} width={24} height={22} rx={2} fill="#4c66a0" stroke={p.paint} strokeWidth={1.5} />
+      <g stroke={p.paint} strokeWidth={1.4} fill="none">
+        <path d="M 135 184 L 138 179 L 141 184" />
+        <circle cx={147} cy={176} r={2.2} />
+        <line x1={147} y1={178} x2={147} y2={183} />
+      </g>
       {/* planter chicane */}
-      <rect x={160} y={226} width={80} height={18} fill={p.concrete} stroke={p.glyph} strokeOpacity={0.3} />
-      <circle cx={178} cy={222} r={8} fill={p.grass} />
-      <circle cx={200} cy={219} r={10} fill={p.grass} />
-      <circle cx={222} cy={222} r={8} fill={p.grass} />
-      <Pedestrian x={310} top={244} p={p} />
+      <rect x={200} y={226} width={80} height={18} fill={p.concrete} stroke={p.glyph} strokeOpacity={0.3} />
+      <circle cx={218} cy={222} r={8} fill={p.grass} />
+      <circle cx={240} cy={219} r={10} fill={p.grass} />
+      <circle cx={262} cy={222} r={8} fill={p.grass} />
+      <Pedestrian x={330} top={244} p={p} />
       <Cyclist x={465} top={237} p={p} />
       <Car x={585} top={244} p={p} />
       <Tree x={775} top={244} p={p} />
-      <ZoneLabel x1={160} x2={240} text="CHICANE" p={p} />
+      <ZoneLabel x1={132} x2={166} text="GATEWAY" p={p} />
+      <ZoneLabel x1={200} x2={280} text="CHICANE" p={p} />
       <ZoneLabel x1={400} x2={530} text="SPEED TABLE" p={p} />
       <ZoneLabel x1={40} x2={920} text="ONE SHARED SURFACE, WALL TO WALL · 15–20 KM/H" p={p} row={1} />
     </>
   );
 }
 const ACCESS_HITS: HitZone[] = [
-  /* The shared surface is the underlay: chicane and table sit on top
-     of it in the interaction layer, so they win their own clicks. */
+  /* The shared surface is the underlay: the gateway, chicane, and
+     table sit on top of it in the interaction layer, so they win
+     their own clicks. */
   { id: "shared-surface", label: "The shared surface", x1: 40, x2: 920 },
-  { id: "chicane", label: "The planter chicane", x1: 160, x2: 240 },
+  { id: "gateway", label: "The entry threshold", x1: 126, x2: 172 },
+  { id: "chicane", label: "The planter chicane", x1: 200, x2: 280 },
   { id: "speed-table", label: "The speed table", x1: 400, x2: 530 },
 ];
 

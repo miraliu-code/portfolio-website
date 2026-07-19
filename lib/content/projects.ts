@@ -1543,13 +1543,104 @@ const notes: NoteEntry[] = [
     "What does a yearbook staff know about deadlines that companies don't?",
     "Volunteer labor, hard deadlines, and shared authorship — the yearbook room as a miniature organization. Note in progress. (Draft placeholder.)",
   ),
-  noteStub(
-    10,
-    "donor-engagement-customer-loyalty",
-    "Why Donor Engagement and Customer Loyalty Are the Same Behavioral Problem",
-    "Why do donors and customers churn for the same reasons?",
-    "Two vocabularies, one behavior: recognition, reciprocity, and the moment someone quietly stops believing the relationship is mutual. Note in progress. (Draft placeholder.)",
-  ),
+  /* -- The first full essay on the site (converted from a Note): the
+        Essay treatment is dek → body → one pull quote → References
+        (the closing-bibliography block, the pattern for cited
+        essays). -- */
+  {
+    type: "note",
+    slug: "donor-engagement-customer-loyalty",
+    domain: "notes",
+    coordinate: "N-10",
+    title: "The Same Machine",
+    question: "Why do donors and customers churn for the same reasons?",
+    date: "2026-07-19",
+    readingTime: 7,
+    format: "Essay",
+    length: "1,500 words",
+    hero: nextHero(),
+    draft: false,
+    artifacts: [],
+    body: [
+      {
+        kind: "dek",
+        text: "Nonprofits treat giving as charity, though it behaves like loyalty until the gift grows large enough to become something else.",
+      },
+      {
+        kind: "p",
+        text: "For two years I spent my days with a donor database, and what held my attention was never the gifts themselves but the pattern of who disappeared. Most people who gave did so exactly once. They arrived during a pledge drive, made a single contribution, and were never heard from again, leaving behind a long roster of names each fixed to a single date. A smaller number came back. Smaller still was the group that set up a recurring gift and then stayed for years, quietly, the way a lamp left on in an empty room goes unnoticed until you realize how long it has been burning. The donors who seemed least consequential in the moment, the ones giving ten dollars a month with no gala and no naming opportunity, proved over time to be the ones who mattered most.",
+      },
+      {
+        kind: "p",
+        text: "Blackbaud measured the shape of this in its Sustainers in Focus report, which followed donors from a first gift in 2006 across the decade that followed. A person who gave a single time was worth roughly two dollars ten years on, while someone who converted to monthly giving the following year was worth thirty-one, and someone who converted two years out, seventy-three. By the report's accounting, a new sustainer returns fifteen to thirty-six times the ten-year value of a single-gift donor (Anonymous, 2017). One person who sets up an automatic ten dollars, in other words, outweighs by an order of magnitude the person who writes a hundred-dollar check once and means it.",
+      },
+      {
+        kind: "p",
+        text: "Inside a nonprofit, the staff who cultivate that recurring gift belong to a department called development, or membership, a world with its own conferences, its own vocabulary, and its own founding conviction that giving is a categorically different act, undertaken because donors believe in the cause. They do believe, as a rule. What the database suggests, though, is that belief is seldom what sustains the relationship over time, and that habit is what actually does the work.",
+      },
+      {
+        kind: "p",
+        text: "Marketing understood this a century ago and said so without embarrassment. In the early trade literature the entire enterprise was organized around the repeat rather than the first sale. One writer in 1914 observed that Gillette had built its fortune by drawing men into an expensive habit, and that Pears distributed sample soap precisely so that use would settle into a permanent one. Holding on to the habitual customer, and forestalling what we would now call churn, was treated as the real work, while the initial purchase counted as little more than the price of entry. Followed back through the archive, it is habit rather than exchange that forms the actual spine of the discipline (Tadajewski, 2019), a lesson nonprofits seem to rediscover every year and promptly refile under a different name.",
+      },
+      {
+        kind: "quote",
+        text: "The sector's genuine error is not that it treats donors like customers; it is that it treats every donor like the same customer.",
+      },
+      {
+        kind: "p",
+        text: "The second ingredient is identity, and the most vivid illustration I have found sits in a place no fundraiser thinks to look, which is the economy of live-stream gifting. On Chinese streaming platforms, viewers send real money to performers they will never meet, partly to sustain a private sense of connection with one particular streamer and partly to be seen giving at all. Researchers who have studied the behavior separate it into relational identity and class identity, the bond and the display (Li et al., 2021). Translated into another idiom, this is the listener who feels personally addressed by a Morning Edition host, and it is the on-air acknowledgment that reads a donor's name into the air. The tote bag is not a present so much as reciprocity with a logo on it, and a second donation comes more easily than the first for the same reason a tenth comes more easily than a second, which is that each one confirms the person the donor has already decided to be.",
+      },
+      {
+        kind: "p",
+        text: "The obvious objection is that giving carries a moral warmth that buying does not, the quiet satisfaction of having done one's part. That satisfaction is real, it has a name in the literature, and it has been measured, and the measurements locate its source mostly in the self rather than in any observing audience. In one experiment, participants gave at nearly identical rates whether or not a pair of watching eyes appeared on the screen, and the eyes raised the amount given without changing the decision to give (Grossman & Levy, 2024). The celebrated moral return of giving consists, then, largely in the upkeep of a self-image, the sense of being the kind of person who gives, which runs on the same machinery as being a public-radio person, or an Apple person. Rather than setting giving apart from loyalty, the warmth proves to be cut from the same cloth.",
+      },
+      {
+        kind: "p",
+        text: "This is why the monthly sustainer does not merely resemble a subscription but functions as one, a point first made by someone inside the CRM industry rather than outside it. Blackbaud's chief scientist described the recurring gift as blending into the other small monthly charges on a donor's card, a Netflix subscription among them, until it becomes what he called background giving (Anonymous, 2017). Administering a fifteen-dollar monthly sustainer calls for the same discipline a streaming company practices, from the lapse when a card expires to the effort of winning the customer back and the unglamorous arithmetic of retention. Automating the gift lowers the cost of continuing to the point that people simply neglect to stop, which is less a matter of belief holding them in place than of friction finally arranged in their favor.",
+      },
+      {
+        kind: "p",
+        text: "The pattern holds until the gift grows large, at which point it quietly inverts. A major donor, the source of a six- or seven-figure commitment, is not operating out of habit at all. One study of thirty-two such donors found that their giving rested on relationships lasting eighteen years on average, on private conversations, on a trusted peer making the request, on professional advisors consulted along the way, and on terms that were negotiated rather than assumed (Van Hecke, 2025). This is not cue and routine but something closer to an enterprise sale, complete with a named account manager and a cycle measured in months. What these donors respond to is not automation but agency, an appeal that leaves the choice and the direction visibly in their hands, which is simply identity again in more formal dress. The mechanism does not vanish near the top of the pyramid, but it changes register.",
+      },
+      {
+        kind: "p",
+        text: "The sector's genuine error is not that it treats donors like customers; it is that it treats every donor like the same customer. The ten-dollar sustainer churns like a streaming subscriber and is best understood as one, while the two-million-dollar donor behaves like a key account and is best understood as another. Applying membership tactics to a major donor, or the choreography of a major gift to the mass file, is a category mistake in either direction, and most development shops commit it in at least one.",
+      },
+      {
+        kind: "p",
+        text: "There is a reading of all this that sounds cynical and, on closer inspection, is not. The purest-seeming giving, the automatic ten dollars a month with no plaque and no dinner attached, is in mechanical terms an instance of brand loyalty, built from habit, identity, and a charge that dissolves into the others on the card. The commitment behind it is entirely real; it is simply not exceptional. It is the ordinary way people bind themselves to anything that lasts, whether a detergent, a streamer, a newsroom, or a cause, and a nonprofit that understood its recurring donors the way a subscription business understands its base, while understanding its major donors the way a firm understands its accounts, would keep far more of the people it already has.",
+      },
+      {
+        kind: "p",
+        text: "Belief, in the end, was never what held them; habit was, and that word simply flattered us less.",
+      },
+      {
+        kind: "references",
+        items: [
+          {
+            text: "Anonymous. (2017). Research quantifies the high value in sustainer donor programs. Nonprofit Business Advisor, 2017(328), 1–3.",
+            href: "https://doi.org/10.1002/nba.30265",
+          },
+          {
+            text: "Grossman, P. J., & Levy, J. (2024). It's not you (well, it is a bit you), it's me: Self- versus social image in warm-glow giving. PLOS ONE, 19(3), Article e0300868.",
+            href: "https://doi.org/10.1371/journal.pone.0300868",
+          },
+          {
+            text: "Li, R., Lu, Y., Ma, J., & Wang, W. (2021). Examining gifting behavior on live streaming platforms: An identity-based motivation model. Information & Management, 58(6), Article 103406.",
+            href: "https://doi.org/10.1016/j.im.2020.103406",
+          },
+          {
+            text: "Tadajewski, M. (2019). Habit as a central concept in marketing. Marketing Theory, 19(4), 447–466.",
+            href: "https://doi.org/10.1177/1470593119847251",
+          },
+          {
+            text: "Van Hecke, D. C. (2025). Major donor philanthropy and the effects of social capital (Publication No. 32409616) [Doctoral dissertation]. ProQuest Dissertations & Theses Global.",
+            href: "https://www.proquest.com/dissertations-theses/major-donor-philanthropy-effects-social-capital/docview/3271801752/se-2",
+          },
+        ],
+      },
+    ],
+  },
   noteStub(
     11,
     "shenzhen-innovation",

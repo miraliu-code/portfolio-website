@@ -21,6 +21,16 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
                 {block.text}
               </h3>
             );
+          case "dek":
+            /* Essay subhead: the lede between title and body. */
+            return (
+              <p
+                key={i}
+                className="font-serif text-lg italic leading-relaxed text-information/70"
+              >
+                {block.text}
+              </p>
+            );
           case "quote":
             /* Pull quote: generous space, no decorative marks (Standard 06). */
             return (
@@ -43,6 +53,42 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
                   </li>
                 ))}
               </ul>
+            );
+          case "references":
+            /* Closing bibliography (the pattern for cited essays):
+               hairline rule, the site's section-label voice, then
+               hanging-indent author-date entries at reading size with
+               the locator as a quiet link. */
+            return (
+              <section
+                key={i}
+                className="mt-16 border-t border-structure/15 pt-8"
+              >
+                <h3 className="font-sans text-xs font-medium uppercase tracking-[0.3em] text-information/70">
+                  References
+                </h3>
+                <ul className="mt-6 space-y-5">
+                  {block.items.map((item, j) => (
+                    <li
+                      key={j}
+                      className="-indent-6 pl-6 font-serif text-sm leading-relaxed text-information/80"
+                    >
+                      {item.text}
+                      {item.href && (
+                        <>
+                          {" "}
+                          <a
+                            href={item.href}
+                            className="break-all font-sans text-xs text-interaction hover:underline hover:underline-offset-4"
+                          >
+                            {item.href}
+                          </a>
+                        </>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </section>
             );
           case "image":
             return (

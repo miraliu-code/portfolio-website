@@ -28,9 +28,14 @@ export interface Folder {
 export type Block =
   | { kind: "p"; text: string }
   | { kind: "h3"; text: string }
+  | { kind: "dek"; text: string } // essay subhead: italic lede under the title
   | { kind: "quote"; text: string } // pull quote — one per substantial essay
   | { kind: "list"; items: string[] }
-  | { kind: "image"; src: string; caption: string };
+  | { kind: "image"; src: string; caption: string }
+  /* Closing bibliography for essays citing formal sources: author-date
+     entries with the locator (DOI/URL) split out as a link, rendered
+     as a bordered end block. The pattern for every cited essay. */
+  | { kind: "references"; items: { text: string; href?: string }[] };
 
 export interface TabSection {
   id: string;

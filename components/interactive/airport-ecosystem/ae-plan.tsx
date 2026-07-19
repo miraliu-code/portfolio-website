@@ -1198,36 +1198,76 @@ export function AeFloorPlan() {
 
   return (
     <div className="border border-structure/20 bg-atmosphere">
-      {/* Organization selector — the second axis into the same system. */}
+      {/* Consolidated entry point: both click categories at the top,
+          sub-labeled ZONES / ORGANIZATIONS (the Professional Norms
+          lens-bar treatment), with the two-ways-in explainer adjacent.
+          Runs the identical selection path as the plan itself. */}
       <div className="border-b border-structure/20 px-5 py-4 md:px-7">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="mr-3 font-sans text-[0.65rem] font-medium uppercase tracking-[0.3em] text-information/70">
-            Organizations
-          </span>
-          {aeOrganizations.map((org) => (
-            <Chip
-              key={org.id}
-              active={selection?.kind === "org" && selection.id === org.id}
-              onClick={() => selectOrg(org.id)}
-            >
-              {org.name}
-            </Chip>
-          ))}
-        </div>
         {selectedOrg ? (
-          <p className="mt-3 font-serif text-sm italic leading-relaxed text-information/70">
+          <p className="mb-3 font-serif text-sm italic leading-relaxed text-information/70">
             {selectedOrg.name} touches {selectedOrg.zones.length} of the 8
             zones — highlighted on the plan below.
           </p>
         ) : (
-          /* The two click categories, named plainly: orgs and zones are
-             different kinds of node, but both open the same panel. */
-          <p className="mt-3 max-w-3xl font-serif text-sm italic leading-relaxed text-information/60">
+          <p className="mb-3 max-w-3xl font-serif text-sm italic leading-relaxed text-information/60">
             Two ways in: choose an organization above to light every zone it
             operates, or choose a zone of the terminal to see who runs it —
             either way, the panel beneath the plan opens with the detail.
           </p>
         )}
+        <nav
+          aria-label="All zones and organizations"
+          className="space-y-3"
+        >
+          <div className="md:flex md:flex-wrap md:items-baseline md:gap-x-5 md:gap-y-1">
+            <p className="mb-1.5 font-sans text-[0.65rem] font-medium uppercase tracking-[0.3em] text-information/70 md:mb-0 md:w-32 md:shrink-0">
+              Zones
+            </p>
+            <div className="grid grid-cols-2 gap-x-6 md:contents">
+              {aeZones.map((zone) => (
+                <button
+                  key={zone.id}
+                  type="button"
+                  onClick={() => selectZone(zone.id)}
+                  aria-pressed={
+                    selection?.kind === "zone" && selection.id === zone.id
+                  }
+                  className={`py-1.5 text-left font-sans text-xs tracking-wide transition-colors motion-reduce:transition-none ${
+                    selection?.kind === "zone" && selection.id === zone.id
+                      ? "text-interaction underline underline-offset-4"
+                      : "text-information/60 hover:text-interaction"
+                  }`}
+                >
+                  {zone.name}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="md:flex md:flex-wrap md:items-baseline md:gap-x-5 md:gap-y-1">
+            <p className="mb-1.5 font-sans text-[0.65rem] font-medium uppercase tracking-[0.3em] text-information/70 md:mb-0 md:w-32 md:shrink-0">
+              Organizations
+            </p>
+            <div className="grid grid-cols-2 gap-x-6 md:contents">
+              {aeOrganizations.map((org) => (
+                <button
+                  key={org.id}
+                  type="button"
+                  onClick={() => selectOrg(org.id)}
+                  aria-pressed={
+                    selection?.kind === "org" && selection.id === org.id
+                  }
+                  className={`py-1.5 text-left font-sans text-xs tracking-wide transition-colors motion-reduce:transition-none ${
+                    selection?.kind === "org" && selection.id === org.id
+                      ? "text-interaction underline underline-offset-4"
+                      : "text-information/60 hover:text-interaction"
+                  }`}
+                >
+                  {org.name}
+                </button>
+              ))}
+            </div>
+          </div>
+        </nav>
       </div>
 
       <svg
@@ -1327,7 +1367,7 @@ export function AeFloorPlan() {
       <div className="min-h-[5.5rem] border-t border-structure/20 px-5 py-5 md:px-7">
         {!selection && (
           <p className="font-serif text-sm italic leading-relaxed text-information/60">
-            Eight zones of the terminal are selectable — from the curb to the
+            Eight zones of the terminal are selectable, from the curb to the
             ramp. Choose one, or choose an organization above to see its
             footprint.
           </p>
@@ -1415,65 +1455,6 @@ export function AeFloorPlan() {
         )}
       </div>
 
-      {/* Jump rows: all fifteen nodes by name (the Professional Norms
-          lens-bar treatment), grouped under explicit ZONES and
-          ORGANIZATIONS sub-labels so the two click categories never
-          read as one undifferentiated set. Runs the identical
-          selection path as the plan and the org chips, toggle
-          included. */}
-      <nav
-        aria-label="All zones and organizations"
-        className="space-y-3 border-t border-structure/20 px-5 py-4 md:px-7"
-      >
-        <div className="md:flex md:flex-wrap md:items-baseline md:gap-x-5 md:gap-y-1">
-          <p className="mb-1.5 font-sans text-[0.65rem] font-medium uppercase tracking-[0.3em] text-information/70 md:mb-0 md:w-32 md:shrink-0">
-            Zones
-          </p>
-          <div className="grid grid-cols-2 gap-x-6 md:contents">
-            {aeZones.map((zone) => (
-              <button
-                key={zone.id}
-                type="button"
-                onClick={() => selectZone(zone.id)}
-                aria-pressed={
-                  selection?.kind === "zone" && selection.id === zone.id
-                }
-                className={`py-1.5 text-left font-sans text-xs tracking-wide transition-colors motion-reduce:transition-none ${
-                  selection?.kind === "zone" && selection.id === zone.id
-                    ? "text-interaction underline underline-offset-4"
-                    : "text-information/60 hover:text-interaction"
-                }`}
-              >
-                {zone.name}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div className="md:flex md:flex-wrap md:items-baseline md:gap-x-5 md:gap-y-1">
-          <p className="mb-1.5 font-sans text-[0.65rem] font-medium uppercase tracking-[0.3em] text-information/70 md:mb-0 md:w-32 md:shrink-0">
-            Organizations
-          </p>
-          <div className="grid grid-cols-2 gap-x-6 md:contents">
-            {aeOrganizations.map((org) => (
-              <button
-                key={org.id}
-                type="button"
-                onClick={() => selectOrg(org.id)}
-                aria-pressed={
-                  selection?.kind === "org" && selection.id === org.id
-                }
-                className={`py-1.5 text-left font-sans text-xs tracking-wide transition-colors motion-reduce:transition-none ${
-                  selection?.kind === "org" && selection.id === org.id
-                    ? "text-interaction underline underline-offset-4"
-                    : "text-information/60 hover:text-interaction"
-                }`}
-              >
-                {org.name}
-              </button>
-            ))}
-          </div>
-        </div>
-      </nav>
     </div>
   );
 }

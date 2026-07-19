@@ -5,6 +5,7 @@ import { AirportEcosystemInteractive } from "./airport-ecosystem";
 import { ChinaPlusOneInteractive } from "./china-plus-one";
 import { ChangiExperienceInteractive } from "./changi-experience";
 import { MtrFollowTheSign } from "./mtr-wayfinding";
+import { DutchCyclingInteractive } from "./dutch-cycling";
 
 /*
  * Flagship interactives own their full section structure (they still
@@ -17,6 +18,7 @@ const customExperiences: Record<string, React.ComponentType> = {
   "china-plus-one": ChinaPlusOneInteractive,
   "changi-airport-experience": ChangiExperienceInteractive,
   "hong-kong-mtr-wayfinding": MtrFollowTheSign,
+  "dutch-cycling-infrastructure": DutchCyclingInteractive,
 };
 
 /*

@@ -192,6 +192,45 @@ html {
   }
 }
 
+/* Dutch Cycling street types: the card swap CROSS-FADES between
+   fully-formed cross-sections (stacked layers trading opacity) —
+   deliberately discrete, never a morph. Element outlines share the
+   MTR interaction language. */
+.dc-layer {
+  transition: opacity 450ms ease;
+}
+.dc-el {
+  cursor: pointer;
+}
+.dc-el:focus-visible {
+  outline: none;
+}
+.dc-outline {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+.dc-el:hover .dc-outline,
+.dc-el:focus-visible .dc-outline {
+  opacity: 0.5;
+}
+.dc-outline-on,
+.dc-el:hover .dc-outline-on,
+.dc-el:focus-visible .dc-outline-on {
+  opacity: 1;
+}
+@media (max-width: 640px) {
+  .dc-label-tiny {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dc-layer,
+  .dc-outline {
+    transition: none;
+  }
+}
+
 /* China Plus One nodes: the sector toggle animates each node's radius
    (the interactive's central payoff — a smooth re-weighting, not a
    jump); while the timeline is being scrubbed the smoothing class is

@@ -289,16 +289,17 @@ export const cpoCountries: CpoCountry[] = [
   },
 ];
 
-/* Persistent honesty captions (rendered under the map). */
+/* Persistent honesty captions (rendered under the map). House style:
+   no em dashes in this box. */
 export const cpoCaptions = {
   sizing:
-    "Node size encodes share of US imports — not a live trade index; every figure is a US-market share, the report's stated scope. Sourced 2025 anchors: China and Vietnam in both sectors, India's electronics share, Mexico's apparel share, and the five-supplier 44.2% apparel total. The remaining 2025 shares — including Bangladesh's and India's individual apparel splits — are estimates fitted within that sourced total, and are marked \"est.\" in their panels.",
+    "Node size encodes share of US imports, not a live trade index. Every figure is a US-market share, per the report's stated scope. Sourced 2025 anchors: China and Vietnam in both sectors, India's electronics share, Mexico's apparel share, and the five-supplier 44.2% apparel total. The remaining 2025 shares, including Bangladesh's and India's individual apparel splits, are estimates fitted within that sourced total and are marked 'est.' in their panels.",
   baseline:
-    "The 2010 baseline is stylized — China dominant, the other six minimal — and between the endpoints the motion is illustrative interpolation, not year-by-year data.",
+    "The 2010 baseline is stylized: China dominant, the other six minimal, and between the endpoints the motion is illustrative interpolation, not year-by-year data.",
   scope:
-    "Malaysia and Thailand are deliberately outside this map's scope — a stated gap, not an oversight.",
+    "Malaysia and Thailand are deliberately outside this map's scope: a stated gap, not an oversight.",
   cafta:
-    "Off this map entirely: CAFTA-DR Central America fell from 9.6% to 7.6% of US apparel imports — the industry everyone assumed would nearshore first is not nearshoring.",
+    "Off this map entirely: CAFTA-DR Central America fell from 9.6% to 7.6% of US apparel imports. The industry everyone assumed would nearshore first is not nearshoring.",
 };
 
 /* ------------------------------------------------------------------ */

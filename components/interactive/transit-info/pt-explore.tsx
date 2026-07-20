@@ -4,6 +4,7 @@ import { useState } from "react";
 import {
   ptCaptions,
   ptCities,
+  ptDimensionNotes,
   ptDimensions,
   ptModes,
   ptScopeNote,
@@ -11,13 +12,15 @@ import {
   type PtDimensionId,
   type PtMode,
 } from "@/lib/content/interactives/transit-info";
+import { Tagged } from "@/components/interactive/professional-norms/pn-panel";
 import { PtIllustration } from "./pt-illustration";
 
 /*
  * Explore: city × information-system selector with the two-state
- * Tourist/Local reading toggle (the MTR pattern, simplified). The
- * captions rendered here are Phase 1 placeholders — see the [DRAFT]
- * tags in the data file.
+ * Tourist/Local reading toggle (the MTR pattern, simplified). Each
+ * dimension carries its framing line — the fragmentation spine for
+ * Maps/Tickets/Announcements, the false-neutrality counterpoint for
+ * Icons — above the sourced caption.
  */
 export function PtExplore() {
   const [city, setCity] = useState<PtCityId>("tokyo");
@@ -102,15 +105,19 @@ export function PtExplore() {
 
       {/* Caption */}
       <div className="min-h-[5rem] border-t border-structure/20 px-5 py-5 md:px-7">
-        <p className="flex flex-wrap items-baseline gap-x-4 font-serif text-xl leading-snug text-information">
+        <p className="max-w-3xl font-serif text-xs italic leading-relaxed text-information/60">
+          {ptDimensionNotes[dim]}
+        </p>
+        <p className="mt-4 flex flex-wrap items-baseline gap-x-4 font-serif text-xl leading-snug text-information">
           {cityName}
           <span className="font-sans text-[0.65rem] uppercase tracking-[0.2em] text-interaction">
             {dimName} · {modeSpec.name} reading
           </span>
         </p>
-        <p className="mt-2 max-w-3xl font-serif text-sm leading-[1.8] text-information/90">
-          {ptCaptions[city][dim]}
-        </p>
+        <Tagged
+          text={ptCaptions[city][dim]}
+          className="mt-2 max-w-3xl font-serif text-sm leading-[1.8] text-information/90"
+        />
       </div>
 
       {/* Scope note vs MTR */}

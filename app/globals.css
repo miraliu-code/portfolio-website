@@ -231,6 +231,18 @@ html {
   }
 }
 
+/* Transit Info: the Tourist/Local reading toggle cross-fades the
+   text and symbol categories of each illustration (the MTR pattern,
+   two states). */
+.pt-fade {
+  transition: opacity 450ms ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pt-fade {
+    transition: none;
+  }
+}
+
 /* China Plus One nodes: the sector toggle animates each node's radius
    (the interactive's central payoff — a smooth re-weighting, not a
    jump); while the timeline is being scrubbed the smoothing class is

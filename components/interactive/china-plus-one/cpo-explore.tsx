@@ -182,7 +182,7 @@ function CountryPanel({ country }: { country: CpoCountry }) {
             The labor reality
           </p>
           <p className="mt-1 font-sans text-[0.55rem] uppercase tracking-[0.15em] text-information/50">
-            Pulled out of the template deliberately — a routine field label
+            Pulled out of the template deliberately: a routine field label
             would neutralize this
           </p>
           <Tagged
@@ -557,7 +557,7 @@ export function CpoExplore({ geo }: { geo: CpoGeo }) {
               setYear(cpoTimeline.end);
             }
           }}
-          aria-label="Timeline — drag to watch the shift unfold"
+          aria-label="Timeline: drag to watch the shift unfold"
           aria-valuetext={String(displayYear)}
           className="hsr-scrubber mt-4 block w-full"
         />

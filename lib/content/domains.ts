@@ -7,7 +7,7 @@ export const domains: DomainMeta[] = [
     prefix: "S",
     question: "How do organizations compete, grow, and adapt?",
     description:
-      "Flagship reports, case studies, and white papers on how organizations compete, grow, and adapt — from cultural institutions to global retailers.",
+      "Flagship reports, case studies, and white papers on how organizations compete, grow, and adapt, from cultural institutions to global retailers.",
     letterform: "S",
     hasFolders: true,
   },
@@ -17,7 +17,7 @@ export const domains: DomainMeta[] = [
     prefix: "COM",
     question: "How do organizations reduce uncertainty and build understanding?",
     description:
-      "Crisis cases, institutional voice studies, and professional writing — how organizations reduce uncertainty and build understanding.",
+      "Crisis cases, institutional voice studies, and professional writing: how organizations reduce uncertainty and build understanding.",
     letterform: "C",
     hasFolders: true,
   },
@@ -27,7 +27,7 @@ export const domains: DomainMeta[] = [
     prefix: "D",
     question: "How does information shape perception, movement, and decision-making?",
     description:
-      "Identity systems, information design, and explorable systems — how information shapes perception, movement, and decision-making.",
+      "Identity systems, information design, and explorable systems: how information shapes perception, movement, and decision-making.",
     letterform: "D",
     hasFolders: true,
   },
@@ -37,7 +37,7 @@ export const domains: DomainMeta[] = [
     prefix: "IO",
     question: "How do organizations shape human behavior?",
     description:
-      "Organizational behavior, leadership, decision-making, and culture — how organizations shape human behavior, and are shaped by it.",
+      "Organizational behavior, leadership, decision-making, and culture: how organizations shape human behavior, and are shaped by it.",
     letterform: "Ψ",
     hasFolders: true,
   },
@@ -47,7 +47,7 @@ export const domains: DomainMeta[] = [
     prefix: "R",
     question: "What ideas have changed my thinking?",
     description:
-      "A living archive of books, articles, reports, and research papers — summaries, favorite passages, and how each revised my worldview.",
+      "A living archive of books, articles, reports, and research papers: summaries, favorite passages, and how each revised my worldview.",
     letterform: "R",
     hasFolders: false,
   },
@@ -70,7 +70,7 @@ export const folders: Folder[] = [
     domain: "strategy",
     name: "Market Strategy",
     description: "How organizations decide where to compete, and on what terms.",
-    question: "Where should an organization compete — and on whose terms?",
+    question: "Where should an organization compete, and on whose terms?",
   },
   {
     slug: "comparative-strategy",
@@ -120,7 +120,7 @@ export const folders: Folder[] = [
     slug: "institutional-communication",
     domain: "communication",
     name: "Institutional Communication",
-    description: "How institutions develop — and lose — a recognizable voice.",
+    description: "How institutions develop, and lose, a recognizable voice.",
     question: "What gives an institution a voice people trust?",
   },
   {

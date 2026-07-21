@@ -106,7 +106,7 @@ export function HsrCostChart({
   return (
     <div>
       <p className="font-sans text-[0.6rem] uppercase tracking-[0.2em] text-information/60">
-        Construction cost, $M per km — all nine countries
+        Construction cost, $M per km, all nine countries
       </p>
       <div className="mt-2 h-28 w-full">
         <ResponsiveContainer width="100%" height="100%">

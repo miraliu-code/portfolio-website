@@ -18,7 +18,7 @@ export default function ObservatoryPage() {
       </h1>
       <p className="mt-6 max-w-xl font-serif text-lg leading-relaxed text-information/80">
         The Atlas records completed investigations. The Observatory documents
-        what is currently underway — intentionally unfinished, and always
+        what is currently underway: intentionally unfinished, and always
         changing.
       </p>
       <div className="mt-16">

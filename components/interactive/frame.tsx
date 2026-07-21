@@ -67,7 +67,7 @@ export function InteractiveFrame({ project }: { project: Project }) {
         <SectionLabel>Orientation</SectionLabel>
         <p className="mt-4 max-w-2xl font-serif text-base leading-[1.85] text-information/85">
           {spec?.orientation ??
-            "This investigation includes an interactive component — a web-native way to explore the system rather than read about it. The interactive is in development; the written portion carries the argument in the meantime. (Roadmap placeholder.)"}
+            "This investigation includes an interactive component: a web-native way to explore the system rather than read about it. The interactive is in development; the written portion carries the argument in the meantime. (Roadmap placeholder.)"}
         </p>
       </section>
 
@@ -77,7 +77,7 @@ export function InteractiveFrame({ project }: { project: Project }) {
           {spec?.explore ?? (
             <div className="flex min-h-48 items-center justify-center border border-structure/25 bg-structure/5 p-10 text-center">
               <p className="max-w-sm font-serif text-sm italic leading-relaxed text-information/60">
-                Interactive exploration in development — it will follow the
+                Interactive exploration in development; it will follow the
                 same structure as every Atlas interactive.
               </p>
             </div>

@@ -83,21 +83,21 @@ export const dcStreets: DcStreet[] = [
         name: "The separated cycle track",
         principle: "Homogeneity",
         note:
-          "Fully physically separated from motor traffic — its own surface, its own alignment, not paint. This is the category where separation is non-negotiable under Sustainable Safety: at through-road speeds, the difference in mass and velocity between a car and a bicycle is unsurvivable regardless of traffic volume, so the doctrine does not weigh separation against cost or convenience here. It simply requires it. The red asphalt carries the system-wide code: red surface means cycle space, everywhere in the country. [Well-established]",
+          "Fully physically separated from motor traffic: its own surface, its own alignment, not paint. This is the category where separation is non-negotiable under Sustainable Safety: at through-road speeds, the difference in mass and velocity between a car and a bicycle is unsurvivable regardless of traffic volume, so the doctrine does not weigh separation against cost or convenience here. It simply requires it. The red asphalt carries the system-wide code: red surface means cycle space, everywhere in the country. [Well-established]",
       },
       {
         id: "barrier",
         name: "The physical barrier",
         principle: "Predictability",
         note:
-          "The planted verge is not decorative. It is the physical enforcement of the separation — a driver leaving the lane meets a curb and a tree line before meeting a cyclist — and it is also instructional: the buffer reinforces a driver's read of the road as a through-route, discouraging the informal property access and casual pedestrian crossing that would undermine the category's entire design logic. The planting is doing doctrine work: it tells every user what kind of road this is without a single sign. [Reported]",
+          "The planted verge is not decorative. It is the physical enforcement of the separation (a driver leaving the lane meets a curb and a tree line before meeting a cyclist) and it is also instructional: the buffer reinforces a driver's read of the road as a through-route, discouraging the informal property access and casual pedestrian crossing that would undermine the category's entire design logic. The planting is doing doctrine work: it tells every user what kind of road this is without a single sign. [Reported]",
       },
       {
         id: "carriageway",
         name: "The carriageway",
         principle: "Functionality",
         note:
-          "No direct property frontage is permitted on a through-road — no driveways, no shop entrances, no reasons to stop. Access is the defining feature access roads exist to provide, and through-roads exist specifically to NOT provide it. That categorical exclusivity is Sustainable Safety's 'functionality' principle in physical form: every street serves exactly one function, and a road that tried to be both fast and open to its frontage would be neither, safely. [Well-established]",
+          "No direct property frontage is permitted on a through-road: no driveways, no shop entrances, no reasons to stop. Access is the defining feature access roads exist to provide, and through-roads exist specifically to NOT provide it. That categorical exclusivity is Sustainable Safety's 'functionality' principle in physical form: every street serves exactly one function, and a road that tried to be both fast and open to its frontage would be neither, safely. [Well-established]",
       },
     ],
   },
@@ -113,20 +113,20 @@ export const dcStreets: DcStreet[] = [
         id: "cycle-lane",
         name: "The protected cycle lane",
         note:
-          "The lane's position is chosen against two specific hazards at once: it keeps cyclists out of the blind spot of vehicles running alongside, and away from the 'dooring' arc of parked cars — which is why the parking sits across the carriageway rather than against the lane. Dooring is a hazard class entirely distinct from the through-road's high-speed risk, and that is the pattern: each street category defends against its own characteristic crash type. [Reported]",
+          "The lane's position is chosen against two specific hazards at once: it keeps cyclists out of the blind spot of vehicles running alongside, and away from the 'dooring' arc of parked cars, which is why the parking sits across the carriageway rather than against the lane. Dooring is a hazard class entirely distinct from the through-road's high-speed risk, and that is the pattern: each street category defends against its own characteristic crash type. [Reported]",
       },
       {
         id: "buffer",
         name: "The physical buffer",
         principle: "Homogeneity",
         note:
-          "The category-defining element. Under Dutch doctrine a painted line is not a distributor-road treatment, because paint does not physically prevent a vehicle incursion — the buffer, raised concrete plus bollards, is what makes this lane 'protected' rather than merely 'marked.' The reasoning is mechanical, not behavioral: at roughly 50 km/h the design must make incursion impossible, not merely discouraged. Everything else on this card is ordinary; this strip is the category. [Well-established]",
+          "The category-defining element. Under Dutch doctrine a painted line is not a distributor-road treatment, because paint does not physically prevent a vehicle incursion. The buffer, raised concrete plus bollards, is what makes this lane 'protected' rather than merely 'marked.' The reasoning is mechanical, not behavioral: at roughly 50 km/h the design must make incursion impossible, not merely discouraged. Everything else on this card is ordinary; this strip is the category. [Well-established]",
       },
       {
         id: "carriageway",
         name: "The carriageway",
         note:
-          "On a distributor, the danger concentrates at the junctions — the mid-block geometry is the easy part. Along the corridor, crossings carry protected-turn treatments and signal priority, so a turning vehicle and a through cyclist are never given the same green into the same space. That junction grammar is its own body of geometry, exact enough to export — the section below this interactive follows it to the first US intersection built on it. [Reported]",
+          "On a distributor, the danger concentrates at the junctions; the mid-block geometry is the easy part. Along the corridor, crossings carry protected-turn treatments and signal priority, so a turning vehicle and a through cyclist are never given the same green into the same space. That junction grammar is its own body of geometry, exact enough to export; the section below this interactive follows it to the first US intersection built on it. [Reported]",
       },
     ],
   },
@@ -143,20 +143,20 @@ export const dcStreets: DcStreet[] = [
         name: "The shared surface",
         principle: "Homogeneity",
         note:
-          "One continuous brick surface, wall to wall — the category's core logic made literal. At 15–20 km/h, the speed differential between a car and a cyclist or pedestrian is survivable if a conflict occurs, so physical separation stops being necessary. This is Sustainable Safety's 'homogeneity' principle: match speed and mass differences to what a human body can survive, rather than trying to eliminate conflict entirely. Slow the street until sharing is safe; then share everything. [Well-established]",
+          "One continuous brick surface, wall to wall: the category's core logic made literal. At 15–20 km/h, the speed differential between a car and a cyclist or pedestrian is survivable if a conflict occurs, so physical separation stops being necessary. This is Sustainable Safety's 'homogeneity' principle: match speed and mass differences to what a human body can survive, rather than trying to eliminate conflict entirely. Slow the street until sharing is safe; then share everything. [Well-established]",
       },
       {
         id: "gateway",
         name: "The entry threshold",
         principle: "Predictability",
         note:
-          "A marked rise and a signed gate where the woonerf begins, announcing that a driver is now a guest in a space with different rules — legally and physically. The cue matters because a woonerf is not merely a slow street; it is a different category entirely, and the boundary must be legible at the moment of entry, not discovered mid-block. Category changes are announced at thresholds, never left to inference. [Reported]",
+          "A marked rise and a signed gate where the woonerf begins, announcing that a driver is now a guest in a space with different rules, legally and physically. The cue matters because a woonerf is not merely a slow street; it is a different category entirely, and the boundary must be legible at the moment of entry, not discovered mid-block. Category changes are announced at thresholds, never left to inference. [Reported]",
       },
       {
         id: "chicane",
         name: "The planter chicane",
         note:
-          "Planters and staggered parking bend the driving line so a car cannot hold a straight course for more than a few lengths — the mid-block partner of the entry threshold and the tables. Together they make the design speed the comfortable maximum. Enforcement is the pavement's job, not the police's. [Reported]",
+          "Planters and staggered parking bend the driving line so a car cannot hold a straight course for more than a few lengths: the mid-block partner of the entry threshold and the tables. Together they make the design speed the comfortable maximum. Enforcement is the pavement's job, not the police's. [Reported]",
       },
       {
         id: "speed-table",
@@ -178,19 +178,19 @@ export const dcStreets: DcStreet[] = [
         id: "door-zone",
         name: "The door zone",
         note:
-          "The cyclist's usable width is not the painted width: subtract the arc of a parked car's door, and the lane narrows to a strip between an opening door and moving traffic. The distributor design eliminates this hazard class entirely — its buffer and lane position make dooring geometrically impossible, not merely less likely. Here, the paint records where a cyclist is supposed to be, not where it is safe to be. [Reported]",
+          "The cyclist's usable width is not the painted width: subtract the arc of a parked car's door, and the lane narrows to a strip between an opening door and moving traffic. The distributor design eliminates this hazard class entirely; its buffer and lane position make dooring geometrically impossible, not merely less likely. Here, the paint records where a cyclist is supposed to be, not where it is safe to be. [Reported]",
       },
       {
         id: "painted-lane",
         name: "The painted bike lane",
         note:
-          "No buffer — so the 'protection' is entirely a matter of driver attention and compliance. This is precisely the treatment Dutch doctrine rejects as insufficient above roughly 30 km/h: paint marks where a cyclist should be; it cannot influence where a car can go. Each of the three categories on the other cards exists because this arrangement was judged unacceptable at exactly these speeds. [Well-established]",
+          "No buffer, so the 'protection' is entirely a matter of driver attention and compliance. This is precisely the treatment Dutch doctrine rejects as insufficient above roughly 30 km/h: paint marks where a cyclist should be; it cannot influence where a car can go. Each of the three categories on the other cards exists because this arrangement was judged unacceptable at exactly these speeds. [Well-established]",
       },
       {
         id: "traffic-lanes",
         name: "The traffic lanes",
         note:
-          "The real finding on this card: this street was not badly designed by accident. It was never assigned a category at all — the painted lane is cycling infrastructure as an add-on, not a street-type decision. The Dutch doctrine's actual export is not any single piece of geometry; it is the requirement that every street answer the classification question first. [Reported]",
+          "The real finding on this card: this street was not badly designed by accident. It was never assigned a category at all; the painted lane is cycling infrastructure as an add-on, not a street-type decision. The Dutch doctrine's actual export is not any single piece of geometry; it is the requirement that every street answer the classification question first. [Reported]",
       },
     ],
   },
@@ -207,7 +207,7 @@ export function getDcStreet(id: DcStreetId): DcStreet {
 /* Why the selector is discrete — stated on the page, because the
    interaction is the argument. */
 export const dcDoctrineNote =
-  "The selector is discrete on purpose. In the Dutch Sustainable Safety doctrine a street is first assigned a category — through-road, distributor, access road — and its design follows from the assignment. Safety here is a classification, not a dial, so there is nothing continuous to slide between.";
+  "The selector is discrete on purpose. In the Dutch Sustainable Safety doctrine a street is first assigned a category (through-road, distributor, access road) and its design follows from the assignment. Safety here is a classification, not a dial, so there is nothing continuous to slide between.";
 
 /* The arterial baseline stays a generic composite; the documented US
    comparison is the intersection section. */
@@ -221,7 +221,7 @@ export const dcBaselineNote =
 export const dcIntersection = {
   title: "The Junction, Imported",
   intro:
-    "Street categories are the Dutch export everyone can see. The subtler export is intersection geometry — and its documented American arrival has a date and an address: August 2015, Covell Boulevard and J Street, Davis, California. Proposed by City Councilmember Brett Lee and designed with the Dutch consulting firm Mobycon, it was the first protected intersection built in the United States. [Well-established]",
+    "Street categories are the Dutch export everyone can see. The subtler export is intersection geometry, and its documented American arrival has a date and an address: August 2015, Covell Boulevard and J Street, Davis, California. Proposed by City Councilmember Brett Lee and designed with the Dutch consulting firm Mobycon, it was the first protected intersection built in the United States. [Well-established]",
   geometry: [
     {
       name: "Corner refuge islands",
@@ -231,16 +231,16 @@ export const dcIntersection = {
     {
       name: "Advanced stop lines",
       text:
-        "The cyclist waits ahead of the stopped traffic, inside the driver's forward view. The sightline exists by geometry — neither party needs a shoulder check for the other to be seen. [Well-established]",
+        "The cyclist waits ahead of the stopped traffic, inside the driver's forward view. The sightline exists by geometry; neither party needs a shoulder check for the other to be seen. [Well-established]",
     },
     {
       name: "Setback crossings",
       text:
-        "The bicycle crossing sits at least one car length back from the turning radius, so a turning driver completes the turn, straightens, and then meets the crossing — with a stopped car's length of reaction space between. [Well-established]",
+        "The bicycle crossing sits at least one car length back from the turning radius, so a turning driver completes the turn, straightens, and then meets the crossing, with a stopped car's length of reaction space between. [Well-established]",
     },
   ],
   lineage:
-    "The American catalyst was not an agency but an explainer: Portland-based planner Nick Falbo's 2014 'protected intersection' video, viewed over 700,000 times, is widely credited with popularizing the Dutch geometry for a US audience. Salt Lake City followed Davis within months (October 2015), then Austin. NACTO's Urban Bikeway Design Guide did not originally include protected-intersection geometry — Alta Planning + Design did the adaptation work for the North American context. [Well-established]",
+    "The American catalyst was not an agency but an explainer: Portland-based planner Nick Falbo's 2014 'protected intersection' video, viewed over 700,000 times, is widely credited with popularizing the Dutch geometry for a US audience. Salt Lake City followed Davis within months (October 2015), then Austin. NACTO's Urban Bikeway Design Guide did not originally include protected-intersection geometry; Alta Planning + Design did the adaptation work for the North American context. [Well-established]",
   complication:
     "The honest complication, from Davis's own bicycle-advocacy community: the intersection delivers its sightline benefit only to cyclists who actually use the separated path and its refuge islands. A cyclist riding the standard bike-lane approach gets a sightline no better than a conventional intersection. Protection that depends on route choice is a design gap, not a detail. [Reported] Single advocacy source, not independently corroborated.",
 };
@@ -251,12 +251,12 @@ export const dcIntersection = {
 
 export const dcModeShare = {
   intro:
-    "The infrastructure is old and the measurement is institutional. Tilburg and The Hague were among the earliest Dutch cities to build dedicated cycle routes, alongside Utrecht, Groningen, Enschede, Amsterdam, and Delft — and the country has been counting its cycling ever since. [Reported]",
+    "The infrastructure is old and the measurement is institutional. Tilburg and The Hague were among the earliest Dutch cities to build dedicated cycle routes, alongside Utrecht, Groningen, Enschede, Amsterdam, and Delft, and the country has been counting its cycling ever since. [Reported]",
   stats: [
     {
       label: "All Dutch trips",
       value: "27–28%",
-      note: "National mode share, per KiM — the Dutch government's own transport-research institute. [Well-established]",
+      note: "National mode share, per KiM, the Dutch government's own transport-research institute. [Well-established]",
     },
     {
       label: "Amsterdam",
@@ -271,11 +271,11 @@ export const dcModeShare = {
     {
       label: "Davis, CA",
       value: "17–19%",
-      note: "The highest US bike-commute share — in the same city that built the first Dutch junction. [Reported]",
+      note: "The highest US bike-commute share, in the same city that built the first Dutch junction. [Reported]",
     },
   ],
   plateau:
-    "The sharper finding: the national share has been stable for roughly three decades — not still climbing. What has grown instead is cycling frequency and average trip distance per cyclist. That complicates the reflex that success means a rising percentage. A plateau at a very high level, sustained for thirty years through fuel shocks, e-bikes, and urban growth, may be the more meaningful marker of durability than continued growth would be. [Well-established]",
+    "The sharper finding: the national share has been stable for roughly three decades, not still climbing. What has grown instead is cycling frequency and average trip distance per cyclist. That complicates the reflex that success means a rising percentage. A plateau at a very high level, sustained for thirty years through fuel shocks, e-bikes, and urban growth, may be the more meaningful marker of durability than continued growth would be. [Well-established]",
 };
 
 /* ------------------------------------------------------------------ */
@@ -283,7 +283,7 @@ export const dcModeShare = {
 /* ------------------------------------------------------------------ */
 
 export const dcEconomics =
-  "From the peer-reviewed record only: a study quantifying the health-related economic benefits of Dutch cycling levels finds that continued investment in cycling infrastructure yields a high cost-benefit ratio — driven primarily by reduced sedentary-lifestyle disease and lower all-cause mortality risk, not by construction activity or tourism. Larger, rounder claims circulate (national jobs totals, billion-euro benefit ranges) that trace to unverifiable aggregation; they are deliberately absent from this report and this page. [Well-established]";
+  "From the peer-reviewed record only: a study quantifying the health-related economic benefits of Dutch cycling levels finds that continued investment in cycling infrastructure yields a high cost-benefit ratio, driven primarily by reduced sedentary-lifestyle disease and lower all-cause mortality risk, not by construction activity or tourism. Larger, rounder claims circulate (national jobs totals, billion-euro benefit ranges) that trace to unverifiable aggregation; they are deliberately absent from this report and this page. [Well-established]";
 
 /* ------------------------------------------------------------------ */
 /* Phase 2 — Key Insights.                                             */
@@ -293,22 +293,22 @@ export const dcInsights = [
   {
     tag: "Categories, not dials",
     text:
-      "This interactive is a card swap and not a slider because the doctrine is a card swap and not a slider: a Dutch street is classified — through-road, distributor, access road — and its design follows from the class. Safety was never a quantity you add to a street. It is a decision you make about one.",
+      "This interactive is a card swap and not a slider because the doctrine is a card swap and not a slider: a Dutch street is classified (through-road, distributor, access road) and its design follows from the class. Safety was never a quantity you add to a street. It is a decision you make about one.",
   },
   {
     tag: "The plateau is the point",
     text:
-      "Dutch cycling has held 27–28% of all trips for about three decades. It stopped growing and refused to shrink — through e-bikes, urban growth, and every disruption since. A share that high, held that long, is a stronger durability claim than a rising curve would be.",
+      "Dutch cycling has held 27–28% of all trips for about three decades. It stopped growing and refused to shrink, through e-bikes, urban growth, and every disruption since. A share that high, held that long, is a stronger durability claim than a rising curve would be.",
   },
   {
     tag: "Protection you have to opt into",
     text:
-      "Davis's own advocates note the first US protected intersection only delivers its sightlines to cyclists who use the refuge islands — the standard bike-lane approach sees no better than a conventional junction. Geometry that must be chosen is not yet a system; the Dutch versions work because there is no other way through.",
+      "Davis's own advocates note the first US protected intersection only delivers its sightlines to cyclists who use the refuge islands; the standard bike-lane approach sees no better than a conventional junction. Geometry that must be chosen is not yet a system; the Dutch versions work because there is no other way through.",
   },
   {
     tag: "The second-bicycle problem",
     text:
-      "The report's Section 8 follows the success to its logistics bill: a bike-plus-train country needs a bicycle at both ends of the ride, so the system multiplies bicycles faster than people — and station parking, not street design, becomes the binding constraint. Solved street categories buy you a new category of problem. [Reported]",
+      "The report's Section 8 follows the success to its logistics bill: a bike-plus-train country needs a bicycle at both ends of the ride, so the system multiplies bicycles faster than people, and station parking, not street design, becomes the binding constraint. Solved street categories buy you a new category of problem. [Reported]",
   },
 ];
 

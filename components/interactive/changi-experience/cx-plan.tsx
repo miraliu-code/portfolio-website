@@ -928,7 +928,7 @@ export function CxFloorPlan() {
       <div className="min-h-[5.5rem] border-t border-structure/20 px-5 py-5 md:px-7">
         {!selected && (
           <p className="font-serif text-sm italic leading-relaxed text-information/60">
-            Eight spaces are selectable — from the arrival hall to the
+            Eight spaces are selectable, from the arrival hall to the
             butterfly garden. Choose one to see why it was built this way.
           </p>
         )}

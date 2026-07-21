@@ -57,7 +57,7 @@ export function AirportEcosystemInteractive() {
         </h3>
         <p className="mt-4 max-w-2xl font-serif text-base leading-relaxed text-information/85">
           The floor plan shows the seams; the written field guide argues why
-          they exist — how ownership, mandates, and contracts carve one
+          they exist: how ownership, mandates, and contracts carve one
           building into seven organizations, and what that costs the
           passenger who experiences it as a single place.
         </p>

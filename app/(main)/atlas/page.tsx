@@ -19,7 +19,7 @@ export default function AtlasPage() {
       </h1>
       <p className="mt-6 max-w-xl font-serif text-lg leading-relaxed text-information/80">
         Every project is a coordinate. Six domains ask different questions
-        about the same subject — organizations, and the people inside them.
+        about the same subject: organizations, and the people inside them.
       </p>
 
       <div className="mx-auto mt-16 max-w-2xl">

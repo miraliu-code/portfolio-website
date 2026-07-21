@@ -285,7 +285,7 @@ export function PnCountryPanel({ country }: { country: PnCountry }) {
             {situationId === "feedback" && (
               <>
                 <Field
-                  label="Upward — the consequential one"
+                  label="Upward: the consequential one"
                   text={cells.feedback.upward}
                 />
                 <Field label="Sideways" text={cells.feedback.sideways} />

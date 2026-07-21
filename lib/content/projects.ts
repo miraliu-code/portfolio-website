@@ -114,7 +114,7 @@ const strategy: StandardProject[] = [
         blocks: [
           {
             kind: "p",
-            text: "In 1900, a tire manufacturer printed a free guide to encourage the French to drive more. A century later, that guide can close a restaurant with a phone call. This report asks how a piece of marketing collateral became one of the world's most trusted cultural institutions — and what its discipline teaches organizations about earning authority they were never granted. (Draft placeholder.)",
+            text: "In 1900, a tire manufacturer printed a free guide to encourage the French to drive more. A century later, that guide can close a restaurant with a phone call. This report asks how a piece of marketing collateral became one of the world's most trusted cultural institutions, and what its discipline teaches organizations about earning authority they were never granted. (Draft placeholder.)",
           },
           {
             kind: "quote",
@@ -128,11 +128,11 @@ const strategy: StandardProject[] = [
         blocks: [
           {
             kind: "p",
-            text: "Three commitments appear to hold the Guide's authority together. First, anonymity: inspectors pay for their meals, and the organization spends real money to keep them unknown — credibility as an operating cost. Second, scarcity: stars are withheld far more often than they are granted, and the third star remains rare enough to reorganize a chef's life. Third, independence from the parent business: the Guide has never obviously served the tire company's quarterly interests, which is precisely why it serves the brand's century-long ones. (Draft placeholder.)",
+            text: "Three commitments appear to hold the Guide's authority together. First, anonymity: inspectors pay for their meals, and the organization spends real money to keep them unknown: credibility as an operating cost. Second, scarcity: stars are withheld far more often than they are granted, and the third star remains rare enough to reorganize a chef's life. Third, independence from the parent business: the Guide has never obviously served the tire company's quarterly interests, which is precisely why it serves the brand's century-long ones. (Draft placeholder.)",
           },
           {
             kind: "p",
-            text: "The comparison set — rating agencies, awards bodies, review platforms — mostly failed to protect one of the three. Platforms monetized attention and lost scarcity; agencies monetized the rated and lost independence.",
+            text: "The comparison set (rating agencies, awards bodies, review platforms) mostly failed to protect one of the three. Platforms monetized attention and lost scarcity; agencies monetized the rated and lost independence.",
           },
         ],
       },
@@ -142,7 +142,7 @@ const strategy: StandardProject[] = [
         blocks: [
           {
             kind: "p",
-            text: "For organizations seeking Michelin-grade trust, the transferable lesson is that authority is a cost center. Fund the expensive, invisible disciplines — verification, anonymity, restraint — before the visible ones, and let decades do the compounding. (Draft placeholder.)",
+            text: "For organizations seeking Michelin-grade trust, the transferable lesson is that authority is a cost center. Fund the expensive, invisible disciplines (verification, anonymity, restraint) before the visible ones, and let decades do the compounding. (Draft placeholder.)",
           },
           {
             kind: "list",
@@ -166,7 +166,7 @@ const strategy: StandardProject[] = [
         label: "Institution comparison framework",
         kind: "framework",
         description:
-          "Anonymity, scarcity, independence — scored across rating institutions. (Draft placeholder.)",
+          "Anonymity, scarcity, independence, scored across rating institutions. (Draft placeholder.)",
       },
     ],
     continueExploring: [
@@ -202,7 +202,7 @@ const strategy: StandardProject[] = [
     folder: "market-strategy",
     coordinate: "S-03",
     title: "UNIQLO Outside Japan",
-    question: "What should global brands standardize — and what should they localize?",
+    question: "What should global brands standardize, and what should they localize?",
     format: "White Paper",
     length: "15–20 pp",
     organizations: ["UNIQLO"],
@@ -401,7 +401,7 @@ const strategy: StandardProject[] = [
     coordinate: "S-24",
     title: "Following the Factory (China Plus One)",
     question:
-      "When manufacturing costs rise in one country, where does it actually go — and does it actually go anywhere at all?",
+      "When manufacturing costs rise in one country, where does it actually go, and does it actually go anywhere at all?",
     format: "Flagship Report + Interactive",
     length: "30–40 pp + Interactive",
     explorable: true,
@@ -457,7 +457,7 @@ const communication: StandardProject[] = [
         blocks: [
           {
             kind: "p",
-            text: "The record shows a sequence — acknowledgment before facts, care before cause, presence before defense — that maps closely onto what the crisis literature prescribes and what few organizations execute. Where the communication faltered, it faltered on coordination: multiple institutions owned pieces of the same tragedy, and their timelines diverged. (Draft placeholder.)",
+            text: "The record shows a sequence (acknowledgment before facts, care before cause, presence before defense) that maps closely onto what the crisis literature prescribes and what few organizations execute. Where the communication faltered, it faltered on coordination: multiple institutions owned pieces of the same tragedy, and their timelines diverged. (Draft placeholder.)",
           },
         ],
       },
@@ -474,7 +474,7 @@ const communication: StandardProject[] = [
       {
         slug: "crowdstrike-outage",
         relationship: "compare",
-        note: "A crisis of systems rather than lives — and a different first hour.",
+        note: "A crisis of systems rather than lives, and a different first hour.",
       },
       {
         slug: "cdc-communicating-uncertainty",
@@ -840,7 +840,7 @@ const design: StandardProject[] = [
         blocks: [
           {
             kind: "p",
-            text: "The MTR moves five million people a day through some of the densest urban space on earth, and almost nobody gets lost. This field guide examines the information system that makes that possible — the hierarchy, the typography, the color logic, the transfer design — and compares it with New York, London, Paris, and Washington. (Draft placeholder.)",
+            text: "The MTR moves five million people a day through some of the densest urban space on earth, and almost nobody gets lost. This field guide examines the information system that makes that possible (the hierarchy, the typography, the color logic, the transfer design) and compares it with New York, London, Paris, and Washington. (Draft placeholder.)",
           },
           {
             kind: "quote",
@@ -848,7 +848,7 @@ const design: StandardProject[] = [
           },
           {
             kind: "p",
-            text: "The written guide provides the argument; the Interactive tab lets you discover it — toggle the station's information layers and see what each audience actually reads.",
+            text: "The written guide provides the argument; the Interactive tab lets you discover it: toggle the station's information layers and see what each audience actually reads.",
           },
         ],
       },
@@ -858,7 +858,7 @@ const design: StandardProject[] = [
         blocks: [
           {
             kind: "p",
-            text: "Three principles recur. Information appears exactly at the decision point, never before; color is a system-wide language, not decoration, so a line's identity survives from map to platform edge; and exits are numbered destinations in their own right, which converts the hardest problem — leaving — into the easiest. Under time pressure, passengers stop reading and start pattern-matching, and the MTR is designed for the pattern-matcher. (Draft placeholder.)",
+            text: "Three principles recur. Information appears exactly at the decision point, never before; color is a system-wide language, not decoration, so a line's identity survives from map to platform edge; and exits are numbered destinations in their own right, which converts the hardest problem, leaving, into the easiest. Under time pressure, passengers stop reading and start pattern-matching, and the MTR is designed for the pattern-matcher. (Draft placeholder.)",
           },
         ],
       },
@@ -937,7 +937,7 @@ const design: StandardProject[] = [
         blocks: [
           {
             kind: "p",
-            text: "This website is itself a design project, and this entry documents its reasoning. The Atlas borrows from printed journals, museum wayfinding, and library catalogues — institutions that organize attention rather than compete for it. Four colors, two typefaces, one persistent panel: every constraint in the system exists to keep reading the primary act.",
+            text: "This website is itself a design project, and this entry documents its reasoning. The Atlas borrows from printed journals, museum wayfinding, and library catalogues: institutions that organize attention rather than compete for it. Four colors, two typefaces, one persistent panel: every constraint in the system exists to keep reading the primary act.",
           },
           {
             kind: "p",
@@ -1016,7 +1016,7 @@ const ioPsychology: StandardProject[] = [
         blocks: [
           {
             kind: "p",
-            text: "Between 2021 and 2024, Google's messaging about where work happens reversed itself several times. This report reads the public record of those communications as a single evolving text, and pairs it with the motivation research — self-determination theory, belonging, status signaling — to ask what mandates can and cannot buy. (Draft placeholder.)",
+            text: "Between 2021 and 2024, Google's messaging about where work happens reversed itself several times. This report reads the public record of those communications as a single evolving text, and pairs it with the motivation research (self-determination theory, belonging, status signaling) to ask what mandates can and cannot buy. (Draft placeholder.)",
           },
           {
             kind: "p",
@@ -1030,7 +1030,7 @@ const ioPsychology: StandardProject[] = [
         blocks: [
           {
             kind: "p",
-            text: "The communications shift registers in their grammar. Early messages are written in the language of experiment — we are learning, we will adjust. Later messages are written in the language of conclusion — the data shows, collaboration requires. But the data was never shown, and employees noticed the shift from invitation to verdict.",
+            text: "The communications shift registers in their grammar. Early messages are written in the language of experiment: we are learning, we will adjust. Later messages are written in the language of conclusion: the data shows, collaboration requires. But the data was never shown, and employees noticed the shift from invitation to verdict.",
           },
           {
             kind: "p",
@@ -1038,7 +1038,7 @@ const ioPsychology: StandardProject[] = [
           },
           {
             kind: "quote",
-            text: "Nobody commutes to a building. People commute to other people — and only when the people will be there.",
+            text: "Nobody commutes to a building. People commute to other people, and only when the people will be there.",
           },
         ],
       },
@@ -1048,7 +1048,7 @@ const ioPsychology: StandardProject[] = [
         blocks: [
           {
             kind: "p",
-            text: "Organizations get further coordinating presence than compelling it: anchor teams to shared days, make the office legibly social, keep the voice of a policy consistent even as its content evolves — and show the evidence when claiming to have it. An unshared dataset cited as justification reads, internally, as no dataset at all. (Draft placeholder.)",
+            text: "Organizations get further coordinating presence than compelling it: anchor teams to shared days, make the office legibly social, keep the voice of a policy consistent even as its content evolves, and show the evidence when claiming to have it. An unshared dataset cited as justification reads, internally, as no dataset at all. (Draft placeholder.)",
           },
         ],
       },
@@ -1277,7 +1277,7 @@ const reading: ReadingEntry[] = [
     "Malcolm Gladwell",
     "https://en.wikipedia.org/wiki/Outliers_(book)",
     "How much of success is circumstance wearing a person's name?",
-    "Gladwell's argument that success is an ecosystem — timing, culture, accumulated advantage — rather than an individual trait. Entry in progress: summary, favorite passages, and worldview notes to come. (Draft placeholder.)",
+    "Gladwell's argument that success is an ecosystem (timing, culture, accumulated advantage) rather than an individual trait. Entry in progress: summary, favorite passages, and worldview notes to come. (Draft placeholder.)",
   ),
   {
     type: "reading",
@@ -1302,7 +1302,7 @@ const reading: ReadingEntry[] = [
         blocks: [
           {
             kind: "p",
-            text: "Kahneman's account of the two systems — fast, associative intuition and slow, effortful reasoning — is the load-bearing wall under most of behavioral economics. For the Atlas, the durable contribution is the catalogue of predictable errors: anchoring, loss aversion, the planning fallacy. Organizations are built from these errors at scale.",
+            text: "Kahneman's account of the two systems (fast, associative intuition and slow, effortful reasoning) is the load-bearing wall under most of behavioral economics. For the Atlas, the durable contribution is the catalogue of predictable errors: anchoring, loss aversion, the planning fallacy. Organizations are built from these errors at scale.",
           },
         ],
       },
@@ -1326,7 +1326,7 @@ const reading: ReadingEntry[] = [
         blocks: [
           {
             kind: "p",
-            text: "I stopped treating behavior as preference and started treating it as architecture. When a policy fails or a queue forms differently in a different country, the interesting question is no longer what people want — it is what the structure around them made effortless.",
+            text: "I stopped treating behavior as preference and started treating it as architecture. When a policy fails or a queue forms differently in a different country, the interesting question is no longer what people want; it is what the structure around them made effortless.",
           },
         ],
       },
@@ -1351,7 +1351,7 @@ const reading: ReadingEntry[] = [
     "Tim Harford",
     "https://en.wikipedia.org/wiki/The_Undercover_Economist",
     "What is the economics hiding inside a cup of coffee?",
-    "Harford's tour of everyday economics — scarcity, signaling, price discrimination — as a lens for reading organizations. Entry in progress. (Draft placeholder.)",
+    "Harford's tour of everyday economics (scarcity, signaling, price discrimination) as a lens for reading organizations. Entry in progress. (Draft placeholder.)",
   ),
   readingStub(
     4,
@@ -1369,7 +1369,7 @@ const reading: ReadingEntry[] = [
     "Morgan Housel",
     "https://en.wikipedia.org/wiki/The_Psychology_of_Money",
     "Why is doing well with money a behavioral skill rather than a technical one?",
-    "Housel's timeless lessons on wealth, greed, and happiness — behavior beating spreadsheets. Entry in progress. (Draft placeholder.)",
+    "Housel's timeless lessons on wealth, greed, and happiness: behavior beating spreadsheets. Entry in progress. (Draft placeholder.)",
   ),
   readingStub(
     6,
@@ -1378,7 +1378,7 @@ const reading: ReadingEntry[] = [
     "Nassim Nicholas Taleb",
     "https://en.wikipedia.org/wiki/Antifragile_(book)",
     "What kind of organization gets stronger when it is stressed?",
-    "Taleb's case that the opposite of fragile is not robust but antifragile — systems that gain from disorder. Entry in progress. (Draft placeholder.)",
+    "Taleb's case that the opposite of fragile is not robust but antifragile: systems that gain from disorder. Entry in progress. (Draft placeholder.)",
   ),
   readingStub(
     7,
@@ -1396,7 +1396,7 @@ const reading: ReadingEntry[] = [
     "Edward Bernays",
     "https://en.wikipedia.org/wiki/Propaganda_(book)",
     "What did the father of public relations actually believe he was doing?",
-    "Bernays' 1928 manual for engineering consent — uncomfortable, foundational reading for anyone studying institutional communication. Entry in progress. (Draft placeholder.)",
+    "Bernays' 1928 manual for engineering consent: uncomfortable, foundational reading for anyone studying institutional communication. Entry in progress. (Draft placeholder.)",
   ),
   readingStub(
     9,
@@ -1463,7 +1463,7 @@ const notes: NoteEntry[] = [
       },
       {
         kind: "p",
-        text: "The floor arrows, the queuing boxes, the door chimes pitched differently for arrival and departure — none of it is signage in the American sense, where instructions compensate for confusing design. The design itself is the instruction. Organizations write employee handbooks for the same reason bad stations hang more signs.",
+        text: "The floor arrows, the queuing boxes, the door chimes pitched differently for arrival and departure: none of it is signage in the American sense, where instructions compensate for confusing design. The design itself is the instruction. Organizations write employee handbooks for the same reason bad stations hang more signs.",
       },
       {
         kind: "quote",
@@ -1471,7 +1471,7 @@ const notes: NoteEntry[] = [
       },
       {
         kind: "p",
-        text: "The note I keep returning to: trust in the system was not asked for anywhere. It accumulated from ten thousand small precisions — a train that arrives when the board says it will, every time. This is what operational discipline looks like when it becomes a communication strategy.",
+        text: "The note I keep returning to: trust in the system was not asked for anywhere. It accumulated from ten thousand small precisions, a train that arrives when the board says it will, every time. This is what operational discipline looks like when it becomes a communication strategy.",
       },
     ],
     continueExploring: [
@@ -1499,14 +1499,14 @@ const notes: NoteEntry[] = [
     "three-hours-in-union-station",
     "Three Hours in Union Station",
     "What does a station do with the people who are not going anywhere?",
-    "Union Station between trains — the waiting, the retail, the restoration scaffolding, and the quiet negotiation over whom the building is for. Note in progress. (Draft placeholder.)",
+    "Union Station between trains: the waiting, the retail, the restoration scaffolding, and the quiet negotiation over whom the building is for. Note in progress. (Draft placeholder.)",
   ),
   noteStub(
     4,
     "cities-relationship-with-time",
     "Every City Has a Different Relationship with Time",
     "Why does an hour feel different in different cities?",
-    "Punctuality, queues, dinner hours, and walk signals — a city's clock is a cultural document. Note in progress. (Draft placeholder.)",
+    "Punctuality, queues, dinner hours, and walk signals: a city's clock is a cultural document. Note in progress. (Draft placeholder.)",
   ),
   noteStub(
     5,
@@ -1527,7 +1527,7 @@ const notes: NoteEntry[] = [
     "libraries-understand-attention",
     "Libraries Understand Attention Better Than Most Apps",
     "Why does focus come easily in a building full of strangers?",
-    "The library as attention architecture — and what product design keeps getting wrong about focus. Note in progress. (Draft placeholder.)",
+    "The library as attention architecture, and what product design keeps getting wrong about focus. Note in progress. (Draft placeholder.)",
   ),
   noteStub(
     8,
@@ -1541,7 +1541,7 @@ const notes: NoteEntry[] = [
     "yearbook-organizations",
     "Three Things I Learned About Organizations from Editing a Yearbook",
     "What does a yearbook staff know about deadlines that companies don't?",
-    "Volunteer labor, hard deadlines, and shared authorship — the yearbook room as a miniature organization. Note in progress. (Draft placeholder.)",
+    "Volunteer labor, hard deadlines, and shared authorship: the yearbook room as a miniature organization. Note in progress. (Draft placeholder.)",
   ),
   /* -- The first full essay on the site (converted from a Note): the
         Essay treatment is dek → body → one pull quote → References
@@ -1653,7 +1653,7 @@ const notes: NoteEntry[] = [
     "quiet-confidence-public-libraries",
     "The Quiet Confidence of Public Libraries",
     "Why do libraries never have to advertise their trustworthiness?",
-    "The last institution nobody suspects of an agenda — and what its quiet confidence is built from. Note in progress. (Draft placeholder.)",
+    "The last institution nobody suspects of an agenda, and what its quiet confidence is built from. Note in progress. (Draft placeholder.)",
   ),
 ];
 

@@ -60,7 +60,7 @@ export function ChangiExperienceInteractive() {
         </h3>
         <p className="mt-4 max-w-2xl font-serif text-base leading-relaxed text-information/85">
           The floor plan shows what Changi chose to build; the written essay
-          argues what those choices add up to — a national philosophy of
+          argues what those choices add up to: a national philosophy of
           arrival, visible in horticulture budgets, nap cabins, and a
           waterfall where a food court would have paid better.
         </p>

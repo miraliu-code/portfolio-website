@@ -98,7 +98,7 @@ export const hsrInsights: HsrInsight[] = [
     country: "United States",
     countryId: "united-states",
     year: 2024, // the insight is about absence — pinned to the present
-    text: "The American gap isn't geography or engineering — it's follow-through.",
+    text: "The American gap isn't geography or engineering; it's follow-through.",
   },
 ];
 
@@ -131,7 +131,7 @@ export const hsrCountries: HsrCountry[] = [
       "Privatized (JR companies, formerly state JNR)",
     ],
     culture:
-      "Rail in Japan isn't infrastructure — it's a civic promise. Punctuality is treated as a moral obligation, not a service metric, and that standard shapes everything from timetable design to how apologies are issued when a train runs late by seconds.",
+      "Rail in Japan isn't infrastructure; it's a civic promise. Punctuality is treated as a moral obligation, not a service metric, and that standard shapes everything from timetable design to how apologies are issued when a train runs late by seconds.",
     focus: { center: [137.5, 37], scale: 5 },
     railLines: [
       {
@@ -197,7 +197,7 @@ export const hsrCountries: HsrCountry[] = [
       "Centrally planned expansion",
     ],
     culture:
-      "China treated high-speed rail as a demonstration of national capability as much as a transit solution — a network built fast enough to become a symbol of what centralized planning can execute, whether or not every line pays for itself.",
+      "China treated high-speed rail as a demonstration of national capability as much as a transit solution: a network built fast enough to become a symbol of what centralized planning can execute, whether or not every line pays for itself.",
     focus: { center: [105, 34], scale: 2.4 },
     railLines: [
       {
@@ -286,7 +286,7 @@ export const hsrCountries: HsrCountry[] = [
       "Centralized national planning",
     ],
     culture:
-      "France chose rail as national industrial policy decades before most competitors — the TGV wasn't just a train, it was a statement that the state could out-engineer the automobile and the airplane at once.",
+      "France chose rail as national industrial policy decades before most competitors. The TGV wasn't just a train; it was a statement that the state could out-engineer the automobile and the airplane at once.",
     focus: { center: [2.5, 46.6], scale: 6 },
     railLines: [
       {
@@ -355,7 +355,7 @@ export const hsrCountries: HsrCountry[] = [
       "Liberalized market",
     ],
     culture:
-      "Spain built more track than ridership initially justified — a bet that rail could reshape which cities counted as connected, made before the demand curve caught up.",
+      "Spain built more track than ridership initially justified: a bet that rail could reshape which cities counted as connected, made before the demand curve caught up.",
     focus: { center: [-3.8, 40], scale: 6 },
     railLines: [
       {
@@ -420,7 +420,7 @@ export const hsrCountries: HsrCountry[] = [
       "Dense single-corridor focus",
     ],
     culture:
-      "Korea's network is narrow by design — concentrated almost entirely on the Seoul–Busan spine, betting depth of service on one corridor over breadth across the country.",
+      "Korea's network is narrow by design, concentrated almost entirely on the Seoul–Busan spine, betting depth of service on one corridor over breadth across the country.",
     focus: { center: [127.8, 36.2], scale: 8.5 },
     railLines: [
       {
@@ -471,7 +471,7 @@ export const hsrCountries: HsrCountry[] = [
       "Hybrid high-speed/conventional track sharing",
     ],
     culture:
-      "Germany never fully committed to dedicated high-speed infrastructure the way Japan or France did — ICE trains often share track with regional and freight rail, a compromise that prioritizes network integration over top-line speed.",
+      "Germany never fully committed to dedicated high-speed infrastructure the way Japan or France did; ICE trains often share track with regional and freight rail, a compromise that prioritizes network integration over top-line speed.",
     focus: { center: [10.2, 51.1], scale: 6.5 },
     railLines: [
       {
@@ -540,7 +540,7 @@ export const hsrCountries: HsrCountry[] = [
       "Europe's first open-access competition model",
     ],
     culture:
-      "Italy is the rare case where direct competition between operators on the same tracks drove fares down and service up — proof that liberalization, not just investment, can be a growth strategy.",
+      "Italy is the rare case where direct competition between operators on the same tracks drove fares down and service up: proof that liberalization, not just investment, can be a growth strategy.",
     focus: { center: [12.3, 42.8], scale: 6 },
     railLines: [
       {
@@ -579,7 +579,7 @@ export const hsrCountries: HsrCountry[] = [
         { year: 2007, km: 113 },
         { year: 2024, km: 113 },
       ],
-      growthNote: "Phase 1 (2003), Phase 2 complete (2007) — unchanged since.",
+      growthNote: "Phase 1 (2003), Phase 2 complete (2007); unchanged since.",
     },
     economics: {
       stats: [
@@ -595,7 +595,7 @@ export const hsrCountries: HsrCountry[] = [
       "Politically stalled expansion (HS2 scaled back repeatedly)",
     ],
     culture:
-      "Britain built one high-speed line and spent the next twenty years arguing about a second — HS2's repeated scaling-back has made it a case study in how political cycles can outlast infrastructure ambition.",
+      "Britain built one high-speed line and spent the next twenty years arguing about a second; HS2's repeated scaling-back has made it a case study in how political cycles can outlast infrastructure ambition.",
     focus: { center: [-1.8, 53], scale: 6.2 },
     railLines: [
       {
@@ -623,7 +623,7 @@ export const hsrCountries: HsrCountry[] = [
         { year: 2000, km: 0 },
         { year: 2024, km: 0 },
       ],
-      growthNote: "Flat — no dedicated high-speed network exists nationally.",
+      growthNote: "Flat: no dedicated high-speed network exists nationally.",
     },
     economics: {
       stats: [
@@ -640,7 +640,7 @@ export const hsrCountries: HsrCountry[] = [
       "Project ownership fragmented across states",
     ],
     culture:
-      "The U.S. hasn't lacked proposals — it's lacked the sustained political and funding continuity that every other country on this map treated as non-negotiable. The gap here isn't geography or engineering. It's follow-through.",
+      "The U.S. hasn't lacked proposals; it's lacked the sustained political and funding continuity that every other country on this map treated as non-negotiable. The gap here isn't geography or engineering. It's follow-through.",
     focus: { center: [-96, 38.5], scale: 1.9 },
     railLines: [
       {

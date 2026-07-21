@@ -212,8 +212,8 @@ function LeftColumn() {
             <p className="mt-2 font-serif text-base leading-relaxed text-information/85">
               B.S. in Business Administration with a concentration in
               Marketing, and a B.A. in Psychology. Based in the nation&apos;s
-              capital, where consulting, policy, and communications intersect
-              with national policy.
+              capital, where consulting and communications work runs
+              alongside national policy.
             </p>
           </div>
           <div>

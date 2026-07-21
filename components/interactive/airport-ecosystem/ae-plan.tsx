@@ -1325,7 +1325,7 @@ export function AeFloorPlan() {
         <g
           role="button"
           tabIndex={0}
-          aria-label="Next aircraft in 40 minutes — open Ramp / Aircraft Turnaround"
+          aria-label="Next aircraft in 40 minutes: open Ramp / Aircraft Turnaround"
           className="ae-callout ae-label-tiny cursor-pointer focus:outline-none"
           onClick={(e) => {
             e.stopPropagation();

@@ -11,7 +11,7 @@ export const photoCategories: PhotoCategory[] = [
   {
     slug: "sports",
     name: "Sports",
-    description: "Court, ice, and stage — organizations at their most legible.",
+    description: "Court, ice, and stage: organizations at their most legible.",
   },
   {
     slug: "events",
@@ -33,7 +33,7 @@ export const galleries: Gallery[] = [
     category: "editorial",
     name: "Campus Editorial",
     statement:
-      "A portrait series about institutions wearing their identities — students photographed where the university's architecture does half the talking. (Draft placeholder statement.)",
+      "A portrait series about institutions wearing their identities: students photographed where the university's architecture does half the talking. (Draft placeholder statement.)",
     location: "Washington, D.C.",
     date: "Spring 2026",
     camera: "Canon R6, 50mm f/1.8",
@@ -51,7 +51,7 @@ export const galleries: Gallery[] = [
     category: "editorial",
     name: "Print Work",
     statement:
-      "Photography made for layouts — images that leave room for typography. (Draft placeholder statement.)",
+      "Photography made for layouts: images that leave room for typography. (Draft placeholder statement.)",
     location: "Washington, D.C.",
     date: "2025–2026",
     camera: "Canon R6, 35mm f/2",
@@ -68,7 +68,7 @@ export const galleries: Gallery[] = [
     category: "sports",
     name: "Basketball",
     statement:
-      "Five people executing a shared plan under time pressure — the closest thing to watching an org chart move. (Draft placeholder statement.)",
+      "Five people executing a shared plan under time pressure: the closest thing to watching an org chart move. (Draft placeholder statement.)",
     location: "Bender Arena, Washington, D.C.",
     date: "Winter 2025–26",
     camera: "Canon R6, 70–200mm f/2.8",
@@ -103,7 +103,7 @@ export const galleries: Gallery[] = [
     category: "sports",
     name: "Volleyball",
     statement:
-      "Rotation as choreography — six roles exchanged without a word. (Draft placeholder statement.)",
+      "Rotation as choreography: six roles exchanged without a word. (Draft placeholder statement.)",
     location: "Washington, D.C.",
     date: "Fall 2025",
     camera: "Canon R6, 70–200mm f/2.8",
@@ -136,7 +136,7 @@ export const galleries: Gallery[] = [
     category: "events",
     name: "Ceremonies",
     statement:
-      "Institutions performing themselves — the moments organizations design most carefully. (Draft placeholder statement.)",
+      "Institutions performing themselves: the moments organizations design most carefully. (Draft placeholder statement.)",
     location: "Washington, D.C.",
     date: "2025–2026",
     camera: "Canon R6, 24–70mm f/2.8",

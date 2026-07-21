@@ -43,7 +43,7 @@
 export type CpoSector = "electronics" | "apparel";
 
 export const cpoQuestion =
-  "When manufacturing costs rise in one country, where does it actually go — and does it actually go anywhere at all?";
+  "When manufacturing costs rise in one country, where does it actually go, and does it actually go anywhere at all?";
 
 export const cpoOrientation =
   "Drag the timeline. Switch between apparel and electronics. Click a country to see what moved, and why.";
@@ -117,20 +117,20 @@ export const cpoCountries: CpoCountry[] = [
     labelOffset: [50, 6],
     labelAnchor: "start",
     summary:
-      "Still the world's factory in absolute terms — but its share of what America imports has fallen fast enough to reorder this map.",
+      "Still the world's factory in absolute terms, but its share of what America imports has fallen fast enough to reorder this map.",
     shares: {
       electronics: { start: 82, end: 25 },
       apparel: { start: 39.5, end: 11.3 },
     },
     detail: {
       whatMoved:
-        "Nothing moved here — this is the origin node. China remains the largest single manufacturing base on earth (~80% of iPhone assembly in 2025), and the report's spine claim applies here directly: the label moves easily; the ecosystem doesn't. [Well-established]",
+        "Nothing moved here; this is the origin node. China remains the largest single manufacturing base on earth (~80% of iPhone assembly in 2025), and the report's spine claim applies here directly: the label moves easily; the ecosystem doesn't. [Well-established]",
       whatItCost:
-        "Moving up instead of out: automation, higher-margin manufacturing, and letting the lowest-margin assembly go. Staying the center of the ecosystem while shedding its cheapest layer is a strategy with real costs — it is just paid in different currency than relocation. [Reported]",
+        "Moving up instead of out: automation, higher-margin manufacturing, and letting the lowest-margin assembly go. Staying the center of the ecosystem while shedding its cheapest layer is a strategy with real costs. It is just paid in different currency than relocation. [Reported]",
       laborReality:
-        "The Chinese factory workers whose jobs moved are a real, undercounted loss in the 'who wins' conversation — plainly stated, not footnoted: the first people this shift happened to were the people doing the work it moved. [Reported]",
+        "The Chinese factory workers whose jobs moved are a real, undercounted loss in the 'who wins' conversation, plainly stated rather than footnoted: the first people this shift happened to were the people doing the work it moved. [Reported]",
       ceiling:
-        "Rising wages — the original driver of the entire shift this map draws. The pressure that pushed the label out of China has not stopped operating on China. [Well-established]",
+        "Rising wages: the original driver of the entire shift this map draws. The pressure that pushed the label out of China has not stopped operating on China. [Well-established]",
       fieldLabels: { whatItCost: "What staying costs" },
     },
   },
@@ -142,20 +142,20 @@ export const cpoCountries: CpoCountry[] = [
     labelOffset: [30, 4],
     labelAnchor: "start",
     summary:
-      "The biggest single winner of China Plus One — first in US apparel by 2025, past China in smartphones.",
+      "The biggest single winner of China Plus One: first in US apparel by 2025, past China in smartphones.",
     shares: {
       electronics: { start: 2, end: 30 },
       apparel: { start: 7.0, end: 19.6 },
     },
     detail: {
       whatMoved:
-        "Both stories at once: the #1 apparel supplier to the US by 2025, and 30% of US smartphone imports in Q2 2025 — past China in both categories in the same year. [Well-established]",
+        "Both stories at once: the #1 apparel supplier to the US by 2025, and 30% of US smartphone imports in Q2 2025, past China in both categories in the same year. [Well-established]",
       whatItCost:
-        "Real, substantial value-added growth — roughly 84% of the export increase reflects genuine domestic production rather than rerouting, per Duke University's Edmund Malesky. [Reported] The contested remainder is exactly what the measurement control below is for.",
+        "Real, substantial value-added growth: roughly 84% of the export increase reflects genuine domestic production rather than rerouting, per Duke University's Edmund Malesky. [Reported] The contested remainder is exactly what the measurement control below is for.",
       laborReality:
-        "A young workforce absorbed into export manufacturing at extraordinary speed. Wage growth is real — and so is the pressure it puts on Vietnam's own low-cost position: the same cycle that started this map, one country over. [Reported]",
+        "A young workforce absorbed into export manufacturing at extraordinary speed. Wage growth is real, and so is the pressure it puts on Vietnam's own low-cost position: the same cycle that started this map, one country over. [Reported]",
       ceiling:
-        "The 40% US transshipment tariff, with criteria that remain undefined — what counts as 'transshipped' is not yet written anywhere an exporter can read, and that uncertainty is itself the ceiling. [Reported]",
+        "The 40% US transshipment tariff, with criteria that remain undefined: what counts as 'transshipped' is not yet written anywhere an exporter can read, and that uncertainty is itself the ceiling. [Reported]",
     },
   },
   {
@@ -175,12 +175,12 @@ export const cpoCountries: CpoCountry[] = [
     estimated2025: { electronics: true, apparel: true },
     detail: {
       whatMoved:
-        "Apparel, specifically and almost exclusively: +26.9% growth in 2025 — among the fastest of any supplier — with the share of US buyers sourcing here jumping from 75% to 94% in a single year. [Reported]",
+        "Apparel, specifically and almost exclusively: +26.9% growth in 2025 (among the fastest of any supplier), with the share of US buyers sourcing here jumping from 75% to 94% in a single year. [Reported]",
       whatItCost:
         "Very little, and that is the finding: a shallow capability base (~3,000 SKUs, the same tier as Bangladesh) growing on price-sensitive volume rather than built capacity. [Reported]",
       laborRestructured: true,
       laborReality:
-        "Markedly less oversight than Bangladesh's mature reform apparatus — the growth is arriving faster than any comparable safety or labor-rights machinery. [Reported] In 2020, the EU partially withdrew Cambodia's 'Everything But Arms' trade preferences on human-rights grounds — a rare case of a Western market revoking access over governance — and that context has not aged out of the current boom. [Reported]",
+        "Markedly less oversight than Bangladesh's mature reform apparatus; the growth is arriving faster than any comparable safety or labor-rights machinery. [Reported] In 2020, the EU partially withdrew Cambodia's 'Everything But Arms' trade preferences on human-rights grounds (a rare case of a Western market revoking access over governance), and that context has not aged out of the current boom. [Reported]",
       ceiling:
         "The SKU range itself: ~3,000 products cannot absorb the breadth of production leaving China. Cambodia's ceiling is capability, not demand. [Reported]",
     },
@@ -193,7 +193,7 @@ export const cpoCountries: CpoCountry[] = [
     labelOffset: [-22, -14],
     labelAnchor: "end",
     summary:
-      "Apparel scale without an electronics story — the shift's most single-industry winner.",
+      "Apparel scale without an electronics story: the shift's most single-industry winner.",
     shares: {
       electronics: { start: 0.1, end: 0.3 },
       apparel: { start: 4.6, end: 9.3 },
@@ -201,12 +201,12 @@ export const cpoCountries: CpoCountry[] = [
     estimated2025: { electronics: true, apparel: true },
     detail: {
       whatMoved:
-        "The mature, longest-standing apparel destination of the whole shift — scale built over decades, not tariff cycles. [Well-established]",
+        "The mature, longest-standing apparel destination of the whole shift, its scale built over decades, not tariff cycles. [Well-established]",
       whatItCost:
-        "Two remediation systems, two outcomes: the binding Accord (now RSC) passed 90% completion years ago; the government's voluntary Remediation Coordination Cell sits at 59% — 665 of 1,800 factories. Binding worked; voluntary drifted. [Reported]",
+        "Two remediation systems, two outcomes: the binding Accord (now RSC) passed 90% completion years ago; the government's voluntary Remediation Coordination Cell sits at 59%, or 665 of 1,800 factories. Binding worked; voluntary drifted. [Reported]",
       laborRestructured: true,
       laborReality:
-        "The progress is real: 1,548 apparel workers died in factory disasters between 2005 and 2013; since Rana Plaza forced the binding Accord, 18. [Reported] It is also incomplete: in October 2025, a fire at Anwar Fashions killed 16 workers — one of them 14 years old — behind a locked roof exit. Rana Plaza's exact failure mode, 13 years later. [Reported] The structural finding underneath: factories serving non-traditional buyers — Russia, Brazil, the UAE — face no safety pressure at all, because those buyers don't require it. Labor organizer Kalpona Akter's long-standing point stands: only binding legal obligations have changed factory behavior here; voluntary codes did not, and markets that ask for nothing get nothing. [Reported]",
+        "The progress is real: 1,548 apparel workers died in factory disasters between 2005 and 2013; since Rana Plaza forced the binding Accord, 18. [Reported] It is also incomplete: in October 2025, a fire at Anwar Fashions killed 16 workers, one of them 14 years old, behind a locked roof exit. Rana Plaza's exact failure mode, 13 years later. [Reported] The structural finding underneath: factories serving non-traditional buyers (Russia, Brazil, the UAE) face no safety pressure at all, because those buyers don't require it. Labor organizer Kalpona Akter's long-standing point stands: only binding legal obligations have changed factory behavior here; voluntary codes did not, and markets that ask for nothing get nothing. [Reported]",
       ceiling:
         "Erosion of the very leverage that produced the progress: as the customer base diversifies toward markets that never asked about safety, the Western-buyer pressure that built the Accord covers a shrinking share of the industry. [Reported]",
     },
@@ -219,7 +219,7 @@ export const cpoCountries: CpoCountry[] = [
     labelOffset: [-6, 44],
     labelAnchor: "middle",
     summary:
-      "The electronics surprise: from under 1% of Apple's iPhone output in 2017 to a quarter of it — and 44% of US smartphone imports — by 2025.",
+      "The electronics surprise: from under 1% of Apple's iPhone output in 2017 to a quarter of it, and 44% of US smartphone imports, by 2025.",
     shares: {
       electronics: { start: 1, end: 44 },
       apparel: { start: 4.0, end: 6.3 },
@@ -227,13 +227,13 @@ export const cpoCountries: CpoCountry[] = [
     estimated2025: { apparel: true },
     detail: {
       whatMoved:
-        "iPhone assembly: under 1% of Apple's global output in 2017, 25% by the end of 2025 — and in Q2 2025 India overtook China as the largest source of US smartphone imports, at 44% (Canalys). [Well-established]",
+        "iPhone assembly: under 1% of Apple's global output in 2017, 25% by the end of 2025; in Q2 2025 India overtook China as the largest source of US smartphone imports, at 44% (Canalys). [Well-established]",
       whatItCost:
-        "A ~$21bn production-linked incentive (PLI) program, plus a 55%-versus-10% tariff duty gap doing quiet work underneath. The employment claim — 175,000 jobs, three-quarters held by women — is the PLI scheme's own government-attributed figure, not independently verified. [Contested]",
+        "A ~$21bn production-linked incentive (PLI) program, plus a 55%-versus-10% tariff duty gap doing quiet work underneath. The employment claim (175,000 jobs, three-quarters held by women) is the PLI scheme's own government-attributed figure, not independently verified. [Contested]",
       laborReality:
-        "Electronics assembly has pulled large numbers of first-generation factory workers — disproportionately women — into formal employment; conditions and wage trajectories vary widely by state and campus, and the scale is too new for settled evidence. [Reported]",
+        "Electronics assembly has pulled large numbers of first-generation factory workers, disproportionately women, into formal employment; conditions and wage trajectories vary widely by state and campus, and the scale is too new for settled evidence. [Reported]",
       ceiling:
-        "Assembly still runs 5–8% (by some estimates up to 10%) costlier than China, propped up by subsidies and the duty gap — and both props are narrowing: the PLI program expires in March 2026, and the tariff politics are unstable (China recalling Foxconn's Chinese engineers from Indian plants; a US tariff threat answered by Apple's $600bn US investment pledge). [Reported]",
+        "Assembly still runs 5–8% (by some estimates up to 10%) costlier than China, propped up by subsidies and the duty gap. Both props are narrowing: the PLI program expires in March 2026, and the tariff politics are unstable (China recalling Foxconn's Chinese engineers from Indian plants; a US tariff threat answered by Apple's $600bn US investment pledge). [Reported]",
     },
   },
   {
@@ -252,14 +252,14 @@ export const cpoCountries: CpoCountry[] = [
     estimated2025: { electronics: true, apparel: true },
     detail: {
       whatMoved:
-        "Not apparel volume but an EV battery supply chain, built out around the world's largest nickel reserves — roughly $65bn in cumulative Chinese investment. [Reported]",
+        "Not apparel volume but an EV battery supply chain, built out around the world's largest nickel reserves, with roughly $65bn in cumulative Chinese investment. [Reported]",
       whatItCost:
-        "Ownership, mostly: about 75% of nickel refining capacity is Chinese-controlled. The oft-quoted 90% figure is a different statistic — smelters BUILT, a construction count, not control — and the two should not be swapped. [Reported] Economist Faisal Basri's sharper 'who wins' estimate: roughly 90% of the profits accrue to foreign firms. [Contested]",
+        "Ownership, mostly: about 75% of nickel refining capacity is Chinese-controlled. The oft-quoted 90% figure is a different statistic (smelters BUILT, a construction count, not control) and the two should not be swapped. [Reported] Economist Faisal Basri's sharper 'who wins' estimate: roughly 90% of the profits accrue to foreign firms. [Contested]",
       laborRestructured: true,
       laborReality:
-        "Start with who is paying: in October 2025, eleven Indigenous protesters from the Maba Sangaji community were jailed for opposing mining on their land, and Buli Bay's waters carry the contamination of the refining boom. [Reported] Only after that does the strategic standoff belong here — and it is active, not historical: China's shift toward nickel-free LFP batteries has cut Tsingshan's Weda Bay ore quota by roughly 70%, paused Huayou's capacity expansion, and produced a formal complaint from the Chinese Chamber of Commerce to President Prabowo. The consequence lands on the same communities first. [Reported]",
+        "Start with who is paying: in October 2025, eleven Indigenous protesters from the Maba Sangaji community were jailed for opposing mining on their land, and Buli Bay's waters carry the contamination of the refining boom. [Reported] Only after that does the strategic standoff belong here, and it is active, not historical: China's shift toward nickel-free LFP batteries has cut Tsingshan's Weda Bay ore quota by roughly 70%, paused Huayou's capacity expansion, and produced a formal complaint from the Chinese Chamber of Commerce to President Prabowo. The consequence lands on the same communities first. [Reported]",
       ceiling:
-        "China's own turn to nickel-free battery chemistry structurally undermines the industry Chinese investment built here — the buyer and the builder are the same party, and it is walking away from its own project. A real, unresolved contradiction. [Reported]",
+        "China's own turn to nickel-free battery chemistry structurally undermines the industry Chinese investment built here: the buyer and the builder are the same party, and it is walking away from its own project. A real, unresolved contradiction. [Reported]",
     },
   },
   {
@@ -270,7 +270,7 @@ export const cpoCountries: CpoCountry[] = [
     labelOffset: [0, 30],
     labelAnchor: "middle",
     summary:
-      "The nearshoring narrative's home — and, in apparel, its clearest counterexample: 2.3% of US imports and falling.",
+      "The nearshoring narrative's home and, in apparel, its clearest counterexample: 2.3% of US imports and falling.",
     shares: {
       electronics: { start: 3, end: 1.5 },
       apparel: { start: 4.5, end: 2.3 },
@@ -278,13 +278,13 @@ export const cpoCountries: CpoCountry[] = [
     estimated2025: { electronics: true },
     detail: {
       whatMoved:
-        "The headline says record investment; the composition says something quieter — see the callout below, which this field deliberately does not compress into one line. [Reported]",
+        "The headline says record investment; the composition says something quieter; see the callout below, which this field deliberately does not compress into one line. [Reported]",
       whatItCost:
-        "The 'shelter company' mechanism — foreign manufacturers operating under a Mexican intermediary's legal identity — makes true origin as hard to count here as transshipment makes it in Vietnam: a structural parallel, both numbers effectively unknowable by design. [Reported]",
+        "The 'shelter company' mechanism, foreign manufacturers operating under a Mexican intermediary's legal identity, makes true origin as hard to count here as transshipment makes it in Vietnam: a structural parallel, both numbers effectively unknowable by design. [Reported]",
       laborReality:
         "Manufacturing wages that once anchored the maquila belt have risen with formalization and USMCA labor provisions; the labor story here is steadier than the investment story. [Reported]",
       ceiling:
-        "The USMCA review, due July 1, 2026 — the single biggest open variable for Mexico's entire trajectory. Its outcome is not yet knowable, and this panel says so rather than guessing. [Reported]",
+        "The USMCA review, due July 1, 2026, is the single biggest open variable for Mexico's entire trajectory. Its outcome is not yet knowable, and this panel says so rather than guessing. [Reported]",
     },
   },
 ];
@@ -334,18 +334,18 @@ export const cpoTransshipment: {
       id: "province",
       name: "Province-level",
       estimate: 8.8,
-      measure: "of 2018–2021 export GROWTH — growth, not total exports",
+      measure: "of 2018–2021 export GROWTH (growth, not total exports)",
     },
     {
       id: "firm",
       name: "Firm-level",
       estimate: 1.7,
       measure:
-        "of exports, from firm-level records — the series the original researchers consider most reliable",
+        "of exports, from firm-level records, the series the original researchers consider most reliable",
     },
   ],
   explanation:
-    "The estimate shrinks as the measurement gets more granular: coarse product categories can't tell relabeled goods from genuinely new production, and the finest-grained data — which the original researchers trust most — gives the lowest number. The answer depends on your resolution.",
+    "The estimate shrinks as the measurement gets more granular: coarse product categories can't tell relabeled goods from genuinely new production, and the finest-grained data, which the original researchers trust most, gives the lowest number. The answer depends on your resolution.",
   quote:
     "One path “creates jobs and revenue. The other just moves labels.” — Edmund Malesky, Duke University",
 };
@@ -356,7 +356,7 @@ export const cpoTransshipment: {
 /* ------------------------------------------------------------------ */
 
 export const cpoMexicoCallout = {
-  title: "Brownfield, not greenfield — three true numbers, reconciled",
+  title: "Brownfield, not greenfield: three true numbers, reconciled",
   stats: [
     {
       label: "Chinese FDI into Mexico",
@@ -385,19 +385,19 @@ export const cpoMexicoCallout = {
 export const cpoInsights: { tag: string; text: string }[] = [
   {
     tag: "The Divergence",
-    text: "Flip the toggle: apparel diversified aggressively within Asia — a record 73% of US apparel imports — while Mexico fell to 2.3%. The industry everyone assumed would nearshore first didn't.",
+    text: "Flip the toggle: apparel diversified aggressively within Asia (a record 73% of US apparel imports) while Mexico fell to 2.3%. The industry everyone assumed would nearshore first didn't.",
   },
   {
     tag: "Vietnam",
-    text: "Vietnam passed China twice in the same year — the #1 apparel supplier to the US, and past China in smartphone imports. The only country on this map that won both stories at once.",
+    text: "Vietnam passed China twice in the same year: the #1 apparel supplier to the US, and past China in smartphone imports. The only country on this map that won both stories at once.",
   },
   {
     tag: "Mexico",
-    text: "Three true numbers, one finding: Chinese FDI down 80%, total FDI at a record $41bn, new greenfield at half its 2015–2022 average. Record capital is mostly reinvested earnings in existing plants — not new factories.",
+    text: "Three true numbers, one finding: Chinese FDI down 80%, total FDI at a record $41bn, new greenfield at half its 2015–2022 average. Record capital is mostly reinvested earnings in existing plants, not new factories.",
   },
   {
     tag: "Indonesia",
-    text: "Eleven jailed Indigenous protesters and a contaminated bay are the near-term price of a nickel build-out whose own funder — China — is now moving to nickel-free batteries. The human bill arrived before the strategic one.",
+    text: "Eleven jailed Indigenous protesters and a contaminated bay are the near-term price of a nickel build-out whose own funder, China, is now moving to nickel-free batteries. The human bill arrived before the strategic one.",
   },
 ];
 

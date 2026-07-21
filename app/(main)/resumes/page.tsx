@@ -17,7 +17,7 @@ export default function ResumesPage() {
       </h1>
       <p className="mt-6 max-w-xl font-serif text-lg leading-relaxed text-information/80">
         The work is the same body; the emphasis changes. Each resume is
-        tailored to a different kind of role — choose the one that matches the
+        tailored to a different kind of role; choose the one that matches the
         conversation you&apos;d like to have.
       </p>
       <div className="mt-14">

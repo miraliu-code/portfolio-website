@@ -298,7 +298,7 @@ export function MtrExplore() {
               ) : (
                 <p className="max-w-3xl font-serif text-sm italic leading-relaxed text-information/60">
                   Click either board to read what its convention asks of a
-                  passenger — and what the discs are doing.
+                  passenger, and what the discs are doing.
                 </p>
               )}
             </div>

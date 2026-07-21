@@ -61,7 +61,7 @@ export function ChinaPlusOneInteractive() {
         </h3>
         <p className="mt-4 max-w-2xl font-serif text-base leading-relaxed text-information/85">
           The map shows where manufacturing moved. The report's closing
-          section — Section 12, The Skeptic's Case — asks how much of this
+          section (Section 12, The Skeptic's Case) asks how much of this
           shift is real, and how much is relabeling.
         </p>
         <a

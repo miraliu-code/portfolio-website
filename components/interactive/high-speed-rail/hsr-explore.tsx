@@ -775,7 +775,7 @@ export function HsrExplore({
               setYear(hsrTimeline.end);
             }
           }}
-          aria-label="Timeline — drag to watch the networks grow"
+          aria-label="Timeline: drag to watch the networks grow"
           aria-valuetext={String(displayYear)}
           className="hsr-scrubber mt-4 block w-full"
         />

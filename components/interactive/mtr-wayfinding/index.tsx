@@ -114,7 +114,7 @@ export function MtrFollowTheSign() {
         </h3>
         <p className="mt-4 max-w-2xl font-serif text-base leading-relaxed text-information/85">
           The sign is one station's worth of a system-wide argument. The
-          written field guide carries the rest — the hierarchy, the transfer
+          written field guide carries the rest: the hierarchy, the transfer
           design, and the full case for why redundancy, not consistency, is
           what makes the MTR feel effortless.
         </p>

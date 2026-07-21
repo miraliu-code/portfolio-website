@@ -56,7 +56,7 @@ export function TransitInfoInteractive() {
         </h3>
         <p className="mt-4 max-w-2xl font-serif text-base leading-relaxed text-information/85">
           The four cities are the exhibits; the written essay carries the
-          argument — what it means to treat information as infrastructure,
+          argument: what it means to treat information as infrastructure,
           and who a system is really built for.
         </p>
         <a

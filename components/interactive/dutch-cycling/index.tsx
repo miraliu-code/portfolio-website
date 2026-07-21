@@ -45,7 +45,7 @@ export function DutchCyclingInteractive() {
         <div className="mt-5 border border-structure/20 bg-atmosphere p-4 md:p-6">
           <DcIntersectionDiagram />
           <p className="mt-2 font-sans text-[0.6rem] uppercase tracking-[0.2em] text-information/45">
-            The documented geometry, drawn in plan — presentation stylized
+            The documented geometry, drawn in plan; presentation stylized
           </p>
         </div>
         <div className="mt-6 grid gap-6 md:grid-cols-3">
@@ -153,7 +153,7 @@ export function DutchCyclingInteractive() {
         </h3>
         <p className="mt-4 max-w-2xl font-serif text-base leading-relaxed text-information/85">
           The cards show the categories; the written field guide carries the
-          doctrine behind them — Sustainable Safety's three principles, the
+          doctrine behind them: Sustainable Safety's three principles, the
           retrofit history, and what the classification question would mean
           applied anywhere else.
         </p>

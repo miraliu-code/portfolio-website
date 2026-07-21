@@ -77,7 +77,7 @@ export function ResumeSection() {
         The Resume Library →
       </Link>
       <p className="mt-3 font-sans text-xs leading-relaxed tracking-wide text-atmosphere/70">
-        Four tailored resumes — strategy, communications, marketing, and
+        Four tailored resumes: strategy, communications, marketing, and
         social impact. Pick the one that fits the conversation.
       </p>
     </div>

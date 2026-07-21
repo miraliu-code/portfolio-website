@@ -134,6 +134,32 @@ export const ptCaptions: Record<PtCityId, Record<PtDimensionId, string>> = {
   },
 };
 
+/* Cross-references rendered as real links under the caption — the
+   Hong Kong cells defer to the MTR Wayfinding interactive rather
+   than re-deriving its content, and the deferral must actually
+   resolve, not just be mentioned in prose. */
+export const MTR_WAYFINDING_ROUTE =
+  "/atlas/design/systems-design/hong-kong-mtr-wayfinding";
+
+export const ptCrossRefs: Partial<
+  Record<PtCityId, Partial<Record<PtDimensionId, { label: string; href: string }>>>
+> = {
+  "hong-kong": {
+    maps: {
+      label: "MTR Wayfinding — the close reading of this system →",
+      href: MTR_WAYFINDING_ROUTE,
+    },
+    icons: {
+      label: "MTR Wayfinding — the signage system up close →",
+      href: MTR_WAYFINDING_ROUTE,
+    },
+    digital: {
+      label: "MTR Wayfinding — how the same constraint shapes the signs →",
+      href: MTR_WAYFINDING_ROUTE,
+    },
+  },
+};
+
 /* Altitude note vs the MTR piece — rendered on the page. */
 export const ptScopeNote =
   "A different altitude than MTR Wayfinding: that interactive reads one system's actual signage up close; this one compares four systems across four information types — maps, tickets, symbols, and displays.";
@@ -279,5 +305,15 @@ export const ptInsights = [
   }
   if (ptInsights.length !== 4) {
     throw new Error("Transit Info: exactly four Key Insights.");
+  }
+  /* Every Hong Kong cell whose caption defers to the MTR piece must
+     carry a real cross-reference link at the correct route. */
+  for (const d of ["maps", "icons", "digital"] as const) {
+    const ref = ptCrossRefs["hong-kong"]?.[d];
+    if (!ref || ref.href !== MTR_WAYFINDING_ROUTE) {
+      throw new Error(
+        `Transit Info: the Hong Kong ${d} cell defers to MTR Wayfinding and must link to its live route.`,
+      );
+    }
   }
 }

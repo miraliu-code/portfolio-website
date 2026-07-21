@@ -4,6 +4,7 @@ import { useState } from "react";
 import {
   ptCaptions,
   ptCities,
+  ptCrossRefs,
   ptDimensionNotes,
   ptDimensions,
   ptModes,
@@ -118,6 +119,14 @@ export function PtExplore() {
           text={ptCaptions[city][dim]}
           className="mt-2 max-w-3xl font-serif text-sm leading-[1.8] text-information/90"
         />
+        {ptCrossRefs[city]?.[dim] && (
+          <a
+            href={ptCrossRefs[city]![dim]!.href}
+            className="mt-3 inline-block font-sans text-xs uppercase tracking-[0.25em] text-interaction hover:underline hover:underline-offset-4"
+          >
+            {ptCrossRefs[city]![dim]!.label}
+          </a>
+        )}
       </div>
 
       {/* Scope note vs MTR */}

@@ -1174,15 +1174,155 @@ const ioPsychology: StandardProject[] = [
     format: "White Paper",
     length: "20–25 pp",
   }),
-  stub("io-psychology", {
+  /* -- The second full essay on the site (Komen / trust-as-capital):
+        Essay treatment is dek → body → one pull quote → References
+        (the closing-bibliography pattern) → a methodological figures
+        note. Financial figures transcribed from the supplied piece. -- */
+  {
+    type: "standard",
     slug: "trust-organizational-asset",
+    domain: "io-psychology",
     folder: "decision-making",
     coordinate: "IO-11",
-    title: "Trust Is an Organizational Asset",
+    title: "The Asset You Cannot Spend",
     question: "What if trust belongs on the balance sheet?",
+    date: "2026-07-21",
+    readingTime: 14,
     format: "Essay",
     length: "3,000 words",
-  }),
+    hero: nextHero(),
+    draft: false,
+    organizations: ["Susan G. Komen"],
+    artifacts: [],
+    tabs: [
+      {
+        id: "overview",
+        label: "Overview",
+        blocks: [
+          {
+            kind: "dek",
+            text: "Trust behaves like capital in almost every respect, except the one that matters most: the moment an organization draws it down for its own benefit, the balance disappears.",
+          },
+          {
+            kind: "p",
+            text: "In late January of 2012, the Susan G. Komen for the Cure foundation stopped funding a set of grants that Planned Parenthood affiliates had used for breast examinations, a sum of roughly seven hundred thousand dollars, and explained the decision by pointing to a newly adopted rule against supporting organizations under government investigation (Harvard Kennedy School Case Program, 2012). Measured in dollars, it was a minor line item for a charity that had spent three decades building one of the most recognized brands in American philanthropy. Measured in trust, it was ruinous. Over four days the decision pulled in senators, a New York mayor, musicians, and a flood of ordinary supporters who read the move as a women's-health charity trading its mission for political cover, and Komen reversed itself and apologized (Harvard Kennedy School Case Program, 2012). The reversal did not save it. In the first full fiscal year after the decision, contributions and grants across Komen and its affiliates fell by nearly eighteen percent, from about a hundred and forty-two million dollars to a hundred and seventeen, with total revenue falling from a hundred and seventy-eight million to a hundred and forty-nine (Susan G. Komen Breast Cancer Foundation Group, 2013). The erosion continued for years afterward. By the fiscal year ending in March of 2018, contributions to the national foundation had fallen to fifty-one million, roughly a third of their pre-crisis level, and total revenue to seventy-seven million (Susan G. Komen Breast Cancer Foundation, 2018). A grant program worth seven hundred thousand dollars a year was followed by a first-year shortfall in contributions alone of twenty-five million, a ratio of roughly one to thirty-five. In the years that followed, the decline removed close to two thirds of the organization's donated income, arriving through a channel that no line on any budget could have anticipated.",
+          },
+          {
+            kind: "p",
+            text: "That ratio does not behave the way an organization's other resources behave. Ordinary assets are roughly linear, so that spending a dollar leaves you a dollar poorer and spending a little costs you a little. What Komen spent was small and what it lost was enormous, and the loss arrived through the reactions of people rather than through any depletion of a stock. Trust is regularly called an asset, and the description carries real weight. Take the accounting seriously, though, and the metaphor starts to strain, and the places where it strains explain why organizations destroy the thing so reliably and so often by surprise.",
+          },
+          {
+            kind: "quote",
+            text: "The act of visibly drawing it down for your own advantage is not a withdrawal from the account; it is the destruction of the account.",
+          },
+          {
+            kind: "p",
+            text: "The metaphor holds in several genuine respects, which is why the language of assets attached itself to trust in the first place. The economics here are old and carefully worked out. Kenneth Arrow described trust as a lubricant of social and commercial life, the quiet substance that lets exchange proceed without everything being specified, secured, and enforced in advance (Arrow, 1972). Oliver Williamson built much of the modern theory of the firm on the observation that coordination is costly, that transactions carry frictions of negotiation and monitoring and enforcement, and that organizations exist in large part to economize on those frictions (Williamson, 1981). Trust sits directly on that cost. When a supplier believes a buyer will pay, when an employee believes a promotion will follow the work, when a donor believes a gift will reach its purpose, the elaborate and expensive machinery of verification can be left in the drawer. Mark Fichman, surveying how the concept had been studied, tied this lubricating quality explicitly to transaction-cost analysis and offered the working definition the field tends to use, in which trust is the willingness to accept vulnerability on the strength of positive expectations about another party's conduct (Fichman, 2003). Vulnerability is the operative word. Trust matters precisely where verification is incomplete, which is nearly everywhere that human beings coordinate over time.",
+          },
+          {
+            kind: "p",
+            text: "Understood this way, trust accumulates like capital and pays out like capital. It is built slowly, through a long sequence of kept commitments, and once built it lowers the cost of everything an organization subsequently attempts. It shows up, in a rough and partial way, on actual balance sheets, since much of what an acquirer pays above the tangible value of a company is goodwill, which is to say the market's estimate of accumulated reputation and relationship. It can be inherited, passed from one chief executive to the next like a reserve in an account, and drawn upon by people who did nothing to earn it. A new leader at a trusted institution starts with a balance already standing to the institution's name. The capital metaphor captures something structurally true about how trust forms and what it does.",
+          },
+          {
+            kind: "p",
+            text: "The trouble begins when one asks whether trust possesses the property that makes capital useful, which is that you can spend it. Lindon Robison and his colleagues, examining whether social capital deserved to be called capital at all, worked carefully through the features a thing must have to earn the name, among them durability, the capacity to be maintained against decay, and the possibility of investment and disinvestment (Robison et al., 2002). In the course of that examination they revive the sharpest objection to the whole analogy, which Arrow had raised at a World Bank workshop: the word capital implies a deliberate sacrifice in the present made to secure a benefit in the future, and he doubted that relationships formed for other reasons fit that description (Arrow, 1999, as cited in Robison et al., 2002). Robison and his colleagues go on to dispute him, arguing that people do invest in relationships at a real present cost, but Arrow's objection points to the exact seam where the metaphor tears. You can invest in trust by absorbing a present cost, keeping a promise that is inconvenient, spending on quality no customer would have detected, in order to draw a future return. What you cannot do is the thing that makes financial capital financial, which is to liquidate it at will. You cannot withdraw trust and hold the proceeds. The act of visibly drawing it down for your own advantage is not a withdrawal from the account; it is the destruction of the account. Trust is an asset you may add to and protect and slowly convert into other goods, and the one transaction forbidden to you is the one that treats it as a reserve to be spent when convenient. Komen attempted precisely that forbidden transaction. It reached for a small withdrawal, dropping one grantee to relieve a political pressure, and found that the attempt consumed the entire balance.",
+          },
+          {
+            kind: "p",
+            text: "Why should so small a withdrawal be so ruinous, and why should the damage prove so resistant to repair? The answer lies in how people process the information a violation carries. Peter Kim and his colleagues, studying how trust can be rebuilt after it breaks, worked from a distinction that turns out to be central, first drawn in their earlier study of apology and denial: people read failures of competence and failures of integrity in opposite ways (Kim et al., 2004, 2006). A single competence failure tends to be discounted as an anomaly, because we understand that capable people occasionally perform badly, so one bad outcome is weak evidence of a bad type. A single integrity failure runs the other way. We intuitively believe that a person of genuine integrity would not have done the dishonest thing under any circumstance, so a single violation reads as reliable evidence of character, and that reading, once formed, is remarkably difficult to disconfirm. Komen's decision was received as a violation of the second kind. Supporters did not conclude that the charity had made an administrative misjudgment; they concluded that it had revealed what it actually was, an organization willing to subordinate women's health to politics. Once an audience has settled on a conclusion about character, further information struggles to move it, which is why the reversal four days later accomplished so little. The reversal was the disconfirming act, the attempt to signal that the violation had not been what it seemed, and it ran straight into the wall that Kim and his colleagues describe. Crisis specialists watching in real time reached a similar view of the damage, if not of the remedy. The consultants and scholars Forbes canvassed days after the reversal agreed that reversing had been the right call and that the reputational repair would nonetheless be long and complex; the reputation scholar Daniel Diermeier added that Komen's deeper problem was the need to purge the perception that its grant-making had become political (Adams, 2012). Komen had by then angered those who wanted the funding cut along with those who wanted it kept, and satisfied neither.",
+          },
+          {
+            kind: "p",
+            text: "Underneath the cognition sits an emotion that gives the collapse its force. Ernst Fehr, reviewing the experimental study of trust, documented what researchers call betrayal aversion, the finding that people treat the risk of being cheated as categorically worse than an identical risk of simple bad luck (Fehr, 2009). Offered the same odds and the same stakes, a person will accept more risk from an indifferent world than from a potentially treacherous partner, which means that the harm of a betrayal is felt far out of proportion to its material cost. This is the missing term in the Komen ratio. The seven hundred thousand dollars was never what drove the reaction. What drove it was the sense of having been let down by an organization people had chosen to believe in, and that sense obeys its own arithmetic, one in which a small material stake can generate an overwhelming response. Supporters did not reach for the language of disappointment. A longtime donor, explaining why she stopped giving, described the decision as a betrayal of what she had wanted the organization to represent (Myers & Reynolds, 2013). That is the language of a broken relationship, not of a revised budget, and it is exactly the register betrayal aversion predicts.",
+          },
+          {
+            kind: "p",
+            text: "Komen and several of its affiliates attributed the falling numbers partly to a weak economy and to an election year that pulled charitable dollars toward political campaigns, and those factors were real. Fehr himself spends much of his review cautioning against exactly the kind of inference that trust research is prone to, the leap from a correlation between trust and some desirable outcome to the confident claim that trust caused it; he argues that trust is often an epiphenomenon of the institutions surrounding it, and that clean causal evidence is harder to come by than the enthusiasm for the topic suggests (Fehr, 2009). The same discipline should apply to a single charity. What tilts the Komen case toward causation rather than coincidence is not any one figure but the pattern around it. The organization's own spokeswoman attributed the decline substantially to the controversy (Stengle, 2014). At least five senior executives departed in the months after the decision (Associated Press, 2012), and the founder stepped down from the chief executive role (Myers & Reynolds, 2013). Local event figures show the same break. Race registrations in Fort Worth fell from nearly fourteen thousand in 2011 to about eighty-five hundred in 2013, and revenue from the Washington race halved over two years (Myers & Reynolds, 2013). Komen cut its national three-day walk from fourteen host cities to seven (Castillo, 2013). Event fundraising may well have been softening in these years for reasons of its own, which would be a second confound alongside the first, though a general trend of that kind would not produce a break concentrated in the year the controversy landed. The decline also failed to track the business cycle, persisting through the recovery and reaching its low point a full six years after the controversy, long after the economy had turned (Susan G. Komen Breast Cancer Foundation, 2018). A weak economy does not usually announce itself by keeping an organization's most loyal participants at home for the better part of a decade.",
+          },
+          {
+            kind: "p",
+            text: "The pattern breaks the other way in one place. In the fiscal year ending March 2019 the numbers turned upward, contributions rising twenty-three percent and total revenue seventeen (Susan G. Komen Breast Cancer Foundation, 2019). Trust can be rebuilt. The recovery was not the return of a balance that had been sitting somewhere waiting to be reclaimed. Komen did not withdraw its reputation in 2012 and redeposit it in 2019; it spent seven years doing the only thing the mechanism permits, keeping faith with the supporters who remained and earning a new balance slowly from a much lower base. Even after the rebound the foundation was taking in about half the revenue and well under half the contributions of the fiscal year in which the decision was announced. The account was not restored so much as replaced by a smaller one.",
+          },
+          {
+            kind: "p",
+            text: "If trust is an asset that cannot be spent, only invested in or protected, then the ordinary meaning of managing an asset does not quite apply to it, and this is where most organizations come to grief. You cannot plan to spend trust down at an optimal rate, the way a firm might manage a cash reserve, because any visible attempt to spend it is self-defeating. You can only keep faith with it and let it slowly convert into the cheaper coordination and easier fundraising and greater benefit of the doubt that it produces. The difficulty is that an organization's incentive systems are built to reward the opposite behavior. Quarterly targets, political expedients, and cost reductions all offer visible, immediate, measurable gains, and each of them can be financed, invisibly and for a while, by drawing on the trust reserve. The drawdown does not appear anywhere. No line item falls when a company ships a slightly worse product, or when a charity drops a commitment, without announcement, that a portion of its base held dear, so the reserve depletes without anyone recording a transaction, right up until the reactions arrive all at once. Komen's conduct once the backlash arrived shows what this costs. The charity defended itself by appealing to internal grant-making policy, a procedural justification for what its supporters could see was a decision about values, and the mismatch deepened the erosion. An audience already reading the decision as a statement of character will read a procedural cover story as further evidence about character, which is precisely the failed disconfirming act that Kim and his colleagues describe (Kim et al., 2006). Trust punishes, specifically and severely, the move of quietly spending it and then dressing the expenditure as something administrative.",
+          },
+          {
+            kind: "p",
+            text: "Barbara Brooks Kimmel, who runs a firm devoted to measuring corporate trust and therefore has her own interest in the answer, made the observation that lands the whole problem in a single diagnosis. In most organizations, she notes, nobody owns trust, because it is not classified as a risk, and a thing that no one owns is a thing that no one tends until it is too late (Kimmel, 2020). Her firm's own analysis claims that the most trusted public companies outperform the broader market over time, a finding worth treating with the caution its source invites, but the diagnosis stands on its own without the performance figures. It rests on an accounting gap. Trust is the asset that every organization lists in its statement of values and no organization lists on its balance sheet. It is declared central and recorded nowhere, which leaves it with no custodian, no quarterly review, no line that turns red as it is being spent. An asset that cannot be seen cannot be managed, and an asset that cannot be managed will be spent by whoever finds it convenient, because the spending carries no visible cost until the whole balance comes due at once.",
+          },
+          {
+            kind: "p",
+            text: "This is the reason organizations keep destroying the thing they most depend on and keep being astonished when they do. The destruction is never recorded as it happens. It accumulates silently behind decisions that each looked defensible on the numbers that were actually visible, and it becomes legible only in the reaction, by which point the account is already empty and the reversal already too late. Komen did not set out to burn thirty years of goodwill over a seven-hundred-thousand-dollar grant. It made a choice the internal numbers supported, defended it with a policy that sounded orderly, and learned the size of the reserve it had been drawing on only in the four days it took to drain it. The lesson everyone claims to have absorbed is that trust is fragile. The lesson that actually matters is that trust is the one asset an organization holds which its instruments cannot see it spending, so that the worth of the thing becomes fully knowable only at the instant it is gone.",
+          },
+          {
+            kind: "references",
+            items: [
+              { text: "Adams, S. (2012, February 3). After changing course on Planned Parenthood, what Susan G. Komen should do now. Forbes." },
+              {
+                text: "Arrow, K. J. (1972). Gifts and exchanges. Philosophy & Public Affairs, 1(4), 343–362.",
+                href: "https://doi.org/10.2307/2265097",
+              },
+              { text: "Associated Press. (2012, March 22). Several executives leave Komen after controversy. CBS Texas." },
+              { text: "Castillo, M. (2013, June 5). Susan G. Komen cuts participating 3-Day cities in half. CBS News." },
+              {
+                text: "Fehr, E. (2009). On the economics and biology of trust. Journal of the European Economic Association, 7(2–3), 235–266.",
+                href: "https://doi.org/10.1162/JEEA.2009.7.2-3.235",
+              },
+              {
+                text: "Fichman, M. (2003). Straining towards trust: Some constraints on studying trust in organizations. Journal of Organizational Behavior, 24(2), 133–157.",
+                href: "https://doi.org/10.1002/job.189",
+              },
+              { text: "Harvard Kennedy School Case Program. (2012). Social media and the Planned Parenthood / Susan G. Komen for the Cure controversy (Case No. HKS729). Harvard Kennedy School." },
+              {
+                text: "Kim, P. H., Ferrin, D. L., Cooper, C. D., & Dirks, K. T. (2004). Removing the shadow of suspicion: The effects of apology versus denial for repairing competence- versus integrity-based trust violations. Journal of Applied Psychology, 89(1), 104–118.",
+                href: "https://doi.org/10.1037/0021-9010.89.1.104",
+              },
+              {
+                text: "Kim, P. H., Dirks, K. T., Cooper, C. D., & Ferrin, D. L. (2006). When more blame is better than less: The implications of internal vs. external attributions for the repair of trust after a competence- vs. integrity-based trust violation. Organizational Behavior and Human Decision Processes, 99(1), 49–65.",
+                href: "https://doi.org/10.1016/j.obhdp.2005.07.002",
+              },
+              { text: "Kimmel, B. B. (2020, February 12). Trust is the tie that binds intangibles to tangible value [Interview]. The Conference Board." },
+              { text: "Myers, L., & Reynolds, T. (2013, June 10). Susan Komen CEO's salary draws fire as donations drop, races are canceled. NBC News." },
+              {
+                text: "Robison, L. J., Schmid, A. A., & Siles, M. E. (2002). Is social capital really capital? Review of Social Economy, 60(1), 1–21.",
+                href: "https://doi.org/10.1080/00346760110127074",
+              },
+              { text: "Stengle, J. (2014, January 3). Komen sees big drop in contributions after dispute. NBC DFW / Associated Press." },
+              { text: "Susan G. Komen Breast Cancer Foundation. (2014). Return of organization exempt from income tax (Form 990 for tax year 2013, EIN 75-1835298, fiscal year ending March 31, 2014). Internal Revenue Service." },
+              { text: "Susan G. Komen Breast Cancer Foundation. (2018). Return of organization exempt from income tax (Form 990 for tax year 2017, EIN 75-1835298, fiscal year ending March 31, 2018). Internal Revenue Service." },
+              { text: "Susan G. Komen Breast Cancer Foundation. (2019). Return of organization exempt from income tax (Form 990 for tax year 2018, EIN 75-1835298, fiscal year ending March 31, 2019). Internal Revenue Service." },
+              { text: "Susan G. Komen Breast Cancer Foundation Group. (2013). Return of organization exempt from income tax (Form 990 for tax year 2012, EIN 75-2462834, fiscal year ending March 31, 2013). Internal Revenue Service." },
+              {
+                text: "Williamson, O. E. (1981). The economics of organization: The transaction cost approach. American Journal of Sociology, 87(3), 548–577.",
+                href: "https://doi.org/10.1086/227496",
+              },
+            ],
+          },
+          {
+            kind: "h3",
+            text: "A note on the figures",
+          },
+          {
+            kind: "p",
+            text: "All financial figures come from Komen's filed Forms 990 rather than from press accounts, which report materially different totals.",
+          },
+          {
+            kind: "p",
+            text: "Two filing entities are involved. The pre-crisis and first-full-year figures are drawn from the group return filed under EIN 75-2462834, which covers the national foundation together with its affiliates. The later figures come from returns filed under EIN 75-1835298, covering the national foundation alone. The two overlap in the fiscal year ending March 31, 2013, which appears as the current year on the group return and as the prior year on the national foundation's following filing. They differ there by 1.8 percent on contributions and 1.5 percent on total revenue, so the series is treated here as continuous, with that caveat stated.",
+          },
+          {
+            kind: "p",
+            text: "Komen's fiscal year ends March 31, and the decision was announced on January 31, 2012. The baseline year used here, ending March 31, 2012, therefore already contains two months of fallout, which means the true pre-crisis figure was somewhat higher and the ratios given above are conservative.",
+          },
+          {
+            kind: "p",
+            text: "Readers comparing these figures against contemporaneous news coverage should note that the 990 reports special-event revenue net of direct fundraising expenses, while Komen's audited consolidated statements report race income gross. That accounts for much of the gap between the two sets of numbers.",
+          },
+        ],
+      },
+    ],
+  },
   stub("io-psychology", {
     slug: "dei-words-behavior",
     folder: "decision-making",

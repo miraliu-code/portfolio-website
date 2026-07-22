@@ -62,7 +62,10 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
             return (
               <section
                 key={i}
-                className="mt-16 border-t border-structure/15 pt-8"
+                /* End-of-essay divider when it follows the prose (The Same
+                   Machine); dropped when the block leads its container, e.g.
+                   a standalone Artifacts/sources tab. */
+                className="mt-16 border-t border-structure/15 pt-8 first:mt-0 first:border-t-0 first:pt-0"
               >
                 <h3 className="font-sans text-xs font-medium uppercase tracking-[0.3em] text-information/70">
                   References

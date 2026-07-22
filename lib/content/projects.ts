@@ -1256,6 +1256,32 @@ const ioPsychology: StandardProject[] = [
             text: "This is the reason organizations keep destroying the thing they most depend on and keep being astonished when they do. The destruction is never recorded as it happens. It accumulates silently behind decisions that each looked defensible on the numbers that were actually visible, and it becomes legible only in the reaction, by which point the account is already empty and the reversal already too late. Komen did not set out to burn thirty years of goodwill over a seven-hundred-thousand-dollar grant. It made a choice the internal numbers supported, defended it with a policy that sounded orderly, and learned the size of the reserve it had been drawing on only in the four days it took to drain it. The lesson everyone claims to have absorbed is that trust is fragile. The lesson that actually matters is that trust is the one asset an organization holds which its instruments cannot see it spending, so that the worth of the thing becomes fully knowable only at the instant it is gone.",
           },
           {
+            kind: "h3",
+            text: "A note on the figures",
+          },
+          {
+            kind: "p",
+            text: "All financial figures come from Komen's filed Forms 990 rather than from press accounts, which report materially different totals.",
+          },
+          {
+            kind: "p",
+            text: "Two filing entities are involved. The pre-crisis and first-full-year figures are drawn from the group return filed under EIN 75-2462834, which covers the national foundation together with its affiliates. The later figures come from returns filed under EIN 75-1835298, covering the national foundation alone. The two overlap in the fiscal year ending March 31, 2013, which appears as the current year on the group return and as the prior year on the national foundation's following filing. They differ there by 1.8 percent on contributions and 1.5 percent on total revenue, so the series is treated here as continuous, with that caveat stated.",
+          },
+          {
+            kind: "p",
+            text: "Komen's fiscal year ends March 31, and the decision was announced on January 31, 2012. The baseline year used here, ending March 31, 2012, therefore already contains two months of fallout, which means the true pre-crisis figure was somewhat higher and the ratios given above are conservative.",
+          },
+          {
+            kind: "p",
+            text: "Readers comparing these figures against contemporaneous news coverage should note that the 990 reports special-event revenue net of direct fundraising expenses, while Komen's audited consolidated statements report race income gross. That accounts for much of the gap between the two sets of numbers.",
+          },
+        ],
+      },
+      {
+        id: "sources",
+        label: "Artifacts",
+        blocks: [
+          {
             kind: "references",
             items: [
               { text: "Adams, S. (2012, February 3). After changing course on Planned Parenthood, what Susan G. Komen should do now. Forbes." },
@@ -1298,26 +1324,6 @@ const ioPsychology: StandardProject[] = [
                 href: "https://doi.org/10.1086/227496",
               },
             ],
-          },
-          {
-            kind: "h3",
-            text: "A note on the figures",
-          },
-          {
-            kind: "p",
-            text: "All financial figures come from Komen's filed Forms 990 rather than from press accounts, which report materially different totals.",
-          },
-          {
-            kind: "p",
-            text: "Two filing entities are involved. The pre-crisis and first-full-year figures are drawn from the group return filed under EIN 75-2462834, which covers the national foundation together with its affiliates. The later figures come from returns filed under EIN 75-1835298, covering the national foundation alone. The two overlap in the fiscal year ending March 31, 2013, which appears as the current year on the group return and as the prior year on the national foundation's following filing. They differ there by 1.8 percent on contributions and 1.5 percent on total revenue, so the series is treated here as continuous, with that caveat stated.",
-          },
-          {
-            kind: "p",
-            text: "Komen's fiscal year ends March 31, and the decision was announced on January 31, 2012. The baseline year used here, ending March 31, 2012, therefore already contains two months of fallout, which means the true pre-crisis figure was somewhat higher and the ratios given above are conservative.",
-          },
-          {
-            kind: "p",
-            text: "Readers comparing these figures against contemporaneous news coverage should note that the 990 reports special-event revenue net of direct fundraising expenses, while Komen's audited consolidated statements report race income gross. That accounts for much of the gap between the two sets of numbers.",
           },
         ],
       },

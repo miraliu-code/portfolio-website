@@ -1661,34 +1661,194 @@ const notes: NoteEntry[] = [
     "What does a city tell you at three miles an hour?",
     "The research method that requires no instrument: walking the same street until it starts explaining itself. Note in progress. (Draft placeholder.)",
   ),
-  noteStub(
-    6,
-    "coffee-shops-behavioral-design",
-    "Coffee Shops as Behavioral Design",
-    "Who is a coffee shop designed to move, and who is it designed to keep?",
-    "Seating, sockets, playlists, and cup sizes as instruments of dwell time. Note in progress. (Draft placeholder.)",
-  ),
-  noteStub(
-    7,
-    "libraries-understand-attention",
-    "Libraries Understand Attention Better Than Most Apps",
-    "Why does focus come easily in a building full of strangers?",
-    "The library as attention architecture, and what product design keeps getting wrong about focus. Note in progress. (Draft placeholder.)",
-  ),
-  noteStub(
-    8,
-    "waiting-rooms",
-    "Waiting Rooms Reveal More Than Waiting",
-    "What does an organization believe about you while you wait?",
-    "Chairs, signage, and the order of names called: the waiting room as an organization's honest self-portrait. Note in progress. (Draft placeholder.)",
-  ),
-  noteStub(
-    9,
-    "yearbook-organizations",
-    "Three Things I Learned About Organizations from Editing a Yearbook",
-    "What does a yearbook staff know about deadlines that companies don't?",
-    "Volunteer labor, hard deadlines, and shared authorship: the yearbook room as a miniature organization. Note in progress. (Draft placeholder.)",
-  ),
+  {
+    type: "note",
+    slug: "coffee-shops-behavioral-design",
+    domain: "notes",
+    coordinate: "N-06",
+    title: "Nobody Designed the Coffee Shop",
+    question: "In a coffee shop nobody planned, who gets moved along and who gets to stay?",
+    date: "2026-07-23",
+    readingTime: 5,
+    format: "Atlas Note",
+    length: "500–1,200 words",
+    hero: nextHero(),
+    draft: false,
+    artifacts: [],
+    body: [
+        {
+          kind: "dek",
+          text: "Thousands of them open every year furnished by taste and budget. The survivors all end up with the same floor plan.",
+        },
+        {
+          kind: "p",
+          text: "Walk into enough independent coffee shops and a layout starts repeating itself. Hard seating sits near the door, stools and high tops and wooden benches that are pleasant for twenty minutes and punishing for two hours, while the soft chairs are pushed as far toward the back as the room allows. Outlets cluster along one wall or vanish from the best seats. The counter is placed so that the queue runs along the least useful floor space. You can find this arrangement in cities that share no trade press, in shops whose owners have never met, opened by people with no background in retail design and no consultant on the payroll.",
+        },
+        {
+          kind: "p",
+          text: "The tempting explanation is that this is behavioral design, that the furniture has been selected to shape how long you stay. Hospitality trade writing is full of this, and the mechanism it describes is real enough. What the explanation gets wrong is the intent, because in most of these rooms there was none. The chairs were bought because they were on sale, or because the owner liked them, or because they came with the space. Convergence on a common layout without a common designer is a different phenomenon than design, and a more interesting one.",
+        },
+        {
+          kind: "p",
+          text: "Armen Alchian made the general argument in 1950, in a paper about why firms behave as though they are optimizing when the people running them are doing nothing of the sort. His answer was that the market does not require anyone to calculate correctly. It only requires that those who calculate badly stop operating, after which the surviving population looks purposive whether or not any individual in it ever reasoned its way to anything. The coffee shop layout is a small and legible instance of it. Nobody worked out the seating strategy; the shops that got it wrong closed. Edith Penrose objected to the whole analogy two years later, arguing that selection does not reliably produce the optimization the argument credits it with, and the objection lands wherever an environment shifts faster than selection can run. The economics of a room with chairs in it do not shift that fast.",
+        },
+        {
+          kind: "p",
+          text: "What those failed shops got wrong is a conflict between two businesses sharing one room. The first is throughput: the customer who arrives at 7:40, orders, waits ninety seconds, and leaves, generating a few dollars and then vacating the space for the next person, which across a morning produces the revenue per square foot that pays the rent. The second is dwell: the customer who buys one drink at eleven and holds a four-top until two, consuming electricity and Wi-Fi and a table while generating almost nothing per hour. On the arithmetic, dwell is a loss that throughput subsidizes. On any other measure it is essential, because an empty café does not read as calm, it reads as failing, and the person deciding whether to come in is reading the room through the window.",
+        },
+        {
+          kind: "p",
+          text: "An owner who fills the front of the house with armchairs will not receive a signal telling them their morning throughput has fallen by a third. They will receive a slow shortfall they attribute to the weather, or the neighborhood, or the new place down the street, and some fraction of those owners will close for reasons they never correctly diagnose. The layout that survives encodes an analysis nobody performed.",
+        },
+        {
+          kind: "p",
+          text: "There is one part of the arrangement that does appear deliberate wherever you find it, which is the use of the clock rather than the floor plan to manage the conflict. Furniture cannot move, but the day can. Mornings run louder and faster, the queue engineered to clear, the whole room feeling like somewhere you pass through. By two in the afternoon the same space has gone quiet and become somewhere to stay. Nothing physical has changed. The variables that shifted are the ones capable of shifting, and music volume tracking the hour is the clearest sign that an operator has actually thought about any of this.",
+        },
+        {
+          kind: "p",
+          text: "The conflict has no solution, which is why outlets keep disappearing from cafés and then reappearing. Remove them and the afternoon room empties and starts to look like a place in trouble. Restore them and the four-tops fill with people making a cortado last three hours. The layout most shops arrive at does not resolve the conflict; it holds it at a temperature the business survives, and the rooms that held it at a worse one are not around to be surveyed.",
+        },
+    ],
+  },
+  {
+    type: "note",
+    slug: "libraries-understand-attention",
+    domain: "notes",
+    coordinate: "N-07",
+    title: "Libraries Understand Attention Better Than Most Apps",
+    question: "Why does focus come easily in a building full of strangers?",
+    date: "2026-07-23",
+    readingTime: 5,
+    format: "Atlas Note",
+    length: "500–1,200 words",
+    hero: nextHero(),
+    draft: false,
+    artifacts: [],
+    body: [
+        {
+          kind: "dek",
+          text: "Focus arrives easily in a room full of strangers and refuses to arrive on a device built to produce it.",
+        },
+        {
+          kind: "p",
+          text: "Someone who cannot work at home, who has installed two site blockers and a timer and still loses the afternoon, walks into a library; she sits at a table among people she has never met and will never speak to, and works for four hours without effort. Her willpower did not change on the walk over, and neither did the task. An entire software industry rests on the premise that this is a problem of self-control, and a building with no theory of attention whatsoever routinely outperforms it.",
+        },
+        {
+          kind: "p",
+          text: "Two mechanisms are doing the work, and neither is available to an application.",
+        },
+        {
+          kind: "p",
+          text: "The first is co-presence; twenty people are visibly engaged in the same activity, none of whom will comment on what you are doing, none of whom you will meet, and all of whom can see you. This produces accountability with no consequence attached, which turns out to be the productive ratio. Actual surveillance, a manager who can see your screen, generates anxiety and performance rather than attention, while total privacy generates nothing at all. What a reading room supplies is the mild continuous unenforced awareness of being among people who are working, and it recruits something social and quite old that has little to do with discipline. In neurodivergent communities the effect is called body doubling and is discussed as an accommodation. That framing understates it: body doubling appears to be the ordinary mechanism by which most people concentrate, simply noticed first by the population for whom its absence is most costly.",
+        },
+        {
+          kind: "p",
+          text: "The second is that the room means one thing: a library is single-purpose space, which converts focusing into a decision made once, at the door, rather than continuously, at every moment. This is the structural failure of the focus application. The blocker lives on the device that contains the thing being blocked, so the intention has to be renewed against a temptation that is always one gesture away, and every renewal costs something. Restriction fights the user and architecture removes the fight from the room, charging the whole price up front, in the walk over.",
+        },
+        {
+          kind: "p",
+          text: "Neither feature can be shipped, because software cannot supply real strangers in matched time and cannot be a place you go rather than a thing you are on.",
+        },
+        {
+          kind: "p",
+          text: "Virtual coworking is the case that ought to disprove this and instead explains it. Two people sit on video for fifty minutes and both work, and by every account it succeeds. It is also the one product category that imported the library's mechanisms rather than adding restrictions to a device: there is a real other person, visible and unjudging, there is a session with a start and an end, which is a door, and it conspicuously omits blocking, streaks, gamification, and analytics about your habits. The tool that works is the one that stopped trying to make its user more disciplined and tried instead to make her less alone.",
+        },
+        {
+          kind: "p",
+          text: "The economics of this explain the shape of the market better than any failure of insight. Restriction is cheap to build, easy to demonstrate, and produces a feature list. Co-presence requires other human beings in synchronized time, scales badly, and yields almost nothing to show a prospective customer beyond the customer's own presence. Single-purpose space cannot be sold as software at all, since its entire value consists in not being the device that contains everything else. A company that must ship features will keep building the thing that does not work, in a new interface, every eighteen months.",
+        },
+        {
+          kind: "p",
+          text: "Ray Oldenburg's third places were about sociability, the pub and the barbershop and the informal public life that happens outside home and work, and the library keeps getting filed under that heading. The reading room is doing something adjacent and different. It gathers people in order that they may be alone in company, and it manages this without programming, without membership, and without anyone on staff having decided that this was the service. The tables are long because that is how reading rooms were built. The quiet is a convention inherited from institutions with unrelated motives. Nobody arranged any of it to exploit ambient accountability, and it is not clear the arrangement would survive anyone trying.",
+        },
+    ],
+  },
+  {
+    type: "note",
+    slug: "waiting-rooms",
+    domain: "notes",
+    coordinate: "N-08",
+    title: "Waiting Rooms Reveal More Than Waiting",
+    question: "What does an organization believe about you while you wait?",
+    date: "2026-07-23",
+    readingTime: 4,
+    format: "Atlas Note",
+    length: "500–1,200 words",
+    hero: nextHero(),
+    draft: false,
+    artifacts: [],
+    body: [
+        {
+          kind: "dek",
+          text: "Budget explains the chairs, not the clock.",
+        },
+        {
+          kind: "p",
+          text: "The cheapest thing a waiting room can contain is information about how long you will be waiting, and the frequency with which rooms decline to contain it is the most revealing fact about them.",
+        },
+        {
+          kind: "p",
+          text: "A posted wait time requires no furniture, no renovation, and no staff. An emergency department that displays one has decided that a stranger's ability to plan the rest of the day is a legitimate claim on its operations, and has accepted the awkwardness of publishing a number that will sometimes look terrible. A registry office with no clock, no estimate, and no indication of queue position has decided otherwise, and the decision is rarely cruelty. It is arithmetic. Your uncertainty is expensive to you and free to the institution, appearing in none of its numbers and on none of its reports, so nothing in the system ever surfaces it as a problem to solve. Airlines began publishing delays at the point where uncertain passengers started generating costs at the gate. Institutions tell you how long you will wait at the moment your waiting begins to show up on their side of the ledger, and not before.",
+        },
+        {
+          kind: "p",
+          text: "This is the distinction that makes waiting rooms readable at all. An underfunded clinic and a well-endowed one differ in their chairs for obvious reasons, and reading an institution's soul out of its upholstery would be unfair; but the clock is nearly free, and so is a water dispenser, and so is the orientation of the front desk, and these vary in ways that budget does not explain. Scarcity constrains what an institution can provide and reveals what it prioritizes when it cannot provide everything, which makes a poor waiting room a better instrument than a rich one.",
+        },
+        {
+          kind: "p",
+          text: "Once you are looking at the free choices, the room fills with them. The front desk either faces the room or sits behind angled glass that lets whoever sits behind it decline to notice a space they know is full. The seating either admits that people arrive in pairs or bolts them into rows facing forward, where conversation is possible only in profile. Whether anything acknowledges that a person waiting for news is doing something different than a person waiting for a service is a question most rooms answer by never asking it. Whether the magazines were chosen or merely accumulated is answered by their dates, a stack four years out being a fairly exact measure of how long since anyone walked in and saw the room as a room rather than a corridor with seats in it.",
+        },
+        {
+          kind: "p",
+          text: "The oddity in all of this is that the waiting room is the one space an institution controls that nobody art-directs: the lobby is designed, the website has been through six rounds of review, the packaging, the signage, the hold music, and the receipts have all passed under the eye of someone paid to consider them. The waiting room gets furnished, which is a different verb, and because almost no one is trying to persuade you of anything while you sit in it, what it communicates is unguarded. Service designers have understood since Mary Jo Bitner's work on the servicescape in the early nineties that physical surroundings shape how customers read an encounter. The waiting room is the part of the servicescape that most organizations have not yet gotten around to shaping.",
+        },
+        {
+          kind: "p",
+          text: "This is also the limit of the method, and the reason I expect it to stop working. The most sophisticated organizations have already abolished the waiting room, Apple replacing it with an appointment and a staff member who finds you standing somewhere in the store so that you never experience yourself as waiting even while you are, and restaurants handing you a pager that relocates the wait to a sidewalk they are not responsible for. Both are real improvements that dissolve the evidence along with the problem, because as soon as a company becomes good enough at design to notice its waiting room is saying something, it will design the waiting room, and the room will become a statement like every other statement it makes. Everything readable here is readable only in the places nobody has gotten to yet.",
+        },
+    ],
+  },
+  {
+    type: "note",
+    slug: "yearbook-organizations",
+    domain: "notes",
+    coordinate: "N-09",
+    title: "Three Things Editing a Yearbook Taught Me About Organizations",
+    question: "What does a yearbook staff know about deadlines that companies don't?",
+    date: "2026-07-23",
+    readingTime: 5,
+    format: "Atlas Note",
+    length: "500–1,200 words",
+    hero: nextHero(),
+    draft: false,
+    artifacts: [],
+    body: [
+        {
+          kind: "dek",
+          text: "Fifty people, no salaries, no leverage, and a deadline nobody in the building controlled.",
+        },
+        {
+          kind: "p",
+          text: "I spent a year as editor-in-chief of a yearbook with about fifty people on staff, none of whom I could pay, promote, discipline, or fire, and all of us working toward a date none of us set. Most of what I have read since about management assumes at least one of those conditions away. The year taught me, mostly by removing the instruments, which instruments were holding the weight.",
+        },
+        {
+          kind: "p",
+          text: "A deadline is real only when someone outside the organization enforces it. The printer's date could not move. It was not a target or a milestone; it was the day the files existed or the book did not, and no explanation was going to alter it. I have since sat through many meetings about deadlines that were nothing like this: a corporate date is typically set by the same organization that will suffer from missing it, which means the organization retains the power to forgive itself, and everyone in the room understands this on the day the date is announced. The date slips because it was always capable of slipping; nobody says so, and an apparatus of tracking and status and escalation grows up around a commitment that never had enforcement behind it. The lesson is not that people require pressure; it is that a date with no external consequence is a stated preference, and teams recognize the difference long before anyone admits it.",
+        },
+        {
+          kind: "p",
+          text: "Without leverage, the only currency available is not wanting to disappoint someone. I could not offer a raise or threaten a job, so every mechanism that runs on consequence was unavailable, and what remained was thinner and stranger and more effective than I expected. People turned in spreads because they had said they would, because their name was going on the page, and because the person who would otherwise be fixing it at midnight was someone they knew. Organizational writing calls this commitment and files it as a soft supplement to real management. Running a staff with nothing else available, I came to suspect the causation points the other way, that commitment is what actually moves work and authority is the substitute organizations reach for once commitment has failed or was never built. The supporting evidence is that companies possess every form of leverage a yearbook staff lacks, and their coordination problems are not visibly smaller.",
+        },
+        {
+          kind: "p",
+          text: "Permanence changes how you check: the book prints once, and a misspelled name is misspelled in three hundred houses forever, with no revision and no quiet correction at two in the morning. Under that constraint you learn quickly that individual carefulness does not scale, because everyone is careful and the errors arrive regardless. What works is building the checking into the process so that it does not depend on anyone's attention on a bad night: names verified against a roster by a second person, every spread read by someone who did not make it, a final pass whose only assignment was proper nouns. Software culture has partly lost this habit because most software is reversible, and reversibility is a real advantage that quietly erodes the discipline of getting things right the first time. Anything an organization does that cannot be undone, a public statement, a layoff, a decision a customer will remember, is running under yearbook conditions rather than software conditions, and most organizations do not change modes when they cross that line.",
+        },
+        {
+          kind: "p",
+          text: "The three do not fit together. One says organizations need enforcement from outside themselves; another says the strongest coordination runs on something no enforcement can produce. The third cuts across both, holding that the process should be built to survive the people inside it on their worst day. I spent a while trying to reduce them to a single principle and eventually decided the tension was the finding rather than a failure to reach one, since the year worked precisely because the usual instruments were missing. We had no way to compel anyone, so we had to be worth showing up for, and the date was real, so nobody needed persuading that it mattered.",
+        },
+    ],
+  },
   /* -- The first full essay on the site (converted from a Note): the
         Essay treatment is dek → body → one pull quote → References
         (the closing-bibliography block, the pattern for cited
@@ -1794,13 +1954,55 @@ const notes: NoteEntry[] = [
     "What does innovation look like when it is a place instead of a pitch?",
     "Hardware markets, iteration speed, and a city that prototypes itself. Note in progress. (Draft placeholder.)",
   ),
-  noteStub(
-    12,
-    "quiet-confidence-public-libraries",
-    "The Quiet Confidence of Public Libraries",
-    "Why do libraries never have to advertise their trustworthiness?",
-    "The last institution nobody suspects of an agenda, and what its quiet confidence is built from. Note in progress. (Draft placeholder.)",
-  ),
+  {
+    type: "note",
+    slug: "quiet-confidence-public-libraries",
+    domain: "notes",
+    coordinate: "N-12",
+    title: "What Happens When a Library Is Made to Argue for Itself",
+    question: "Why do libraries never have to advertise their trustworthiness?",
+    date: "2026-07-23",
+    readingTime: 5,
+    format: "Atlas Note",
+    length: "500–1,200 words",
+    hero: nextHero(),
+    draft: false,
+    artifacts: [],
+    body: [
+        {
+          kind: "dek",
+          text: "The vocabulary of demonstrated value belongs to institutions that need something from you.",
+        },
+        {
+          kind: "p",
+          text: "Open the annual report of almost any large public library system and you will find, usually within the first few pages, a figure for return on investment. For every dollar of public funding, the community receives four dollars in value, or six, or eleven, depending on the methodology. The calculation assigns retail prices to borrowed books, hourly rates to computer sessions, tuition equivalents to literacy classes. This is careful work, produced by people who believe in the institution, and it exists because somewhere upstream a council or a legislature asked what the library was worth.",
+        },
+        {
+          kind: "p",
+          text: "Economists working on what they call cheap talk, meaning messages that cost the speaker nothing to send, established that such messages do carry information, though only within a limit: they inform to the degree that the speaker's interests run parallel to the listener's, and they decay toward noise as the two pull apart. A claim an institution makes about its own worth sits at the far end of that range, which is why nobody reads a company's description of its own value as evidence of anything. What made libraries unusual is that they were among the few institutions in a person's week that never had to make such a claim, and the reason was structural rather than cultural.",
+        },
+        {
+          kind: "p",
+          text: "A librarian helping you find a book has no stake in which book you leave with. He earns nothing more if you take the expensive one, is not evaluated on how many you check out, and loses nothing if you decide the subject was a mistake and go home with nothing at all. When he tells you the popular title on the display table is worse than the older one two shelves over, the advice costs him nothing in either direction, and you can hear that it costs him nothing. Trust does not follow from what an institution says about itself. It follows from what you are able to work out about its interests, and for most of their history libraries have been the rare case where the answer was that there weren't any.",
+        },
+        {
+          kind: "p",
+          text: "The bookstore makes the contrast legible, staffed by people who love books at least as much as librarians do, and who operate under a constraint librarians do not have, which is that the store needs the sale. The best booksellers are trusted exactly in the moments when they tell you not to buy something, because that is when their advice visibly cuts against their employer. This is the logic Michael Spence formalized as signaling, in which a claim becomes credible precisely because making it falsely would cost the speaker something. Booksellers purchase transaction by transaction what the library was getting structurally, and that many of them succeed is a tribute to them rather than evidence that the difference does not matter.",
+        },
+        {
+          kind: "p",
+          text: "This is what makes the return-on-investment figure worth looking at twice, though it is not dishonest and I am not suggesting the numbers are cooked. The issue is what the act of producing them does to the position the institution occupies. A library that publishes a multiplier has entered an argument, and to enter an argument is to acquire a stake in its outcome. The report exists to secure the appropriation. Everyone involved knows this, including the council members reading it, and the claim is therefore discounted the way claims from interested parties are always discounted. The institution has spent something to make it, and what it spent was the very quality that made its other statements credible.",
+        },
+        {
+          kind: "p",
+          text: "None of this amounts to saying that libraries should refuse to account for themselves, and the honest difficulty is that the accounting is not optional. Public money requires public justification; a system that declines to make its case in the language the funder speaks will simply be cut by people who never had to hear the case. The bind is real and I do not think there is a clean way through it. What I notice is only that the requirement arrives from outside, that it asks libraries to behave like organizations with something to gain, and that the behavior is not free even when it is unavoidable.",
+        },
+        {
+          kind: "p",
+          text: "There is a version of this problem in every institution that trades on disinterest. Auditors, referees, ratings agencies, and public broadcasters all derive their standing from having nothing at stake in the particular outcome, and all of them are periodically asked to demonstrate their worth to whoever pays for them. The demonstration is reasonable; it's also the moment the disinterest stops being obvious to anyone watching.",
+        },
+    ],
+  },
 ];
 
 export const projects: Project[] = [
